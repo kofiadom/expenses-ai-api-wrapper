@@ -1,0 +1,24 @@
+name: Tests
+
+on:
+  workflow_call:
+  pull_request:
+    types: [opened, ready_for_review, synchronize]
+    paths-ignore:
+      - '**.md'
+      - '**/*.md'
+      - '**/.gitignore'
+      - '.gitignore'
+      - '**/CODEOWNERS'
+      - 'CODEOWNERS'
+      - '**/.dockerignore'
+      - '.dockerignore'
+
+jobs:
+  Tests:
+    uses: papayaglobal/workflows/.github/workflows/tests.yaml@main
+    with:
+      node-ver: 20
+      account: core
+      allure-testresults-path: target/surefire-reports
+    secrets: inherit

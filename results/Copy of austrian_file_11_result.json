@@ -1,34 +1,34 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_005_Copy of austrian_file_11.pdf",
+    "image_path": "uploads\\AUG_5_V5_4_Copy of austrian_file_11.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:09:22.477Z",
-    "quality_score": 100,
-    "quality_level": "excellent",
+    "timestamp": "2025-08-05T16:21:01.804Z",
+    "quality_score": 70,
+    "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "The text is sharp and clearly defined with no visible blur.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges show moderate blur, likely due to camera movement or slight out-of-focus capture.",
+      "recommendation": "Retake the image ensuring the camera is steady and the document is in focus."
     },
     "contrast_assessment": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is adequate but could be improved for better readability.",
+      "recommendation": "Ensure proper lighting and avoid shadows when capturing the document."
     },
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No glare or bright spots detected that obscure text or important document areas.",
+      "description": "No glare or bright spots are detected on the document.",
       "recommendation": "No action needed."
     },
     "water_stains": {
@@ -36,7 +36,7 @@
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discolorations affecting document readability.",
+      "description": "No water stains or discoloration are present on the document.",
       "recommendation": "No action needed."
     },
     "tears_or_folds": {
@@ -44,23 +44,23 @@
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No visible tears, creases, folds, or wrinkles that distort text or cause information loss.",
+      "description": "No visible tears, creases, or folds are detected on the document.",
       "recommendation": "No action needed."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "No document edges are cut off, and the image frame includes all important portions.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the document's edges are slightly cut off, but it does not affect critical information.",
+      "recommendation": "Ensure the entire document is within the frame when capturing the image."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No missing or incomplete sections; the entire receipt/invoice is captured.",
+      "description": "No missing sections or incomplete capture is detected.",
       "recommendation": "No action needed."
     },
     "obstructions": {
@@ -68,10 +68,10 @@
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
+      "description": "No obstructions such as fingers, shadows, or objects are present.",
       "recommendation": "No action needed."
     },
-    "overall_quality_score": 10
+    "overall_quality_score": 7
   },
   "classification": {
     "is_expense": true,
@@ -83,8 +83,8 @@
     "location_match": true,
     "error_type": null,
     "error_message": null,
-    "classification_confidence": 95,
-    "reasoning": "The document contains multiple fields indicating it is an expense document. It includes details such as the supplier, consumer, transaction amount, transaction date, invoice number, tax information, payment method, and item description line items.",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields indicating it is an expense document. It includes details such as supplier, consumer, transaction amount, transaction date, invoice number, tax information, payment method, and item description line items.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -96,96 +96,91 @@
         "paymentMethod",
         "itemDescriptionLineItems"
       ],
-      "fields_missing": [],
+      "fields_missing": [
+        "icpRequirements"
+      ],
       "total_fields_found": 8,
-      "expense_identification_reasoning": "All 8 required fields are present, confirming this is an expense document."
+      "expense_identification_reasoning": "All required fields for expense identification are present, and the document details align with accommodation expenses."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": "Tamara Schober",
-    "customer_address_on_invoice": "Robert Ederer Straße 21, 2460 Bruck an der Leiha",
-    "customer_vat_number_on_invoice": null,
+    "country": "Germany",
+    "supplier_name": "SLY BERLIN",
+    "supplier_address": "Petersburger Str. 16, 10249 Berlin",
+    "supplier_vat_number": "DE321074931",
+    "supplier_phone": "+4930233206600",
+    "supplier_email": "contact@sly-berlin.com",
+    "supplier_website": "www.sly-berlin.com",
+    "customer_name": "Tamara Schober",
+    "customer_address": "Robert Ederer Straße 21, 2460 Bruck an der Leiha",
+    "invoice_number": "41464",
+    "receipt_number": null,
+    "transaction_reference": null,
     "currency": "EUR",
-    "amount": 28,
-    "receipt_type": "Rechnung",
-    "receipt_quality": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "kilometer_record": null,
-    "car_details": null,
-    "parking_documentation": null,
+    "total_amount": 28,
+    "subtotal": 480.36,
+    "tax_amount": 36.62,
+    "tax_rate": [
+      {
+        "rate": 7,
+        "amount": 31.43
+      },
+      {
+        "rate": 19,
+        "amount": 5.19
+      }
+    ],
+    "discount_amount": 484.86,
+    "tip_amount": null,
+    "date_of_issue": "2024-12-13",
+    "transaction_time": null,
+    "payment_method": "American Express",
+    "card_last_four": null,
     "line_items": [
       {
         "description": "Logis Schober Tamara #223",
         "quantity": 3,
         "unit_price": 160.12,
-        "total_price": 480.36
+        "total_price": 480.36,
+        "category": "Accommodation"
       },
       {
         "description": "Businesspackage B Schober Tamara #223",
         "quantity": 3,
         "unit_price": 1.5,
-        "total_price": 4.5
+        "total_price": 4.5,
+        "category": "Package"
       },
       {
         "description": "Restaurant lt. Beleg Nr.: 22786 Schober Tamara #223",
         "quantity": 1,
         "unit_price": 28,
-        "total_price": 28
+        "total_price": 28,
+        "category": "Food"
       },
       {
         "description": "Deposit 7.0% Schober Tamara #223",
         "quantity": 1,
         "unit_price": -484.86,
-        "total_price": -484.86
+        "total_price": -484.86,
+        "category": "Deposit"
       },
       {
         "description": "American Express Schober #223",
         "quantity": 1,
         "unit_price": -28,
-        "total_price": 0
+        "total_price": 0,
+        "category": "Payment"
       }
     ],
-    "total": 28,
-    "payment": -28,
-    "outstanding_amount": 0,
-    "tax_details": [
-      {
-        "tax_rate": 7,
-        "net_amount": 448.93,
-        "tax_amount": 31.43,
-        "gross_amount": 480.36
-      },
-      {
-        "tax_rate": 19,
-        "net_amount": 27.31,
-        "tax_amount": 5.19,
-        "gross_amount": 32.5
-      },
-      {
-        "tax_rate": 0,
-        "net_amount": 0,
-        "tax_amount": 0,
-        "gross_amount": 0
-      }
-    ],
-    "invoice_number": "41464",
-    "invoice_date": "2024-12-13",
+    "receipt_type": "Hotel Receipt",
+    "document_type": "Rechnung",
+    "room_number": "223",
     "arrival_date": "2024-12-10",
     "departure_date": "2024-12-13",
-    "guest_name": "Schober",
-    "room_number": "223",
-    "supplier_name": "SLY",
-    "supplier_address": "Petersburger Str. 16, 10249 Berlin",
-    "bank_details": "Hamburger Sparkasse, Simon-von-Utrecht Str. 33, 20359 Hamburg, IBAN: DE34200505501002315164, BIC: HASPADEHHXXX",
-    "contact_person": "Ina Kreye, Thomas Kreye, Dominic Frielinghaus",
-    "contact_phone": "+4930233206600",
-    "contact_email": "contact@sly-berlin.com",
-    "contact_website": "www.sly-berlin.com",
-    "vat_id": "DE321074931",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": "HRB 154589",
     "tse_transaction": "120941",
     "tse_signature_counter": "242401",
     "tse_start": "2024-12-13T10:47:31+01:00",
@@ -201,525 +196,788 @@
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 4,
+      "issues_count": 5,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is 'Tamara Schober', but it should be 'Global People IT-Services GmbH' as per the ICP-specific requirements.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer name is displayed on the invoice.",
-          "knowledge_base_reference": "Must show Global People IT-Services GmbH as customer"
+          "field": "country",
+          "description": "The receipt is issued in Germany, but the compliance analysis is for Austria.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipts must comply with the local country's standards."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is 'Robert Ederer Straße 21, 2460 Bruck an der Leiha', but it should be 'Kärntner Ring 12, A-1010 Vienna, Austria' as per the ICP-specific requirements.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer address is displayed on the invoice.",
-          "knowledge_base_reference": "Must show Kärntner Ring 12, A-1010 Vienna, Austria"
+          "field": "supplier_name",
+          "description": "The supplier name 'SLY BERLIN' does not match the required local employer company name 'Global People IT-Services GmbH'.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must show 'Global People IT-Services GmbH', not the worker's name."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "The customer VAT number on the invoice is missing, but it should be 'ATU77112189' as per the ICP-specific requirements.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer VAT number is displayed on the invoice.",
-          "knowledge_base_reference": "Must show ATU77112189"
+          "field": "supplier_address",
+          "description": "The supplier address 'Petersburger Str. 16, 10249 Berlin' does not match the required local employer address 'Kärntner Ring 12, A-1010 Vienna, Austria'.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must show 'Kärntner Ring 12, A-1010 Vienna, Austria'."
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "supplier_vat_number",
+          "description": "The supplier VAT number 'DE321074931' does not match the required local employer VAT ID 'ATU77112189'.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoices must show 'VAT ID: ATU77112189'."
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "receipt_quality",
-          "description": "The receipt quality field is null, and it is mandatory to ensure the document quality meets the standard.",
-          "recommendation": "Please ensure that the receipt is clear and readable as per the compliance requirements.",
-          "knowledge_base_reference": "Online copies sufficient, hard copy not required"
+          "field": "receipt_type",
+          "description": "The receipt is a hotel receipt and requires additional documentation.",
+          "recommendation": "Please submit the receipt using the Travel Expense Report Template Austria EUR.xlsx and ensure all required fields are filled out.",
+          "knowledge_base_reference": "Travel expenses must be submitted using the Travel Expense Report Template Austria EUR.xlsx."
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt has several compliance issues related to the customer name, address, and VAT number. Additionally, the receipt quality needs to be verified. These issues need to be addressed with the supplier to ensure compliance with the ICP-specific requirements."
+      "compliance_summary": "The receipt does not comply with the required standards for Austria. The country, supplier name, address, and VAT number do not match the required local employer details. Additionally, the receipt type requires submission using the specified travel expense report template."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Austria",
       "icp": "Global People",
       "receipt_type": "accommodation",
-      "issues_count": 4
+      "issues_count": 5
     }
   },
   "citations": {
     "citations": {
-      "customer_name_on_invoice": {
+      "country": {
         "field_citation": {
-          "source_text": "Customer Name on Invoice",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Local Employer name as customer on supplier invoice",
-          "match_type": "exact"
+          "source_text": "not explicitly mentioned",
+          "confidence": 0.7,
+          "source_location": "markdown",
+          "context": "Country information is inferred from supplier address.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "Tamara Schober",
-          "confidence": 1,
+          "source_text": "Germany",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "SLY\nFrau\nTamara Schober\nRobert Ederer Straße 21\n2460 Bruck an der Leiha",
-          "match_type": "exact"
-        }
-      },
-      "customer_address_on_invoice": {
-        "field_citation": {
-          "source_text": "Customer Address on Invoice",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Local Employer address as customer on supplier invoice",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Robert Ederer Straße 21, 2460 Bruck an der Leiha",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "SLY\nFrau\nTamara Schober\nRobert Ederer Straße 21\n2460 Bruck an der Leiha",
-          "match_type": "exact"
-        }
-      },
-      "currency": {
-        "field_citation": {
-          "source_text": "Currency",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt currency and exchange rate",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "EUR",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Einzelpreis\nSumme\n160,12\n480,36\n1,50\n4,50\n28,00\n28,00\n-484,86\n-484,86\n-28,00\n0,00",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Expense amount",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "28",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Total:\n28,00",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Receipt Type",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Rechnung",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Rechnung Nr. 41464/Seite 1/Datum: 13.12.24",
-          "match_type": "exact"
-        }
-      },
-      "line_items": {
-        "field_citation": {
-          "source_text": "Line Items",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Detailed breakdown of expenses",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Logis Schober Tamara #223, 3, 160.12, 480.36",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Menge\nLeistung\nEinzelpreis\nSumme\n3\nLogis Schober Tamara #223\n160,12\n480,36",
-          "match_type": "exact"
-        }
-      },
-      "total": {
-        "field_citation": {
-          "source_text": "Total",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Sum of all line items",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "28",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Total:\n28,00",
-          "match_type": "exact"
-        }
-      },
-      "payment": {
-        "field_citation": {
-          "source_text": "Payment",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Amount paid",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "-28",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Zahlung:\n-28,00",
-          "match_type": "exact"
-        }
-      },
-      "outstanding_amount": {
-        "field_citation": {
-          "source_text": "Outstanding Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Remaining amount due",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "0",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Offener Betrag:\n0,00",
-          "match_type": "exact"
-        }
-      },
-      "tax_details": {
-        "field_citation": {
-          "source_text": "Tax Details",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Detailed tax information",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "7, 448.93, 31.43, 480.36",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Enthaltene Mehrwertsteuer:\nMwSt-Satz\nNettobetrag EUR\nMehrwertsteuer EUR\nBruttobetrag EUR\n7,00% A\n448,93\n31,43\n480,36",
-          "match_type": "exact"
-        }
-      },
-      "invoice_number": {
-        "field_citation": {
-          "source_text": "Invoice Number",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Unique identifier for the invoice",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "41464",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Rechnung Nr. 41464/Seite 1/Datum: 13.12.24",
-          "match_type": "exact"
-        }
-      },
-      "invoice_date": {
-        "field_citation": {
-          "source_text": "Invoice Date",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Date of the invoice",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "2024-12-13",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Rechnung Nr. 41464/Seite 1/Datum: 13.12.24",
-          "match_type": "fuzzy"
-        }
-      },
-      "arrival_date": {
-        "field_citation": {
-          "source_text": "Arrival Date",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Date of arrival",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "2024-12-10",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Anreise: 10.12.24 Abreise: 13.12.24 Gast: Schober",
-          "match_type": "fuzzy"
-        }
-      },
-      "departure_date": {
-        "field_citation": {
-          "source_text": "Departure Date",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Date of departure",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "2024-12-13",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Anreise: 10.12.24 Abreise: 13.12.24 Gast: Schober",
-          "match_type": "fuzzy"
-        }
-      },
-      "guest_name": {
-        "field_citation": {
-          "source_text": "Guest Name",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Name of the guest",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Schober",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Anreise: 10.12.24 Abreise: 13.12.24 Gast: Schober",
-          "match_type": "exact"
-        }
-      },
-      "room_number": {
-        "field_citation": {
-          "source_text": "Room Number",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Room number of the guest",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "223",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Zimmer: 223",
+          "context": "Supplier address: 'Petersburger Str. 16, 10249 Berlin, Germany'",
           "match_type": "exact"
         }
       },
       "supplier_name": {
         "field_citation": {
-          "source_text": "Supplier Name",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Name of the supplier",
+          "source_text": "SLY BERLIN",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in the header 'SLY BERLIN'.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "SLY",
-          "confidence": 1,
+          "source_text": "SLY BERLIN",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "SLY",
+          "context": "Appears in the header 'SLY BERLIN'.",
           "match_type": "exact"
         }
       },
       "supplier_address": {
         "field_citation": {
-          "source_text": "Supplier Address",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Address of the supplier",
+          "source_text": "RECHNUNGSANSCHRIFT",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as 'RECHNUNGSANSCHRIFT'.",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "Petersburger Str. 16, 10249 Berlin",
-          "confidence": 1,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "RECHNUNGSANSCHRIFT\nPetersburger Str. 16\n10249 Berlin",
+          "context": "Located under 'RECHNUNGSANSCHRIFT'.",
           "match_type": "exact"
         }
       },
-      "bank_details": {
+      "supplier_vat_number": {
         "field_citation": {
-          "source_text": "Bank Details",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Bank details of the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Hamburger Sparkasse, Simon-von-Utrecht Str. 33, 20359 Hamburg, IBAN: DE34200505501002315164, BIC: HASPADEHHXXX",
-          "confidence": 1,
+          "source_text": "USt. ID",
+          "confidence": 0.9,
           "source_location": "markdown",
-          "context": "BANKVERBINDUNG\nHamburger Sparkasse\nSimon-von-Utrecht Str. 33\n20359 Hamburg\nDE34200505501002315164\nHASPADEHHXXX",
-          "match_type": "exact"
-        }
-      },
-      "contact_person": {
-        "field_citation": {
-          "source_text": "Contact Person",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Contact person for the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Ina Kreye, Thomas Kreye, Dominic Frielinghaus",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "GESCHÄFTSFÜHRUNG\nIna Kreye\nThomas Kreye\nDominic Frielinghaus",
-          "match_type": "exact"
-        }
-      },
-      "contact_phone": {
-        "field_citation": {
-          "source_text": "Contact Phone",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Contact phone number for the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "+4930233206600",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "P: +4930233206600",
-          "match_type": "exact"
-        }
-      },
-      "contact_email": {
-        "field_citation": {
-          "source_text": "Contact Email",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Contact email for the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "contact@sly-berlin.com",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "contact@sly-berlin.com",
-          "match_type": "exact"
-        }
-      },
-      "contact_website": {
-        "field_citation": {
-          "source_text": "Contact Website",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Contact website for the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "www.sly-berlin.com",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "www.sly-berlin.com",
-          "match_type": "exact"
-        }
-      },
-      "vat_id": {
-        "field_citation": {
-          "source_text": "VAT ID",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "VAT identification number for the supplier",
+          "context": "Appears as 'USt. ID'.",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "DE321074931",
-          "confidence": 1,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "USt. ID: DE321074931",
+          "context": "Located under 'USt. ID'.",
+          "match_type": "exact"
+        }
+      },
+      "supplier_phone": {
+        "field_citation": {
+          "source_text": "P:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as 'P:'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "+4930233206600",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Located under 'P:'.",
+          "match_type": "exact"
+        }
+      },
+      "supplier_email": {
+        "field_citation": {
+          "source_text": "contact",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as 'contact@sly-berlin.com'.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "contact@sly-berlin.com",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Located under 'contact'.",
+          "match_type": "exact"
+        }
+      },
+      "supplier_website": {
+        "field_citation": {
+          "source_text": "www.sly-berlin.com",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as 'www.sly-berlin.com'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "www.sly-berlin.com",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Located under 'www.sly-berlin.com'.",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "Gast:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Appears as 'Gast: Schober'.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Tamara Schober",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Located under 'Gast: Schober'.",
+          "match_type": "exact"
+        }
+      },
+      "customer_address": {
+        "field_citation": {
+          "source_text": "Robert Ederer Straße 21",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SLY\nFrau\nTamara Schober\nRobert Ederer Straße 21\n2460 Bruck an der Leiha",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Robert Ederer Straße 21, 2460 Bruck an der Leiha",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SLY\nFrau\nTamara Schober\nRobert Ederer Straße 21\n2460 Bruck an der Leiha",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "Rechnung Nr. 41464",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SLY\nFrau\nTamara Schober\nRobert Ederer Straße 21\n2460 Bruck an der Leiha\nRechnung Nr. 41464/Seite 1/Datum: 13.12.24",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "41464",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SLY\nFrau\nTamara Schober\nRobert Ederer Straße 21\n2460 Bruck an der Leiha\nRechnung Nr. 41464/Seite 1/Datum: 13.12.24",
+          "match_type": "exact"
+        }
+      },
+      "receipt_number": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": null,
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": null,
+          "match_type": "none"
+        }
+      },
+      "transaction_reference": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": null,
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": null,
+          "match_type": "none"
+        }
+      },
+      "currency": {
+        "field_citation": {
+          "source_text": "EUR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Nettobetrag EUR",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "EUR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Nettobetrag EUR",
+          "match_type": "exact"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Total:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total:\n28,00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "28,00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total:\n28,00",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Summe",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Menge\nLeistung\nEinzelpreis\nSumme",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "480,36",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Menge\nLeistung\nEinzelpreis\nSumme\n3\nBusinesspackage B Schober Tamara #223\n1,50\n4,50\n1\nRestaurant lt. Beleg Nr.: 22786 Schober Tamara #22328,00\n28,00",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "Mehrwertsteuer EUR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Enthaltene Mehrwertsteuer:\nMehrwertsteuer EUR",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "36,62",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Enthaltene Mehrwertsteuer:\nMehrwertsteuer EUR\n7,00% A\n448,93\n31,43\n19,00% B\n27,31\n5,19\n32,50\n0,00 % C\n0,00",
+          "match_type": "exact"
+        }
+      },
+      "tax_rate": {
+        "field_citation": {
+          "source_text": "Mehrwertsteuer EUR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Enthaltene Mehrwertsteuer:\nMwSt-Satz\nNettobetrag EUR\nMehrwertsteuer EUR\nBruttobetrag EUR",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "7,00%",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "7,00% A",
+          "match_type": "exact"
+        }
+      },
+      "discount_amount": {
+        "field_citation": {
+          "source_text": "Deposit 7.0% Schober Tamara #223",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Deposit 7.0% Schober Tamara #223\n-484,86\n-484,86",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "-484,86",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Deposit 7.0% Schober Tamara #223\n-484,86\n-484,86",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Zahlung:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zahlung:\n-28,00\nOffener Betrag:\n0,00",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "American Express",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "American Express Schober #223\n-28,00\n0,00",
+          "match_type": "exact"
+        }
+      },
+      "date_of_issue": {
+        "field_citation": {
+          "source_text": "Datum: 13.12.24",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnung Nr. 41464/Seite 1/Datum: 13.12.24 Zimmer: 223 Anreise: 10.12.24 Abreise: 13.12.24 Gast: Schober",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "13.12.24",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnung Nr. 41464/Seite 1/Datum: 13.12.24 Zimmer: 223 Anreise: 10.12.24 Abreise: 13.12.24 Gast: Schober",
+          "match_type": "exact"
+        }
+      },
+      "line_items": {
+        "field_citation": {
+          "source_text": "Leistung",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Menge\nLeistung\nEinzelpreis\nSumme\n3\nLogis Schober Tamara #223\n160,12\n480,36",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Logis Schober Tamara #223",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Menge\nLeistung\nEinzelpreis\nSumme\n3\nLogis Schober Tamara #223\n160,12\n480,36",
+          "match_type": "exact"
+        }
+      },
+      "receipt_type": {
+        "field_citation": {
+          "source_text": "Hotel Receipt",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "No explicit field citation found, inferred from document type 'Rechnung'.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Hotel Receipt",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "No explicit value citation found, inferred from document type 'Rechnung'.",
+          "match_type": "contextual"
+        }
+      },
+      "document_type": {
+        "field_citation": {
+          "source_text": "Rechnung",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Explicitly mentioned as 'document_type'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Rechnung",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Explicitly mentioned as 'document_type'.",
+          "match_type": "exact"
+        }
+      },
+      "room_number": {
+        "field_citation": {
+          "source_text": "Zimmer",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in 'Zimmer: 223'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "223",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in 'Zimmer: 223'.",
+          "match_type": "exact"
+        }
+      },
+      "arrival_date": {
+        "field_citation": {
+          "source_text": "Anreise",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in 'Anreise: 10.12.24'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "10.12.24",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in 'Anreise: 10.12.24'.",
+          "match_type": "exact"
+        }
+      },
+      "departure_date": {
+        "field_citation": {
+          "source_text": "Abreise",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in 'Abreise: 13.12.24'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "13.12.24",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in 'Abreise: 13.12.24'.",
+          "match_type": "exact"
+        }
+      },
+      "special_notes": {
+        "field_citation": {
+          "source_text": "Special Notes",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "No explicit field citation found, inferred from absence of notes.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "No explicit value citation found, inferred from absence of notes.",
+          "match_type": "contextual"
+        }
+      },
+      "terms_conditions": {
+        "field_citation": {
+          "source_text": "Terms and Conditions",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "No explicit field citation found, inferred from absence of terms.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "No explicit value citation found, inferred from absence of terms.",
+          "match_type": "contextual"
+        }
+      },
+      "business_registration_number": {
+        "field_citation": {
+          "source_text": "HRB",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in 'HRB 154589'.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "HRB 154589",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Appears in 'HRB 154589'.",
+          "match_type": "exact"
+        }
+      },
+      "tse_transaction": {
+        "field_citation": {
+          "source_text": "TSE-Transaktion",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Transaktion: 120941",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "120941",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Transaktion: 120941",
+          "match_type": "exact"
+        }
+      },
+      "tse_signature_counter": {
+        "field_citation": {
+          "source_text": "TSE-Signaturzähler",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Signaturzähler: 242401",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "242401",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Signaturzähler: 242401",
+          "match_type": "exact"
+        }
+      },
+      "tse_start": {
+        "field_citation": {
+          "source_text": "TSE-Start",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Start: 2024-12-13T10:47:31+01:00",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2024-12-13T10:47:31+01:00",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Start: 2024-12-13T10:47:31+01:00",
+          "match_type": "exact"
+        }
+      },
+      "tse_stop": {
+        "field_citation": {
+          "source_text": "TSE-Stop",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Stop: 2024-12-13T10:47:31+01:00",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2024-12-13T10:47:31+01:00",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Stop: 2024-12-13T10:47:31+01:00",
+          "match_type": "exact"
+        }
+      },
+      "tse_serial_number": {
+        "field_citation": {
+          "source_text": "TSE-Seriennummer",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Seriennummer: 0069f29c-4c64-4db9-832a-0f3b92dfdfee",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "0069f29c-4c64-4db9-832a-0f3b92dfdfee",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Seriennummer: 0069f29c-4c64-4db9-832a-0f3b92dfdfee",
+          "match_type": "exact"
+        }
+      },
+      "tse_time_format": {
+        "field_citation": {
+          "source_text": "TSE-Zeitformat",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Zeitformat: unixTime",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "unixTime",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Zeitformat: unixTime",
+          "match_type": "exact"
+        }
+      },
+      "tse_hash_algorithm": {
+        "field_citation": {
+          "source_text": "TSE-Hashalgorythmus",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Hashalgorythmus: ecdsa-plain-SHA256",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "ecdsa-plain-SHA256",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nTSE-Hashalgorythmus: ecdsa-plain-SHA256",
+          "match_type": "exact"
+        }
+      },
+      "cash_register_id": {
+        "field_citation": {
+          "source_text": "Kassenld",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nKassenld: protel-0TZdN3UL8nEaPnGGaDbLUhg",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "protel-0TZdN3UL8nEaPnGGaDbLUhg",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nSLY\nKassenld: protel-0TZdN3UL8nEaPnGGaDbLUhg",
+          "match_type": "exact"
+        }
+      },
+      "initial_order": {
+        "field_citation": {
+          "source_text": "Erstbestellung: 13.12.2024 09:47:31",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nTSE-Start: 2024-12-13T10:47:31+01:00\nTSE-Stop: 2024-12-13T10:47:31+01:00\nTSE-Seriennummer: 0069f29c-4c64-4db9-832a-0f3b92dfdfee\nTSE-Zeitformat: unixTime\nTSE-Hashalgorythmus: ecdsa-plain-SHA256\nKassenld: protel-0TZdN3UL8nEaPnGGaDbLUhg",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2024-12-13 09:47:31",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "## Page 2\nTSE-Start: 2024-12-13T10:47:31+01:00\nTSE-Stop: 2024-12-13T10:47:31+01:00\nTSE-Seriennummer: 0069f29c-4c64-4db9-832a-0f3b92dfdfee\nTSE-Zeitformat: unixTime\nTSE-Hashalgorythmus: ecdsa-plain-SHA256\nKassenld: protel-0TZdN3UL8nEaPnGGaDbLUhg",
+          "match_type": "exact"
+        }
+      },
+      "tse_signature": {
+        "field_citation": {
+          "source_text": "TSE-Signatur:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nTSE-Transaktion: 120941\nTSE-Signaturzähler: 242401\nTSE-Start: 2024-12-13T10:47:31+01:00\nTSE-Stop: 2024-12-13T10:47:31+01:00\nTSE-Seriennummer: 0069f29c-4c64-4db9-832a-0f3b92dfdfee",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "LdGvOSf11T9tJP1diG7h9befTPtlKsnrUYZ7Rb0evInfh2FEvWphilVuPxvKxSI49KqxJxvzFaolmybvlG8A==",
+          "confidence": 0.99,
+          "source_location": "markdown",
+          "context": "## Page 2\nTSE-Transaktion: 120941\nTSE-Signaturzähler: 242401\nTSE-Start: 2024-12-13T10:47:31+01:00\nTSE-Stop: 2024-12-13T10:47:31+01:00\nTSE-Seriennummer: 0069f29c-4c64-4db9-832a-0f3b92dfdfee",
+          "match_type": "exact"
+        }
+      },
+      "tse_public_key": {
+        "field_citation": {
+          "source_text": "TSE-Publickey:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "## Page 2\nTSE-Transaktion: 120941\nTSE-Signaturzähler: 242401\nTSE-Start: 2024-12-13T10:47:31+01:00\nTSE-Stop: 2024-12-13T10:47:31+01:00\nTSE-Seriennummer: 0069f29c-4c64-4db9-832a-0f3b92dfdfee",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "BPHdQwj1PXdHdMyBIc8Od/hrM75qi4MoVj1dFDO8pY5x56Bm3uiujR31pepRv42t75oGMgEcPD5kpw5Ib0HMoD0=",
+          "confidence": 0.99,
+          "source_location": "markdown",
+          "context": "## Page 2\nTSE-Transaktion: 120941\nTSE-Signaturzähler: 242401\nTSE-Start: 2024-12-13T10:47:31+01:00\nTSE-Stop: 2024-12-13T10:47:31+01:00\nTSE-Seriennummer: 0069f29c-4c64-4db9-832a-0f3b92dfdfee",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 25,
-      "fields_with_field_citations": 25,
-      "fields_with_value_citations": 25,
-      "average_confidence": 1
+      "total_fields_analyzed": 43,
+      "fields_with_field_citations": 40,
+      "fields_with_value_citations": 40,
+      "average_confidence": 0.9434883720930234
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "10.5",
-      "file_classification_seconds": "3.1",
-      "image_quality_assessment_seconds": "5.3",
-      "data_extraction_seconds": "27.1",
-      "issue_detection_seconds": "14.1",
-      "citation_generation_seconds": "28.0"
+      "markdown_extraction_seconds": "10.0",
+      "file_classification_seconds": "3.3",
+      "image_quality_assessment_seconds": "5.7",
+      "data_extraction_seconds": "8.5",
+      "issue_detection_seconds": "10.7",
+      "citation_generation_seconds": "26.9"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:09:06.689Z",
-        "end_time": "2025-07-31T18:09:17.197Z",
-        "duration_seconds": "10.5",
+        "start_time": "2025-08-05T16:20:46.070Z",
+        "end_time": "2025-08-05T16:20:56.094Z",
+        "duration_seconds": "10.0",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T18:09:17.200Z",
-        "end_time": "2025-07-31T18:09:20.329Z",
-        "duration_seconds": "3.1",
+        "start_time": "2025-08-05T16:20:56.097Z",
+        "end_time": "2025-08-05T16:20:59.442Z",
+        "duration_seconds": "3.3",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-07-31T18:09:17.198Z",
-        "end_time": "2025-07-31T18:09:22.477Z",
-        "duration_seconds": "5.3",
+        "start_time": "2025-08-05T16:20:56.095Z",
+        "end_time": "2025-08-05T16:21:01.804Z",
+        "duration_seconds": "5.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:09:17.201Z",
-        "end_time": "2025-07-31T18:09:44.320Z",
-        "duration_seconds": "27.1",
+        "start_time": "2025-08-05T16:20:56.099Z",
+        "end_time": "2025-08-05T16:21:04.641Z",
+        "duration_seconds": "8.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T18:09:44.321Z",
-        "end_time": "2025-07-31T18:09:58.440Z",
-        "duration_seconds": "14.1",
+        "start_time": "2025-08-05T16:21:04.643Z",
+        "end_time": "2025-08-05T16:21:15.349Z",
+        "duration_seconds": "10.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:09:44.323Z",
-        "end_time": "2025-07-31T18:10:12.280Z",
-        "duration_seconds": "28.0",
-        "model_used": "eu.amazon.nova-pro-v1:0",
+        "start_time": "2025-08-05T16:21:04.644Z",
+        "end_time": "2025-08-05T16:21:31.545Z",
+        "duration_seconds": "26.9",
+        "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "65.6",
+    "total_processing_time_seconds": "45.5",
     "performance_metrics": {
-      "parallel_group_1_seconds": "27.1",
-      "parallel_group_2_seconds": "28.0",
-      "total_parallel_time_seconds": "55.1",
-      "estimated_sequential_time_seconds": "88.1",
-      "estimated_speedup_factor": "1.60"
+      "parallel_group_1_seconds": "8.5",
+      "parallel_group_2_seconds": "26.9",
+      "total_parallel_time_seconds": "35.4",
+      "estimated_sequential_time_seconds": "65.1",
+      "estimated_speedup_factor": "1.84"
     },
     "validation": {
-      "total_time_seconds": "65.6",
-      "expected_parallel_time_seconds": "65.6",
-      "sequential_sum_seconds": "88.1",
-      "difference_seconds": "0.0",
+      "total_time_seconds": "45.5",
+      "expected_parallel_time_seconds": "45.4",
+      "sequential_sum_seconds": "65.1",
+      "difference_seconds": "0.1",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "22.5"
+      "time_saved_seconds": "19.6"
     }
   },
   "metadata": {
     "filename": "Copy of austrian_file_11.pdf",
-    "processing_time": 65591,
+    "processing_time": 45476,
     "country": "Austria",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:10:12.281Z",
+    "processed_at": "2025-08-05T16:21:31.546Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "27.1",
-      "parallel_group_2_duration_seconds": "28.0",
-      "estimated_sequential_time_seconds": "88.1",
-      "actual_parallel_time_seconds": "65.6"
+      "parallel_group_1_duration_seconds": "8.5",
+      "parallel_group_2_duration_seconds": "26.9",
+      "estimated_sequential_time_seconds": "65.1",
+      "actual_parallel_time_seconds": "45.5"
     }
   }
 }

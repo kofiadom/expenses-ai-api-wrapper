@@ -6,8 +6,8 @@ export class ProcessDocumentDto {
   @ApiProperty({
     type: 'string',
     format: 'binary',
-    description: 'Medical document file to process (PDF, PNG, JPG, JPEG)',
-    example: 'medical-report.pdf',
+    description: ' document file to process (PDF, PNG, JPG, JPEG)',
+    example: '-report.pdf',
   })
   file: Express.Multer.File;
 

@@ -1,77 +1,77 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_try_006_Copy of swiss_file_4.jpg",
+    "image_path": "uploads\\AUG_5_V5_14_Copy of swiss_file_4.jpg",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T20:24:53.224Z",
-    "quality_score": 70,
+    "timestamp": "2025-08-05T16:42:42.383Z",
+    "quality_score": 60,
     "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
       "detected": true,
       "severity_level": "medium",
-      "confidence_score": 0.8,
+      "confidence_score": 0.85,
       "quantitative_measure": 0.4,
-      "description": "The text and edges of the document show moderate blurring, which may affect OCR accuracy.",
-      "recommendation": "Enhance image sharpness or retake the photo with a steadier hand."
+      "description": "The text and edges are moderately blurred, likely due to camera movement or focus issues.",
+      "recommendation": "Retake the image with a steady camera and ensure the document is in focus."
     },
     "contrast_assessment": {
       "detected": true,
       "severity_level": "low",
-      "confidence_score": 0.7,
-      "quantitative_measure": 0.8,
-      "description": "The contrast between text and background is adequate but could be improved for better readability.",
-      "recommendation": "Adjust lighting to increase contrast or use image editing software to enhance it."
+      "confidence_score": 0.75,
+      "quantitative_measure": 0.7,
+      "description": "The contrast between text and background is slightly low, but still legible.",
+      "recommendation": "Improve lighting conditions to enhance contrast."
     },
     "glare_identification": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.9,
-      "quantitative_measure": 0,
-      "description": "No glare or bright spots are detected on the document.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "Minor glare is present, affecting a small portion of the document.",
+      "recommendation": "Adjust the angle to minimize glare or use a matte screen to reduce reflections."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discoloration are present on the document.",
-      "recommendation": "No action needed."
+      "description": "No water stains are detected on the document.",
+      "recommendation": "None required."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No tears, folds, or creases are visible on the document.",
-      "recommendation": "No action needed."
+      "description": "No tears or folds are detected on the document.",
+      "recommendation": "None required."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.9,
-      "quantitative_measure": 0,
-      "description": "No edges of the document are cut off in the image.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.75,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the document edges are slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when capturing the image."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "All sections of the document appear to be captured in the image.",
-      "recommendation": "No action needed."
+      "description": "No missing sections are detected on the document.",
+      "recommendation": "None required."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No obstructions, shadows, or other elements are blocking the document content.",
-      "recommendation": "No action needed."
+      "description": "No obstructions are detected on the document.",
+      "recommendation": "None required."
     },
-    "overall_quality_score": 7
+    "overall_quality_score": 6
   },
   "classification": {
     "is_expense": true,
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields indicating it is an expense document. Fields found include supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod. The document is a restaurant receipt with detailed itemized charges, confirming it as a meals expense.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and taxInformation. The presence of these fields, along with the detailed breakdown of items and total amount, confirms it as an expense document.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -93,308 +93,259 @@
         "transactionDate",
         "invoiceReceiptNumber",
         "itemDescriptionLineItems",
-        "paymentMethod"
+        "taxInformation"
       ],
       "fields_missing": [
-        "taxInformation",
-        "icpRequirements"
+        "icpRequirements",
+        "paymentMethod"
       ],
       "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 schema fields, confirming it as an expense document. The fields present include supplier (Restaurant Luca), consumerRecipient (implied by Tischnummer 6), transactionAmount (*367.00), transactionDate (02.12.2017), invoiceReceiptNumber (RechnungNr. : 11140), itemDescriptionLineItems (detailed list of items), and paymentMethod (Bar-Total indicating cash payment)."
+      "expense_identification_reasoning": "The document contains 7 out of 8 schema fields, including detailed item descriptions, total amount, and transaction date, confirming it as an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": "Global PPL CH GmbH",
-    "customer_address_on_invoice": "Freigutstrasse 2 8002 Zürich, Switzerland",
-    "customer_registration_on_invoice": "CHE-295.369.918",
-    "currency": "CHF",
-    "amount": 367,
-    "receipt_type": "Rechnung",
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "car_details": null,
-    "logbook": null,
-    "combined_mileage": null,
+    "country": "Switzerland",
     "supplier_name": "Restaurant Luca",
     "supplier_address": "Asylstrasse 81, 8032 Zurich",
     "supplier_phone": "044 252 03 53",
-    "vat_number": "CHE-210.230.241 MWST",
-    "invoice_number": "11140",
+    "supplier_vat_number": "CHE-210.230.241 MWST",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "11140",
+    "transaction_reference": null,
+    "currency": "CHF",
+    "total_amount": 367,
+    "subtotal": 367,
+    "tax_amount": 27.19,
+    "tax_rate": 0,
+    "discount_amount": null,
+    "tip_amount": null,
     "date_of_issue": "2017-12-02",
-    "table_number": "6",
+    "transaction_time": null,
+    "payment_method": "Bar",
+    "card_last_four": null,
     "line_items": [
       {
         "description": "Thunfischtatar",
         "quantity": 1,
         "unit_price": 22.5,
-        "total_price": 22.5
+        "total_price": 22.5,
+        "category": "Food"
       },
       {
         "description": "Amuse",
         "quantity": 4,
         "unit_price": 0,
-        "total_price": 0
+        "total_price": 0,
+        "category": "Food"
       },
       {
         "description": "Entenbrust",
         "quantity": 1,
         "unit_price": 23.5,
-        "total_price": 23.5
+        "total_price": 23.5,
+        "category": "Food"
       },
       {
         "description": "Zuppa di Roveja",
         "quantity": 2,
         "unit_price": 18.5,
-        "total_price": 37
+        "total_price": 37,
+        "category": "Food"
       },
       {
         "description": "Pulpo",
         "quantity": 1,
         "unit_price": 43,
-        "total_price": 43
+        "total_price": 43,
+        "category": "Food"
       },
       {
         "description": "Geschmorte Ribs",
         "quantity": 1,
         "unit_price": 39.5,
-        "total_price": 39.5
+        "total_price": 39.5,
+        "category": "Food"
       },
       {
         "description": "Ravioli Brasato",
         "quantity": 1,
         "unit_price": 29,
-        "total_price": 29
+        "total_price": 29,
+        "category": "Food"
       },
       {
         "description": "Scaloppine",
         "quantity": 1,
         "unit_price": 44.5,
-        "total_price": 44.5
+        "total_price": 44.5,
+        "category": "Food"
       },
       {
         "description": "Tiramisu",
         "quantity": 1,
         "unit_price": 13.5,
-        "total_price": 13.5
+        "total_price": 13.5,
+        "category": "Dessert"
       },
       {
         "description": "Glace 1 Kugel",
         "quantity": 1,
         "unit_price": 4.5,
-        "total_price": 4.5
+        "total_price": 4.5,
+        "category": "Dessert"
       },
       {
         "description": "Glace 2 Kugel",
         "quantity": 1,
         "unit_price": 9,
-        "total_price": 9
+        "total_price": 9,
+        "category": "Dessert"
       },
       {
         "description": "Schlagrahm",
         "quantity": 1,
         "unit_price": 1.5,
-        "total_price": 1.5
+        "total_price": 1.5,
+        "category": "Dessert"
       },
       {
         "description": "Limoncello Kuchen",
         "quantity": 1,
         "unit_price": 12.5,
-        "total_price": 12.5
+        "total_price": 12.5,
+        "category": "Dessert"
       },
       {
         "description": "A Quo",
         "quantity": 1,
         "unit_price": 56,
-        "total_price": 56
+        "total_price": 56,
+        "category": "Beverage"
       },
       {
         "description": "Santis",
         "quantity": 1,
         "unit_price": 5.5,
-        "total_price": 5.5
+        "total_price": 5.5,
+        "category": "Beverage"
       },
       {
         "description": "Still 1L",
         "quantity": 2,
         "unit_price": 9.5,
-        "total_price": 19
+        "total_price": 19,
+        "category": "Beverage"
       },
       {
         "description": "Thee",
         "quantity": 1,
         "unit_price": 6.5,
-        "total_price": 6.5
+        "total_price": 6.5,
+        "category": "Beverage"
       }
     ],
-    "subtotal": 367,
-    "tax_rate": 0,
-    "tax_amount": 0,
-    "total_amount": 367,
-    "payment_method": "Bar",
-    "special_notes": null
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Rechnung",
+    "table_number": "6",
+    "server_name": null,
+    "location_city": "Zurich",
+    "location_country": "Switzerland",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
   },
   "compliance": {
     "validation_result": {
-      "is_valid": true,
-      "issues_count": 0,
-      "issues": [],
+      "is_valid": false,
+      "issues_count": 6,
+      "issues": [
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "The customer name is missing on the receipt. According to the receipt standards, the Local Employer's name and details should appear on invoices.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "The Local Employer's name and details should appear on invoices: Global PPL CH GmbH"
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_address",
+          "description": "The customer address is missing on the receipt. According to the receipt standards, the invoice must include the address: Freigutstrasse 2 8002 Zürich, Switzerland.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Invoice must include address: Freigutstrasse 2 8002 Zürich, Switzerland"
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "business_registration_number",
+          "description": "The business registration number is missing on the receipt. According to the receipt standards, the invoice must include CHE-295.369.918.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Invoice must include CHE-295.369.918"
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "The invoice number is missing on the receipt. According to the receipt standards, the invoice number is a mandatory field.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Documents must be actual tax receipts or invoices; booking confirmations will not be sufficient"
+        },
+        {
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "The meal expenses will be grossed up as per country regulations.",
+          "recommendation": "Meal expenses are not tax exempt and will be grossed up.",
+          "knowledge_base_reference": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free"
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "additional_documentation",
+          "description": "Additional documentation is required to support the tax exemption claim.",
+          "recommendation": "Please provide tax receipts or invoices to support the tax exemption claim.",
+          "knowledge_base_reference": "Tax exemptions will only be applied providing sufficient proof is shared e.g. tax receipts, invoices etc. Without the correct supporting documents any applicable tax exemption cannot be applied"
+        }
+      ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt meets all compliance requirements and standards as per the provided country database and ICP-specific rules. No issues were identified."
+      "compliance_summary": "The receipt is missing several mandatory fields including the customer name, customer address, business registration number, and invoice number. Additionally, meal expenses will be grossed up as per country regulations and additional documentation is required to support the tax exemption claim."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Switzerland",
       "icp": "Global People",
       "receipt_type": "meals",
-      "issues_count": 0
+      "issues_count": 6
     }
   },
   "citations": {
     "citations": {
-      "customer_name_on_invoice": {
+      "country": {
         "field_citation": {
-          "source_text": "Customer Name on Invoice",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Local Employer name as customer on supplier invoice",
-          "match_type": "contextual"
+          "source_text": "",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "",
+          "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Global PPL CH GmbH",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "CHE-210.230.241 MWST Kassel",
-          "match_type": "exact"
-        }
-      },
-      "customer_address_on_invoice": {
-        "field_citation": {
-          "source_text": "Customer Address on Invoice",
+          "source_text": "Switzerland",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Local Employer address as customer on supplier invoice",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Asylstrasse 81 8032 Zurich",
-          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Restaurant Luca Tel. 044 252 03 53",
-          "match_type": "exact"
-        }
-      },
-      "customer_registration_on_invoice": {
-        "field_citation": {
-          "source_text": "Customer Registration on Invoice",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Local Employer registration as customer on supplier invoice",
+          "context": "No explicit mention of 'country', but 'Switzerland' appears in the context.",
           "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "CHE-295.369.918",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "CHE-210.230.241 MWST Kassel",
-          "match_type": "exact"
-        }
-      },
-      "currency": {
-        "field_citation": {
-          "source_text": "Currency",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Receipt currency and exchange rate",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "CHF",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "ZWS-Euro",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Amount",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Expense amount",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "367",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Zwischensume über Alles *367.00 Bar-Total *367,00",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Receipt Type",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Rechnung",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "#0001 RechnungNr. : 11140",
-          "match_type": "exact"
-        }
-      },
-      "personal_information": {
-        "field_citation": {
-          "source_text": "Personal Information",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Privacy requirement for receipts",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "null",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "No personal information provided",
-          "match_type": "exact"
-        }
-      },
-      "business_trip_reporting": {
-        "field_citation": {
-          "source_text": "Business Trip Reporting",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Separate reports requirement",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "null",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "No business trip reporting provided",
-          "match_type": "exact"
         }
       },
       "supplier_name": {
         "field_citation": {
           "source_text": "Restaurant Luca",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Supplier name appears at the top of the document.",
-          "match_type": "contextual"
+          "context": "Appears at the start of the document",
+          "match_type": "exact"
         },
         "value_citation": {
           "source_text": "Restaurant Luca",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Supplier name appears at the top of the document.",
+          "context": "Appears at the start of the document",
           "match_type": "exact"
         }
       },
@@ -403,252 +354,396 @@
           "source_text": "Asylstrasse 81",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Address appears directly below the supplier name.",
+          "context": "Address details follow the supplier name",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Asylstrasse 81, 8032 Zurich",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Address appears directly below the supplier name.",
+          "context": "Address details follow the supplier name",
           "match_type": "exact"
         }
       },
       "supplier_phone": {
         "field_citation": {
-          "source_text": "Tel.",
-          "confidence": 0.9,
+          "source_text": "Tel. 044 252 03 53",
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Restaurant Luca\nAsylstrasse 81\n8032 Zurich\nTel. 044 252 03 53",
-          "match_type": "contextual"
+          "context": "Phone number follows the address",
+          "match_type": "exact"
         },
         "value_citation": {
           "source_text": "044 252 03 53",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "Restaurant Luca\nAsylstrasse 81\n8032 Zurich\nTel. 044 252 03 53",
+          "context": "Phone number follows the address",
           "match_type": "exact"
         }
       },
-      "vat_number": {
+      "supplier_vat_number": {
         "field_citation": {
-          "source_text": "CHE-210.230.241 MWST",
-          "confidence": 0.95,
+          "source_text": "**********",
+          "confidence": 0,
           "source_location": "markdown",
-          "context": "CHE-210.230.241 MWST",
-          "match_type": "exact"
+          "context": "VAT number appears after a separator",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "CHE-210.230.241 MWST",
-          "confidence": 0.95,
+          "confidence": 1,
           "source_location": "markdown",
-          "context": "CHE-210.230.241 MWST",
+          "context": "VAT number appears after a separator",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'customer_name' field",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'customer_name' value",
+          "match_type": "exact"
+        }
+      },
+      "customer_address": {
+        "field_citation": {
+          "source_text": "",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'customer_address' field",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'customer_address' value",
           "match_type": "exact"
         }
       },
       "invoice_number": {
         "field_citation": {
-          "source_text": "RechnungNr.",
-          "confidence": 0.9,
+          "source_text": "#0001",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "RechnungNr. : 11140",
+          "context": "Invoice number appears at the top",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "11140",
           "confidence": 0.95,
           "source_location": "markdown",
+          "context": "Invoice number appears at the top",
+          "match_type": "contextual"
+        }
+      },
+      "receipt_number": {
+        "field_citation": {
+          "source_text": "RechnungNr. :",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "RechnungNr. : 11140",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "11140",
+          "confidence": 0.98,
+          "source_location": "markdown",
           "context": "RechnungNr. : 11140",
           "match_type": "exact"
         }
       },
-      "date_of_issue": {
+      "currency": {
         "field_citation": {
-          "source_text": "02.12.2017",
+          "source_text": "ZWS-Euro",
           "confidence": 0.9,
           "source_location": "markdown",
-          "context": "02.12.2017",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "2017-12-02",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "02.12.2017",
-          "match_type": "fuzzy"
-        }
-      },
-      "table_number": {
-        "field_citation": {
-          "source_text": "Tischnummer",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Tischnummer 6",
+          "context": "ZWS-Euro *367.00",
           "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "6",
-          "confidence": 0.95,
+          "source_text": "CHF",
+          "confidence": 0.85,
           "source_location": "markdown",
-          "context": "Tischnummer 6",
-          "match_type": "exact"
-        }
-      },
-      "tax_amount": {
-        "field_citation": {
-          "source_text": "MWST",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "CHE-210.230.241 MWST",
+          "context": "Currency not explicitly stated but inferred from context",
           "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "0.0%",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "0.0% tax applied",
-          "match_type": "exact"
         }
       },
       "total_amount": {
         "field_citation": {
           "source_text": "Bar-Total",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Bar-Total *367,00",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "367.00",
           "confidence": 0.98,
           "source_location": "markdown",
           "context": "Bar-Total *367,00",
           "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Zwischensume über Alles",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Zwischensume über Alles *367.00",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "367.00",
-          "confidence": 0.99,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "ZWS-Euro *367.00",
+          "context": "Zwischensume über Alles *367.00",
           "match_type": "exact"
         }
       },
-      "payment_method": {
+      "tax_amount": {
         "field_citation": {
-          "source_text": "Bar",
+          "source_text": "Tax",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Tax not explicitly stated but inferred from context",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "27.19",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Bar-Total",
+          "context": "Calculated from total and subtotal",
+          "match_type": "contextual"
+        }
+      },
+      "tax_rate": {
+        "field_citation": {
+          "source_text": "0.0%",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "0.0%",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Bar",
-          "confidence": 0.99,
+          "source_text": "0",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Bar-Total",
+          "context": "0.0%",
           "match_type": "exact"
         }
       },
-      "special_notes": {
+      "discount_amount": {
         "field_citation": {
-          "source_text": "No special notes",
-          "confidence": 0.95,
+          "source_text": "Discount",
+          "confidence": 0.8,
           "source_location": "markdown",
-          "context": "No special notes provided",
+          "context": "Discount not explicitly stated but inferred from context",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "null",
           "confidence": 0.95,
-          "source_location": "structured_output",
-          "context": "No special notes",
+          "source_location": "markdown",
+          "context": "Discount amount not provided",
           "match_type": "contextual"
+        }
+      },
+      "date_of_issue": {
+        "field_citation": {
+          "source_text": "02.12.2017",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Kassel\n02.12.2017",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "02.12.2017",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Kassel\n02.12.2017",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Bar-Total",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "ZWS-Euro\n*367.00\nBar-Total\n*367,00",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Bar-Total\n*367,00",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "ZWS-Euro\n*367.00\nBar-Total\n*367,00",
+          "match_type": "exact"
+        }
+      },
+      "line_items": {
+        "field_citation": {
+          "source_text": "1x Thunfischtatar\n*22.50\n*22.50\n4x Amuse\n*0,00\n*0.00\n1x Entenbrust\n*23,50\n*23.50\n2x Zuppa di Roveja\n*18,50\n*37.00\n1x Pulpo\n*43,00\n*43.00\n1x Geschmorte Ribs\n*39.50\n*39.50\n1x Ravioli Brasato\n*29.00\n*29.00\n1x Scaloppine\n*44.50\n*44.50\n1x Tiramisu\n*13.50\n*13.50\n1x Glace 1 Kugel\n*4.50\n*4.50\n1x Glace 2 Kugel\n*9.00\n*9.00\n1x Schlagrahm\n*1.50\n*1.50\n1x Limoncello Kuchen\n*12.50\n*12.50\n1x A Quo\n*56.00\n*56.00\n1x Santis\n*5.50\n*5.50\n2x Still 1L\n*9.50\n*19.00\n1x Thee\n*6.50\n*6.50",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "1x Thunfischtatar\n*22.50\n*22.50\n4x Amuse\n*0,00\n*0.00\n1x Entenbrust\n*23,50\n*23.50\n2x Zuppa di Roveja\n*18,50\n*37.00\n1x Pulpo\n*43,00\n*43.00\n1x Geschmorte Ribs\n*39.50\n*39.50\n1x Ravioli Brasato\n*29.00\n*29.00\n1x Scaloppine\n*44.50\n*44.50\n1x Tiramisu\n*13.50\n*13.50\n1x Glace 1 Kugel\n*4.50\n*4.50\n1x Glace 2 Kugel\n*9.00\n*9.00\n1x Schlagrahm\n*1.50\n*1.50\n1x Limoncello Kuchen\n*12.50\n*12.50\n1x A Quo\n*56.00\n*56.00\n1x Santis\n*5.50\n*5.50\n2x Still 1L\n*9.50\n*19.00\n1x Thee\n*6.50\n*6.50",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "1x Thunfischtatar\n*22.50\n*22.50",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "1x Thunfischtatar\n*22.50\n*22.50\n4x Amuse\n*0,00\n*0.00\n1x Entenbrust\n*23,50\n*23.50\n2x Zuppa di Roveja\n*18,50\n*37.00\n1x Pulpo\n*43,00\n*43.00\n1x Geschmorte Ribs\n*39.50\n*39.50\n1x Ravioli Brasato\n*29.00\n*29.00\n1x Scaloppine\n*44.50\n*44.50\n1x Tiramisu\n*13.50\n*13.50\n1x Glace 1 Kugel\n*4.50\n*4.50\n1x Glace 2 Kugel\n*9.00\n*9.00\n1x Schlagrahm\n*1.50\n*1.50\n1x Limoncello Kuchen\n*12.50\n*12.50\n1x A Quo\n*56.00\n*56.00\n1x Santis\n*5.50\n*5.50\n2x Still 1L\n*9.50\n*19.00\n1x Thee\n*6.50\n*6.50",
+          "match_type": "exact"
+        }
+      },
+      "table_number": {
+        "field_citation": {
+          "source_text": "Tischnummer",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tischnummer 6",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Tischnummer 6",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tischnummer 6",
+          "match_type": "exact"
+        }
+      },
+      "location_city": {
+        "field_citation": {
+          "source_text": "Zurich",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Asylstrasse 81\n8032 Zurich",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Zurich",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Asylstrasse 81\n8032 Zurich",
+          "match_type": "exact"
+        }
+      },
+      "location_country": {
+        "field_citation": {
+          "source_text": "Switzerland",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "CHE-210.230.241 MWST",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Switzerland",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "CHE-210.230.241 MWST",
+          "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 22,
+      "total_fields_analyzed": 31,
       "fields_with_field_citations": 20,
-      "fields_with_value_citations": 20,
-      "average_confidence": 0.9500000000000001
+      "fields_with_value_citations": 19,
+      "average_confidence": 0.9358064516129032
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "5.3",
-      "image_quality_assessment_seconds": "5.5",
-      "file_classification_seconds": "5.7",
-      "data_extraction_seconds": "8.4",
-      "issue_detection_seconds": "3.6",
-      "citation_generation_seconds": "15.8"
+      "markdown_extraction_seconds": "5.7",
+      "file_classification_seconds": "2.8",
+      "image_quality_assessment_seconds": "4.8",
+      "data_extraction_seconds": "7.9",
+      "issue_detection_seconds": "13.8",
+      "citation_generation_seconds": "14.4"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T20:24:42.410Z",
-        "end_time": "2025-07-31T20:24:47.720Z",
-        "duration_seconds": "5.3",
+        "start_time": "2025-08-05T16:42:31.866Z",
+        "end_time": "2025-08-05T16:42:37.551Z",
+        "duration_seconds": "5.7",
         "document_reader_used": "textract"
       },
-      "image_quality_assessment": {
-        "start_time": "2025-07-31T20:24:47.721Z",
-        "end_time": "2025-07-31T20:24:53.224Z",
-        "duration_seconds": "5.5",
+      "file_classification": {
+        "start_time": "2025-08-05T16:42:37.553Z",
+        "end_time": "2025-08-05T16:42:40.370Z",
+        "duration_seconds": "2.8",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
-      "file_classification": {
-        "start_time": "2025-07-31T20:24:47.722Z",
-        "end_time": "2025-07-31T20:24:53.424Z",
-        "duration_seconds": "5.7",
+      "image_quality_assessment": {
+        "start_time": "2025-08-05T16:42:37.552Z",
+        "end_time": "2025-08-05T16:42:42.383Z",
+        "duration_seconds": "4.8",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T20:24:47.723Z",
-        "end_time": "2025-07-31T20:24:56.118Z",
-        "duration_seconds": "8.4",
+        "start_time": "2025-08-05T16:42:37.555Z",
+        "end_time": "2025-08-05T16:42:45.486Z",
+        "duration_seconds": "7.9",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T20:24:56.119Z",
-        "end_time": "2025-07-31T20:24:59.749Z",
-        "duration_seconds": "3.6",
+        "start_time": "2025-08-05T16:42:45.487Z",
+        "end_time": "2025-08-05T16:42:59.253Z",
+        "duration_seconds": "13.8",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T20:24:56.119Z",
-        "end_time": "2025-07-31T20:25:11.929Z",
-        "duration_seconds": "15.8",
+        "start_time": "2025-08-05T16:42:45.489Z",
+        "end_time": "2025-08-05T16:42:59.865Z",
+        "duration_seconds": "14.4",
         "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "29.5",
+    "total_processing_time_seconds": "28.0",
     "performance_metrics": {
-      "parallel_group_1_seconds": "8.4",
-      "parallel_group_2_seconds": "15.8",
-      "total_parallel_time_seconds": "24.2",
-      "estimated_sequential_time_seconds": "44.3",
-      "estimated_speedup_factor": "1.83"
+      "parallel_group_1_seconds": "7.9",
+      "parallel_group_2_seconds": "14.4",
+      "total_parallel_time_seconds": "22.3",
+      "estimated_sequential_time_seconds": "49.4",
+      "estimated_speedup_factor": "2.21"
     },
     "validation": {
-      "total_time_seconds": "29.5",
-      "expected_parallel_time_seconds": "29.5",
-      "sequential_sum_seconds": "44.3",
+      "total_time_seconds": "28.0",
+      "expected_parallel_time_seconds": "28.0",
+      "sequential_sum_seconds": "49.4",
       "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "14.8"
+      "time_saved_seconds": "21.4"
     }
   },
   "metadata": {
     "filename": "Copy of swiss_file_4.jpg",
-    "processing_time": 29520,
+    "processing_time": 28000,
     "country": "Switzerland",
     "icp": "Global People",
-    "processed_at": "2025-07-31T20:25:11.930Z",
+    "processed_at": "2025-08-05T16:42:59.867Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "8.4",
-      "parallel_group_2_duration_seconds": "15.8",
-      "estimated_sequential_time_seconds": "44.3",
-      "actual_parallel_time_seconds": "29.5"
+      "parallel_group_1_duration_seconds": "7.9",
+      "parallel_group_2_duration_seconds": "14.4",
+      "estimated_sequential_time_seconds": "49.4",
+      "actual_parallel_time_seconds": "28.0"
     }
   }
 }

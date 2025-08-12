@@ -1,77 +1,77 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_003_Copy of austrian_file_10.pdf",
+    "image_path": "uploads\\AUG_5_V5_3_Copy of austrian_file_10.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:03:28.324Z",
-    "quality_score": 100,
-    "quality_level": "excellent",
+    "timestamp": "2025-08-05T16:19:58.894Z",
+    "quality_score": 70,
+    "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 1,
-      "quantitative_measure": 0,
-      "description": "The text is sharp and clearly defined with no visible blur.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges show moderate blur, likely due to scanning quality.",
+      "recommendation": "Enhance image sharpness before OCR processing."
     },
     "contrast_assessment": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 1,
-      "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is adequate but could be improved.",
+      "recommendation": "Adjust contrast levels to ensure better text recognition."
     },
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 1,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No glare or bright spots detected that obscure text.",
-      "recommendation": "No action required."
+      "description": "No glare detected on the document.",
+      "recommendation": "No action needed regarding glare."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 1,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discoloration affecting document readability.",
-      "recommendation": "No action required."
+      "description": "No water stains detected on the document.",
+      "recommendation": "No action needed regarding water stains."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 1,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No visible tears, creases, or folds that distort text.",
-      "recommendation": "No action required."
+      "description": "No tears or folds detected on the document.",
+      "recommendation": "No action needed regarding tears or folds."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 1,
-      "quantitative_measure": 0,
-      "description": "No document edges are cut off or excluded from the image.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "Minor cut-off at the bottom edge of the document.",
+      "recommendation": "Ensure the entire document is within the frame for better OCR results."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 1,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "All sections of the receipt/invoice are present and complete.",
-      "recommendation": "No action required."
+      "description": "No missing sections detected on the document.",
+      "recommendation": "No action needed regarding missing sections."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 1,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No obstructions, such as objects or shadows, block document content.",
-      "recommendation": "No action required."
+      "description": "No obstructions detected on the document.",
+      "recommendation": "No action needed regarding obstructions."
     },
-    "overall_quality_score": 10
+    "overall_quality_score": 7
   },
   "classification": {
     "is_expense": true,
@@ -82,9 +82,9 @@
     "expected_location": "Austria",
     "location_match": false,
     "error_type": "File location is not same as project's location",
-    "error_message": null,
+    "error_message": "The document is from Berlin, Germany, which does not match the expected location of Austria.",
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice receipt number, tax information, payment method, and item description line items. The presence of these fields confirms it is an expense document. The expense type is classified as 'meals' due to the nature of the items listed (e.g., pizza, water, SPRIZZ). The document location is Berlin, Germany, which does not match the expected location of Austria.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, transaction amount, transaction date, invoice receipt number, tax information, payment method, and item description line items. It is classified as a meal expense due to the nature of the items listed (Pizza, Wasser, SPRIZZ).",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -100,399 +100,520 @@
         "icpRequirements"
       ],
       "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 schema fields, confirming it as an expense document."
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, clearly indicating it is an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_vat_number_on_invoice": null,
-    "customer_name_exception": null,
+    "country": "Germany",
+    "supplier_name": "Ristorante IL GARDA",
+    "supplier_address": "Oranienburgerstr. 32, 10117 Berlin",
+    "supplier_vat_number": "DE291651877",
+    "supplier_tax_number": "34/436/01008",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "33831",
+    "transaction_reference": null,
     "currency": "EUR",
-    "amount": 32,
-    "receipt_type": "Rechnung",
-    "receipt_quality": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "kilometer_record": null,
-    "car_details": null,
-    "parking_documentation": null,
-    "restaurant_name": "Ristorante IL GARDA",
-    "restaurant_address": "Oranienburgerstr. 32, 10117 Berlin",
-    "table_number": "10",
+    "total_amount": 32,
+    "subtotal": 26.89,
+    "tax_amount": 5.11,
+    "tax_rate": 19,
+    "discount_amount": null,
+    "tip_amount": null,
     "date_of_issue": "2024-12-11",
     "transaction_time": "21:37:15",
-    "document_number": "33831",
     "payment_method": "EC-Karte",
-    "vat_number": "DE291651877",
-    "tax_number": "34/436/01008",
-    "server": "Kellner1",
+    "card_last_four": null,
     "line_items": [
       {
         "description": "Pizza TONNO",
         "quantity": 1,
         "unit_price": 16.5,
-        "total_price": 16.5
+        "total_price": 16.5,
+        "category": "Food"
       },
       {
         "description": "FLASCHE WASSER GAS 0.75L",
         "quantity": 1,
         "unit_price": 7,
-        "total_price": 7
+        "total_price": 7,
+        "category": "Beverage"
       },
       {
         "description": "SPRIZZ",
         "quantity": 1,
         "unit_price": 8.5,
-        "total_price": 8.5
+        "total_price": 8.5,
+        "category": "Beverage"
       }
     ],
-    "tax_rate": 19,
-    "vat_amount": 5.11,
-    "gross_total": 32,
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "Rechnung",
+    "table_number": "10",
+    "server_name": "Kellner1",
+    "location_city": "Berlin",
+    "location_country": "Germany",
     "special_notes": "SERVICE IS NOT INCLUDED!",
+    "terms_conditions": null,
     "tse_information": {
       "kassen_id": "DESKTOP-RR79U54-155703E2",
       "transaction": "202914",
       "signatur": "440583",
       "first_order": "2024-12-11T18:27:47+01:00",
-      "start_document": "2024-12-11T20:37:15+01:00",
-      "end_document": "2024-12-11T20:37:15+01:00",
-      "time_format": "utcline",
-      "algorithm": "ecdsa-plain-SHA384",
-      "serial_number": null,
-      "signature": "AIsSFmOxNIpKqKzxG1seToDtc3pTLF",
+      "start_beleg": "2024-12-11T20:37:15+01:00",
+      "ende_beleg": "2024-12-11T20:37:15+01:00",
+      "zeitformat": "utcline",
+      "algorithmus": "ecdsa-plain-SHA384",
+      "seriennr": null,
+      "signatur_value": "AIsSFmOxNIpKqKzxG1seToDtc3pTLF",
       "public_key": null
     }
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 4,
+      "issues_count": 5,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is missing. It must show 'Global People IT-Services GmbH' as the customer.",
+          "field": "supplier_name",
+          "description": "The receipt does not show the local employer company name \"Global People IT-Services GmbH\" as required.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Must show Global People IT-Services GmbH as customer"
+          "knowledge_base_reference": "Local Employer company name must appear on invoices. Invoices must show \"Global People IT-Services GmbH\", not the worker's name."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is missing. It must show 'Kärntner Ring 12, A-1010 Vienna, Austria'.",
+          "field": "supplier_address",
+          "description": "The receipt does not show the local employer address \"Kärntner Ring 12, A-1010 Vienna, Austria\" as required.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Must show Kärntner Ring 12, A-1010 Vienna, Austria"
+          "knowledge_base_reference": "Local Employer address must appear on invoices. Invoices must show \"Kärntner Ring 12, A-1010 Vienna, Austria\"."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "The customer VAT number on the invoice is missing. It must show 'ATU77112189'.",
+          "field": "supplier_vat_number",
+          "description": "The receipt does not show the local employer VAT ID \"ATU77112189\" as required.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Must show ATU77112189"
+          "knowledge_base_reference": "Local Employer VAT ID must appear on invoices. Invoices must show \"VAT ID: ATU77112189\"."
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "invoice_number",
+          "description": "The invoice number is missing on the receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Must be actual tax receipts or invoices. Documents must be actual tax receipts or invoices; booking confirmations will not suffice."
         },
         {
           "issue_type": "Standards & Compliance | Gross-up Identified",
-          "field": "amount",
-          "description": "Meal expenses are not tax exempt and will be grossed up.",
-          "recommendation": "Phone expenses are tax-free up to €20/month, amounts exceeding this limit will be grossed-up.",
-          "knowledge_base_reference": "Usually tax exempt, grossed up if not tax free"
+          "field": "total_amount",
+          "description": "The meal expenses will be grossed up as they are not tax exempt.",
+          "recommendation": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax free.",
+          "knowledge_base_reference": "Other non-travel expenses. All approved expenses will be paid as NET to the employee and grossed up if they are not tax free."
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is missing mandatory customer name, address, and VAT number fields as required by the compliance rules for Global People IT-Services GmbH. Additionally, the meal expense will be grossed up as it is not tax exempt."
+      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory fields such as the local employer company name, address, and VAT ID. Additionally, the invoice number is missing. The meal expenses will be grossed up as they are not tax exempt."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Austria",
       "icp": "Global People",
       "receipt_type": "meals",
-      "issues_count": 4
+      "issues_count": 5
     }
   },
   "citations": {
     "citations": {
-      "currency": {
+      "country": {
         "field_citation": {
-          "source_text": "Currency",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt currency and exchange rate",
-          "match_type": "exact"
+          "source_text": "country",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'country' in the markdown, inferred from context.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "EUR",
-          "confidence": 1,
+          "source_text": "Germany",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Summe EUR: 32,00",
-          "match_type": "exact"
+          "context": "The supplier's address is in Berlin, Germany.",
+          "match_type": "contextual"
         }
       },
-      "amount": {
+      "supplier_name": {
         "field_citation": {
-          "source_text": "Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Expense amount",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "32",
-          "confidence": 1,
+          "source_text": "Ristorante IL GARDA",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Summe EUR: 32,00",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Receipt Type",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Rechnung",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Rechnung für Tisch Nr. 10",
-          "match_type": "exact"
-        }
-      },
-      "restaurant_name": {
-        "field_citation": {
-          "source_text": "Restaurant Name",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Name of the restaurant",
+          "context": "The name of the supplier appears at the top of the invoice.",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "Ristorante IL GARDA",
-          "confidence": 1,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Ristorante IL GARDA",
+          "context": "The name of the supplier appears at the top of the invoice.",
           "match_type": "exact"
         }
       },
-      "restaurant_address": {
+      "supplier_address": {
         "field_citation": {
-          "source_text": "Restaurant Address",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Address of the restaurant",
+          "source_text": "Oranienburgerstr. 32",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "The address of the supplier appears below the supplier's name.",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "Oranienburgerstr. 32, 10117 Berlin",
-          "confidence": 1,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Oranienburgerstr. 32\n10117 BERLIN",
+          "context": "The full address of the supplier appears below the supplier's name.",
           "match_type": "exact"
         }
       },
-      "table_number": {
+      "supplier_vat_number": {
         "field_citation": {
-          "source_text": "Table Number",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Table number at the restaurant",
+          "source_text": "USt-IdNr.",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "VAT number is listed under 'USt-IdNr.'",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "10",
-          "confidence": 1,
+          "source_text": "DE291651877",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Rechnung für Tisch Nr. 10",
+          "context": "The VAT number appears under 'USt-IdNr.: DE291651877'.",
           "match_type": "exact"
         }
       },
-      "date_of_issue": {
+      "supplier_tax_number": {
         "field_citation": {
-          "source_text": "Date of Issue",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Date of the receipt",
+          "source_text": "Steuernummer",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Tax number is listed under 'Steuernummer'.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "2024-12-11",
-          "confidence": 1,
+          "source_text": "34/436/01008",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Datum: 11.12.2024",
-          "match_type": "fuzzy"
+          "context": "The tax number appears under 'Steuernummer: 34/436/01008'.",
+          "match_type": "exact"
         }
       },
-      "transaction_time": {
+      "customer_name": {
         "field_citation": {
-          "source_text": "Transaction Time",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Time of the transaction",
-          "match_type": "exact"
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'customer_name' in the markdown.",
+          "match_type": "none"
         },
         "value_citation": {
-          "source_text": "21:37:15",
-          "confidence": 1,
+          "source_text": null,
+          "confidence": 0,
           "source_location": "markdown",
-          "context": "Uhrzeit: 21:37:15",
-          "match_type": "exact"
+          "context": "No explicit mention of 'customer_name' in the markdown.",
+          "match_type": "none"
         }
       },
-      "document_number": {
+      "customer_address": {
         "field_citation": {
-          "source_text": "Document Number",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Number of the document",
-          "match_type": "exact"
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'customer_address' in the markdown.",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'customer_address' in the markdown.",
+          "match_type": "none"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'invoice_number' in the markdown.",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No explicit mention of 'invoice_number' in the markdown.",
+          "match_type": "none"
+        }
+      },
+      "receipt_number": {
+        "field_citation": {
+          "source_text": "Belegnummer",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnung für Tisch Nr. 10\nDatum: 11.12.2024\nUhrzeit: 21:37:15\nBelegnummer: 33831",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "33831",
-          "confidence": 1,
+          "confidence": 0.98,
           "source_location": "markdown",
           "context": "Belegnummer: 33831",
           "match_type": "exact"
         }
       },
-      "payment_method": {
+      "currency": {
         "field_citation": {
-          "source_text": "Payment Method",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Method of payment",
-          "match_type": "exact"
+          "source_text": "Summe EUR:",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Summe EUR:\n32,00",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "EC-Karte",
-          "confidence": 1,
+          "source_text": "EUR",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Zahlungsart: EC-Karte",
+          "context": "Summe EUR:\n32,00",
+          "match_type": "contextual"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Summe",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Typ\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "32,00",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "26.89\n5.11\n32.00\nSumme EUR:",
           "match_type": "exact"
         }
       },
-      "vat_number": {
+      "subtotal": {
         "field_citation": {
-          "source_text": "VAT Number",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "VAT number of the restaurant",
-          "match_type": "exact"
+          "source_text": "Netto",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Typ\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "DE291651877",
-          "confidence": 1,
+          "source_text": "26.89",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "USt-IdNr.: DE291651877",
+          "context": "1\nPizza TONNO\n16,50\n1\nFLASCHE WASSER GAS 0.75L\n7,00\n1\nSPRIZZ\n8,50\nTyp\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
           "match_type": "exact"
         }
       },
-      "tax_number": {
+      "tax_amount": {
         "field_citation": {
-          "source_text": "Tax Number",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Tax number of the restaurant",
-          "match_type": "exact"
+          "source_text": "MuSt.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Typ\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "34/436/01008",
-          "confidence": 1,
+          "source_text": "5.11",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Steuernummer: 34/436/01008",
-          "match_type": "exact"
-        }
-      },
-      "server": {
-        "field_citation": {
-          "source_text": "Server",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Name of the server",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Kellner1",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Es bediente Sie: Kellner1",
-          "match_type": "exact"
-        }
-      },
-      "line_items": {
-        "field_citation": {
-          "source_text": "Line Items",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "List of items purchased",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Pizza TONNO, FLASCHE WASSER GAS 0.75L, SPRIZZ",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Artikel\n\n1\nPizza TONNO\n16,50\n1\nFLASCHE WASSER GAS 0.75L\n7,00\n1\nSPRIZZ\n8,50",
+          "context": "1\nPizza TONNO\n16,50\n1\nFLASCHE WASSER GAS 0.75L\n7,00\n1\nSPRIZZ\n8,50\nTyp\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
           "match_type": "exact"
         }
       },
       "tax_rate": {
         "field_citation": {
-          "source_text": "Tax Rate",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Tax rate applied",
-          "match_type": "exact"
+          "source_text": "7,00 %",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Typ\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "19",
-          "confidence": 1,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "19.00 %",
+          "context": "Typ\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
           "match_type": "exact"
         }
       },
-      "vat_amount": {
+      "discount_amount": {
         "field_citation": {
-          "source_text": "VAT Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Amount of VAT",
-          "match_type": "exact"
+          "source_text": "0.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Typ\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "5.11",
-          "confidence": 1,
+          "source_text": "null",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "19.00 %\n26.89\n5.11\n32.00",
+          "context": "Typ\nNetto\nMuSt.\nBrutto\n7,00 %\n0.00\n0.00\n19.00 %\n26.89\n5.11\n32.00\nSumme EUR:",
           "match_type": "exact"
         }
       },
-      "gross_total": {
+      "transaction_reference": {
         "field_citation": {
-          "source_text": "Gross Total",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Total amount including tax",
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": null,
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": null,
+          "match_type": "none"
+        }
+      },
+      "date_of_issue": {
+        "field_citation": {
+          "source_text": "Datum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnung für Tisch Nr. 10 Datum: 11.12.2024 Uhrzeit: 21:37:15",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "11.12.2024",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnung für Tisch Nr. 10 Datum: 11.12.2024 Uhrzeit: 21:37:15",
+          "match_type": "exact"
+        }
+      },
+      "transaction_time": {
+        "field_citation": {
+          "source_text": "Uhrzeit:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnung für Tisch Nr. 10 Datum: 11.12.2024 Uhrzeit: 21:37:15",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "21:37:15",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnung für Tisch Nr. 10 Datum: 11.12.2024 Uhrzeit: 21:37:15",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Zahlungsart:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zahlungsart: EC-Karte",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "EC-Karte",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Zahlungsart: EC-Karte",
+          "match_type": "exact"
+        }
+      },
+      "line_items": {
+        "field_citation": {
+          "source_text": "Artikel",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Artikel Summe Menge 1 Pizza TONNO 16,50 1 FLASCHE WASSER GAS 0.75L 7,00 1 SPRIZZ 8,50",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Pizza TONNO",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Artikel Summe Menge 1 Pizza TONNO 16,50 1 FLASCHE WASSER GAS 0.75L 7,00 1 SPRIZZ 8,50",
+          "match_type": "exact"
+        }
+      },
+      "table_number": {
+        "field_citation": {
+          "source_text": "Tisch Nr.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnung für Tisch Nr. 10",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Tisch Nr. 10",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnung für Tisch Nr. 10",
+          "match_type": "contextual"
+        }
+      },
+      "server_name": {
+        "field_citation": {
+          "source_text": "Es bediente Sie:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Es bediente Sie: Kellner1",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Kellner1",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Es bediente Sie: Kellner1",
+          "match_type": "exact"
+        }
+      },
+      "location_city": {
+        "field_citation": {
+          "source_text": "BERLIN",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "10117 BERLIN",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "32",
-          "confidence": 1,
+          "source_text": "BERLIN",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Summe EUR: 32,00",
+          "context": "10117 BERLIN",
+          "match_type": "exact"
+        }
+      },
+      "location_country": {
+        "field_citation": {
+          "source_text": "Germany",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Germany",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Germany",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Germany",
           "match_type": "exact"
         }
       },
       "special_notes": {
         "field_citation": {
-          "source_text": "Special Notes",
+          "source_text": "SERVICE IS NOT INCLUDED!",
           "confidence": 1,
-          "source_location": "requirements",
-          "context": "Additional notes on the receipt",
+          "source_location": "markdown",
+          "context": "SERVICE IS NOT INCLUDED!",
           "match_type": "exact"
         },
         "value_citation": {
@@ -502,80 +623,96 @@
           "context": "SERVICE IS NOT INCLUDED!",
           "match_type": "exact"
         }
+      },
+      "tse_information": {
+        "field_citation": {
+          "source_text": "TSE-Informationen",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TSE-InformationenKassen-ID: DESKTOP-RR79U54-155703E2",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Kassen-ID: DESKTOP-RR79U54-155703E2",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Kassen-ID: DESKTOP-RR79U54-155703E2",
+          "match_type": "exact"
+        }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 21,
-      "fields_with_field_citations": 21,
-      "fields_with_value_citations": 21,
-      "average_confidence": 1
+      "total_fields_analyzed": 28,
+      "fields_with_field_citations": 24,
+      "fields_with_value_citations": 24,
+      "average_confidence": 0.9400000000000001
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "7.7",
-      "file_classification_seconds": "3.8",
-      "image_quality_assessment_seconds": "4.7",
-      "data_extraction_seconds": "15.4",
-      "issue_detection_seconds": "12.7",
-      "citation_generation_seconds": "17.9"
+      "markdown_extraction_seconds": "5.5",
+      "file_classification_seconds": "3.7",
+      "image_quality_assessment_seconds": "4.4",
+      "data_extraction_seconds": "6.0",
+      "issue_detection_seconds": "13.2",
+      "citation_generation_seconds": "14.9"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:03:15.969Z",
-        "end_time": "2025-07-31T18:03:23.641Z",
-        "duration_seconds": "7.7",
+        "start_time": "2025-08-05T16:19:48.946Z",
+        "end_time": "2025-08-05T16:19:54.479Z",
+        "duration_seconds": "5.5",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T18:03:23.643Z",
-        "end_time": "2025-07-31T18:03:27.437Z",
-        "duration_seconds": "3.8",
+        "start_time": "2025-08-05T16:19:54.483Z",
+        "end_time": "2025-08-05T16:19:58.209Z",
+        "duration_seconds": "3.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-07-31T18:03:23.642Z",
-        "end_time": "2025-07-31T18:03:28.324Z",
-        "duration_seconds": "4.7",
+        "start_time": "2025-08-05T16:19:54.481Z",
+        "end_time": "2025-08-05T16:19:58.894Z",
+        "duration_seconds": "4.4",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:03:23.644Z",
-        "end_time": "2025-07-31T18:03:39.028Z",
-        "duration_seconds": "15.4",
+        "start_time": "2025-08-05T16:19:54.484Z",
+        "end_time": "2025-08-05T16:20:00.514Z",
+        "duration_seconds": "6.0",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T18:03:39.029Z",
-        "end_time": "2025-07-31T18:03:51.739Z",
-        "duration_seconds": "12.7",
+        "start_time": "2025-08-05T16:20:00.515Z",
+        "end_time": "2025-08-05T16:20:13.727Z",
+        "duration_seconds": "13.2",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:03:39.029Z",
-        "end_time": "2025-07-31T18:03:56.925Z",
-        "duration_seconds": "17.9",
-        "model_used": "eu.amazon.nova-pro-v1:0",
+        "start_time": "2025-08-05T16:20:00.517Z",
+        "end_time": "2025-08-05T16:20:15.455Z",
+        "duration_seconds": "14.9",
+        "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "41.0",
+    "total_processing_time_seconds": "26.5",
     "performance_metrics": {
-      "parallel_group_1_seconds": "15.4",
-      "parallel_group_2_seconds": "17.9",
-      "total_parallel_time_seconds": "33.3",
-      "estimated_sequential_time_seconds": "62.2",
-      "estimated_speedup_factor": "1.87"
+      "parallel_group_1_seconds": "6.0",
+      "parallel_group_2_seconds": "14.9",
+      "total_parallel_time_seconds": "21.0",
+      "estimated_sequential_time_seconds": "47.7",
+      "estimated_speedup_factor": "2.27"
     },
     "validation": {
-      "total_time_seconds": "41.0",
-      "expected_parallel_time_seconds": "41.0",
-      "sequential_sum_seconds": "62.2",
-      "difference_seconds": "0.0",
+      "total_time_seconds": "26.5",
+      "expected_parallel_time_seconds": "26.4",
+      "sequential_sum_seconds": "47.7",
+      "difference_seconds": "0.1",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
@@ -584,16 +721,16 @@
   },
   "metadata": {
     "filename": "Copy of austrian_file_10.pdf",
-    "processing_time": 40957,
+    "processing_time": 26510,
     "country": "Austria",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:03:56.931Z",
+    "processed_at": "2025-08-05T16:20:15.456Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "15.4",
-      "parallel_group_2_duration_seconds": "17.9",
-      "estimated_sequential_time_seconds": "62.2",
-      "actual_parallel_time_seconds": "41.0"
+      "parallel_group_1_duration_seconds": "6.0",
+      "parallel_group_2_duration_seconds": "14.9",
+      "estimated_sequential_time_seconds": "47.7",
+      "actual_parallel_time_seconds": "26.5"
     }
   }
 }

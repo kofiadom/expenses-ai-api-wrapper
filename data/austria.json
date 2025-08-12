@@ -1,401 +1,226 @@
 {
-  "Austria_Expense_Reimbursement_Database_Tables": {
-    "File_Related_Requirements": [
-      {
-        "Field_Type": "Customer Name on Invoice",
-        "Description": "Local Employer name as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "Global People IT-Services GmbH",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show Global People IT-Services GmbH as customer"
-      },
-      {
-        "Field_Type": "Customer Address on Invoice",
-        "Description": "Local Employer address as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "Global People IT-Services GmbH",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show Kärntner Ring 12, A-1010 Vienna, Austria"
-      },
-      {
-        "Field_Type": "Customer VAT Number on Invoice",
-        "Description": "Local Employer VAT number as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "Global People IT-Services GmbH",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show ATU77112189"
-      },
-      {
-        "Field_Type": "Customer Name Exception",
-        "Description": "Exception for flights/bookings where Local Employer name not possible",
-        "Receipt_Type": "Travel",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "Global People IT-Services GmbH",
-        "Mandatory/Optional": "Optional",
-        "Rule": "Worker's name acceptable when Local Employer name not possible, not end client"
-      },
-      {
-        "Field_Type": "Currency",
-        "Description": "Receipt currency and exchange rate",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Local currency with FX rate calculation"
-      },
-      {
-        "Field_Type": "Amount",
-        "Description": "Expense amount",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must be clearly stated on receipt"
-      },
-      {
-        "Field_Type": "Receipt Type",
-        "Description": "Type of supporting document",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must be actual tax receipts or invoices, not booking confirmations"
-      },
-      {
-        "Field_Type": "Receipt Quality",
-        "Description": "Document quality standard",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Online copies sufficient, hard copy not required"
-      },
-      {
-        "Field_Type": "Personal Information",
-        "Description": "Privacy requirement for receipts",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Any personal information not required for reimbursement must be removed"
-      },
-      {
-        "Field_Type": "Business Trip Reporting",
-        "Description": "Separate reports requirement",
-        "Receipt_Type": "Travel",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Submit separate report for each trip"
-      },
-      {
-        "Field_Type": "Travel Template",
-        "Description": "Specific reporting template",
-        "Receipt_Type": "Travel",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must use Travel Expense Report Template Austria EUR.xlsx"
-      },
-      {
-        "Field_Type": "Manager Approval",
-        "Description": "Direct manager approval",
-        "Receipt_Type": "Training",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Required for training expenses"
-      },
-      {
-        "Field_Type": "Route Map",
-        "Description": "Travel route documentation",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Map with relevant route (Google Maps sufficient)"
-      },
-      {
-        "Field_Type": "Kilometer Record",
-        "Description": "Distance traveled documentation",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Record of kilometers traveled must be submitted"
-      },
-      {
-        "Field_Type": "Car Details",
-        "Description": "Vehicle information",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Car details and destination required"
-      },
-      {
-        "Field_Type": "Parking Documentation",
-        "Description": "Parking expense documentation",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Parking tickets should be included within the mileage payment"
-      }
-    ],
-    "Compliance_Policies": [
-      {
-        "Type": "Business Expenses (Non-Travel)",
-        "Description": "General business expenses for job completion",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit specified",
-        "Gross-up_Rule": "Usually tax exempt, grossed up if not tax free",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide sufficient proof like tax receipts or invoices"
-      },
-      {
-        "Type": "Home Office Costs",
-        "Description": "Home office expenses including furniture",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Specific allowances",
-        "Gross-up_Rule": "Follow specific tax allowances and rules",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must follow specific tax allowances found at government website"
-      },
-      {
-        "Type": "Training",
-        "Description": "Training expenses",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit specified",
-        "Gross-up_Rule": "Tax exempt with manager approval",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must get approval from your direct manager"
-      },
-      {
-        "Type": "Mileage",
-        "Description": "Private vehicles, motorbikes, bicycles for work",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "€0.42 per km, max €12,600/year",
-        "Gross-up_Rule": "Maximum €0.42 per km, capped at €12,600 annually",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt is not applicable - you must provide map with route (Google Maps sufficient), record of kilometers, car details, and use travel template"
-      },
-      {
-        "Type": "Parking",
-        "Description": "Parking expenses during mileage",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Included in mileage",
-        "Gross-up_Rule": "Should be included within mileage payment, taxed if paid separately",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - parking tickets should be included within mileage payment"
-      },
-      {
-        "Type": "Domestic Business Travel",
-        "Description": "Domestic business trips over 25km",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "€30 per day max",
-        "Gross-up_Rule": "Maximum €30 per day (€2.50/hour for 3-12 hours), capped at €26.40 mentioned in document",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must use travel report template and cannot mix per diem with actual expenses"
-      },
-      {
-        "Type": "Domestic Travel Per Diem",
-        "Description": "Meal allowances for domestic travel",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "€30 per day",
-        "Gross-up_Rule": "Tax-free per diem covers meals, reduced by 50% if meals provided",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - per diem method covers meals"
-      },
-      {
-        "Type": "Domestic Travel Lodging",
-        "Description": "Accommodation for domestic travel",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "€17 without receipt",
-        "Gross-up_Rule": "Paid separately with proper invoice/receipt or €17",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - provide proper invoice/receipt or accept €17 flat rate"
-      },
-      {
-        "Type": "International Business Travel",
-        "Description": "International business trips",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Government set rates",
-        "Gross-up_Rule": "Per diem rates set by government for each destination",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must use travel report template and cannot mix per diem with actual expenses"
-      },
-      {
-        "Type": "International Travel Per Diem",
-        "Description": "Meal allowances for international travel",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Government set rates",
-        "Gross-up_Rule": "Tax-free based on government limits per destination, can be increased with receipts",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - for amounts above government rate, you must submit receipts"
-      },
-      {
-        "Type": "International Travel Meals",
-        "Description": "Meal reductions for international travel",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Two-thirds reduction",
-        "Gross-up_Rule": "If lunch and dinner provided, per diem reduced",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - automatic reduction applies"
-      },
-      {
-        "Type": "International Travel Expenses",
-        "Description": "Non-per diem expenses for international travel",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit specified",
-        "Gross-up_Rule": "Expenses outside per diem paid against receipts",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide receipts for expenses outside per diem"
-      },
-      {
-        "Type": "Per Diem Method",
-        "Description": "Travel expense method consistency",
-        "ICP_Specific": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Cannot mix methods",
-        "Gross-up_Rule": "Cannot mix per diem method with actual expenses",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": null
-      }
-    ],
-    "Austria_Expense_Reimbursement_Rule_Exceptions": [
-      {
-        "Exception_Category": "Invoice Customer Name",
-        "Standard_Rule": "Local Employer name must appear on invoices",
-        "Exception_Condition": "Hotel and flight bookings where company name not possible",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Transportation - Flight, Accommodation - Hotel",
-        "Override_Rule": "OVERRIDE: Accept worker's name on invoice WHEN company name cannot be used for hotel and flight bookings (not end client)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Invoice Customer Address",
-        "Standard_Rule": "Local Employer address must appear on invoices",
-        "Exception_Condition": "Hotel and flight bookings where company address not applicable",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Transportation - Flight, Accommodation - Hotel",
-        "Override_Rule": "OVERRIDE: Accept worker's personal address on invoice WHEN worker books personal hotel/flight (logical extension of name exception)",
-        "Source_Validation": "Logical extension verified"
-      },
-      {
-        "Exception_Category": "Invoice Customer VAT",
-        "Standard_Rule": "Local Employer VAT number must appear on invoices",
-        "Exception_Condition": "Hotel and flight bookings where company VAT not applicable",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Transportation - Flight, Accommodation - Hotel",
-        "Override_Rule": "OVERRIDE: Accept absence of company VAT number (ATU77112189) WHEN worker makes personal hotel/flight bookings (logical extension of name exception)",
-        "Source_Validation": "Logical extension verified"
-      },
-      {
-        "Exception_Category": "Per Diem Method Exclusivity",
-        "Standard_Rule": "Choose either per diem OR actual expenses",
-        "Exception_Condition": "Within same business trip",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Per Diem - Meals vs Meal Receipt - Actual",
-        "Override_Rule": "OVERRIDE: Reject mixed methods - IF per diem chosen THEN no actual meal receipts accepted for that specific trip (must agree on one method)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Mileage Documentation",
-        "Standard_Rule": "Receipts required for expenses",
-        "Exception_Condition": "Private vehicle use for work",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Mileage - Calculated",
-        "Override_Rule": "OVERRIDE: Do not require receipts BUT require map with route (Google Maps sufficient), kilometer record, car details, and travel template",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Parking Integration",
-        "Standard_Rule": "Parking expenses handled separately",
-        "Exception_Condition": "Parking costs during mileage claims",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Parking within Mileage",
-        "Override_Rule": "OVERRIDE: Include parking in tickets within mileage payment - IF paid separately THEN parking will be taxed",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Training Approval",
-        "Standard_Rule": "Business expenses approved if job-related",
-        "Exception_Condition": "Training expenses",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Training - Business",
-        "Override_Rule": "OVERRIDE: Require direct manager approval for ALL training expenses regardless of job relevance",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Domestic Travel Distance Threshold",
-        "Standard_Rule": "Per diem available for all domestic travel",
-        "Exception_Condition": "Domestic business trips",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Per Diem - Meals (Domestic)",
-        "Override_Rule": "OVERRIDE: Only allow per diem entitlement WHEN travel exceeds 25 kilometers from place of business",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Domestic Lodging Receipt Option",
-        "Standard_Rule": "Accommodation requires proper receipts",
-        "Exception_Condition": "Domestic travel accommodation",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Accommodation - Domestic",
-        "Override_Rule": "OVERRIDE: Accept €15 flat rate without receipt OR proper invoice/receipt for actual costs",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Domestic Meal Provision Reduction",
-        "Standard_Rule": "Full per diem rates apply",
-        "Exception_Condition": "Meals provided by employer/host",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Per Diem - Meals (Domestic)",
-        "Override_Rule": "OVERRIDE: Reduce per diem by 50% WHEN meals are provided by employer/host",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "International Enhanced Per Diem",
-        "Standard_Rule": "Per diems at government rates are tax-free",
-        "Exception_Condition": "International travel with increased per diem",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Per Diem - Meals (International)",
-        "Override_Rule": "OVERRIDE: Allow increased per diem rates BUT require receipts for amounts above government rate AND tax excess amount",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "International Meal Provision Reduction",
-        "Standard_Rule": "Full per diem rates apply",
-        "Exception_Condition": "Lunch and dinner provided on international trips",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "Per Diem - Meals (International)",
-        "Override_Rule": "OVERRIDE: Reduce per diem by two-thirds WHEN lunch AND dinner are provided (breakfast not considered)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Currency Consistency",
-        "Standard_Rule": "Accept receipts in any currency",
-        "Exception_Condition": "Multi-currency submissions",
-        "Applicable_ICPs": "Global People IT-Services GmbH",
-        "Expense_Type": "All Expense Types",
-        "Override_Rule": "OVERRIDE: Require receipts submitted in same currency WITH clear exchange rate calculation",
-        "Source_Validation": "Verified in documents"
-      }
-    ]
-  }
+  "receiptStandards": [
+    {
+      "description": "Local Employer company name must appear on invoices",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Invoices must show \"Global People IT-Services GmbH\", not the worker's name"
+    },
+    {
+      "description": "Local Employer address must appear on invoices",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Invoices must show \"Kärntner Ring 12, A-1010 Vienna, Austria\""
+    },
+    {
+      "description": "Local Employer VAT ID must appear on invoices",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Invoices must show \"VAT ID: ATU77112189\""
+    },
+    {
+      "description": "Worker name must appear on hotel/flight invoices",
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Hotel, Flight",
+      "icpName": "Global People IT-Services GmbH",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Hotel and flight invoices should indicate the name of the worker, not the end client"
+    },
+    {
+      "description": "Must be actual tax receipts or invoices",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Documents must be actual tax receipts or invoices; booking confirmations will not suffice"
+    },
+    {
+      "description": "Online copies are sufficient",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "mandatoryOptional": "Optional",
+      "rule": "Online copies are sufficient, a hard copy is not required"
+    },
+    {
+      "description": "Currency must be shown on receipt",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Receipts should show the currency of the transaction"
+    },
+    {
+      "description": "Personal information must be removed",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Any personal information not required for reimbursement purposes should be removed before submission"
+    }
+  ],
+  "compliancePoliciesGrossUpRelated": [
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Business expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "No",
+      "grossUpRule": "Business expenses related to workers completing their job will usually be tax exempt"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Home office costs",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "No",
+      "grossUpRule": "Home office costs, including furniture, follow specific tax allowances and rules and are tax exempt when following government rates"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Training expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "Yes",
+      "grossUpRule": "Training expenses are generally taxable and will be grossed up"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Other non-travel expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "Yes",
+      "grossUpRule": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax free"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Domestic business travel per diem",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "Yes",
+      "grossUpRule": "Per diem up to 26.40 Euros per day (maximum 12 hours) is tax free. Amounts above 26.40 Euros per day will be grossed up"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Domestic lodging with receipt",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "No",
+      "grossUpRule": "Lodging paid separately upon receiving proper invoice/receipt is tax free"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Domestic lodging without receipt",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "No",
+      "grossUpRule": "Flat rate of 15 Euro can be paid for lodging when no receipt is provided - this amount is tax free"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "International per diem within government limits",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "No",
+      "grossUpRule": "Per diem rates based on government limits for each destination are tax free"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "International per diem above government limits",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "Yes",
+      "grossUpRule": "Amount above the set government per diem rate requires receipt and will be grossed up if not tax exempt"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage reimbursement",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "No",
+      "grossUpRule": "Mileage reimbursement according to government rates is tax free"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Parking tickets within mileage",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "No",
+      "grossUpRule": "Parking tickets included within mileage payment are tax free"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Parking tickets outside mileage",
+      "icpName": "Global People IT-Services GmbH",
+      "grossUp": "Yes",
+      "grossUpRule": "If parking is paid outside of mileage it will be taxed"
+    }
+  ],
+  "compliancePoliciesAdditionalInfoRelated": [
+    {
+      "travelNonTravelBoth": "Both",
+      "expenseType": "Training expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Training expenses require the approval of the direct manager"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Business travel",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Travel expenses must be submitted using the Travel Expense Report Template Austria EUR.xlsx"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Business travel",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Business trip - submit a separate report for each trip"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Domestic business travel",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "A per diem method cannot be mixed with actual expenses. You will need to agree with the worker on one method per business trip"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "International business travel",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "A per diem method cannot be mixed with actual expenses. You will need to agree with the worker on one method per business trip"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Domestic business travel per diem",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Per diem entitlement is for workers who travel more than 25 kilometres from their place of business"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "To claim mileage, a record of kilometers traveled must be submitted with exact continuous logbook (Fahrtenbuch)"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Worker will need to share a map with the relevant route (google maps is sufficient)"
+    },
+    {
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Receipts should be submitted with clear exchange rate information and the travel reporting template"
+    },
+    {
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People IT-Services GmbH",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Expense reimbursements will be processed within the monthly payroll run and will be reflected in the worker's pay slip"
+    }
+  ]
 }

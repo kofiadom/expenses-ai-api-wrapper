@@ -1,16 +1,18 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { ImageQualityAssessmentSchema, type ImageQualityAssessment } from '../schemas/expense-schemas';
-import { Logger } from '@nestjs/common';
+import { LangfuseService } from '../services/langfuse.service';
+import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import * as fs from 'fs';
 import * as path from 'path';
 import { BedrockLlmService } from '../utils/bedrockLlm';
+import { BaseAgent } from './base.agent';
 
-export class ImageQualityAssessmentAgent {
-  private readonly logger = new Logger(ImageQualityAssessmentAgent.name);
+export class ImageQualityAssessmentAgent extends BaseAgent {
   private llm: any;
   private currentProvider: 'bedrock' | 'anthropic';
 
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock') {
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
+    super(langfuseService);
     this.currentProvider = provider;
 
     if (provider === 'bedrock') {
@@ -23,20 +25,101 @@ export class ImageQualityAssessmentAgent {
     }
   }
 
-  async assessImageQuality(imagePath: string): Promise<ImageQualityAssessment> {
+  /**
+   * Get the actual model name used, accounting for fallback scenarios
+   */
+  getActualModelUsed(): string {
+    if (this.currentProvider === 'bedrock' && this.llm.getCurrentModelName) {
+      // For BedrockLlmService, get the actual model name (handles fallback)
+      return this.llm.getCurrentModelName();
+    } else if (this.currentProvider === 'bedrock') {
+      // Fallback for older BedrockLlmService without getCurrentModelName
+      return process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0';
+    } else {
+      // Direct Anthropic usage
+      return 'claude-3-5-sonnet-20241022';
+    }
+  }
+
+  async assessImageQuality(imagePath: string, parentTrace?: LangfuseTraceClient): Promise<ImageQualityAssessment> {
+    const startTime = new Date();
+    let trace: LangfuseTraceClient | null = null;
+    let generation: LangfuseGenerationClient | null = null;
+
     this.logger.log(`🤖 Starting LLM-based quality assessment for: ${path.basename(imagePath)}`);
 
     try {
       // Get image info for context
       const imageInfo = this.getImageInfo(imagePath);
 
-      // For now, simulate quality assessment based on file properties
-      // TODO: Implement actual vision-based assessment when LlamaIndex TS vision API is stable
+      // Create Langfuse trace
+      const traceInput = {
+        imagePath: path.basename(imagePath),
+        imageInfo,
+        assessmentType: 'llm_simulation',
+      };
+
+      // Get the assessment prompt from Langfuse
+      const assessmentPrompt = await this.getPromptTemplate('image-quality-assessment-prompt');
+      const promptObject = this.getLastPromptObject();
+      const promptInfo = { ...this.lastPromptInfo! };
+
+      // Create the full user prompt that will be sent to the LLM
+      const userPrompt = `Simulate a quality assessment for an expense document image. ${imageInfo}\n\n${assessmentPrompt}`;
+
+      if (parentTrace) {
+        // Create as a span within parent trace with prompt linking
+        generation = this.createGenerationWithPrompt(parentTrace, {
+          name: 'image-quality-assessment',
+          input: traceInput,
+          model: this.getActualModelUsed(),
+          startTime,
+          metadata: {
+            agent: 'ImageQualityAssessmentAgent',
+            provider: this.currentProvider,
+            imagePath: path.basename(imagePath),
+            assessmentType: 'llm_simulation',
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
+          },
+        }, promptObject) || null;
+      } else {
+        // Create standalone trace
+        trace = this.langfuseService?.createTrace({
+          name: 'image-quality-assessment',
+          input: traceInput,
+          metadata: {
+            agent: 'ImageQualityAssessmentAgent',
+            provider: this.currentProvider,
+            imagePath: path.basename(imagePath),
+            assessmentType: 'llm_simulation',
+          },
+          tags: ['image-quality-assessment', 'expense-processing'],
+        }) || null;
+
+        // Create generation within trace with prompt linking
+        generation = this.createGenerationWithPrompt(trace, {
+          name: 'quality-assessment-llm-call',
+          input: traceInput,
+          model: this.getActualModelUsed(),
+          startTime,
+          metadata: {
+            agent: 'ImageQualityAssessmentAgent',
+            provider: this.currentProvider,
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
+          },
+        }, promptObject) || null;
+      }
+
+      // Generate prompt version tags
+      const promptVersionTags = this.getPromptVersionTags();
+
       const response = await this.llm.chat({
         messages: [
           {
             role: 'user',
-            content: `Simulate a quality assessment for an expense document image. ${imageInfo}\n\n${this.createAssessmentPrompt()}`,
+            content: userPrompt,
           },
         ],
       });
@@ -67,11 +150,80 @@ export class ImageQualityAssessmentAgent {
       const parsedResult = this.parseJsonResponse(rawContent);
       const result = ImageQualityAssessmentSchema.parse(parsedResult);
 
-      this.logger.log(`Image quality assessment completed: Score ${result.overall_quality_score}/10, Suitable: ${result.suitable_for_extraction}`);
+      const endTime = new Date();
+      const duration = endTime.getTime() - startTime.getTime();
+
+      // Update Langfuse generation with results
+      this.langfuseService?.updateGeneration(generation, {
+        output: result,
+        usage: {
+          // Rough estimate: 4 chars per token
+          promptTokens: Math.floor(userPrompt.length / 4),
+          completionTokens: Math.floor(rawContent.length / 4),
+          totalTokens: Math.floor((userPrompt.length + rawContent.length) / 4),
+        },
+        endTime,
+        metadata: {
+          duration_seconds: (duration / 1000).toFixed(1),
+          success: true,
+          overallQualityScore: result.overall_quality_score,
+          suitableForExtraction: result.suitable_for_extraction,
+          imagePath: path.basename(imagePath),
+          modelUsed: this.getActualModelUsed(),
+          provider: this.currentProvider,
+          // Prompt is now linked directly to the generation
+          promptLinked: true,
+          promptName: promptInfo.name,
+          promptVersion: promptInfo.version || 'unknown',
+        },
+      });
+
+      // Finalize trace if it's a standalone trace
+      if (trace && !parentTrace) {
+        // Add prompt version tags to the trace
+        this.langfuseService?.addTagsToTrace(trace, promptVersionTags);
+        
+        this.langfuseService?.finalizeTrace(trace, {
+          assessment_result: result,
+          processing_time_ms: duration,
+          success: true,
+        }, {
+          duration_ms: duration,
+          success: true,
+          overallQualityScore: result.overall_quality_score,
+          suitableForExtraction: result.suitable_for_extraction,
+          promptVersionTags: promptVersionTags,
+        });
+      }
+
+      this.logger.log(`Image quality assessment completed: Score ${result.overall_quality_score}/10, Suitable: ${result.suitable_for_extraction} in ${duration}ms`);
       return result;
 
     } catch (error) {
+      const endTime = new Date();
+      const duration = endTime.getTime() - startTime.getTime();
+
       this.logger.error(`Image quality assessment failed: ${error.message}`);
+
+      // Update Langfuse with error
+      this.langfuseService?.updateGeneration(generation, {
+        output: null,
+        endTime,
+        metadata: {
+          duration_ms: duration,
+          success: false,
+          error: error.message,
+          imagePath: path.basename(imagePath),
+        },
+      });
+
+      if (trace && !parentTrace) {
+        this.langfuseService?.finalizeTrace(trace, null, {
+          duration_ms: duration,
+          success: false,
+          error: error.message,
+        });
+      }
 
       // Return fallback result
       return {
@@ -124,133 +276,6 @@ export class ImageQualityAssessmentAgent {
     return `Filename: ${filename}, Size: ${sizeKB}KB, Format: ${path.extname(imagePath)}`;
   }
 
-  private createAssessmentPrompt(): string {
-    return `You are an expert image quality analyst specializing in receipt and invoice document assessment. Your task is to thoroughly analyze the provided receipt/invoice image and assess its quality across multiple dimensions before OCR/data extraction processing.
-
-ANALYSIS REQUIREMENTS:
-
-1. **BLUR DETECTION**: Examine text sharpness, edge definition, and overall focus quality. Look for motion blur, camera shake, or out-of-focus areas that would impair text recognition.
-   - Provide quantitative_measure: blur intensity (0.0=sharp, 1.0=extremely blurry)
-   - Assess severity_level and confidence_score
-
-2. **CONTRAST ASSESSMENT**: Evaluate the contrast between text and background. Check for adequate differentiation that enables clear text recognition.
-   - Provide quantitative_measure: contrast ratio assessment (0.0=poor, 1.0=excellent)
-   - Consider lighting conditions and background uniformity
-
-3. **GLARE IDENTIFICATION**: Detect bright spots, reflections, or glare that obscure text or important document areas. Look for overexposed regions.
-   - Provide quantitative_measure: percentage of image affected by glare (0.0-1.0)
-   - Identify specific areas where glare impacts readability
-
-4. **WATER STAIN DETECTION**: Identify water damage including discoloration, staining, warping effects, or color distortions that affect document readability.
-   - Provide quantitative_measure: percentage of document affected (0.0-1.0)
-   - Assess impact on text legibility
-
-5. **TEARS OR FOLDS DETECTION**: Look for physical damage like tears, creases, folds, or wrinkles that may cause text distortion or information loss.
-   - Provide quantitative_measure: severity of physical damage (0.0=none, 1.0=severe)
-   - Count visible fold lines or tear areas
-
-6. **CUT-OFF DETECTION**: Check if document edges are cut off or if the image frame excludes important document portions.
-   - Provide quantitative_measure: percentage of document potentially cut off (0.0-1.0)
-   - Identify which edges are affected
-
-7. **MISSING SECTIONS**: Identify if parts of the receipt/invoice are missing, incomplete, or not captured in the image.
-   - Provide quantitative_measure: estimated percentage of content missing (0.0-1.0)
-   - Consider typical receipt structure
-
-8. **OBSTRUCTIONS**: Detect any objects, fingers, shadows, or other elements that block or obscure document content.
-   - Provide quantitative_measure: percentage of document obscured (0.0-1.0)
-   - Identify types of obstructions
-
-ASSESSMENT CRITERIA:
-- For each quality issue, determine if it's detected (True/False)
-- Assign severity_level: 'none', 'low', 'medium', 'high', 'critical'
-- Provide confidence_score (0.0-1.0) for your detection confidence
-- Include quantitative_measure for measurable aspects
-- Provide a concise, factual description in one sentence
-- Give practical recommendations
-- Assign an overall quality score (1-10, where 10 is perfect quality)
-- Determine if the image is suitable for OCR/data extraction
-
-IMPORTANT GUIDELINES:
-- Focus specifically on receipt/invoice characteristics (structured text, tables, line items, totals)
-- Be thorough but practical in your assessment
-- Consider the impact on automated text extraction systems
-- Prioritize issues that would significantly impair data extraction accuracy
-- Use quantitative measures to provide objective assessments where possible
-
-CRITICAL: You MUST return a JSON object with EXACTLY this structure:
-{
-  "blur_detection": {
-    "detected": boolean,
-    "severity_level": "none|low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "contrast_assessment": {
-    "detected": boolean,
-    "severity_level": "none|low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "glare_identification": {
-    "detected": boolean,
-    "severity_level": "none|low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "water_stains": {
-    "detected": boolean,
-    "severity_level": "none|low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "tears_or_folds": {
-    "detected": boolean,
-    "severity_level": "none|low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "cut_off_detection": {
-    "detected": boolean,
-    "severity_level": "none|low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "missing_sections": {
-    "detected": boolean,
-    "severity_level": "none|low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "obstructions": {
-    "detected": boolean,
-    "severity_level": "none|low|medium|high|critical",
-    "confidence_score": number (0.0-1.0),
-    "quantitative_measure": number,
-    "description": "string",
-    "recommendation": "string"
-  },
-  "overall_quality_score": number (1-10),
-  "suitable_for_extraction": boolean
-}
-
-Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON object.`;
-  }
-
   private parseJsonResponse(content: string): any {
     try {
       // Remove markdown code blocks if present
@@ -267,12 +292,10 @@ Do NOT use any other field names. Do NOT add extra fields. Return ONLY the JSON 
   }
 
   formatAssessmentForWorkflow(assessment: ImageQualityAssessment, imagePath: string) {
-    const modelUsed = this.currentProvider === 'bedrock' ? (process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0') : 'claude-3-5-sonnet-20241022';
-
     return {
       image_path: imagePath,
       assessment_method: 'LLM',
-      model_used: modelUsed,
+      model_used: this.getActualModelUsed(),
       timestamp: new Date().toISOString(),
       quality_score: assessment.overall_quality_score * 10, // Convert to 0-100 scale
       quality_level: this.getQualityLevel(assessment.overall_quality_score),

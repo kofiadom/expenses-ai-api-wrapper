@@ -66,7 +66,8 @@ export class ExpenseProcessor {
           markdownExtractionTime,
           documentReader: documentReader || 'default'
         },
-        useParallelProcessing
+        useParallelProcessing,
+        userId // Pass the userId from the API to Langfuse tracking
       );
 
       const processingTime = Date.now() - startTime;

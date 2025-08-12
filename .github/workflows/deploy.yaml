@@ -1,0 +1,28 @@
+name: CICD
+
+on:
+  pull_request_target:
+    types: [closed]
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - '**/*.md'
+      - '**/.gitignore'
+      - '.gitignore'
+      - '**/CODEOWNERS'
+      - 'CODEOWNERS'
+      - '**/.dockerignore'
+      - '.dockerignore'
+
+jobs:
+  CICD:
+    uses: papayaglobal/workflows/.github/workflows/deploy.yaml@main
+    with:
+      service-name: ${{ github.event.repository.name }}
+      node-ver: 20
+      docker-context: ./
+      dockerfile-path: ./Dockerfile
+      runners: payroll
+      account: core
+    secrets: inherit

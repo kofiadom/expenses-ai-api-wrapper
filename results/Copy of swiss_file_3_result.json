@@ -1,9 +1,9 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_try_005_Copy of swiss_file_3.pdf",
+    "image_path": "uploads\\AUG_5_V5_13_Copy of swiss_file_3.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T20:21:25.173Z",
+    "timestamp": "2025-08-05T16:41:31.782Z",
     "quality_score": 100,
     "quality_level": "excellent",
     "suitable_for_extraction": true,
@@ -12,7 +12,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "The text is sharp and clearly defined with no visible blur.",
+      "description": "The text and edges are sharp with no visible blur.",
       "recommendation": "No action needed."
     },
     "contrast_assessment": {
@@ -26,7 +26,7 @@
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
       "description": "No glare or bright spots detected that obscure text.",
       "recommendation": "No action needed."
@@ -34,7 +34,7 @@
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
       "description": "No water stains or discolorations affecting document readability.",
       "recommendation": "No action needed."
@@ -42,9 +42,9 @@
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No visible tears, creases, or folds that distort the text.",
+      "description": "No visible tears, creases, folds, or wrinkles on the document.",
       "recommendation": "No action needed."
     },
     "cut_off_detection": {
@@ -60,7 +60,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "All sections of the receipt/invoice are present and complete.",
+      "description": "All parts of the receipt/invoice are present and complete.",
       "recommendation": "No action needed."
     },
     "obstructions": {
@@ -68,7 +68,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No obstructions, such as objects or shadows, block the document content.",
+      "description": "No objects, fingers, shadows, or other elements obscure the document content.",
       "recommendation": "No action needed."
     },
     "overall_quality_score": 10
@@ -83,8 +83,8 @@
     "location_match": true,
     "error_type": null,
     "error_message": null,
-    "classification_confidence": 95,
-    "reasoning": "The document contains all the necessary fields to be classified as an expense document. It includes supplier details, consumer details, transaction amount, transaction date, invoice/receipt number, tax information, payment method, and item description line items.",
+    "classification_confidence": 90,
+    "reasoning": "The document contains all necessary fields for an expense document, including supplier, consumer, transaction amount, transaction date, invoice number, tax information, payment method, and item description. The document is a hotel receipt from Motel One Innsbruck, indicating accommodation expenses.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -98,170 +98,352 @@
       ],
       "fields_missing": [],
       "total_fields_found": 8,
-      "expense_identification_reasoning": "All 8 schema fields are present in the document, confirming it as an expense document."
+      "expense_identification_reasoning": "All 8 required fields are present, confirming this is an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_registration_on_invoice": null,
-    "customer_name_exception": null,
+    "supplier_name": "Motel One",
+    "supplier_address": "Südbahnstraße 1/ Top 1, 6020 Innsbruck",
+    "supplier_vat_number": "ATU 633 08227",
+    "supplier_phone": "+43 512 219353-0",
+    "supplier_email": "innsbruck@motel-one.com",
+    "supplier_website": "www.fiskaltrust.at",
+    "customer_name": "Fred Tavas",
+    "customer_address": "Baumgartenweg 7, 8854 Galgenen, Schweiz",
+    "invoice_number": "2024808055606",
+    "transaction_reference": "808090897/1",
     "currency": "EUR",
-    "amount": 131,
-    "receipt_type": "Rechnung",
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "car_details": null,
-    "logbook": null,
-    "combined_mileage": null,
+    "total_amount": 131,
+    "subtotal": 129,
+    "tax_amount": 11.73,
+    "tax_rate": 10,
+    "discount_amount": null,
+    "tip_amount": null,
     "date_of_issue": "2024-12-19",
-    "hotel_name": "Motel One Innsbruck",
-    "hotel_address": "Südbahnstraße 1/ Top 1, 6020 Innsbruck",
-    "guest_name": "Fred Tavas",
-    "guest_address": "Baumgartenweg 7, 8854 Galgenen, Schweiz",
-    "room_number": "1220",
-    "arrival_date": "2024-12-19",
-    "departure_date": "2024-12-20",
-    "reservation_number": "808090897/1",
-    "ust_id": "CF9RTY03F",
+    "transaction_time": "16:21:12",
+    "payment_method": "American Express",
+    "card_last_four": "6813",
     "line_items": [
       {
         "description": "Logis",
         "quantity": 1,
         "unit_price": 129,
         "total_price": 129,
-        "vat_rate": 10,
-        "vat_amount": 11.73
+        "category": "Accommodation"
       },
       {
         "description": "Ortstaxe",
         "quantity": 1,
         "unit_price": 2,
         "total_price": 2,
-        "vat_rate": 0,
-        "vat_amount": 0
+        "category": "Tax"
       }
     ],
-    "payment_date": "2024-12-19",
-    "payment_method": "American Express",
-    "card_number": "6813",
-    "payment_amount": 131,
-    "total_payment": 131,
-    "outstanding_balance": 0,
-    "contact_person": "Daniel Weuffel",
-    "contact_position": "Front Office Manager",
-    "contact_phone": "+43 512 219353-0",
-    "contact_fax": "+43",
-    "contact_email": "innsbruck@motel-one.com",
-    "company_name": "Motel One Austria GmbH",
-    "company_address": "Südbahnstraße 1/ Top 1, 6020 Innsbruck",
-    "company_management": "Daniel Müller, Stefan Lenze, Gerhard Zeilinger, Armin Rödel",
-    "tax_number": "366/1498 FA Wien 2/20/21/22",
-    "ust_id_company": "ATU 633 08227",
-    "organic_certification": "AT-Bio-902"
+    "receipt_type": "Hotel Receipt",
+    "document_type": "Rechnung",
+    "room_number": "1220",
+    "arrival_date": "2024-12-19",
+    "departure_date": "2024-12-20",
+    "vat_id": "CF9RTY03F",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": "366/1498 FA Wien 2/20/21/22",
+    "front_office_manager": "Daniel Weuffel",
+    "additional_info": "Jetzt eröffnet: Motel One Antwerp und The Cloud One Gdansk!"
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 5,
+      "issues_count": 3,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The receipt does not show the local employer name 'Global PPL CH GmbH' as the customer.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer name is displayed on the invoice.",
-          "knowledge_base_reference": "Must show Global PPL CH GmbH as customer"
+          "field": "document_type",
+          "description": "The receipt must be an actual tax receipt or invoice; booking confirmations will not be sufficient.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Documents must be actual tax receipts or invoices; booking confirmations will not be sufficient."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The receipt does not show the local employer address 'Freigutstrasse 2 8002 Zürich, Switzerland' as the customer.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer address is displayed on the invoice.",
-          "knowledge_base_reference": "Must show Freigutstrasse 2 8002 Zürich, Switzerland"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_registration_on_invoice",
-          "description": "The receipt does not show the local employer registration number 'CHE-295.369.918' as the customer.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer registration number is displayed on the invoice.",
-          "knowledge_base_reference": "Must show CHE-295.369.918"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "currency",
-          "description": "The receipt is in EUR, but the local currency requirement is CHF.",
-          "recommendation": "It is recommended to ensure the receipt is in the local currency CHF with the appropriate FX rate calculation provided.",
-          "knowledge_base_reference": "Local currency with FX rate calculation"
+          "field": "customer_name",
+          "description": "The Local Employer's name and details should appear on invoices, but the customer name on the receipt is an individual's name.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "The Local Employer's name and details should appear on invoices: Global PPL CH GmbH"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "additional_documentation",
-          "description": "The receipt does not provide sufficient proof for accommodation expenses.",
-          "recommendation": "It is recommended to provide additional documentation such as a travel expense report template and manager approval if required.",
-          "knowledge_base_reference": "Receipt alone is not enough - you must provide sufficient proof like tax receipts or invoices"
+          "field": "additional_info",
+          "description": "Workers should keep all their expenses in a simple report of their choice and remove any personal information not required for reimbursement purposes before it is submitted.",
+          "recommendation": "Please ensure that all personal information not required for reimbursement purposes is removed before submission.",
+          "knowledge_base_reference": "Workers should keep all their expenses in a simple report of their choice. Any personal information not required for reimbursement purposes should be removed before it is submitted."
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt does not comply with the mandatory requirements for customer name, address, and registration number. Additionally, the currency is incorrect, and additional documentation may be required to ensure full compliance."
+      "compliance_summary": "The receipt has issues with the document type and customer name, which do not comply with the mandatory requirements. Additionally, personal information should be removed before submission."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Switzerland",
       "icp": "Global People",
       "receipt_type": "accommodation",
-      "issues_count": 5
+      "issues_count": 3
     }
   },
   "citations": {
     "citations": {
+      "supplier_name": {
+        "field_citation": {
+          "source_text": "MOTEL\nONE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Motel One",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
+          "match_type": "exact"
+        }
+      },
+      "supplier_address": {
+        "field_citation": {
+          "source_text": "Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Südbahnstraße 1/ Top 1, 6020 Innsbruck",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
+          "match_type": "exact"
+        }
+      },
+      "supplier_vat_number": {
+        "field_citation": {
+          "source_text": "Steuernummer 366/1498 FA Wien 2/20/21/22 /UST ID ATU 633 08227",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Steuernummer 366/1498 FA Wien 2/20/21/22 /UST ID ATU 633 08227",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "ATU 633 08227",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Steuernummer 366/1498 FA Wien 2/20/21/22 /UST ID ATU 633 08227",
+          "match_type": "exact"
+        }
+      },
+      "supplier_phone": {
+        "field_citation": {
+          "source_text": "Tel.:+43 512 219353-0",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tel.:+43 512 219353-0, Fax.:+43, E-Mail:innsbruck@motel-one.com",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "+43 512 219353-0",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Tel.:+43 512 219353-0, Fax.:+43, E-Mail:innsbruck@motel-one.com",
+          "match_type": "exact"
+        }
+      },
+      "supplier_email": {
+        "field_citation": {
+          "source_text": "E-Mail:innsbruck@motel-one.com",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Tel.:+43 512 219353-0, Fax.:+43, E-Mail:innsbruck@motel-one.com",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "innsbruck@motel-one.com",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Tel.:+43 512 219353-0, Fax.:+43, E-Mail:innsbruck@motel-one.com",
+          "match_type": "exact"
+        }
+      },
+      "supplier_website": {
+        "field_citation": {
+          "source_text": "www.fiskaltrust.at",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "www.fiskaltrust.at",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "www.fiskaltrust.at",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "www.fiskaltrust.at",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "Gast: Tavas, Fred, Zimmer: 1220, vom 19.12.2024 bis 20.12.2024",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Gast: Tavas, Fred, Zimmer: 1220, vom 19.12.2024 bis 20.12.2024",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Fred Tavas",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Gast: Tavas, Fred, Zimmer: 1220, vom 19.12.2024 bis 20.12.2024",
+          "match_type": "exact"
+        }
+      },
+      "customer_address": {
+        "field_citation": {
+          "source_text": "Baumgartenweg 7\n8854 Galgenen\nSchweiz",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Baumgartenweg 7\n8854 Galgenen\nSchweiz",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Baumgartenweg 7, 8854 Galgenen, Schweiz",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Baumgartenweg 7\n8854 Galgenen\nSchweiz",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "Rechnungsnummer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zimmer: 1220, vom 19.12.2024 bis 20.12.2024\nBezeichnung\nMWST.-Satz\nMenge\nEinzelpreis EUR\nGesamtpreis EUR\nBestpreis",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2024808055606",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnungsnummer: 2024808055606",
+          "match_type": "exact"
+        }
+      },
+      "transaction_reference": {
+        "field_citation": {
+          "source_text": "Reservierungsnummer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Anreise: 19.12.2024\nZimmer: 1220\nAbreise: 20.12.2024",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "808090897/1",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Reservierungsnummer: 808090897/1",
+          "match_type": "exact"
+        }
+      },
       "currency": {
         "field_citation": {
-          "source_text": "Currency",
+          "source_text": "Devisen",
           "confidence": 0.9,
-          "source_location": "requirements",
-          "context": "Receipt currency and exchange rate",
+          "source_location": "markdown",
+          "context": "Zahlungsart\nKarten-Nr.\nBetrag Devisen\nZahlungs EUR",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "EUR",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Saldo Leistungen\nEUR\n131,00",
+          "context": "Saldo Zahlungen -131,00\nRechnungsbetrag 0,00\nIn dieser Rechnung sind folgende Steuerbeträge enthalten:",
           "match_type": "exact"
         }
       },
-      "amount": {
+      "total_amount": {
         "field_citation": {
-          "source_text": "Amount",
+          "source_text": "Saldo Leistungen",
           "confidence": 0.9,
-          "source_location": "requirements",
-          "context": "Expense amount",
+          "source_location": "markdown",
+          "context": "Bezeichnung\nMWST.-Satz\nMenge\nEinzelpreis EUR\nGesamtpreis EUR\nBestpreis",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "131,00",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Saldo Leistungen\nEUR\n131,00",
+          "context": "Saldo Leistungen EUR 131,00",
           "match_type": "exact"
         }
       },
-      "receipt_type": {
+      "subtotal": {
         "field_citation": {
-          "source_text": "Receipt Type",
-          "confidence": 0.9,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
+          "source_text": "Gesamtpreis EUR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Bezeichnung\nMWST.-Satz\nMenge\nEinzelpreis EUR\nGesamtpreis EUR\nBestpreis",
           "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "Rechnung",
+          "source_text": "129,00",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Gesamtpreis EUR 129,00",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "Steuer EUR",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Gast: Tavas, Fred, Zimmer: 1220, vom 19.12.2024 bis 20.12.2024\n\nBezeichnung\nMWST.-Satz\nMenge\nEinzelpreis EUR\nGesamtpreis EUR\nBestpreis\n1\n129,00\n129,00\nLogis\n10,00%\n129,00\n129,00\nOrtstaxe\n1\n2,00\n2,00\nOrtstaxe\n0,00%\n2,00\n2,00\nSaldo Leistungen\nEUR\n131,00",
+          "context": "Netto EUR\nSteuer EUR\nBrutto EUR",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "11,73",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Steuer EUR 11,73",
+          "match_type": "exact"
+        }
+      },
+      "tax_rate": {
+        "field_citation": {
+          "source_text": "MWST.-Satz",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Bezeichnung\nMWST.-Satz\nMenge\nEinzelpreis EUR\nGesamtpreis EUR\nBestpreis",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "10,00%",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "MWST.-Satz 10,00%",
+          "match_type": "exact"
+        }
+      },
+      "discount_amount": {
+        "field_citation": {
+          "source_text": "Bestpreis",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Bezeichnung\nMWST.-Satz\nMenge\nEinzelpreis EUR\nGesamtpreis EUR\nBestpreis",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "0,00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Bestpreis 0,00",
           "match_type": "exact"
         }
       },
@@ -270,109 +452,141 @@
           "source_text": "Datum:",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "The date of issue is mentioned in the markdown text under 'Datum:'.",
+          "context": "Datum:\n19.12.2024",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "19.12.2024",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "The date of issue '19.12.2024' is found under the 'Datum:' section.",
+          "context": "Datum:\n19.12.2024",
           "match_type": "exact"
         }
       },
-      "hotel_name": {
+      "transaction_time": {
         "field_citation": {
-          "source_text": "Motel One Innsbruck",
+          "source_text": "19.12.2024T16:21:12",
           "confidence": 0.95,
-          "source_location": "requirements|markdown",
-          "context": "MOTEL ONE Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Motel One Innsbruck",
-          "confidence": 1,
-          "source_location": "requirements|markdown",
-          "context": "MOTEL ONE Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
-          "match_type": "exact"
-        }
-      },
-      "hotel_address": {
-        "field_citation": {
-          "source_text": "Südbahnstraße 1/ Top 1, 6020 Innsbruck",
-          "confidence": 0.95,
-          "source_location": "requirements|markdown",
-          "context": "MOTEL ONE Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Südbahnstraße 1/ Top 1, 6020 Innsbruck",
-          "confidence": 1,
-          "source_location": "requirements|markdown",
-          "context": "MOTEL ONE Motel One Innsbruck Südbahnstraße 1/ Top 1 - - 6020 Innsbruck",
-          "match_type": "exact"
-        }
-      },
-      "guest_name": {
-        "field_citation": {
-          "source_text": "Herr",
-          "confidence": 0.9,
-          "source_location": "requirements|markdown",
-          "context": "Herr 2024-12-19T16:21:12 Fred Tavas",
+          "source_location": "markdown",
+          "context": "19.12.2024T16:21:12",
           "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "Fred Tavas",
-          "confidence": 1,
-          "source_location": "requirements|markdown",
-          "context": "Herr 2024-12-19T16:21:12 Fred Tavas",
+          "source_text": "16:21:12",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "19.12.2024T16:21:12",
           "match_type": "exact"
         }
       },
-      "guest_address": {
+      "payment_method": {
         "field_citation": {
-          "source_text": "Baumgartenweg 7, 8854 Galgenen",
-          "confidence": 0.9,
-          "source_location": "requirements|markdown",
-          "context": "Baumgartenweg 7, 8854 Galgenen, Schweiz",
-          "match_type": "exact"
+          "source_text": "Zahlungsart",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zahlungsart\nAmerican Express",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "Baumgartenweg 7, 8854 Galgenen, Schweiz",
-          "confidence": 1,
-          "source_location": "requirements|markdown",
-          "context": "Baumgartenweg 7, 8854 Galgenen, Schweiz",
+          "source_text": "American Express",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Zahlungsart\nAmerican Express",
+          "match_type": "exact"
+        }
+      },
+      "card_last_four": {
+        "field_citation": {
+          "source_text": "Karten-Nr.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Karten-Nr.\n6813",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "6813",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Karten-Nr.\n6813",
+          "match_type": "exact"
+        }
+      },
+      "line_items": {
+        "field_citation": {
+          "source_text": "Bezeichnung",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Bezeichnung\nLogis\nOrtstaxe",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Logis",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Bezeichnung\nLogis\nOrtstaxe",
+          "match_type": "exact"
+        }
+      },
+      "receipt_type": {
+        "field_citation": {
+          "source_text": "Rechnungstyp",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungstyp\nHotel Receipt",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Hotel Receipt",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnungstyp\nHotel Receipt",
+          "match_type": "exact"
+        }
+      },
+      "document_type": {
+        "field_citation": {
+          "source_text": "Rechnungstyp",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungstyp\nRechnung",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Rechnung",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnungstyp\nRechnung",
           "match_type": "exact"
         }
       },
       "room_number": {
         "field_citation": {
           "source_text": "Zimmer:",
-          "confidence": 0.9,
-          "source_location": "requirements|markdown",
-          "context": "Zimmer: 1220",
-          "match_type": "exact"
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Gast: Tavas, Fred, Zimmer: 1220, vom 19.12.2024 bis 20.12.2024",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "1220",
-          "confidence": 1,
-          "source_location": "requirements|markdown",
-          "context": "Zimmer: 1220",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Gast: Tavas, Fred, Zimmer: 1220, vom 19.12.2024 bis 20.12.2024",
           "match_type": "exact"
         }
       },
       "arrival_date": {
         "field_citation": {
           "source_text": "Anreise:",
-          "confidence": 0.9,
-          "source_location": "requirements|markdown",
+          "confidence": 0.95,
+          "source_location": "markdown",
           "context": "Anreise: 19.12.2024",
-          "match_type": "exact"
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "19.12.2024",
-          "confidence": 1,
-          "source_location": "requirements|markdown",
+          "confidence": 0.98,
+          "source_location": "markdown",
           "context": "Anreise: 19.12.2024",
           "match_type": "exact"
         }
@@ -380,41 +594,25 @@
       "departure_date": {
         "field_citation": {
           "source_text": "Abreise:",
-          "confidence": 0.9,
-          "source_location": "requirements|markdown",
+          "confidence": 0.95,
+          "source_location": "markdown",
           "context": "Abreise: 20.12.2024",
-          "match_type": "exact"
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "20.12.2024",
-          "confidence": 1,
-          "source_location": "requirements|markdown",
+          "confidence": 0.98,
+          "source_location": "markdown",
           "context": "Abreise: 20.12.2024",
           "match_type": "exact"
         }
       },
-      "reservation_number": {
-        "field_citation": {
-          "source_text": "Reservierungsnummer:",
-          "confidence": 0.9,
-          "source_location": "requirements|markdown",
-          "context": "Reservierungsnummer: 808090897/1",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "808090897/1",
-          "confidence": 1,
-          "source_location": "requirements|markdown",
-          "context": "Reservierungsnummer: 808090897/1",
-          "match_type": "exact"
-        }
-      },
-      "ust_id": {
+      "vat_id": {
         "field_citation": {
           "source_text": "Ihre USt.-Id.:",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "In dieser Rechnung sind folgende Steuerbeträge enthalten:",
+          "context": "Ihre USt.-Id.: CF9RTY03F",
           "match_type": "contextual"
         },
         "value_citation": {
@@ -425,385 +623,145 @@
           "match_type": "exact"
         }
       },
-      "line_items": {
-        "field_citation": {
-          "source_text": "Bezeichnung",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Bezeichnung\nMWST.-Satz\nMenge\nEinzelpreis EUR\nGesamtpreis EUR\nBestpreis",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Logis",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "1\n129,00\n129,00\nLogis\n10,00%\n129,00\n129,00",
-          "match_type": "exact"
-        }
-      },
-      "payment_date": {
-        "field_citation": {
-          "source_text": "Datum",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Datum:\n19.12.2024",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "2024-12-19",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Datum: 19.12.2024",
-          "match_type": "fuzzy"
-        }
-      },
-      "payment_method": {
-        "field_citation": {
-          "source_text": "Zahlungsart",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Zahlungsart\nKarten-Nr.\nBetrag Devisen\nZahlung EUR",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "American Express",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Zahlungsart: American Express",
-          "match_type": "exact"
-        }
-      },
-      "card_number": {
-        "field_citation": {
-          "source_text": "Karten-Nr.",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Zahlungsart\nKarten-Nr.\nBetrag Devisen\nZahlungs EUR",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "6813",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Karten-Nr.: 6813",
-          "match_type": "exact"
-        }
-      },
-      "payment_amount": {
-        "field_citation": {
-          "source_text": "Zahlungs EUR",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Zahlungsart\nKarten-Nr.\nBetrag Devisen\nZahlungs EUR",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "-131,00",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Zahlungs EUR: -131,00",
-          "match_type": "exact"
-        }
-      },
-      "total_payment": {
-        "field_citation": {
-          "source_text": "Saldo Zahlungen",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Saldo Zahlungen\n-131,00",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "131",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Saldo Zahlungen: -131,00",
-          "match_type": "exact"
-        }
-      },
-      "outstanding_balance": {
-        "field_citation": {
-          "source_text": "Rechnungsbetrag",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Rechnungsbetrag\n0,00",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "0",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Rechnungsbetrag: 0,00",
-          "match_type": "exact"
-        }
-      },
-      "contact_person": {
-        "field_citation": {
-          "source_text": "Jetzt eröffnet: Motel One Antwerp und The Cloud One Gdansk!",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Contact information for Motel One Innsbruck is provided in the footer section.",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Daniel Weuffel",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Front Office Manager for Motel One Innsbruck.",
-          "match_type": "exact"
-        }
-      },
-      "contact_position": {
-        "field_citation": {
-          "source_text": "Jetzt eröffnet: Motel One Antwerp und The Cloud One Gdansk!",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Contact information for Motel One Innsbruck is provided in the footer section.",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Front Office Manager",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Position of the contact person for Motel One Innsbruck.",
-          "match_type": "exact"
-        }
-      },
-      "contact_phone": {
-        "field_citation": {
-          "source_text": "Tel.:+43 512 219353-0",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Contact details for Motel One Innsbruck.",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "+43 512 219353-0",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Phone number for contact person at Motel One Innsbruck.",
-          "match_type": "exact"
-        }
-      },
-      "contact_fax": {
-        "field_citation": {
-          "source_text": "Fax.:+43",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Contact details for Motel One Innsbruck.",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "+43",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Fax number for Motel One Innsbruck.",
-          "match_type": "exact"
-        }
-      },
-      "contact_email": {
-        "field_citation": {
-          "source_text": "E-Mail:innsbruck@motel-one.com",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Contact information for Motel One Innsbruck.",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "innsbruck@motel-one.com",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Email address for contact person at Motel One Innsbruck.",
-          "match_type": "exact"
-        }
-      },
-      "company_name": {
-        "field_citation": {
-          "source_text": "Motel One Austria GmbH, Motel One Innsbruck, Südbahnstraße 1/ Top 1, 6020 Innsbruck",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Company details for Motel One Innsbruck.",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Motel One Austria GmbH",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Name of the company for Motel One Innsbruck.",
-          "match_type": "exact"
-        }
-      },
-      "company_address": {
-        "field_citation": {
-          "source_text": "Motel One Austria GmbH, Motel One Innsbruck, Südbahnstraße 1/ Top 1, 6020 Innsbruck",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Company details for Motel One Innsbruck.",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Südbahnstraße 1/ Top 1, 6020 Innsbruck",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Address of Motel One Austria GmbH.",
-          "match_type": "exact"
-        }
-      },
-      "company_management": {
-        "field_citation": {
-          "source_text": "Geschäftsführer: Daniel Müller, Stefan Lenze, Gerhard Zeilinger, Armin Rödel",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Management details for Motel One Austria GmbH.",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Daniel Müller, Stefan Lenze, Gerhard Zeilinger, Armin Rödel",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Names of the management team for Motel One Austria GmbH.",
-          "match_type": "exact"
-        }
-      },
-      "tax_number": {
+      "business_registration_number": {
         "field_citation": {
           "source_text": "Steuernummer",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Steuernummer 366/1498 FA Wien 2/20/21/22",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Steuernummer 366/1498 FA Wien 2/20/21/22 /UST ID ATU 633 08227",
           "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "366/1498 FA Wien 2/20/21/22",
-          "confidence": 0.98,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Steuernummer 366/1498 FA Wien 2/20/21/22",
+          "context": "Steuernummer 366/1498 FA Wien 2/20/21/22 /UST ID ATU 633 08227",
           "match_type": "exact"
         }
       },
-      "ust_id_company": {
+      "front_office_manager": {
         "field_citation": {
-          "source_text": "UST ID",
+          "source_text": "Front Office Manager",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "UST ID ATU 633 08227",
+          "source_location": "markdown",
+          "context": "Motel One Innsbruck\nDaniel Weuffel\nFront Office Manager",
           "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "ATU 633 08227",
+          "source_text": "Daniel Weuffel",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "UST ID ATU 633 08227",
+          "context": "Motel One Innsbruck\nDaniel Weuffel\nFront Office Manager",
           "match_type": "exact"
         }
       },
-      "organic_certification": {
+      "Rechnungsnummer": {
         "field_citation": {
-          "source_text": "AT-Bio-902",
+          "source_text": "Rechnungsnummer:",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "AT-Bio-902",
-          "match_type": "contextual"
+          "source_location": "markdown",
+          "context": "Datum: 19.12.2024\nZimmer: 1220\nRechnungsnummer: 2024808055606\nAnreise: 19.12.2024",
+          "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "AT-Bio-902",
+          "source_text": "2024808055606",
           "confidence": 0.98,
           "source_location": "markdown",
-          "context": "AT-Bio-902",
+          "context": "Datum: 19.12.2024\nZimmer: 1220\nRechnungsnummer: 2024808055606\nAnreise: 19.12.2024",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 43,
-      "fields_with_field_citations": 31,
-      "fields_with_value_citations": 31,
-      "average_confidence": 0.9569767441860463
+      "total_fields_analyzed": 33,
+      "fields_with_field_citations": 30,
+      "fields_with_value_citations": 30,
+      "average_confidence": 0.9577272727272728
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "19.4",
-      "file_classification_seconds": "3.5",
-      "image_quality_assessment_seconds": "5.5",
-      "data_extraction_seconds": "7.3",
-      "issue_detection_seconds": "10.6",
-      "citation_generation_seconds": "30.1"
+      "markdown_extraction_seconds": "6.8",
+      "file_classification_seconds": "4.3",
+      "image_quality_assessment_seconds": "4.6",
+      "data_extraction_seconds": "5.4",
+      "issue_detection_seconds": "8.5",
+      "citation_generation_seconds": "19.0"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T20:21:00.200Z",
-        "end_time": "2025-07-31T20:21:19.629Z",
-        "duration_seconds": "19.4",
+        "start_time": "2025-08-05T16:41:20.363Z",
+        "end_time": "2025-08-05T16:41:27.176Z",
+        "duration_seconds": "6.8",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T20:21:19.630Z",
-        "end_time": "2025-07-31T20:21:23.102Z",
-        "duration_seconds": "3.5",
+        "start_time": "2025-08-05T16:41:27.179Z",
+        "end_time": "2025-08-05T16:41:31.475Z",
+        "duration_seconds": "4.3",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-07-31T20:21:19.629Z",
-        "end_time": "2025-07-31T20:21:25.173Z",
-        "duration_seconds": "5.5",
+        "start_time": "2025-08-05T16:41:27.177Z",
+        "end_time": "2025-08-05T16:41:31.782Z",
+        "duration_seconds": "4.6",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T20:21:19.631Z",
-        "end_time": "2025-07-31T20:21:26.951Z",
-        "duration_seconds": "7.3",
+        "start_time": "2025-08-05T16:41:27.181Z",
+        "end_time": "2025-08-05T16:41:32.586Z",
+        "duration_seconds": "5.4",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T20:21:26.952Z",
-        "end_time": "2025-07-31T20:21:37.567Z",
-        "duration_seconds": "10.6",
+        "start_time": "2025-08-05T16:41:32.587Z",
+        "end_time": "2025-08-05T16:41:41.064Z",
+        "duration_seconds": "8.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T20:21:26.952Z",
-        "end_time": "2025-07-31T20:21:57.076Z",
-        "duration_seconds": "30.1",
+        "start_time": "2025-08-05T16:41:32.589Z",
+        "end_time": "2025-08-05T16:41:51.577Z",
+        "duration_seconds": "19.0",
         "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "56.9",
+    "total_processing_time_seconds": "31.2",
     "performance_metrics": {
-      "parallel_group_1_seconds": "7.3",
-      "parallel_group_2_seconds": "30.1",
-      "total_parallel_time_seconds": "37.4",
-      "estimated_sequential_time_seconds": "76.4",
-      "estimated_speedup_factor": "2.04"
+      "parallel_group_1_seconds": "5.4",
+      "parallel_group_2_seconds": "19.0",
+      "total_parallel_time_seconds": "24.4",
+      "estimated_sequential_time_seconds": "48.6",
+      "estimated_speedup_factor": "1.99"
     },
     "validation": {
-      "total_time_seconds": "56.9",
-      "expected_parallel_time_seconds": "56.8",
-      "sequential_sum_seconds": "76.4",
-      "difference_seconds": "0.1",
+      "total_time_seconds": "31.2",
+      "expected_parallel_time_seconds": "31.2",
+      "sequential_sum_seconds": "48.6",
+      "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "19.5"
+      "time_saved_seconds": "17.4"
     }
   },
   "metadata": {
     "filename": "Copy of swiss_file_3.pdf",
-    "processing_time": 56876,
+    "processing_time": 31214,
     "country": "Switzerland",
     "icp": "Global People",
-    "processed_at": "2025-07-31T20:21:57.077Z",
+    "processed_at": "2025-08-05T16:41:51.578Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "7.3",
-      "parallel_group_2_duration_seconds": "30.1",
-      "estimated_sequential_time_seconds": "76.4",
-      "actual_parallel_time_seconds": "56.9"
+      "parallel_group_1_duration_seconds": "5.4",
+      "parallel_group_2_duration_seconds": "19.0",
+      "estimated_sequential_time_seconds": "48.6",
+      "actual_parallel_time_seconds": "31.2"
     }
   }
 }

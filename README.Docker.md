@@ -54,9 +54,6 @@ ENABLE_THROTTLING=true
 THROTTLE_TTL=60
 THROTTLE_LIMIT=100
 
-# Webhook URLs (optional, comma-separated)
-WEBHOOK_URLS=http://localhost:3001/webhooks/job-status,https://api.example.com/webhooks/medical-processing
-```
 
 ## Building the Docker Image
 

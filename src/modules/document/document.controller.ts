@@ -14,6 +14,7 @@ import {
   ValidationPipe,
 } from "@nestjs/common";
 import { FileInterceptor } from "@nestjs/platform-express";
+import { memoryStorage } from "multer";
 import {
   ApiTags,
   ApiOperation,
@@ -330,6 +331,80 @@ export class DocumentController {
       }
       throw new HttpException(
         `Failed to get job results: ${error.message}`,
+        HttpStatus.INTERNAL_SERVER_ERROR
+      );
+    }
+  }
+
+  @Get("compliance/:jobId")
+  @ApiOperation({ 
+    summary: "Get filtered compliance results for a completed job",
+    description: "Retrieve filtered processing results containing only classification, extraction, and compliance data with enhanced issue detection from image quality assessment"
+  })
+  @ApiParam({ name: "jobId", description: "Job ID to get compliance results for" })
+  @ApiResponse({
+    status: 200,
+    description: "Compliance results retrieved successfully",
+    schema: {
+      example: {
+        success: true,
+        data: {
+          classification: {
+            is_expense: true,
+            expense_type: "invoice",
+            language: "English"
+          },
+          extraction: {
+            supplier_name: "ABC Company",
+            amount: 100.50,
+            currency: "EUR"
+          },
+          compliance: {
+            validation_result: {
+              is_valid: false,
+              issues_count: 2,
+              issues: [
+                {
+                  index: 1,
+                  issue_type: "Standards & Compliance | Fix Identified",
+                  description: "Missing VAT number",
+                  recommendation: "Add VAT number to invoice"
+                },
+                {
+                  index: 2,
+                  issue_type: "Image related | Blur Detection",
+                  description: "Document shows significant blur affecting readability",
+                  recommendation: "Rescan document with better focus"
+                }
+              ]
+            }
+          }
+        }
+      }
+    }
+  })
+  @ApiResponse({ status: 404, description: "Job not found or not completed" })
+  async getComplianceResults(@Param("jobId") jobId: string) {
+    try {
+      const results = await this.documentService.getComplianceResults(jobId);
+
+      if (!results) {
+        throw new HttpException(
+          "Job not found or not completed",
+          HttpStatus.NOT_FOUND
+        );
+      }
+
+      return {
+        success: true,
+        data: results,
+      };
+    } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
+      throw new HttpException(
+        `Failed to get compliance results: ${error.message}`,
         HttpStatus.INTERNAL_SERVER_ERROR
       );
     }

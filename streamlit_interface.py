@@ -14,7 +14,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Configuration
-API_BASE_URL = "http://localhost:3000/api/v1"
+API_BASE_URL = "http://localhost:3000/rgt-expense/api/v1"
 SUPPORTED_FILE_TYPES = ["pdf", "png", "jpg", "jpeg", "tiff"]
 MAX_FILE_SIZE = 50 * 1024 * 1024  # 50MB
 
@@ -142,6 +142,14 @@ def get_job_results(job_id):
     except Exception as e:
         return 500, {"error": str(e)}
 
+def get_compliance_results(job_id):
+    """Get compliance results from the new filtered endpoint"""
+    try:
+        response = requests.get(f"{API_BASE_URL}/documents/compliance/{job_id}", timeout=10)
+        return response.status_code, response.json()
+    except Exception as e:
+        return 500, {"error": str(e)}
+
 def get_job_list(status_filter=None, user_filter=None, limit=10):
     """Get list of processing jobs"""
     try:
@@ -164,7 +172,7 @@ def main():
     st.sidebar.title("Navigation")
     page = st.sidebar.selectbox(
         "Choose a page",
-        ["🏠 Home", "📤 Upload Document", "📊 Job Status", "📋 Job History", "🔧 System Health"]
+        ["🏠 Home", "📤 Document Processing", "📋 Job History", "🔧 System Health"]
     )
     
     # API Health Check
@@ -179,10 +187,8 @@ def main():
     # Page routing
     if page == "🏠 Home":
         show_home_page()
-    elif page == "📤 Upload Document":
-        show_upload_page()
-    elif page == "📊 Job Status":
-        show_status_page()
+    elif page == "📤 Document Processing":
+        show_document_processing_page()
     elif page == "📋 Job History":
         show_history_page()
     elif page == "🔧 System Health":
@@ -238,6 +244,201 @@ def show_home_page():
         with col4:
             active_jobs = len([j for j in jobs if j.get("status") in ["waiting", "active"]])
             st.metric("Active", active_jobs)
+
+def show_document_processing_page():
+    """Combined document upload and status monitoring page"""
+    st.markdown('<div class="section-header">Document Processing</div>', unsafe_allow_html=True)
+    
+    # Check if we have a current job being processed
+    current_job_id = st.session_state.get("current_job_id", "")
+    
+    # Upload Document Section (Top)
+    st.markdown("#### Upload Document")
+    
+    # Upload form
+    with st.form("upload_form"):
+        uploaded_file = st.file_uploader(
+            "Choose a document file",
+            type=SUPPORTED_FILE_TYPES,
+            help=f"Supported formats: {', '.join(SUPPORTED_FILE_TYPES).upper()}. Max size: 50MB"
+        )
+        
+        # Processing parameters in a more compact layout
+        user_id = st.text_input(
+            "User ID *",
+            value="demo_user",
+            help="Unique identifier for the user"
+        )
+        
+        # Get available countries from data directory
+        available_countries = get_available_countries()
+        country = st.selectbox(
+            "Country",
+            available_countries,
+            help="Country for compliance requirements"
+        )
+        
+        col_a, col_b = st.columns(2)
+        with col_a:
+            document_reader = st.selectbox(
+                "Document Reader",
+                ["llamaparse", "textract"],
+                help="Choose processing engine"
+            )
+        
+        with col_b:
+            icp = st.selectbox(
+                "ICP Provider",
+                ["Global People", "ADP", "Workday", "SAP"],
+                help="ICP provider for compliance"
+            )
+
+        submitted = st.form_submit_button("🚀 Process Document", type="primary")
+
+    # Handle form submission
+    if submitted:
+        if not uploaded_file:
+            st.error("Please upload a file")
+        elif not user_id:
+            st.error("Please enter a User ID")
+        else:
+            # Check file size
+            if uploaded_file.size > MAX_FILE_SIZE:
+                st.error(f"File size ({uploaded_file.size / 1024 / 1024:.1f}MB) exceeds the 50MB limit")
+            else:
+                with st.spinner(f"🔄 Processing {uploaded_file.name}..."):
+                    status_code, response = upload_document(
+                        uploaded_file, user_id, country, icp, document_reader
+                    )
+
+                if status_code == 201 and response.get("success"):
+                    job_id = response["data"]["jobId"]
+                    st.success(f"🎉 Document uploaded successfully!")
+                    st.info(f"Job ID: `{job_id}`")
+                    
+                    # Auto-fill the job ID for monitoring
+                    st.session_state.current_job_id = job_id
+                    st.session_state.auto_refresh = True
+                    st.rerun()
+
+                else:
+                    st.error(f"❌ Upload failed: {response.get('message', 'Unknown error')}")
+
+    # Job Status & Results Section (Bottom)
+    st.markdown("---")  # Add separator
+    st.markdown("#### Job Status & Results")
+    
+    # Job ID input with auto-filled value
+    job_id = st.text_input(
+        "Job ID",
+        value=current_job_id,
+        help="Enter job ID to monitor (auto-filled from upload)"
+    )
+    
+    # Store the job ID in session state when changed
+    if job_id != current_job_id:
+        st.session_state.current_job_id = job_id
+    
+    # Auto-refresh controls
+    col_x, col_y = st.columns([3, 1])
+    with col_x:
+        auto_refresh = st.checkbox(
+            "Auto-refresh", 
+            value=st.session_state.get("auto_refresh", False),
+            help="Automatically refresh status every 5 seconds"
+        )
+    with col_y:
+        if st.button("🔄 Refresh", help="Manual refresh"):
+            st.rerun()
+
+    # Store auto-refresh preference
+    st.session_state.auto_refresh = auto_refresh
+
+    if job_id:
+        # Status monitoring section
+        if auto_refresh:
+            # Create placeholder for dynamic updates
+            status_placeholder = st.empty()
+            
+            # Auto-refresh logic
+            for i in range(60):  # Refresh for up to 5 minutes
+                with status_placeholder.container():
+                    show_job_status_compact(job_id)
+                
+                # Break if job is completed or failed
+                status_code, response = get_job_status(job_id)
+                if (status_code == 200 and response.get("success") and 
+                    response["data"].get("status") in ["completed", "failed"]):
+                    # Turn off auto-refresh when job is finished
+                    st.session_state.auto_refresh = False
+                    break
+                
+                time.sleep(5)
+                
+                # Check if user disabled auto-refresh
+                if not st.session_state.get("auto_refresh", False):
+                    break
+        else:
+            show_job_status_compact(job_id)
+
+def show_job_status_compact(job_id):
+    """Display compact job status for the combined page"""
+    status_code, response = get_job_status(job_id)
+
+    if status_code == 200 and response.get("success"):
+        job_data = response["data"]
+        status = job_data.get("status", "unknown")
+
+        # Status indicator
+        status_colors = {
+            "waiting": "🟡",
+            "active": "🔵", 
+            "completed": "🟢",
+            "failed": "🔴",
+            "delayed": "🟠"
+        }
+
+        st.markdown(f"**Status:** {status_colors.get(status, '⚪')} {status.upper()}")
+
+        # Progress information
+        progress = job_data.get("progress", {})
+        if progress:
+            # Calculate overall progress percentage
+            progress_items = [
+                progress.get("fileClassification", False) or progress.get("file_classification", False),
+                progress.get("dataExtraction", False) or progress.get("data_extraction", False),
+                progress.get("issueDetection", False) or progress.get("issue_detection", False),
+                progress.get("citationGeneration", False) or progress.get("citation_generation", False)
+            ]
+            completed_steps = sum(progress_items)
+            progress_percent = (completed_steps / len(progress_items)) * 100
+            
+            st.progress(progress_percent / 100)
+            st.caption(f"Progress: {completed_steps}/{len(progress_items)} steps ({progress_percent:.0f}%)")
+
+        # Results preview for completed jobs
+        if status == "completed":
+            st.success("Processing completed!")
+            
+            # Get compliance results
+            results_code, results_response = get_compliance_results(job_id)
+            if results_code == 200 and results_response.get("success"):
+                with st.expander("📊 View Results", expanded=True):
+                    show_compliance_results(results_response["data"])
+            else:
+                st.error("Failed to load results")
+
+        elif status == "failed":
+            error_msg = job_data.get("error", "Unknown error")
+            st.error(f"Processing failed: {error_msg}")
+
+        # Timestamps
+        created_at = job_data.get("createdAt")
+        if created_at:
+            st.caption(f"Created: {created_at}")
+
+    else:
+        st.error(f"Failed to get job status: {response.get('message', 'Unknown error') if response else 'Connection error'}")
 
 def show_upload_page():
     """Document upload page"""
@@ -446,10 +647,10 @@ def show_job_status(job_id):
         if status == "completed":
             st.success("🎉 Processing completed successfully!")
 
-            # Get detailed results
-            results_code, results_response = get_job_results(job_id)
+            # Get compliance results from the new filtered endpoint
+            results_code, results_response = get_compliance_results(job_id)
             if results_code == 200 and results_response.get("success"):
-                show_job_results(results_response["data"])
+                show_compliance_results(results_response["data"])
 
         elif status == "failed":
             error_msg = job_data.get("error", "Unknown error")
@@ -473,6 +674,137 @@ def show_job_status(job_id):
 
     else:
         st.error(f"❌ Failed to get job status: {response.get('message', 'Unknown error')}")
+
+def show_compliance_results(results_data):
+    """Display compliance results without tabs - only classification, extraction, and compliance issues"""
+    st.markdown("### Compliance Analysis Results")
+
+    # Show Classification Section
+    if "classification" in results_data:
+        st.markdown("### Classification")
+        classification = results_data["classification"]
+
+        if isinstance(classification, dict):
+            # Show all classification data except schema field analysis
+            schema_fields = ["schema_field_analysis", "field_analysis", "schema_analysis"]
+
+            # Get all fields except schema
+            all_fields = {k: v for k, v in classification.items() if k not in schema_fields and v is not None}
+
+            if all_fields:
+                # Separate reasoning from other fields
+                reasoning_fields = ["classification_reason", "reason", "reasoning", "explanation"]
+                reasoning_text = None
+                display_fields = {}
+
+                for key, value in all_fields.items():
+                    if key in reasoning_fields:
+                        reasoning_text = value
+                    elif not isinstance(value, (dict, list)):  # Skip complex objects
+                        display_fields[key] = value
+
+                # Display main fields in a grid layout
+                if display_fields:
+                    # Create rows of 3 columns each
+                    field_items = list(display_fields.items())
+
+                    for i in range(0, len(field_items), 3):
+                        cols = st.columns(3)
+
+                        for j, col in enumerate(cols):
+                            if i + j < len(field_items):
+                                key, value = field_items[i + j]
+
+                                # Format value without emojis
+                                formatted_value = value
+
+                                if "expense" in key.lower():
+                                    if isinstance(value, bool):
+                                        formatted_value = "Yes" if value else "No"
+                                elif "score" in key.lower():
+                                    if isinstance(value, (int, float)):
+                                        formatted_value = f"{value:.2f}"
+                                elif "confidence" in key.lower():
+                                    if isinstance(value, (int, float)):
+                                        # Check if value is already a percentage (0-100) or decimal (0-1)
+                                        if value > 1:
+                                            formatted_value = f"{value:.1f}%"
+                                        else:
+                                            formatted_value = f"{value:.1%}"
+                                elif "match" in key.lower() or "location" in key.lower():
+                                    if isinstance(value, bool):
+                                        formatted_value = f"{value}"
+
+                                field_name = key.replace('_', ' ').title()
+
+                                with col:
+                                    st.metric(
+                                        label=field_name,
+                                        value=str(formatted_value)
+                                    )
+
+                # Display reasoning text spanning full width
+                if reasoning_text:
+                    st.markdown("---")
+                    st.markdown("#### **Classification Reasoning**")
+                    st.markdown(f"*{reasoning_text}*")
+        else:
+            st.json(classification)
+
+    # Show Extraction Section
+    if "extraction" in results_data:
+        st.markdown("### Extracted Data")
+        extraction = results_data["extraction"]
+        st.json(extraction)
+
+    # Show Compliance Issues Section
+    if "compliance" in results_data:
+        st.markdown("### Compliance Issues")
+        compliance = results_data["compliance"]
+
+        if isinstance(compliance, dict):
+            # Search for issues in the compliance structure
+            issues = []
+
+            # Check for validation_result.issues structure
+            if "validation_result" in compliance:
+                validation_result = compliance["validation_result"]
+                if isinstance(validation_result, dict) and "issues" in validation_result:
+                    issues = validation_result["issues"]
+
+            # Ensure issues is a list
+            if not isinstance(issues, list):
+                issues = []
+
+            # Display results
+            if not issues:
+                st.info("No compliance issues found")
+            else:
+                st.write(f"{len(issues)} compliance issue(s) detected")
+
+                # Display all issues with simple formatting
+                for i, issue in enumerate(issues, 1):
+                    if isinstance(issue, dict):
+                        # Get issue type
+                        issue_type = issue.get("issue_type", issue.get("type", f"Issue {i}"))
+
+                        # Simple display
+                        st.markdown(f"**Issue Type:** {issue_type}")
+                        
+                        if "description" in issue:
+                            st.markdown(f"**Description:** {issue['description']}")
+                        
+                        if "recommendation" in issue:
+                            st.markdown(f"**Recommendation:** {issue['recommendation']}")
+
+                        st.markdown("---")
+                    else:
+                        # Simple issue format
+                        st.write(f"Issue {i}: {str(issue)}")
+                        st.markdown("---")
+
+        else:
+            st.json(compliance)
 
 def show_job_results(results_data):
     """Display detailed job results"""

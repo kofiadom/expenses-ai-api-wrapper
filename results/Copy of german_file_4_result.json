@@ -1,82 +1,82 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_012_Copy of german_file_4.png",
+    "image_path": "uploads\\AUG_5_V5_6_Copy of german_file_4.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:32:25.862Z",
-    "quality_score": 100,
-    "quality_level": "excellent",
+    "timestamp": "2025-08-05T16:23:35.710Z",
+    "quality_score": 70,
+    "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "The text and edges are sharp with no visible blur.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges show moderate blur, likely due to scanning quality.",
+      "recommendation": "Enhance image sharpness before OCR processing."
     },
     "contrast_assessment": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, enabling clear text recognition.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is adequate but could be improved.",
+      "recommendation": "Adjust contrast levels to ensure better text recognition."
     },
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No bright spots, reflections, or glare detected.",
-      "recommendation": "No action needed."
+      "description": "No glare detected on the document.",
+      "recommendation": "No action needed regarding glare."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water damage or discoloration detected.",
-      "recommendation": "No action needed."
+      "description": "No water stains detected on the document.",
+      "recommendation": "No action needed regarding water stains."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No visible tears, creases, folds, or wrinkles.",
-      "recommendation": "No action needed."
+      "description": "No tears or folds detected on the document.",
+      "recommendation": "No action needed regarding tears or folds."
     },
     "cut_off_detection": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No document edges are cut off or excluded from the image.",
-      "recommendation": "No action needed."
+      "description": "No cut-off edges detected on the document.",
+      "recommendation": "No action needed regarding cut-off edges."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No missing or incomplete sections detected.",
-      "recommendation": "No action needed."
+      "description": "No missing sections detected on the document.",
+      "recommendation": "No action needed regarding missing sections."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No objects, fingers, shadows, or other elements blocking or obscuring document content.",
-      "recommendation": "No action needed."
+      "description": "No obstructions detected on the document.",
+      "recommendation": "No action needed regarding obstructions."
     },
-    "overall_quality_score": 10
+    "overall_quality_score": 7
   },
   "classification": {
     "is_expense": true,
-    "expense_type": "meals",
-    "language": "English",
+    "expense_type": "travel",
+    "language": "German",
     "language_confidence": 95,
     "document_location": "Germany",
     "expected_location": "Germany",
@@ -84,402 +84,685 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, itemDescriptionLineItems, and total amount. It represents a completed transaction with payment confirmation.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, taxInformation, and itemDescriptionLineItems. The presence of these fields, along with the clear indication of payment and transaction details, confirms that this is an expense document. The expense type is classified as 'travel' due to the nature of the service provided (Deutschland-Ticket).",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
         "consumerRecipient",
         "transactionAmount",
         "transactionDate",
+        "invoiceReceiptNumber",
+        "taxInformation",
         "itemDescriptionLineItems"
       ],
       "fields_missing": [
-        "icpRequirements",
-        "invoiceReceiptNumber",
-        "taxInformation",
         "paymentMethod"
       ],
-      "total_fields_found": 5,
-      "expense_identification_reasoning": "The document contains at least 5 of the required fields, indicating it is an expense document. The fields found include supplier (BEETS AND ROOTS), consumerRecipient (Angelina Jolie), transactionAmount (EUR16.30), transactionDate (15.01.2025), and itemDescriptionLineItems (1x Japanese Salmon Bowl, 1x Add Almond Crunch, 1x Oneway Bowl)."
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including clear evidence of payment, transaction amounts, and detailed item descriptions. This meets the criteria for an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_vat_number_on_invoice": null,
+    "supplier_name": "DB Vertrieb GmbH Abo-Team",
+    "supplier_address": "Postfach 800250, 21002 Hamburg",
+    "supplier_website": "www.bahn.de",
+    "supplier_phone": "030 72022736",
+    "supplier_email": "abo@bahn.de",
+    "customer_name": "Katharina Bresser",
+    "customer_address": "Wasgenstr. 59A, 14129 Berlin",
+    "customer_id": "DE39DBV00000002177",
+    "invoice_number": "2025-4-02-30548",
+    "correction_reference": "2025-4-01-11851",
+    "invoice_date": "2025-02-06",
+    "invoice_period": "2025-01-01 to 2025-12-31",
+    "order_number": "248847787",
+    "service_description": "Deutschland-Ticket",
+    "service_period": "2024-10-01 to 2025-09-30",
+    "service_area": "deutschlandweit",
     "currency": "EUR",
-    "amount": 16.3,
-    "receipt_type": "take away",
-    "receipt_quality": null,
-    "invoice_serial_number": null,
-    "invoice_date": null,
-    "service_date": "2025-01-15",
-    "net_amount": null,
-    "tax_rate": null,
-    "vat_amount": null,
-    "worker_name": null,
-    "worker_address": null,
-    "supplier_tax_id": null,
-    "expense_description": null,
-    "route_details": null,
-    "car_details": null,
-    "purpose": null,
-    "odometer_reading": null,
-    "travel_date": null,
-    "a1_certificate": null,
-    "personal_phone_proof": null,
-    "storage_period": null,
-    "invoice_value_threshold": null,
-    "supplier_name": "BEETS AND ROOTS",
-    "supplier_address": "Leipziger Platz 18, 10117 Berlin",
-    "ordercode": "Angelina Jolie 6",
-    "transaction_time": "13:11:44",
     "line_items": [
       {
-        "description": "Japanese Salmon Bowl",
-        "quantity": 1,
-        "unit_price": 14.95,
-        "total_price": 14.95
+        "date": "2025-01-01",
+        "type": "Zahlung",
+        "net_amount": 54.21,
+        "tax_rate": 7,
+        "gross_amount": 58
       },
       {
-        "description": "Add Almond Crunch",
-        "quantity": 1,
-        "unit_price": 1.25,
-        "total_price": 1.25
-      },
-      {
-        "description": "Oneway Bowl",
-        "quantity": 1,
-        "unit_price": 0.1,
-        "total_price": 0.1
+        "date": "2025-02-01",
+        "type": "Zahlung",
+        "net_amount": 54.21,
+        "tax_rate": 7,
+        "gross_amount": 58
       }
     ],
-    "total": 16.3
+    "summary": {
+      "net_amount": 108.42,
+      "tax_5_percent": 0,
+      "tax_7_percent": 7.58,
+      "tax_16_percent": 0,
+      "tax_19_percent": 0,
+      "gross_total": 116
+    },
+    "payment_information": {
+      "type": "Zahlung"
+    },
+    "document_type": "Rechnung",
+    "company_location": "Frankfurt am Main",
+    "management_board": [
+      "Carola Gutjahr",
+      "Nils Hartgen",
+      "Carmen Maria Parrino"
+    ],
+    "quality_management": "Dr. Michael Peterson (Vorsitz)",
+    "certification": "DEKRA",
+    "certification_year": 2008,
+    "register_court": "Frankfurt am Main",
+    "commercial_register_number": "HRB 79808",
+    "vat_number": "DE 814160246"
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 10,
+      "issues_count": 4,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is missing. The local employer name, Global People DE GmbH, must appear on the invoice.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer name is included on future invoices.",
-          "knowledge_base_reference": "Local Employer name as customer on supplier invoice for Global People: Must show Global People DE GmbH as customer"
+          "field": "customer_name",
+          "description": "The customer name on the receipt is the individual's name, but it should be the local employer's name as per the requirement for Global People.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Invoices must show \"Global People DE GmbH\" not the worker's name."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is missing. The local employer address, Taunusanlage 8, 60329 Frankfurt, Germany, must appear on the invoice.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer address is included on future invoices.",
-          "knowledge_base_reference": "Local Employer address as customer on supplier invoice for Global People: Must show Taunusanlage 8, 60329 Frankfurt, Germany"
+          "field": "customer_address",
+          "description": "The customer address on the receipt is the individual's address, but it should be the local employer's address as per the requirement for Global People.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Invoices must show \"Taunusanlage 8, 60329 Frankfurt, Germany\""
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "The customer VAT number on the invoice is missing. The local employer VAT number, DE356366640, must appear on the invoice.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer VAT number is included on future invoices.",
-          "knowledge_base_reference": "Local Employer VAT number as customer on supplier invoice for Global People: Must show DE356366640"
+          "field": "vat_number",
+          "description": "The VAT number on the receipt does not match the required VAT ID for Global People.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Invoices must show \"VAT ID: DE356366640\""
         },
         {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "invoice_serial_number",
-          "description": "The invoice serial number is missing. It is required for invoices over €150.",
-          "recommendation": "It is recommended to obtain the invoice serial number from the supplier or provider to ensure compliance with the requirement.",
-          "knowledge_base_reference": "Invoice serial number required for invoices over €150 for Global People"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "invoice_date",
-          "description": "The invoice date is missing. It is required for invoices over €150.",
-          "recommendation": "It is recommended to obtain the invoice date from the supplier or provider to ensure compliance with the requirement.",
-          "knowledge_base_reference": "Invoice date required for invoices over €150 for Global People"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "net_amount",
-          "description": "The net amount is missing. It is required for invoices over €150.",
-          "recommendation": "It is recommended to obtain the net amount from the supplier or provider to ensure compliance with the requirement.",
-          "knowledge_base_reference": "Net amount required for invoices over €150 for Global People"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "tax_rate",
-          "description": "The tax rate is missing. It is required for invoices over €150.",
-          "recommendation": "It is recommended to obtain the tax rate from the supplier or provider to ensure compliance with the requirement.",
-          "knowledge_base_reference": "Tax rate required for invoices over €150 for Global People"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "vat_amount",
-          "description": "The VAT amount is missing. It is required for invoices over €150.",
-          "recommendation": "It is recommended to obtain the VAT amount from the supplier or provider to ensure compliance with the requirement.",
-          "knowledge_base_reference": "VAT amount required for invoices over €150 for Global People"
-        },
-        {
-          "issue_type": "Standards & Compliance | Gross-up Identified",
-          "field": "expense_description",
-          "description": "The expense description is missing. It must be precise and detailed.",
-          "recommendation": "It is recommended to obtain a detailed expense description from the supplier or provider to ensure compliance with the requirement.",
-          "knowledge_base_reference": "Expense description must be precise and detailed for Global People"
-        },
-        {
-          "issue_type": "Standards & Compliance | Gross-up Identified",
-          "field": "amount",
-          "description": "The amount of €16.3 for meals is not tax exempt and will be grossed up.",
-          "recommendation": "The amount exceeding the tax-exempt limit will be grossed up according to the country's tax regulations.",
-          "knowledge_base_reference": "Meals are not tax exempt and will be grossed up for Global People"
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "document_type",
+          "description": "The receipt is a \"Rechnung\" (invoice), but for travel expenses, additional documentation is required.",
+          "recommendation": "Please submit the travel expense using the Travel Expense Report template.",
+          "knowledge_base_reference": "All travel related expenses must be reported using Travel Expense Report.xlsx template"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is not compliant with the specified requirements. Several mandatory fields are missing, and the expense amount is not tax exempt, leading to gross-up implications. It is recommended to address these issues with the supplier or provider to ensure future compliance."
+      "compliance_summary": "The receipt has several compliance issues related to the customer name, address, and VAT number not matching the required details for Global People. Additionally, the receipt type requires the use of a specific travel expense report template."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Germany",
       "icp": "Global People",
-      "receipt_type": "meals",
-      "issues_count": 10
+      "receipt_type": "travel",
+      "issues_count": 4
     }
   },
   "citations": {
     "citations": {
-      "currency": {
-        "field_citation": {
-          "source_text": "Receipt currency",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Receipt currency",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "EUR",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "1x Japanese Salmon Bowl\nEUR14.95\n1x Add Almond Crunch\n+EUR1.25\n1x Oneway Bowl\n+EURO.10\nTotal: EUR16.30",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Expense amount",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Expense amount",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "16.30",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "1x Japanese Salmon Bowl\nEUR14.95\n1x Add Almond Crunch\n+EUR1.25\n1x Oneway Bowl\n+EURO.10\nTotal: EUR16.30",
-          "match_type": "fuzzy"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "take away",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Order type: take away",
-          "match_type": "exact"
-        }
-      },
-      "service_date": {
-        "field_citation": {
-          "source_text": "Date service was provided",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Date service was provided",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "15.01.2025",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Date: 15.01.2025",
-          "match_type": "exact"
-        }
-      },
       "supplier_name": {
         "field_citation": {
-          "source_text": "Tax ID of supplier",
+          "source_text": "DB Vertrieb GmbH Abo-Team",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Tax ID of supplier",
-          "match_type": "exact"
+          "source_location": "markdown",
+          "context": "DB Vertrieb GmbH Abo-Team is mentioned as the supplier.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "BEETS AND ROOTS",
-          "confidence": 1,
+          "source_text": "DB Vertrieb GmbH Abo-Team",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "BEETS AND ROOTS",
+          "context": "DB Vertrieb GmbH Abo-Team is mentioned as the supplier name.",
           "match_type": "exact"
         }
       },
       "supplier_address": {
         "field_citation": {
-          "source_text": "Local Employer address as customer on supplier invoice",
+          "source_text": "Postfach 800250, 21002 Hamburg",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Local Employer address as customer on supplier invoice",
-          "match_type": "exact"
+          "source_location": "markdown",
+          "context": "The address is listed under the supplier's information.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "Leipziger Platz 18, 10117 Berlin",
-          "confidence": 1,
+          "source_text": "Postfach 800250, 21002 Hamburg",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Leipziger Platz 18\n10117 Berlin",
+          "context": "The address is listed as the supplier's address.",
           "match_type": "exact"
         }
       },
-      "ordercode": {
+      "supplier_website": {
         "field_citation": {
-          "source_text": "Ordercode",
-          "confidence": 1,
+          "source_text": "www.bahn.de",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Ordercode",
-          "match_type": "exact"
+          "context": "The website is listed under the supplier's information.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "Angelina Jolie 6",
-          "confidence": 1,
+          "source_text": "www.bahn.de",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Ordercode\nAngelina Jolie 6",
+          "context": "The website is listed as the supplier's website.",
           "match_type": "exact"
         }
       },
-      "transaction_time": {
+      "supplier_phone": {
         "field_citation": {
-          "source_text": "Time",
-          "confidence": 1,
+          "source_text": "Telefon 030 72022736",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Time",
-          "match_type": "exact"
+          "context": "The phone number is listed under the supplier's information.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "13:11:44",
-          "confidence": 1,
+          "source_text": "030 72022736",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Time: 13:11:44",
+          "context": "The phone number is listed as the supplier's phone number.",
           "match_type": "exact"
         }
       },
-      "total": {
+      "supplier_email": {
         "field_citation": {
-          "source_text": "Total",
-          "confidence": 1,
+          "source_text": "abo@bahn.de",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Total",
+          "context": "The email is listed under the supplier's information.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "abo@bahn.de",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The email is listed as the supplier's email.",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "Katharina Bresser",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The customer's name is listed.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Katharina Bresser",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The customer's name is listed.",
+          "match_type": "exact"
+        }
+      },
+      "customer_address": {
+        "field_citation": {
+          "source_text": "Wasgenstr. 59A, 14129 Berlin",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The address is listed under the customer's information.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Wasgenstr. 59A, 14129 Berlin",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The address is listed as the customer's address.",
+          "match_type": "exact"
+        }
+      },
+      "customer_id": {
+        "field_citation": {
+          "source_text": "Gläubiger-ID: DE39DBV00000002177",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The customer ID is listed.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "DE39DBV00000002177",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The customer ID is listed.",
+          "match_type": "exact"
+        }
+      },
+      "invoice_number": {
+        "field_citation": {
+          "source_text": "Rechnungsnummer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungsnummer:\n2025-4-02-30548",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2025-4-02-30548",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnungsnummer:\n2025-4-02-30548",
+          "match_type": "exact"
+        }
+      },
+      "correction_reference": {
+        "field_citation": {
+          "source_text": "Korrektur zu",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "Korrektur zu 2025-4-01-11851",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2025-4-01-11851",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Korrektur zu 2025-4-01-11851",
+          "match_type": "exact"
+        }
+      },
+      "invoice_date": {
+        "field_citation": {
+          "source_text": "Rechnungsdatum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungsdatum: 06.02.2025",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "06.02.2025",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnungsdatum: 06.02.2025",
+          "match_type": "exact"
+        }
+      },
+      "invoice_period": {
+        "field_citation": {
+          "source_text": "Rechnungszeitraum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungszeitraum: 01.01.2025 31.12.2025",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "01.01.2025 31.12.2025",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnungszeitraum: 01.01.2025 31.12.2025",
+          "match_type": "exact"
+        }
+      },
+      "order_number": {
+        "field_citation": {
+          "source_text": "Auftragsnummer:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Auftragsnummer: 248847787",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "248847787",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Auftragsnummer: 248847787",
+          "match_type": "exact"
+        }
+      },
+      "service_description": {
+        "field_citation": {
+          "source_text": "Leistung:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Leistung: Deutschland-Ticket",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Deutschland-Ticket",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Leistung: Deutschland-Ticket",
+          "match_type": "exact"
+        }
+      },
+      "service_period": {
+        "field_citation": {
+          "source_text": "Zeitraum:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zeitraum: 01.10.2024 30.09.2025",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "01.10.2024 30.09.2025",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Zeitraum: 01.10.2024 30.09.2025",
+          "match_type": "exact"
+        }
+      },
+      "service_area": {
+        "field_citation": {
+          "source_text": "Geltungsbereich:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Geltungsbereich: deutschlandweit",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "deutschlandweit",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Geltungsbereich: deutschlandweit",
+          "match_type": "exact"
+        }
+      },
+      "currency": {
+        "field_citation": {
+          "source_text": "Geltungsbereich:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Geltungsbereich: deutschlandweit",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "€",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "54,21€",
+          "match_type": "exact"
+        }
+      },
+      "line_items": {
+        "field_citation": {
+          "source_text": "Zeitpunkt\nArt\nNetto\nUst.\nBrutto",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zeitpunkt\nArt\nNetto\nUst.\nBrutto\n\n01.01.2025\nZahlung\n54,21€\n7%\n58,00 €",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "54,21€",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Zeitpunkt\nArt\nNetto\nUst.\nBrutto\n\n01.01.2025\nZahlung\n54,21€\n7%\n58,00 €",
+          "match_type": "exact"
+        }
+      },
+      "summary": {
+        "field_citation": {
+          "source_text": "Zusammenfassung",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Zusammenfassung\nNettobetrag\nArt\nUSt. 5%\nUSt. 7%\nUSt 16%\nUSt. 19%\nBrutto gesamt",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "EUR16.30",
-          "confidence": 1,
+          "source_text": "116,00 €",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Total: EUR16.30",
+          "context": "Zusammenfassung\nNettobetrag\nArt\nUSt. 5%\nUSt. 7%\nUSt 16%\nUSt. 19%\nBrutto gesamt\n108,42 €\nZahlungs\n0,00 €\n7,58€\n0,00 €\n0,00 €\n116,00 €",
+          "match_type": "exact"
+        }
+      },
+      "payment_information": {
+        "field_citation": {
+          "source_text": "Art",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Art: Zahlung",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Zahlung",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Art: Zahlung",
+          "match_type": "exact"
+        }
+      },
+      "document_type": {
+        "field_citation": {
+          "source_text": "Rechnungstyp",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Rechnungstyp: Rechnung",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Rechnungstyp: Rechnung",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Rechnungstyp: Rechnung",
+          "match_type": "exact"
+        }
+      },
+      "company_location": {
+        "field_citation": {
+          "source_text": "Sitz",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Sitz Frankfurt am Main",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Frankfurt am Main",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Sitz Frankfurt am Main",
+          "match_type": "exact"
+        }
+      },
+      "management_board": {
+        "field_citation": {
+          "source_text": "Geschäftsführung",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Geschäftsführung: Carola Gutjahr",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Carola Gutjahr",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Geschäftsführung: Carola Gutjahr",
+          "match_type": "exact"
+        }
+      },
+      "quality_management": {
+        "field_citation": {
+          "source_text": "Qualitätsmanagement",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Qualitätsmanagement: Dr. Michael Peterson (Vorsitz)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Dr. Michael Peterson (Vorsitz)",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Qualitätsmanagement: Dr. Michael Peterson (Vorsitz)",
+          "match_type": "exact"
+        }
+      },
+      "certification": {
+        "field_citation": {
+          "source_text": "Wir sind zertifiziert",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "DEKRA",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008",
+          "match_type": "exact"
+        }
+      },
+      "certification_year": {
+        "field_citation": {
+          "source_text": "Regelmäßige freiwillige Überwachung",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2008",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008",
+          "match_type": "exact"
+        }
+      },
+      "register_court": {
+        "field_citation": {
+          "source_text": "Registergericht",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Sitz Frankfurt am Main Vorsitz des Geschäftsführung: Carola Gutjahr",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Frankfurt am Main",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Sitz Frankfurt am Main Vorsitz des Geschäftsführung: Carola Gutjahr",
+          "match_type": "exact"
+        }
+      },
+      "commercial_register_number": {
+        "field_citation": {
+          "source_text": "HRB",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008 HRB 79 808",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "HRB 79808",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008 HRB 79 808",
+          "match_type": "exact"
+        }
+      },
+      "vat_number": {
+        "field_citation": {
+          "source_text": "USt-IdNr",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008 HRB 79 808 USt-IdNr.: DE 814160246",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "DE 814160246",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Frankfurt am Main Dr. Michael Peterson (Vorsitz) DEKRA Regelmäßige freiwillige Überwachung 2008 HRB 79 808 USt-IdNr.: DE 814160246",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 21,
-      "fields_with_field_citations": 10,
-      "fields_with_value_citations": 10,
-      "average_confidence": 0.98
+      "total_fields_analyzed": 29,
+      "fields_with_field_citations": 29,
+      "fields_with_value_citations": 29,
+      "average_confidence": 0.9563448275862069
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "12.5",
-      "file_classification_seconds": "3.6",
-      "image_quality_assessment_seconds": "4.3",
-      "data_extraction_seconds": "8.5",
-      "issue_detection_seconds": "23.0",
-      "citation_generation_seconds": "25.9"
+      "markdown_extraction_seconds": "5.8",
+      "file_classification_seconds": "3.8",
+      "data_extraction_seconds": "4.9",
+      "image_quality_assessment_seconds": "5.2",
+      "issue_detection_seconds": "9.0",
+      "citation_generation_seconds": "16.2"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:32:09.011Z",
-        "end_time": "2025-07-31T18:32:21.543Z",
-        "duration_seconds": "12.5",
+        "start_time": "2025-08-05T16:23:24.751Z",
+        "end_time": "2025-08-05T16:23:30.530Z",
+        "duration_seconds": "5.8",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T18:32:21.545Z",
-        "end_time": "2025-07-31T18:32:25.172Z",
-        "duration_seconds": "3.6",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "image_quality_assessment": {
-        "start_time": "2025-07-31T18:32:21.544Z",
-        "end_time": "2025-07-31T18:32:25.862Z",
-        "duration_seconds": "4.3",
+        "start_time": "2025-08-05T16:23:30.533Z",
+        "end_time": "2025-08-05T16:23:34.299Z",
+        "duration_seconds": "3.8",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:32:21.545Z",
-        "end_time": "2025-07-31T18:32:30.073Z",
-        "duration_seconds": "8.5",
+        "start_time": "2025-08-05T16:23:30.536Z",
+        "end_time": "2025-08-05T16:23:35.412Z",
+        "duration_seconds": "4.9",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-05T16:23:30.531Z",
+        "end_time": "2025-08-05T16:23:35.710Z",
+        "duration_seconds": "5.2",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T18:32:30.074Z",
-        "end_time": "2025-07-31T18:32:53.095Z",
-        "duration_seconds": "23.0",
+        "start_time": "2025-08-05T16:23:35.711Z",
+        "end_time": "2025-08-05T16:23:44.697Z",
+        "duration_seconds": "9.0",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:32:30.075Z",
-        "end_time": "2025-07-31T18:32:56.025Z",
-        "duration_seconds": "25.9",
-        "model_used": "eu.amazon.nova-pro-v1:0",
+        "start_time": "2025-08-05T16:23:35.713Z",
+        "end_time": "2025-08-05T16:23:51.901Z",
+        "duration_seconds": "16.2",
+        "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "47.0",
+    "total_processing_time_seconds": "27.2",
     "performance_metrics": {
-      "parallel_group_1_seconds": "8.5",
-      "parallel_group_2_seconds": "26.0",
-      "total_parallel_time_seconds": "34.5",
-      "estimated_sequential_time_seconds": "77.8",
-      "estimated_speedup_factor": "2.26"
+      "parallel_group_1_seconds": "5.2",
+      "parallel_group_2_seconds": "16.2",
+      "total_parallel_time_seconds": "21.4",
+      "estimated_sequential_time_seconds": "44.9",
+      "estimated_speedup_factor": "2.10"
     },
     "validation": {
-      "total_time_seconds": "47.0",
-      "expected_parallel_time_seconds": "46.9",
-      "sequential_sum_seconds": "77.8",
-      "difference_seconds": "0.1",
+      "total_time_seconds": "27.2",
+      "expected_parallel_time_seconds": "27.2",
+      "sequential_sum_seconds": "44.9",
+      "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "30.8"
+      "time_saved_seconds": "17.7"
     }
   },
   "metadata": {
-    "filename": "Copy of german_file_4.png",
-    "processing_time": 47015,
+    "filename": "Copy of german_file_4.pdf",
+    "processing_time": 27151,
     "country": "Germany",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:32:56.027Z",
+    "processed_at": "2025-08-05T16:23:51.903Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "8.5",
-      "parallel_group_2_duration_seconds": "26.0",
-      "estimated_sequential_time_seconds": "77.8",
-      "actual_parallel_time_seconds": "47.0"
+      "parallel_group_1_duration_seconds": "5.2",
+      "parallel_group_2_duration_seconds": "16.2",
+      "estimated_sequential_time_seconds": "44.9",
+      "actual_parallel_time_seconds": "27.2"
     }
   }
 }

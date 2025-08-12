@@ -1,5 +1,5 @@
 import { NestFactory } from '@nestjs/core';
-import { ValidationPipe } from '@nestjs/common';
+import { ValidationPipe, RequestMethod } from '@nestjs/common';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import { ConfigService } from '@nestjs/config';
 import { AppModule } from './app.module';
@@ -25,8 +25,12 @@ async function bootstrap() {
     }),
   );
 
-  // Global prefix
-  app.setGlobalPrefix('api/v1');
+  // Global prefix (exclude actuator endpoints)
+  app.setGlobalPrefix('rgt-expense/api/v1', {
+    exclude: [
+      { path: 'rgt-expense/actuator/health/liveness', method: RequestMethod.GET },
+    ],
+  });
 
   // Swagger documentation
   if (configService.get('ENABLE_SWAGGER') === 'true') {
@@ -40,7 +44,7 @@ async function bootstrap() {
       .build();
 
     const document = SwaggerModule.createDocument(app, config);
-    SwaggerModule.setup('api/docs', app, document);
+    SwaggerModule.setup('rgt-expense/api/docs', app, document);
   }
 
   // Start the application
@@ -48,7 +52,7 @@ async function bootstrap() {
   await app.listen(port);
   
   console.log(`🚀 Expense Processing Service is running on: http://localhost:${port}`);
-  console.log(`📚 API Documentation available at: http://localhost:${port}/api/docs`);
+  console.log(`📚 API Documentation available at: http://localhost:${port}/rgt-expense/api/docs`);
 }
 
 bootstrap().catch((error) => {

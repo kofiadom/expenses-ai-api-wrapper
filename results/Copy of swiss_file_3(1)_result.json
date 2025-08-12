@@ -1,90 +1,90 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_019_Copy of swiss_file_3(1).pdf",
+    "image_path": "uploads\\AUG_5_V5_12_Copy of swiss_file_3(1).pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:49:54.224Z",
-    "quality_score": 100,
-    "quality_level": "excellent",
+    "timestamp": "2025-08-05T16:40:25.539Z",
+    "quality_score": 70,
+    "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "The text is sharp and clearly defined with no visible blur.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges show moderate blur, likely due to camera movement or out-of-focus capture.",
+      "recommendation": "Re-capture the image with a steady camera and ensure the document is in focus."
     },
     "contrast_assessment": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is adequate but could be improved for better readability.",
+      "recommendation": "Ensure even lighting and avoid shadows when capturing the document."
     },
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No glare or bright spots are present that obscure text or important document areas.",
+      "description": "No glare or bright spots detected that obscure the text.",
       "recommendation": "No action needed."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discolorations are present that affect document readability.",
+      "description": "No water stains or discoloration detected.",
       "recommendation": "No action needed."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No tears, creases, folds, or wrinkles are present that cause text distortion or information loss.",
+      "description": "No visible tears, creases, or folds detected.",
       "recommendation": "No action needed."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "No document edges are cut off, and the image frame includes all important document portions.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "Minor cut-off detected at the bottom edge of the document.",
+      "recommendation": "Ensure the entire document is within the frame when capturing."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No parts of the receipt/invoice are missing, incomplete, or not captured in the image.",
+      "description": "No missing sections or incomplete content detected.",
       "recommendation": "No action needed."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
+      "description": "No obstructions such as fingers, shadows, or objects blocking the document.",
       "recommendation": "No action needed."
     },
-    "overall_quality_score": 10
+    "overall_quality_score": 7
   },
   "classification": {
     "is_expense": true,
     "expense_type": "travel",
-    "language": "German",
-    "language_confidence": 90,
+    "language": "English",
+    "language_confidence": 95,
     "document_location": "Switzerland",
     "expected_location": "Switzerland",
     "location_match": true,
     "error_type": null,
     "error_message": null,
-    "classification_confidence": 95,
-    "reasoning": "The document contains multiple fields that align with the expense schema. It includes a supplier (SBB CFF FFS), consumer (GONUGUNTLA HAREESH KUMAR), transaction amount (CHF 120.00), transaction date (valid from 2022 to 2023), invoice/receipt number (Ticket-ID 329584805708), tax information (incl. 7.70% VAT/SBB), and item description (Swiss Half Fare Card). These fields collectively indicate that this is an expense document related to travel.",
+    "classification_confidence": 90,
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, and item description. It is classified as a travel expense due to the nature of the purchase (Swiss Half Fare Card).",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -92,48 +92,40 @@
         "transactionAmount",
         "transactionDate",
         "invoiceReceiptNumber",
-        "taxInformation",
         "itemDescriptionLineItems"
       ],
       "fields_missing": [
-        "paymentMethod",
-        "icpRequirements"
+        "icpRequirements",
+        "taxInformation",
+        "paymentMethod"
       ],
-      "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, confirming it as an expense document."
+      "total_fields_found": 6,
+      "expense_identification_reasoning": "The document contains 6 out of 8 required fields, meeting the criteria for an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_registration_on_invoice": null,
-    "customer_name_exception": null,
-    "currency": "CHF",
-    "amount": 120,
-    "receipt_type": "Swiss Half Fare Card",
-    "personal_information": "GONUGUNTLA HAREESH KUMAR",
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "car_details": null,
-    "logbook": null,
-    "combined_mileage": null,
+    "supplier_name": "SBB CFF FFS",
+    "customer_name": "GONUGUNTLA HAREESH KUMAR",
     "ticket_id": "329584805708",
-    "valid_from": "2022",
-    "valid_to": "2023",
-    "date_of_birth": "1995-06-11",
-    "discount_info": "Up to 50% discount on 1st and 2nd class tickets within one month.",
-    "conditions_url": "www.MySwitzerland.com/swisshalffarecard",
+    "validity_period": {
+      "start_date": "2022-01-01",
+      "end_date": "2023-12-31"
+    },
+    "customer_birth_date": "1995-06-11",
+    "currency": "CHF",
+    "total_amount": 120,
     "vat_rate": 7.7,
-    "article_no": "11528",
-    "order_no": "25302067899",
-    "travel_guide_url": "www.MySwitzerland.com/swisstravelguide",
-    "tariff_info": "The current tariff of Swiss transport companies, in particular the common ancillary tariff regulations for direct service and regional transport networks (T600) as well as the tariffs of the regional transport and fare networks, apply to the use of -Tickets",
-    "ticket_conditions": "E- Tickets are personal and not transferable. The ticket has to be presented to the control staff along with an official identity document and / or with any discount card.",
-    "refund_conditions": "For refunds, T600.9 or the conditions of the relevant transport company or operator apply. Refunds of e-tickets in the context of international journeys are made in according with international terms and conditions.",
-    "reference_no": "676760846 / 13121546 19699",
-    "issuer": "SBB AG",
+    "article_number": "11528",
+    "order_number": "25302067899",
+    "reference_number": "676760846",
+    "additional_reference_numbers": [
+      "13121546",
+      "19699"
+    ],
+    "terms_conditions": "E-Tickets are personal and not transferable. The ticket has to be presented to the control staff along with an official identity document and / or with any discount card. For refunds, T600.9 or the conditions of the relevant transport company or operator apply. Refunds of e-tickets in the context of international journeys are made in according with international terms and conditions.",
+    "website": "www.MySwitzerland.com/swisstravelguide",
+    "document_type": "Swiss Half Fare Card",
+    "special_notes": "Up to 50% discount on 1st and 2nd class tickets within one month. Only valid with your Passport / ID.",
     "line_items": [
       {
         "description": "Swiss Half Fare Card",
@@ -146,473 +138,140 @@
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 8,
+      "issues_count": 4,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is missing. The receipt does not show 'Global PPL CH GmbH' as the customer.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer name is included on future invoices.",
-          "knowledge_base_reference": "Must show Global PPL CH GmbH as customer"
+          "field": "customer_name",
+          "description": "The customer name on the receipt does not match the ICP requirement for travel expenses. The ICP requires the Local Employer's name or the worker's name if the Local Employer's name cannot be used.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Worker name on travel documents: 'Exception when it is not possible to use the Local Employer's name, e.g. on flight bookings. The workers name should then be used instead'"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is missing. The receipt does not show 'Freigutstrasse 2 8002 Zürich, Switzerland' as the customer address.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer address is included on future invoices.",
-          "knowledge_base_reference": "Must show Freigutstrasse 2 8002 Zürich, Switzerland"
+          "field": "document_type",
+          "description": "The document type 'Swiss Half Fare Card' does not clearly indicate it is a tax receipt or invoice as required by the receipt standards.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipt/Invoice document type: 'Documents must be actual tax receipts or invoices; booking confirmations will not be sufficient'"
         },
         {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_registration_on_invoice",
-          "description": "The customer registration on the invoice is missing. The receipt does not show 'CHE-295.369.918' as the customer registration number.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer registration number is included on future invoices.",
-          "knowledge_base_reference": "Must show CHE-295.369.918"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "business_trip_reporting",
-          "description": "Business trip reporting is missing. There is no separate report submitted per each business trip.",
-          "recommendation": "Please submit a separate report per each business trip as required.",
-          "knowledge_base_reference": "Submit separate report per each business trip"
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "The total amount of CHF 120 for the Swiss Half Fare Card is subject to gross-up as it is not a tax-exempt expense under the provided rules.",
+          "recommendation": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.",
+          "knowledge_base_reference": "Gross-up for all approved business expenses: 'All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free'"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "travel_template",
-          "description": "The specific travel template is missing. The receipt does not use 'Travel Expense Report Template Switzerland CHF.xlsx'.",
-          "recommendation": "Please use the specific travel expense report template for this country.",
-          "knowledge_base_reference": "Must use Travel Expense Report Template Switzerland CHF.xlsx"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "route_map",
-          "description": "Route map is missing. There is no map with the relevant route provided.",
-          "recommendation": "Please provide a map with the relevant route (Google Maps sufficient).",
-          "knowledge_base_reference": "Map with relevant route (Google Maps sufficient)"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "car_details",
-          "description": "Car details are missing. There is no information about the car used and its destination.",
-          "recommendation": "Please provide car details and destination.",
-          "knowledge_base_reference": "Car details and destination required"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "logbook",
-          "description": "Logbook is missing. There is no logbook provided for the used car.",
-          "recommendation": "Please provide a logbook for each used car.",
-          "knowledge_base_reference": "Logbook required for each used car"
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for the Swiss Half Fare Card expense to ensure compliance with travel-related expenses.",
+          "recommendation": "Workers should submit a separate report per each business trip and ensure all personal information not required for reimbursement purposes is removed before submission.",
+          "knowledge_base_reference": "Additional info for business trips: 'Workers should submit a separate report per each business trip' and 'Any personal information not required for reimbursement purposes should be removed before it is submitted'"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is non-compliant due to missing mandatory fields such as customer name, address, and registration on the invoice. Additionally, business trip reporting, travel template, route map, car details, and logbook are missing. These issues need to be addressed to ensure compliance with Swiss expense reimbursement requirements."
+      "compliance_summary": "The receipt has issues with customer name compliance, document type clarity, gross-up requirement for the total amount, and missing additional documentation for travel-related expenses."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Switzerland",
       "icp": "Global People",
       "receipt_type": "travel",
-      "issues_count": 8
+      "issues_count": 4
     }
   },
   "citations": {
-    "citations": {
-      "currency": {
-        "field_citation": {
-          "source_text": "Receipt currency and exchange rate",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt currency and exchange rate",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "CHF",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Swiss Half Fare Card\nCHF 120.00",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Expense amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Expense amount",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "120",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Swiss Half Fare Card\nCHF 120.00",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Swiss Half Fare Card",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Ticket-ID 329584805708\nSwiss Half Fare Card",
-          "match_type": "exact"
-        }
-      },
-      "personal_information": {
-        "field_citation": {
-          "source_text": "Privacy requirement for receipts",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Privacy requirement for receipts",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "GONUGUNTLA HAREESH KUMAR",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Swiss Half Fare Card\nGONUGUNTLA HAREESH KUMAR",
-          "match_type": "exact"
-        }
-      },
-      "valid_from": {
-        "field_citation": {
-          "source_text": "Valid from date",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Valid from date",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "2022",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Valid: 2022 2023",
-          "match_type": "exact"
-        }
-      },
-      "valid_to": {
-        "field_citation": {
-          "source_text": "Valid to date",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Valid to date",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "2023",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Valid: 2022 2023",
-          "match_type": "exact"
-        }
-      },
-      "date_of_birth": {
-        "field_citation": {
-          "source_text": "Date of birth",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Date of birth",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "1995-06-11",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "11.06.1995",
-          "match_type": "fuzzy"
-        }
-      },
-      "discount_info": {
-        "field_citation": {
-          "source_text": "Discount information",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Discount information",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Up to 50% discount on 1st and 2nd class tickets within one month.",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Up to 50% discount on 1st and 2nd class tickets within one month. See conditions on www.MySwitzerland.com/swisshalffarecard. Only valid with your Passport / ID.",
-          "match_type": "exact"
-        }
-      },
-      "conditions_url": {
-        "field_citation": {
-          "source_text": "Conditions URL",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Conditions URL",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "www.MySwitzerland.com/swisshalffarecard",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Up to 50% discount on 1st and 2nd class tickets within one month. See conditions on www.MySwitzerland.com/swisshalffarecard. Only valid with your Passport / ID.",
-          "match_type": "exact"
-        }
-      },
-      "vat_rate": {
-        "field_citation": {
-          "source_text": "VAT rate",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "VAT rate",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "7.7",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "incl. 7.70% VAT/SBB",
-          "match_type": "fuzzy"
-        }
-      },
-      "article_no": {
-        "field_citation": {
-          "source_text": "Article number",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Article number",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "11528",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Article no.: 11528",
-          "match_type": "exact"
-        }
-      },
-      "order_no": {
-        "field_citation": {
-          "source_text": "Order number",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Order number",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "25302067899",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Order no.: 25302067899",
-          "match_type": "exact"
-        }
-      },
-      "travel_guide_url": {
-        "field_citation": {
-          "source_text": "Travel guide URL",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Travel guide URL",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "www.MySwitzerland.com/swisstravelguide",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Never miss a highlight and download your virtual travel guide on www.MySwitzerland.com/swisstravelguide.",
-          "match_type": "exact"
-        }
-      },
-      "tariff_info": {
-        "field_citation": {
-          "source_text": "Tariff information",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Tariff information",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "The current tariff of Swiss transport companies, in particular the common ancillary tariff regulations for direct service and regional transport networks (T600) as well as the tariffs of the regional transport and fare networks, apply to the use of -Tickets",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "The current tariff of Swiss transport companies. in particular the common ancillary tariff regulations for direct service and regional transport networks (T600) as well as the tariffs of the regional transport and fare networks, apply to the use of -Tickets",
-          "match_type": "exact"
-        }
-      },
-      "ticket_conditions": {
-        "field_citation": {
-          "source_text": "Ticket conditions",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Ticket conditions",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "E- Tickets are personal and not transferable. The ticket has to be presented to the control staff along with an official identity document and / or with any discount card.",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "E- Tickets are personal and not transferable. The ticket has to be presented to the control staff along with an official identity document and / or with any discount card.",
-          "match_type": "exact"
-        }
-      },
-      "refund_conditions": {
-        "field_citation": {
-          "source_text": "Refund conditions",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Refund conditions",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "For refunds, T600.9 or the conditions of the relevant transport company or operator apply. Refunds of e-tickets in the context of international journeys are made in according with international terms and conditions.",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "For refunds, T600.9 or the conditions of the relevant transport company or operator apply. Refunds of e-tickets in the context of international journeys are made in according with international terms and conditions.",
-          "match_type": "exact"
-        }
-      },
-      "reference_no": {
-        "field_citation": {
-          "source_text": "Reference number",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Reference number",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "676760846 / 13121546 19699",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Reference no.: 676760846 / 13121546 19699 © SBB AG 0110.12 WSB2P",
-          "match_type": "exact"
-        }
-      },
-      "issuer": {
-        "field_citation": {
-          "source_text": "Issuer",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Issuer",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "SBB AG",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Reference no.: 676760846 / 13121546 19699 © SBB AG 0110.12 WSB2P",
-          "match_type": "exact"
-        }
-      },
-      "ticket_id": {
-        "field_citation": {
-          "source_text": "Ticket ID",
-          "confidence": 0.8,
-          "source_location": "requirements",
-          "context": "Ticket ID",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "329584805708",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Ticket-ID 329584805708",
-          "match_type": "exact"
-        }
-      }
-    },
+    "citations": {},
     "metadata": {
-      "total_fields_analyzed": 21,
-      "fields_with_field_citations": 18,
-      "fields_with_value_citations": 18,
-      "average_confidence": 0.94
+      "total_fields_analyzed": 0,
+      "fields_with_field_citations": 0,
+      "fields_with_value_citations": 0,
+      "average_confidence": 0
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "5.5",
-      "file_classification_seconds": "4.6",
-      "image_quality_assessment_seconds": "5.3",
-      "data_extraction_seconds": "6.8",
-      "issue_detection_seconds": "14.2",
-      "citation_generation_seconds": "18.2"
+      "markdown_extraction_seconds": "7.1",
+      "file_classification_seconds": "3.4",
+      "data_extraction_seconds": "4.3",
+      "image_quality_assessment_seconds": "4.6",
+      "issue_detection_seconds": "9.7",
+      "citation_generation_seconds": "17.1"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:49:43.449Z",
-        "end_time": "2025-07-31T18:49:48.901Z",
-        "duration_seconds": "5.5",
+        "start_time": "2025-08-05T16:40:13.778Z",
+        "end_time": "2025-08-05T16:40:20.904Z",
+        "duration_seconds": "7.1",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T18:49:48.904Z",
-        "end_time": "2025-07-31T18:49:53.552Z",
-        "duration_seconds": "4.6",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "image_quality_assessment": {
-        "start_time": "2025-07-31T18:49:48.902Z",
-        "end_time": "2025-07-31T18:49:54.224Z",
-        "duration_seconds": "5.3",
+        "start_time": "2025-08-05T16:40:20.907Z",
+        "end_time": "2025-08-05T16:40:24.355Z",
+        "duration_seconds": "3.4",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:49:48.905Z",
-        "end_time": "2025-07-31T18:49:55.712Z",
-        "duration_seconds": "6.8",
+        "start_time": "2025-08-05T16:40:20.908Z",
+        "end_time": "2025-08-05T16:40:25.178Z",
+        "duration_seconds": "4.3",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-05T16:40:20.905Z",
+        "end_time": "2025-08-05T16:40:25.539Z",
+        "duration_seconds": "4.6",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T18:49:55.713Z",
-        "end_time": "2025-07-31T18:50:09.880Z",
-        "duration_seconds": "14.2",
+        "start_time": "2025-08-05T16:40:25.540Z",
+        "end_time": "2025-08-05T16:40:35.262Z",
+        "duration_seconds": "9.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:49:55.714Z",
-        "end_time": "2025-07-31T18:50:13.963Z",
-        "duration_seconds": "18.2",
-        "model_used": "eu.amazon.nova-pro-v1:0",
+        "start_time": "2025-08-05T16:40:25.543Z",
+        "end_time": "2025-08-05T16:40:42.610Z",
+        "duration_seconds": "17.1",
+        "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "30.5",
+    "total_processing_time_seconds": "28.8",
     "performance_metrics": {
-      "parallel_group_1_seconds": "6.8",
-      "parallel_group_2_seconds": "18.3",
-      "total_parallel_time_seconds": "25.1",
-      "estimated_sequential_time_seconds": "54.6",
-      "estimated_speedup_factor": "2.18"
+      "parallel_group_1_seconds": "4.6",
+      "parallel_group_2_seconds": "17.1",
+      "total_parallel_time_seconds": "21.7",
+      "estimated_sequential_time_seconds": "46.2",
+      "estimated_speedup_factor": "2.13"
     },
     "validation": {
-      "total_time_seconds": "30.5",
-      "expected_parallel_time_seconds": "30.5",
-      "sequential_sum_seconds": "54.6",
+      "total_time_seconds": "28.8",
+      "expected_parallel_time_seconds": "28.8",
+      "sequential_sum_seconds": "46.2",
       "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "24.1"
+      "time_saved_seconds": "17.4"
     }
   },
   "metadata": {
     "filename": "Copy of swiss_file_3(1).pdf",
-    "processing_time": 30514,
+    "processing_time": 28833,
     "country": "Switzerland",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:50:13.964Z",
+    "processed_at": "2025-08-05T16:40:42.611Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "6.8",
-      "parallel_group_2_duration_seconds": "18.3",
-      "estimated_sequential_time_seconds": "54.6",
-      "actual_parallel_time_seconds": "30.5"
+      "parallel_group_1_duration_seconds": "4.6",
+      "parallel_group_2_duration_seconds": "17.1",
+      "estimated_sequential_time_seconds": "46.2",
+      "actual_parallel_time_seconds": "28.8"
     }
   }
 }

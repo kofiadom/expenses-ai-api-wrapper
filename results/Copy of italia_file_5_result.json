@@ -1,75 +1,75 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_015_Copy of italia_file_5.pdf",
+    "image_path": "uploads\\AUG_5_V5_8_Copy of italia_file_5.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:38:38.108Z",
+    "timestamp": "2025-08-05T16:37:14.596Z",
     "quality_score": 70,
     "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
       "detected": true,
       "severity_level": "medium",
-      "confidence_score": 0.8,
+      "confidence_score": 0.85,
       "quantitative_measure": 0.4,
-      "description": "The text and edges show moderate blur, likely due to scanning quality.",
-      "recommendation": "Enhance image sharpness before OCR processing."
+      "description": "The text and edges show moderate blur, likely due to camera movement or focus issues.",
+      "recommendation": "Re-scan the document with a stable camera and ensure proper focus."
     },
     "contrast_assessment": {
       "detected": true,
       "severity_level": "low",
-      "confidence_score": 0.7,
-      "quantitative_measure": 0.8,
-      "description": "The contrast between text and background is adequate but could be improved.",
-      "recommendation": "Adjust contrast levels to ensure better text recognition."
+      "confidence_score": 0.9,
+      "quantitative_measure": 0.75,
+      "description": "The contrast between text and background is slightly low, but still legible.",
+      "recommendation": "Improve lighting conditions and ensure consistent background for better contrast."
     },
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "No glare detected on the document.",
-      "recommendation": "No action needed regarding glare."
+      "recommendation": "None required."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "No water stains detected on the document.",
-      "recommendation": "No action needed regarding water stains."
+      "recommendation": "None required."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "No tears or folds detected on the document.",
-      "recommendation": "No action needed regarding tears or folds."
+      "recommendation": "None required."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.9,
-      "quantitative_measure": 0,
-      "description": "No cut-off edges detected on the document.",
-      "recommendation": "No action needed regarding cut-off edges."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.1,
+      "description": "Minor cut-off detected at the bottom edge of the document.",
+      "recommendation": "Ensure the entire document is within the frame when scanning."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "No missing sections detected on the document.",
-      "recommendation": "No action needed regarding missing sections."
+      "recommendation": "None required."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 0.95,
       "quantitative_measure": 0,
       "description": "No obstructions detected on the document.",
-      "recommendation": "No action needed regarding obstructions."
+      "recommendation": "None required."
     },
     "overall_quality_score": 7
   },
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields indicating it is a telecommunications expense document. Fields such as 'supplier', 'transactionAmount', 'transactionDate', 'invoiceReceiptNumber', 'taxInformation', and 'itemDescriptionLineItems' are present. The document details services provided by TIM, including WiFi and modem rental, with clear amounts and dates.",
+    "reasoning": "The document contains all the necessary fields to be classified as a telecommunications expense. It includes the supplier (TIM), consumer (implied by the context), transaction amount (€40.85), transaction date (16/01/2025), invoice/receipt number (RP00068430), tax information (IVA 22%), payment method (implied by the context), and item description/line items (TIM WiFi Power Smart Fibra, TIM Navigazione Sicura, etc.).",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -96,191 +96,188 @@
       ],
       "fields_missing": [
         "consumerRecipient",
-        "icpRequirements",
         "paymentMethod"
       ],
       "total_fields_found": 6,
-      "expense_identification_reasoning": "Six out of eight schema fields were found, confirming this is an expense document."
+      "expense_identification_reasoning": "Six out of eight schema fields were found in the document, surpassing the minimum requirement of five fields to be classified as an expense."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_vat_number_on_invoice": null,
-    "customer_tax_code_on_invoice": null,
-    "currency": "EUR",
-    "amount": 40.85,
-    "receipt_type": "Fattura",
-    "receipt_quality": null,
-    "payment_method": null,
-    "vehicle_make_model": null,
-    "vehicle_fuel_type": null,
-    "distance_traveled": null,
-    "route_documentation": null,
-    "car_registration": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "per_diem_method": null,
+    "supplier_name": "TIM",
+    "supplier_phone": "0871407991",
+    "customer_name": null,
+    "customer_address": null,
     "invoice_number": "RP00068430",
     "date_of_issue": "2025-01-16",
-    "contact_phone": "0871407991",
+    "currency": "EUR",
+    "total_amount": 40.85,
+    "subtotal": 30.9,
+    "tax_amount": 6.47,
+    "tax_rate": 22,
+    "discount_amount": null,
+    "tip_amount": null,
+    "transaction_time": null,
+    "payment_method": null,
+    "card_last_four": null,
     "line_items": [
       {
         "description": "TIM WiFi Power Smart Fibra",
-        "period": "01 gen 25 - 31 gen 25",
-        "vat_rate": 22,
-        "total_price": 30.9
+        "period": "2025-01-01 - 2025-01-31",
+        "tax_rate": 22,
+        "total_price": 30.9,
+        "category": "Service"
       },
       {
         "description": "TIM Navigazione Sicura",
-        "period": "01 gen 25 - 31 gen 25",
-        "vat_rate": 22,
-        "total_price": 0
+        "period": "2025-01-01 - 2025-01-31",
+        "tax_rate": 22,
+        "total_price": 0,
+        "category": "Service"
       },
       {
         "description": "Rata addebito modem TIM HUB+ Executive 11/48",
-        "vat_rate": "F.C.I.",
-        "total_price": 5
+        "period": null,
+        "tax_rate": null,
+        "total_price": 5,
+        "category": "Equipment"
       },
       {
         "description": "Copia cartacea fattura",
-        "vat_rate": 22,
-        "total_price": 4.95
+        "period": null,
+        "tax_rate": 22,
+        "total_price": 4.95,
+        "category": "Service"
       }
     ],
-    "total_to_pay": 40.85,
-    "vat_summary": [
-      {
-        "taxable_amount": 29.39,
-        "vat_rate": 22,
-        "vat_amount": 6.47
-      }
-    ],
-    "vat_exempt_amounts": [
-      {
-        "amount": 5,
-        "vat_rate": "F.C.I."
-      }
-    ],
-    "stamp_duty": null,
-    "vat_references": "22%: Percentuale dell'imposta applicata a tutti i servizi di telecomunicazione",
-    "additional_notes": "Questo documento non è valido ai fini fiscali. In applicazione della L.n. 205/2017, si informa che il documento elettronico in formato xml è stato trasmesso da TIM al Sistema di Interscambio (istituito con decreto del Ministero dell'Economia e Finanze 7 marzo 2008). Si comunica, pertanto, che il documento originale è messo a tua disposizione nella tua area riservata del sito web dell'Agenzia delle Entrate (agenziaentrate.gov.it)."
+    "receipt_type": "Invoice",
+    "document_type": "Fattura",
+    "special_notes": "Questo documento non è valido ai fini fiscali. Copia analogica di documento elettronico.",
+    "terms_conditions": "Il calcolo dell'iva sulle singole voci potrebbe lievemente differire dal valore calcolato sull'imponibile totale. F.C.I.: Importi fuori campo IVA.",
+    "tax_details": {
+      "imponibile_iva": 29.39,
+      "importo_iva": 6.47,
+      "importi_fuori_campo_iva": 5
+    },
+    "impost_di_bollo": "Assolta in modo virtuale (Aut. Ag. Entr. MI 2 n. 59560/2001).",
+    "totale_da_pagare": 40.85
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 6,
+      "issues_count": 4,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is missing. It must show 'Global People s.r.l.' as the customer for Global People ICP.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Must show Global People s.r.l. as customer"
+          "field": "customer_name",
+          "description": "Missing mandatory Global People s.r.l. company name on invoice",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Invoice should show Global People s.r.l."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is missing. It must show 'Via Venti Settembre 3, Torino (TO) CAP 10121, Italy' for Global People ICP.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Must show Via Venti Settembre 3, Torino (TO) CAP 10121, Italy"
+          "field": "customer_address",
+          "description": "Missing mandatory Global People s.r.l. address on invoice",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Via Venti Settembre 3, Torino (TO) CAP 10121, Italy"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "The customer VAT number on the invoice is missing. It must show 'IT12455930011' for Global People ICP.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Must show IT12455930011"
+          "field": "tax_details",
+          "description": "Missing mandatory Global People s.r.l. VAT on invoice",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "VAT: IT12455930011"
         },
         {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_tax_code_on_invoice",
-          "description": "The customer tax code on the invoice is missing. It must show '12455930011' for Global People ICP.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Must show 12455930011"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "receipt_quality",
-          "description": "The receipt quality is not specified. It must be scanned, clear, and readable.",
-          "recommendation": "Ensure the receipt is scanned and meets the required quality standards.",
-          "knowledge_base_reference": "Must be scanned (not photos), clear and readable"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "payment_method",
-          "description": "The payment method is not specified. It must be traceable (bank transfers, postal transfers, credit/debit cards, prepaid cards, bank/cashier's checks).",
-          "recommendation": "Provide the payment method used for the transaction.",
-          "knowledge_base_reference": "Must be traceable: bank transfers, postal transfers, credit/debit cards, prepaid cards, bank/cashier's checks"
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "total_amount",
+          "description": "Telecommunications expenses will be grossed up as they are not tax free",
+          "recommendation": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax free",
+          "knowledge_base_reference": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax free"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is not compliant with the required standards for Global People ICP in Italy. Several mandatory fields are missing, including the customer name, address, VAT number, and tax code. Additionally, the receipt quality and payment method are not specified. These issues need to be addressed to ensure compliance."
+      "compliance_summary": "The receipt is missing the mandatory Global People s.r.l. company name, address, and VAT number. Additionally, telecommunications expenses will be grossed up as they are not tax free."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Italy",
       "icp": "Global People",
       "receipt_type": "telecommunications",
-      "issues_count": 6
+      "issues_count": 4
     }
   },
   "citations": {
     "citations": {
-      "currency": {
+      "supplier_name": {
         "field_citation": {
-          "source_text": "Currency",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt currency",
-          "match_type": "exact"
+          "source_text": "Offerta TIM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Dettaglio dei costi\nOfferta TIM",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "€ 40,85",
+          "source_text": "TIM",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Totale da pagare\n€ 40,85",
+          "context": "Offerta TIM Totale 30,90\nRata addebito modem TIM HUB+ Executive 11/48",
           "match_type": "exact"
         }
       },
-      "amount": {
+      "supplier_phone": {
         "field_citation": {
-          "source_text": "Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Expense amount",
+          "source_text": "numero di telefono:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "numero di telefono: 0871407991",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "40,85",
+          "source_text": "0871407991",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Totale da pagare\n€ 40,85",
-          "match_type": "fuzzy"
+          "context": "numero di telefono: 0871407991",
+          "match_type": "exact"
         }
       },
-      "receipt_type": {
+      "customer_name": {
         "field_citation": {
-          "source_text": "Receipt Type",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
-          "match_type": "exact"
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No customer name provided",
+          "match_type": "none"
         },
         "value_citation": {
-          "source_text": "Fattura",
-          "confidence": 1,
+          "source_text": null,
+          "confidence": 0,
           "source_location": "markdown",
-          "context": "Fattura n.: RP00068430 del 16/01/2025",
-          "match_type": "exact"
+          "context": "No customer name provided",
+          "match_type": "none"
+        }
+      },
+      "customer_address": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No customer address provided",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No customer address provided",
+          "match_type": "none"
         }
       },
       "invoice_number": {
         "field_citation": {
-          "source_text": "Invoice Number",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Invoice number on the receipt",
+          "source_text": "Fattura n.:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Fattura n.: RP00068430 del 16/01/2025",
           "match_type": "exact"
         },
         "value_citation": {
@@ -293,42 +290,42 @@
       },
       "date_of_issue": {
         "field_citation": {
-          "source_text": "Date of Issue",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Date the invoice was issued",
-          "match_type": "exact"
+          "source_text": "del",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Fattura n.: RP00068430 del 16/01/2025",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "16/01/2025",
           "confidence": 1,
           "source_location": "markdown",
           "context": "Fattura n.: RP00068430 del 16/01/2025",
-          "match_type": "fuzzy"
+          "match_type": "exact"
         }
       },
-      "contact_phone": {
+      "currency": {
         "field_citation": {
-          "source_text": "Contact Phone",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Phone number for contact",
-          "match_type": "exact"
+          "source_text": "€",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Totale da pagare\n€ 40,85",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "0871407991",
+          "source_text": "EUR",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "numero di telefono: 0871407991",
-          "match_type": "exact"
+          "context": "Totale da pagare\n€ 40,85",
+          "match_type": "contextual"
         }
       },
-      "total_to_pay": {
+      "total_amount": {
         "field_citation": {
-          "source_text": "Total to Pay",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Total amount to be paid",
+          "source_text": "Totale da pagare",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Totale da pagare\n€ 40,85",
           "match_type": "exact"
         },
         "value_citation": {
@@ -336,100 +333,292 @@
           "confidence": 1,
           "source_location": "markdown",
           "context": "Totale da pagare\n€ 40,85",
-          "match_type": "fuzzy"
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "IVA incl.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Offerta TIM Totale 30,90",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "30,90",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Offerta TIM Totale 30,90",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "Importo IVA",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Imponibile IVA\nRif. IVA\nImporto IVA\nImponibile in addebito",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "6,47",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Imponibile in addebito\n29,39\n22%\n6,47",
+          "match_type": "exact"
+        }
+      },
+      "tax_rate": {
+        "field_citation": {
+          "source_text": "IVA incl.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Dettaglio dei costi\nOfferta TIM\nPeriodo\nRif. IVA\nIVA incl.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "22%",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "TIM WiFi Power Smart Fibra\n01 gen 25 - 31 gen 25\n22%\n30,90",
+          "match_type": "exact"
+        }
+      },
+      "discount_amount": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No discount amount mentioned",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No discount amount mentioned",
+          "match_type": "none"
+        }
+      },
+      "tip_amount": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No tip amount mentioned",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No tip amount mentioned",
+          "match_type": "none"
+        }
+      },
+      "transaction_time": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No transaction time mentioned",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No transaction time mentioned",
+          "match_type": "none"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No payment method mentioned",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No payment method mentioned",
+          "match_type": "none"
+        }
+      },
+      "card_last_four": {
+        "field_citation": {
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No card last four mentioned",
+          "match_type": "none"
+        },
+        "value_citation": {
+          "source_text": "null",
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "No card last four mentioned",
+          "match_type": "none"
+        }
+      },
+      "description": {
+        "field_citation": {
+          "source_text": "Dettaglio dei costi\nOfferta TIM",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pagina 2 / 2\nFattura n.: RP00068430 del 16/01/2025\nnumero di telefono: 0871407991\n\nDettaglio dei costi\nOfferta TIM",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "TIM WiFi Power Smart Fibra",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "TIM WiFi Power Smart Fibra\n01 gen 25 - 31 gen 25\n22%\n30,90",
+          "match_type": "exact"
+        }
+      },
+      "period": {
+        "field_citation": {
+          "source_text": "Periodo",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Dettaglio dei costi\nOfferta TIM\nPeriodo\nRif. IVA\nIVA incl.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "01 gen 25 - 31 gen 25",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "TIM WiFi Power Smart Fibra\n01 gen 25 - 31 gen 25\n22%\n30,90",
+          "match_type": "exact"
+        }
+      },
+      "total_price": {
+        "field_citation": {
+          "source_text": "IVA incl.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Dettaglio dei costi\nOfferta TIM\nPeriodo\nRif. IVA\nIVA incl.",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "30,90",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "TIM WiFi Power Smart Fibra\n01 gen 25 - 31 gen 25\n22%\n30,90",
+          "match_type": "exact"
+        }
+      },
+      "category": {
+        "field_citation": {
+          "source_text": "Dettaglio dei costi\nOfferta TIM",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Dettaglio dei costi\nOfferta TIM\nPeriodo\nRif. IVA\nIVA incl.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Service",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "TIM WiFi Power Smart Fibra\n01 gen 25 - 31 gen 25\n22%\n30,90",
+          "match_type": "contextual"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 22,
-      "fields_with_field_citations": 7,
-      "fields_with_value_citations": 7,
-      "average_confidence": 1
+      "total_fields_analyzed": 24,
+      "fields_with_field_citations": 19,
+      "fields_with_value_citations": 19,
+      "average_confidence": 0.9466666666666667
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "4.9",
-      "file_classification_seconds": "3.9",
-      "image_quality_assessment_seconds": "5.0",
-      "data_extraction_seconds": "13.4",
-      "citation_generation_seconds": "17.1",
-      "issue_detection_seconds": "17.1"
+      "markdown_extraction_seconds": "6.3",
+      "file_classification_seconds": "3.7",
+      "image_quality_assessment_seconds": "4.7",
+      "data_extraction_seconds": "5.2",
+      "issue_detection_seconds": "9.2",
+      "citation_generation_seconds": "12.2"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:38:28.178Z",
-        "end_time": "2025-07-31T18:38:33.072Z",
-        "duration_seconds": "4.9",
+        "start_time": "2025-08-05T16:37:03.602Z",
+        "end_time": "2025-08-05T16:37:09.895Z",
+        "duration_seconds": "6.3",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T18:38:33.074Z",
-        "end_time": "2025-07-31T18:38:36.993Z",
-        "duration_seconds": "3.9",
+        "start_time": "2025-08-05T16:37:09.898Z",
+        "end_time": "2025-08-05T16:37:13.587Z",
+        "duration_seconds": "3.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-07-31T18:38:33.073Z",
-        "end_time": "2025-07-31T18:38:38.109Z",
-        "duration_seconds": "5.0",
+        "start_time": "2025-08-05T16:37:09.896Z",
+        "end_time": "2025-08-05T16:37:14.596Z",
+        "duration_seconds": "4.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:38:33.075Z",
-        "end_time": "2025-07-31T18:38:46.457Z",
-        "duration_seconds": "13.4",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "citation_generation": {
-        "start_time": "2025-07-31T18:38:46.459Z",
-        "end_time": "2025-07-31T18:39:03.553Z",
-        "duration_seconds": "17.1",
+        "start_time": "2025-08-05T16:37:09.900Z",
+        "end_time": "2025-08-05T16:37:15.106Z",
+        "duration_seconds": "5.2",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T18:38:46.458Z",
-        "end_time": "2025-07-31T18:39:03.573Z",
-        "duration_seconds": "17.1",
+        "start_time": "2025-08-05T16:37:15.107Z",
+        "end_time": "2025-08-05T16:37:24.326Z",
+        "duration_seconds": "9.2",
         "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "citation_generation": {
+        "start_time": "2025-08-05T16:37:15.110Z",
+        "end_time": "2025-08-05T16:37:27.283Z",
+        "duration_seconds": "12.2",
+        "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "35.4",
+    "total_processing_time_seconds": "23.7",
     "performance_metrics": {
-      "parallel_group_1_seconds": "13.4",
-      "parallel_group_2_seconds": "17.1",
-      "total_parallel_time_seconds": "30.5",
-      "estimated_sequential_time_seconds": "61.4",
-      "estimated_speedup_factor": "2.01"
+      "parallel_group_1_seconds": "5.2",
+      "parallel_group_2_seconds": "12.2",
+      "total_parallel_time_seconds": "17.4",
+      "estimated_sequential_time_seconds": "41.3",
+      "estimated_speedup_factor": "2.38"
     },
     "validation": {
-      "total_time_seconds": "35.4",
-      "expected_parallel_time_seconds": "35.4",
-      "sequential_sum_seconds": "61.4",
+      "total_time_seconds": "23.7",
+      "expected_parallel_time_seconds": "23.7",
+      "sequential_sum_seconds": "41.3",
       "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "26.0"
+      "time_saved_seconds": "17.6"
     }
   },
   "metadata": {
     "filename": "Copy of italia_file_5.pdf",
-    "processing_time": 35395,
+    "processing_time": 23682,
     "country": "Italy",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:39:03.574Z",
+    "processed_at": "2025-08-05T16:37:27.285Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "13.4",
-      "parallel_group_2_duration_seconds": "17.1",
-      "estimated_sequential_time_seconds": "61.4",
-      "actual_parallel_time_seconds": "35.4"
+      "parallel_group_1_duration_seconds": "5.2",
+      "parallel_group_2_duration_seconds": "12.2",
+      "estimated_sequential_time_seconds": "41.3",
+      "actual_parallel_time_seconds": "23.7"
     }
   }
 }

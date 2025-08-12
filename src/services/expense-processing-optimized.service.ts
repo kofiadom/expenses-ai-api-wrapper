@@ -4,9 +4,11 @@ import { DataExtractionAgent } from '../agents/data-extraction.agent';
 import { IssueDetectionAgent } from '../agents/issue-detection.agent';
 import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
+import { LangfuseService } from './langfuse.service';
 import {
   type CompleteProcessingResult,
 } from '../schemas/expense-schemas';
+import { randomUUID } from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -14,7 +16,7 @@ import * as path from 'path';
 export class ExpenseProcessingOptimizedService {
   private readonly logger = new Logger(ExpenseProcessingOptimizedService.name);
 
-  constructor() {}
+  constructor(private readonly langfuseService?: LangfuseService) {}
 
   async processExpenseDocumentParallel(
     markdownContent: string,
@@ -32,12 +34,46 @@ export class ExpenseProcessingOptimizedService {
       imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
     },
     progressCallback?: (stage: string, progress: number) => void,
-    markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string }
+    markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string },
+    userId?: string
   ): Promise<CompleteProcessingResult> {
     // Calculate the true start time including markdown extraction
     const trueStartTime = markdownExtractionInfo
       ? Date.now() - markdownExtractionInfo.markdownExtractionTime
       : Date.now();
+
+    // Generate session ID for this processing run
+    const sessionId = this.generateSessionId(filename);
+    const effectiveUserId = userId || this.generateDefaultUserId();
+
+    this.logger.log(`🚀 Starting PARALLEL expense processing for: ${filename}`);
+    this.logger.log(`📍 Country: ${country}, ICP: ${icp}`);
+    this.logger.log(`👤 User: ${effectiveUserId}, Session: ${sessionId}`);
+
+    // Create main processing trace with user and session
+    const mainTrace = this.langfuseService?.createTrace({
+      name: 'expense-processing-parallel',
+      input: {
+        filename,
+        country,
+        icp,
+        imagePath: path.basename(imagePath),
+        markdownContentLength: markdownContent.length,
+        processingMode: 'parallel',
+      },
+      metadata: {
+        service: 'ExpenseProcessingOptimizedService',
+        filename,
+        country,
+        icp,
+        processingMode: 'parallel',
+        markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
+        documentReader: markdownExtractionInfo?.documentReader,
+      },
+      tags: ['expense-processing', 'parallel', country, icp],
+      userId: effectiveUserId,
+      sessionId: sessionId,
+    });
 
     const currentTime = Date.now();
     const timing: any = {
@@ -67,13 +103,13 @@ export class ExpenseProcessingOptimizedService {
       
       const [formattedQualityAssessment, classification, extraction] = await Promise.all([
         // Phase 0: Image Quality Assessment
-        this.runImageQualityAssessment(imagePath, timing, agents.imageQualityAssessmentAgent),
+        this.runImageQualityAssessment(imagePath, timing, agents.imageQualityAssessmentAgent, mainTrace),
 
         // Phase 1: File Classification
-        this.runFileClassification(markdownContent, country, expenseSchema, timing, agents.fileClassificationAgent),
+        this.runFileClassification(markdownContent, country, expenseSchema, timing, agents.fileClassificationAgent, mainTrace),
 
         // Phase 2: Data Extraction
-        this.runDataExtraction(markdownContent, complianceData, timing, agents.dataExtractionAgent)
+        this.runDataExtraction(markdownContent, complianceData, timing, agents.dataExtractionAgent, mainTrace)
       ]);
 
       const parallelGroup1End = Date.now();
@@ -90,10 +126,10 @@ export class ExpenseProcessingOptimizedService {
       
       const [compliance, citations] = await Promise.all([
         // Phase 3: Issue Detection
-        this.runIssueDetection(country, classification.expense_type || 'unknown', icp, complianceData, extraction, timing, agents.issueDetectionAgent),
+        this.runIssueDetection(country, classification.expense_type || 'unknown', icp, complianceData, extraction, timing, agents.issueDetectionAgent, mainTrace),
 
         // Phase 4: Citation Generation
-        this.runCitationGeneration(extraction, JSON.stringify(complianceData), markdownContent, filename, timing, agents.citationGeneratorAgent)
+        this.runCitationGeneration(extraction, markdownContent, filename, timing, agents.citationGeneratorAgent, mainTrace)
       ]);
 
       const parallelGroup2End = Date.now();
@@ -136,6 +172,44 @@ export class ExpenseProcessingOptimizedService {
       progressCallback?.('complete', 100);
       this.logger.log(`🎉 PARALLEL expense processing finished for ${filename} in ${(processingTime/1000).toFixed(2)}s`);
 
+      // Finalize main trace with success
+      if (mainTrace) {
+        mainTrace.update({
+          output: {
+            success: true,
+            classification_result: classification?.expense_type,
+            processing_time_seconds: (processingTime / 1000).toFixed(1),
+            total_phases: 5,
+            issues_detected: compliance?.validation_result?.issues?.length || 0,
+            processing_mode: 'parallel',
+            parallel_group_1_duration: parallelGroup1Duration.toFixed(1),
+            parallel_group_2_duration: parallelGroup2Duration.toFixed(1),
+          },
+          metadata: {
+            final_processing_time_seconds: (processingTime / 1000).toFixed(1),
+            success: true,
+            phases_completed: ['image_quality', 'classification', 'extraction', 'compliance', 'citations'],
+            processing_mode: 'parallel',
+            time_saved_seconds: timing.performance_metrics?.time_saved_seconds,
+            // Individual agent processing times
+            agent_timings: {
+              image_quality_seconds: timing.phase_timings.image_quality_assessment_seconds,
+              classification_seconds: timing.phase_timings.file_classification_seconds,
+              extraction_seconds: timing.phase_timings.data_extraction_seconds,
+              compliance_seconds: timing.phase_timings.issue_detection_seconds,
+              citations_seconds: timing.phase_timings.citation_generation_seconds,
+            },
+            // Parallel processing specific metrics
+            parallel_metrics: {
+              group_1_duration_seconds: parallelGroup1Duration.toFixed(1),
+              group_2_duration_seconds: parallelGroup2Duration.toFixed(1),
+              estimated_sequential_time_seconds: timing.performance_metrics?.estimated_sequential_time_seconds,
+              speedup_factor: timing.performance_metrics?.estimated_speedup_factor,
+            },
+          },
+        });
+      }
+
       // Save results to file (timing is already included in result)
       await this.saveResultsToFile(filename, result);
 
@@ -144,15 +218,29 @@ export class ExpenseProcessingOptimizedService {
     } catch (error) {
       const processingTime = Date.now() - trueStartTime;
       this.logger.error(`❌ PARALLEL expense processing failed for ${filename}:`, error);
+
+      // Finalize main trace with error
+      if (mainTrace) {
+        mainTrace.update({
+          output: null,
+          metadata: {
+            final_processing_time_seconds: (processingTime / 1000).toFixed(1),
+            success: false,
+            error: error.message,
+            processing_mode: 'parallel',
+          },
+        });
+      }
+
       throw new Error(`Parallel expense processing failed: ${error.message}`);
     }
   }
 
-  private async runImageQualityAssessment(imagePath: string, timing: any, agent: ImageQualityAssessmentAgent) {
+  private async runImageQualityAssessment(imagePath: string, timing: any, agent: ImageQualityAssessmentAgent, parentTrace?: any) {
     const start = Date.now();
     this.logger.log('📸 Phase 0: Image Quality Assessment (parallel)');
 
-    const result = await agent.assessImageQuality(imagePath);
+    const result = await agent.assessImageQuality(imagePath, parentTrace);
     const formattedResult = agent.formatAssessmentForWorkflow(result, imagePath);
 
     const end = Date.now();
@@ -168,11 +256,11 @@ export class ExpenseProcessingOptimizedService {
     return formattedResult;
   }
 
-  private async runFileClassification(markdownContent: string, country: string, expenseSchema: any, timing: any, agent: FileClassificationAgent) {
+  private async runFileClassification(markdownContent: string, country: string, expenseSchema: any, timing: any, agent: FileClassificationAgent, parentTrace?: any) {
     const start = Date.now();
     this.logger.log('📋 Phase 1: File Classification (parallel)');
 
-    const result = await agent.classifyFile(markdownContent, country, expenseSchema);
+    const result = await agent.classifyFile(markdownContent, country, expenseSchema, parentTrace);
 
     const end = Date.now();
     timing.phase_timings.file_classification_seconds = ((end - start) / 1000).toFixed(1);
@@ -180,18 +268,18 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
+      model_used: agent.getActualModelUsed(),
       execution_mode: 'parallel'
     };
 
     return result;
   }
 
-  private async runDataExtraction(markdownContent: string, complianceData: any, timing: any, agent: DataExtractionAgent) {
+  private async runDataExtraction(markdownContent: string, complianceData: any, timing: any, agent: DataExtractionAgent, parentTrace?: any) {
     const start = Date.now();
     this.logger.log('🔍 Phase 2: Data Extraction (parallel)');
 
-    const result = await agent.extractData(markdownContent, complianceData);
+    const result = await agent.extractData(markdownContent, complianceData, parentTrace);
 
     const end = Date.now();
     timing.phase_timings.data_extraction_seconds = ((end - start) / 1000).toFixed(1);
@@ -199,18 +287,18 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
+      model_used: agent.getActualModelUsed(),
       execution_mode: 'parallel'
     };
 
     return result;
   }
 
-  private async runIssueDetection(country: string, receiptType: string, icp: string, complianceData: any, extractedData: any, timing: any, agent: IssueDetectionAgent) {
+  private async runIssueDetection(country: string, receiptType: string, icp: string, complianceData: any, extractedData: any, timing: any, agent: IssueDetectionAgent, parentTrace?: any) {
     const start = Date.now();
     this.logger.log('⚠️ Phase 3: Issue Detection (parallel)');
 
-    const result = await agent.analyzeCompliance(country, receiptType, icp, complianceData, extractedData);
+    const result = await agent.analyzeCompliance(country, receiptType, icp, complianceData, extractedData, parentTrace);
 
     const end = Date.now();
     timing.phase_timings.issue_detection_seconds = ((end - start) / 1000).toFixed(1);
@@ -218,18 +306,18 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
+      model_used: agent.getActualModelUsed(),
       execution_mode: 'parallel'
     };
 
     return result;
   }
 
-  private async runCitationGeneration(extractedData: any, extractionRequirements: string, markdownContent: string, filename: string, timing: any, agent: CitationGeneratorAgent) {
+  private async runCitationGeneration(extractedData: any, markdownContent: string, filename: string, timing: any, agent: CitationGeneratorAgent, parentTrace?: any) {
     const start = Date.now();
     this.logger.log('📝 Phase 4: Citation Generation (parallel)');
 
-    const result = await agent.generateCitations(extractedData, extractionRequirements, markdownContent, filename);
+    const result = await agent.generateCitations(extractedData, markdownContent, filename, parentTrace);
 
     const end = Date.now();
     timing.phase_timings.citation_generation_seconds = ((end - start) / 1000).toFixed(1);
@@ -237,7 +325,7 @@ export class ExpenseProcessingOptimizedService {
       start_time: new Date(start).toISOString(),
       end_time: new Date(end).toISOString(),
       duration_seconds: ((end - start) / 1000).toFixed(1),
-      model_used: process.env.CITATION_MODEL || 'eu.amazon.nova-micro-v1:0',
+      model_used: agent.getActualModelUsed(),
       execution_mode: 'parallel'
     };
 
@@ -349,5 +437,21 @@ export class ExpenseProcessingOptimizedService {
     }
   }
 
+  /**
+   * Generate a session ID for the processing run
+   */
+  private generateSessionId(filename: string): string {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const fileBaseName = path.basename(filename, path.extname(filename));
+    const randomSuffix = randomUUID().substring(0, 8);
+    return `expense-${fileBaseName}-${timestamp}-${randomSuffix}`;
+  }
+
+  /**
+   * Generate a default user ID (can be overridden by API key or client ID)
+   */
+  private generateDefaultUserId(): string {
+    return 'default-user';
+  }
 
 }

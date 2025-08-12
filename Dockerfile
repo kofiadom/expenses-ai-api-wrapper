@@ -1,6 +1,6 @@
 # Multi-stage Docker build for NestJS Medical Processing Service
 # Stage 1: Build stage
-FROM node:18-alpine AS builder
+FROM node:20-alpine AS builder
 
 # Set working directory
 WORKDIR /app
@@ -10,28 +10,27 @@ RUN apk add --no-cache python3 make g++
 
 # Copy package files
 COPY package*.json ./
-COPY tsconfig*.json ./
-COPY nest-cli.json ./
 
 # Install all dependencies (including dev dependencies for build)
 RUN npm ci --only=production=false
 
 # Copy source code
-COPY src/ ./src/
-COPY langchainjs/ ./langchainjs/
+COPY . .
 
 # Build the application
 RUN npm run build
 
 # Stage 2: Production stage
-FROM node:18-alpine AS production
-
-# Create app user for security
-RUN addgroup -g 1001 -S nodejs && \
-    adduser -S nestjs -u 1001
+FROM node:20-alpine AS production
 
 # Set working directory
 WORKDIR /app
+
+# Create app user for security
+RUN addgroup -g 1001 -S nodejs && \
+  adduser -S nestjs -u 1001
+
+RUN apk add --no-cache curl
 
 # Install runtime dependencies only
 RUN apk add --no-cache dumb-init
@@ -44,11 +43,15 @@ RUN npm ci --only=production && npm cache clean --force
 
 # Copy built application from builder stage
 COPY --from=builder /app/dist ./dist
-COPY --from=builder /app/langchainjs ./langchainjs
+
+# Copy configuration files and data
+COPY --from=builder /app/expense_file_schema.json ./expense_file_schema.json
+COPY --from=builder /app/data ./data
 
 # Create necessary directories with proper permissions
-RUN mkdir -p uploads results logs && \
-    chown -R nestjs:nodejs /app
+RUN mkdir -p /app/uploads /app/results /app/logs /app/markdown_extractions && \
+  chmod 755 /app/uploads /app/results /app/logs /app/markdown_extractions && \
+  chown -R nestjs:nodejs /app
 
 # Copy health check script
 COPY --chown=nestjs:nodejs <<EOF /app/healthcheck.js
@@ -92,8 +95,8 @@ USER nestjs
 EXPOSE 3000
 
 # Add health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-  CMD node /app/healthcheck.js
+HEALTHCHECK --interval=30s --timeout=10s --start-period=30s --retries=3 \
+  CMD curl -f http://127.0.0.1:3000/api/v1/health || exit 1
 
 # Set environment variables
 ENV NODE_ENV=production
@@ -103,4 +106,4 @@ ENV PORT=3000
 ENTRYPOINT ["dumb-init", "--"]
 
 # Start the application
-CMD ["node", "dist/main"]
+CMD ["node", "dist/main.js"]

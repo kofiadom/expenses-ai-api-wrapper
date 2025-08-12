@@ -1,77 +1,77 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_007_Copy of austrian_file_12.pdf",
+    "image_path": "uploads\\AUG_5_V5_5_Copy of austrian_file_12.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:13:38.398Z",
-    "quality_score": 100,
-    "quality_level": "excellent",
+    "timestamp": "2025-08-05T16:22:08.736Z",
+    "quality_score": 70,
+    "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "The text is sharp and clearly defined with no visible blur.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges are moderately blurred, likely due to camera movement or low resolution.",
+      "recommendation": "Re-scan the document with a higher resolution and ensure the camera is stable."
     },
     "contrast_assessment": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is slightly low, but still legible.",
+      "recommendation": "Improve lighting conditions and ensure uniform background for better contrast."
     },
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No glare or bright spots are present that obscure text.",
-      "recommendation": "No action required."
+      "description": "No glare or bright spots detected on the document.",
+      "recommendation": "No action needed."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discolorations are present.",
-      "recommendation": "No action required."
+      "description": "No water stains or discoloration detected.",
+      "recommendation": "No action needed."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No tears, creases, or folds are visible.",
-      "recommendation": "No action required."
+      "description": "No tears or folds detected on the document.",
+      "recommendation": "No action needed."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "No document edges are cut off or excluded from the image.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the document edges are slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when scanning."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No missing sections or incomplete content in the document.",
-      "recommendation": "No action required."
+      "description": "No missing sections detected; the document appears complete.",
+      "recommendation": "No action needed."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No obstructions such as objects, fingers, or shadows are present.",
-      "recommendation": "No action required."
+      "description": "No obstructions or shadows detected on the document.",
+      "recommendation": "No action needed."
     },
-    "overall_quality_score": 10
+    "overall_quality_score": 7
   },
   "classification": {
     "is_expense": true,
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains all necessary fields to be classified as an expense. It includes supplier details, consumer details, transaction amount, transaction date, invoice number, tax information, payment method, and item description. The document is a tax invoice for a subscription service, which fits into the professional services category.",
+    "reasoning": "The document contains all necessary fields to be classified as an expense: supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod. The document is a tax invoice for a professional service (Sales Navigator Core) and includes all required details for expense classification.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -92,40 +92,36 @@
         "transactionAmount",
         "transactionDate",
         "invoiceReceiptNumber",
-        "taxInformation",
-        "paymentMethod",
-        "itemDescriptionLineItems"
+        "itemDescriptionLineItems",
+        "paymentMethod"
       ],
-      "fields_missing": [],
-      "total_fields_found": 8,
-      "expense_identification_reasoning": "All 8 schema fields are present in the document, confirming it as an expense."
+      "fields_missing": [
+        "icpRequirements",
+        "taxInformation"
+      ],
+      "total_fields_found": 7,
+      "expense_identification_reasoning": "The document contains 7 out of 8 schema fields, including critical fields like supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod. This meets the criteria for being classified as an expense."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": "Sarah Morriss",
-    "customer_address_on_invoice": "6063, Austria",
-    "customer_vat_number_on_invoice": null,
-    "currency": "EUR",
-    "amount": 99.17,
-    "receipt_type": "Tax Invoice",
-    "receipt_quality": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "kilometer_record": null,
-    "car_details": null,
-    "parking_documentation": null,
-    "transaction_id": "P169260813",
-    "invoice_number": "78149353779",
-    "purchaser_email": "sarah.morriss@forliance.com",
-    "transaction_date": "2024-11-24",
-    "billing_frequency": "Monthly",
-    "payment_method": "MASTERCARD ****3012",
     "supplier_name": "LinkedIn Ireland Unlimited Company",
     "supplier_address": "5 Wilton Park, Dublin 2, Ireland",
     "supplier_vat_number": "IE9740425P",
+    "customer_name": "Sarah Morriss",
+    "customer_email": "sarah.morriss@forliance.com",
+    "customer_address": "6063, Austria",
+    "customer_tax_id": null,
+    "invoice_number": "78149353779",
+    "transaction_id": "P169260813",
+    "transaction_date": "2024-11-24",
+    "billing_frequency": "Monthly",
+    "currency": "EUR",
+    "total_amount": 99.17,
+    "subtotal": 82.64,
+    "tax_amount": 16.53,
+    "tax_rate": 20,
+    "payment_method": "MASTERCARD",
+    "card_last_four": "3012",
     "line_items": [
       {
         "description": "Sales Navigator Core",
@@ -134,13 +130,11 @@
         "total_price": 82.64
       }
     ],
-    "subtotal": 82.64,
-    "vat_rate": 20,
-    "vat_amount": 16.53,
-    "total": 99.17,
-    "payment": 99.17,
-    "balance": 0,
-    "special_notes": "You'll pay €99.17 (inclusive of all applicable taxes) each month until you cancel. Cancel anytime by clicking the 'me' icon on the homepage -> click Settings & Privacy -> select Manage Premium Account go to Admin Center -> select your subscription Cancel. See here for detailed instructions on how to cancel. Prices are subject to change. Have questions or need help? Please visit our Help Center."
+    "receipt_type": "Tax Invoice",
+    "document_type": "Invoice",
+    "special_notes": "You'll pay €99.17 (inclusive of all applicable taxes) each month until you cancel. Cancel anytime by clicking the \"me\" icon on the homepage -> click Settings & Privacy -> select Manage Premium Account go to Admin Center -> select your subscription Cancel. See here for detailed instructions on how to cancel. Prices are subject to change. Have questions or need help? Please visit our Help Center.",
+    "terms_conditions": null,
+    "balance": 0
   },
   "compliance": {
     "validation_result": {
@@ -149,35 +143,35 @@
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is 'Sarah Morriss', but it should be 'Global People IT-Services GmbH' as per the mandatory requirement.",
-          "recommendation": "Update the customer name on the invoice to 'Global People IT-Services GmbH'.",
-          "knowledge_base_reference": "Must show Global People IT-Services GmbH as customer"
+          "field": "supplier_name",
+          "description": "The receipt does not show the local employer company name \"Global People IT-Services GmbH\" as required.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Local Employer company name must appear on invoices"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is '6063, Austria', but it should be 'Kärntner Ring 12, A-1010 Vienna, Austria' as per the mandatory requirement.",
-          "recommendation": "Update the customer address on the invoice to 'Kärntner Ring 12, A-1010 Vienna, Austria'.",
-          "knowledge_base_reference": "Must show Kärntner Ring 12, A-1010 Vienna, Austria"
+          "field": "supplier_address",
+          "description": "The receipt does not show the local employer address \"Kärntner Ring 12, A-1010 Vienna, Austria\" as required.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Local Employer address must appear on invoices"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "The customer VAT number on the invoice is missing, but it should be 'ATU77112189' as per the mandatory requirement.",
-          "recommendation": "Add the customer VAT number 'ATU77112189' to the invoice.",
-          "knowledge_base_reference": "Must show ATU77112189"
+          "field": "supplier_vat_number",
+          "description": "The receipt does not show the local employer VAT ID \"ATU77112189\" as required.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Local Employer VAT ID must appear on invoices"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "receipt_quality",
-          "description": "The receipt quality is not specified, but it should meet the required standard as per the mandatory requirement.",
-          "recommendation": "Ensure the receipt quality meets the required standard and provide a clear and readable copy if necessary.",
-          "knowledge_base_reference": "Online copies sufficient, hard copy not required"
+          "field": "additional_documentation",
+          "description": "Training expenses require the approval of the direct manager.",
+          "recommendation": "Please obtain the approval of the direct manager for this training expense.",
+          "knowledge_base_reference": "Training expenses require the approval of the direct manager"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt for professional services does not comply with the mandatory requirements for customer name, address, and VAT number. Additionally, the receipt quality needs to be verified to ensure it meets the required standard."
+      "compliance_summary": "The receipt is non-compliant due to missing local employer details and required approvals. Corrective actions are needed to align with the compliance standards."
     },
     "technical_details": {
       "content_type": "expense_receipt",
@@ -189,99 +183,131 @@
   },
   "citations": {
     "citations": {
-      "customer_name_on_invoice": {
+      "supplier_name": {
         "field_citation": {
-          "source_text": "Customer Name on Invoice",
+          "source_text": "Tax Invoice from Linkedln Ireland Unlimited Company",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Local Employer name as customer on supplier invoice",
+          "source_location": "markdown",
+          "context": "The tax invoice is issued by Linkedln Ireland Unlimited Company.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Linkedln Ireland Unlimited Company",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "The invoice is issued by Linkedln Ireland Unlimited Company.",
           "match_type": "exact"
+        }
+      },
+      "supplier_address": {
+        "field_citation": {
+          "source_text": "Linkedln Ireland Unlimited Company, 5 Wilton Park, Dublin 2, Ireland",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The address of the supplier is listed at the end of the invoice.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "5 Wilton Park, Dublin 2, Ireland",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "The address of the supplier is listed at the end of the invoice.",
+          "match_type": "exact"
+        }
+      },
+      "supplier_vat_number": {
+        "field_citation": {
+          "source_text": "VAT: IE9740425P",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The VAT number is listed at the end of the invoice.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "IE9740425P",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "The VAT number is listed at the end of the invoice.",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "Billed To\nSarah Morriss",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The customer's name is listed under the 'Billed To' section.",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Sarah Morriss",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Billed To\nSarah Morriss",
+          "context": "The customer's name is listed under the 'Billed To' section.",
           "match_type": "exact"
         }
       },
-      "customer_address_on_invoice": {
+      "customer_email": {
         "field_citation": {
-          "source_text": "Customer Address on Invoice",
+          "source_text": "Purchaser Email\nsarah.morriss@forliance.com",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Local Employer address as customer on supplier invoice",
-          "match_type": "exact"
+          "source_location": "markdown",
+          "context": "The customer's email is listed under the 'Purchaser Email' section.",
+          "match_type": "contextual"
         },
         "value_citation": {
+          "source_text": "sarah.morriss@forliance.com",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "The customer's email is listed under the 'Purchaser Email' section.",
+          "match_type": "exact"
+        }
+      },
+      "customer_address": {
+        "field_citation": {
           "source_text": "6063, Austria",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "6063, Austria",
+          "context": "The customer's address is listed under the billing information.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "6063, Austria",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "The customer's address is listed under the billing information.",
           "match_type": "exact"
         }
       },
-      "customer_vat_number_on_invoice": {
+      "customer_tax_id": {
         "field_citation": {
-          "source_text": "Customer VAT Number on Invoice",
+          "source_text": "Customer Tax ID\nN/A",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Local Employer VAT number as customer on supplier invoice",
-          "match_type": "exact"
+          "source_location": "markdown",
+          "context": "The customer's tax ID is listed under the 'Customer Tax ID' section.",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "N/A",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Customer Tax ID\nN/A",
+          "context": "The customer's tax ID is listed under the 'Customer Tax ID' section.",
           "match_type": "exact"
         }
       },
-      "currency": {
+      "invoice_number": {
         "field_citation": {
-          "source_text": "Currency",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Receipt currency and exchange rate",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "EUR",
+          "source_text": "Invoice Number\n78149353779",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "€99.17",
+          "context": "The invoice number is listed under the 'Invoice Number' section.",
           "match_type": "contextual"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Amount",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Expense amount",
-          "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "99.17",
-          "confidence": 0.95,
+          "source_text": "78149353779",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Amount\n€99.17",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Receipt Type",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Tax Invoice",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Tax Invoice from LinkedIn Ireland Unlimited Company",
+          "context": "The invoice number is listed under the 'Invoice Number' section.",
           "match_type": "exact"
         }
       },
@@ -290,46 +316,14 @@
           "source_text": "Transaction ID",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Transaction ID",
-          "match_type": "exact"
+          "context": "11/24/2024\nP169260813\n78149353779\nsarah.morriss@forliance.com",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "P169260813",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "P169260813",
-          "match_type": "exact"
-        }
-      },
-      "invoice_number": {
-        "field_citation": {
-          "source_text": "Invoice Number",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Invoice Number",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "78149353779",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "78149353779",
-          "match_type": "exact"
-        }
-      },
-      "purchaser_email": {
-        "field_citation": {
-          "source_text": "Purchaser Email",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Purchaser Email",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "sarah.morriss@forliance.com",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "sarah.morriss@forliance.com",
+          "context": "11/24/2024\nP169260813\n78149353779\nsarah.morriss@forliance.com",
           "match_type": "exact"
         }
       },
@@ -337,15 +331,15 @@
         "field_citation": {
           "source_text": "Transaction Date",
           "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Date of the transaction",
-          "match_type": "exact"
+          "source_location": "markdown",
+          "context": "11/24/2024\nP169260813\n78149353779\nsarah.morriss@forliance.com",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "11/24/2024",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "11/24/2024",
+          "context": "11/24/2024\nP169260813\n78149353779\nsarah.morriss@forliance.com",
           "match_type": "exact"
         }
       },
@@ -354,14 +348,94 @@
           "source_text": "Billing Frequency",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Billing Frequency",
-          "match_type": "exact"
+          "context": "11/24/2024\nP169260813\n78149353779\nsarah.morriss@forliance.com",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Monthly",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "11/24/2024\nP169260813\n78149353779\nsarah.morriss@forliance.com",
+          "match_type": "exact"
+        }
+      },
+      "currency": {
+        "field_citation": {
+          "source_text": "Amount",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "€99.17\n11/24/2024\nMonthly\nMASTERCARD ****3012",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "EUR",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Monthly",
+          "context": "€99.17\n11/24/2024\nMonthly\nMASTERCARD ****3012",
+          "match_type": "contextual"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Total :",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal :\n€82.64\nVAT : 20%\n€16.53\nTotal :\n€99.17",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "€99.17",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Subtotal :\n€82.64\nVAT : 20%\n€16.53\nTotal :\n€99.17",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Subtotal :",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal :\n€82.64\nVAT : 20%\n€16.53\nTotal :\n€99.17",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "€82.64",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Subtotal :\n€82.64\nVAT : 20%\n€16.53\nTotal :\n€99.17",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "VAT :",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal :\n€82.64\nVAT : 20%\n€16.53\nTotal :\n€99.17",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "€16.53",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Subtotal :\n€82.64\nVAT : 20%\n€16.53\nTotal :\n€99.17",
+          "match_type": "exact"
+        }
+      },
+      "tax_rate": {
+        "field_citation": {
+          "source_text": "VAT :",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Subtotal :\n€82.64\nVAT : 20%\n€16.53\nTotal :\n€99.17",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "20%",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Subtotal :\n€82.64\nVAT : 20%\n€16.53\nTotal :\n€99.17",
           "match_type": "exact"
         }
       },
@@ -370,252 +444,220 @@
           "source_text": "Payment Method",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Payment Method",
-          "match_type": "exact"
+          "context": "Billed To\nCustomer Tax ID\nAdd Custom receipt details within Admin Center.\nSarah Morriss\nN/A\n6063, Austria",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "MASTERCARD ****3012",
-          "confidence": 0.95,
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "MASTERCARD ****3012",
+          "context": "Billed To\nCustomer Tax ID\nAdd Custom receipt details within Admin Center.\nSarah Morriss\nN/A\n6063, Austria",
           "match_type": "exact"
         }
       },
-      "supplier_name": {
+      "card_last_four": {
         "field_citation": {
-          "source_text": "Supplier Name",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Name of the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "LinkedIn Ireland Unlimited Company",
+          "source_text": "Payment Method",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "LinkedIn Ireland Unlimited Company",
+          "context": "Billed To\nCustomer Tax ID\nAdd Custom receipt details within Admin Center.\nSarah Morriss\nN/A\n6063, Austria",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "****3012",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Billed To\nCustomer Tax ID\nAdd Custom receipt details within Admin Center.\nSarah Morriss\nN/A\n6063, Austria",
           "match_type": "exact"
         }
       },
-      "supplier_address": {
+      "line_items": {
         "field_citation": {
-          "source_text": "Supplier Address",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Address of the supplier",
-          "match_type": "exact"
+          "source_text": "Summary",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Item\nDescription\nRate\nQuantity\nPrice\nSales Navigator Core\nl\n€82.64\n1\n€82.64",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "5 Wilton Park, Dublin 2, Ireland",
+          "source_text": "€82.64",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "LinkedIn Ireland Unlimited Company, 5 Wilton Park, Dublin 2, Ireland",
+          "context": "Item\nDescription\nRate\nQuantity\nPrice\nSales Navigator Core\nl\n€82.64\n1\n€82.64",
           "match_type": "exact"
         }
       },
-      "supplier_vat_number": {
+      "receipt_type": {
         "field_citation": {
-          "source_text": "Supplier VAT Number",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "VAT number of the supplier",
+          "source_text": "Tax Invoice",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Tax Invoice from Linkedln Ireland Unlimited Company",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "IE9740425P",
-          "confidence": 0.95,
+          "source_text": "Tax Invoice",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "VAT: IE9740425P",
+          "context": "Tax Invoice from Linkedln Ireland Unlimited Company",
           "match_type": "exact"
         }
       },
-      "subtotal": {
+      "document_type": {
         "field_citation": {
-          "source_text": "Subtotal",
-          "confidence": 0.95,
+          "source_text": "Tax Invoice",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Subtotal :",
+          "context": "Tax Invoice from Linkedln Ireland Unlimited Company",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "82.64",
-          "confidence": 0.95,
+          "source_text": "Invoice",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Subtotal : €82.64",
+          "context": "Tax Invoice from Linkedln Ireland Unlimited Company",
           "match_type": "exact"
         }
       },
-      "vat_rate": {
+      "special_notes": {
         "field_citation": {
-          "source_text": "VAT Rate",
-          "confidence": 0.95,
+          "source_text": "You'll pay €99.17 (inclusive of all applicable taxes) each month until you cancel.",
+          "confidence": 0.9,
           "source_location": "markdown",
-          "context": "VAT :",
-          "match_type": "exact"
+          "context": "You'll pay €99.17 (inclusive of all applicable taxes) each month until you cancel. Cancel anytime by clicking the \"me\" icon on the homepage -> click Settings & Privacy -> select Manage Premium Account go to Admin Center -> select your subscription Cancel. See here for detailed instructions on how to cancel. Prices are subject to change. Have questions or need help? Please visit our Help Center.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "20",
+          "source_text": "€99.17",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "VAT : 20%",
+          "context": "You'll pay €99.17 (inclusive of all applicable taxes) each month until you cancel. Cancel anytime by clicking the \"me\" icon on the homepage -> click Settings & Privacy -> select Manage Premium Account go to Admin Center -> select your subscription Cancel. See here for detailed instructions on how to cancel. Prices are subject to change. Have questions or need help? Please visit our Help Center.",
           "match_type": "exact"
         }
       },
-      "vat_amount": {
+      "terms_conditions": {
         "field_citation": {
-          "source_text": "VAT Amount",
-          "confidence": 0.95,
+          "source_text": null,
+          "confidence": 0,
           "source_location": "markdown",
-          "context": "VAT :",
-          "match_type": "exact"
+          "context": null,
+          "match_type": "none"
         },
         "value_citation": {
-          "source_text": "16.53",
-          "confidence": 0.95,
+          "source_text": null,
+          "confidence": 0,
           "source_location": "markdown",
-          "context": "VAT : 20%\n€16.53",
-          "match_type": "exact"
-        }
-      },
-      "total": {
-        "field_citation": {
-          "source_text": "Total",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Total :",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "99.17",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Total : €99.17",
-          "match_type": "exact"
-        }
-      },
-      "payment": {
-        "field_citation": {
-          "source_text": "Payment",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Payment :",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "99.17",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Payment : €99.17",
-          "match_type": "exact"
+          "context": null,
+          "match_type": "none"
         }
       },
       "balance": {
         "field_citation": {
-          "source_text": "Balance",
+          "source_text": "Balance :",
           "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Balance :",
-          "match_type": "exact"
+          "context": "Total :\n€99.17\nPayment :\n€99.17\nBalance :\n€0.00",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "0",
-          "confidence": 0.95,
+          "source_text": "€0.00",
+          "confidence": 0.98,
           "source_location": "markdown",
-          "context": "Balance : €0.00",
+          "context": "Total :\n€99.17\nPayment :\n€99.17\nBalance :\n€0.00",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 22,
-      "fields_with_field_citations": 22,
-      "fields_with_value_citations": 22,
-      "average_confidence": 0.95
+      "total_fields_analyzed": 24,
+      "fields_with_field_citations": 23,
+      "fields_with_value_citations": 23,
+      "average_confidence": 0.949
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "5.7",
-      "file_classification_seconds": "2.9",
-      "image_quality_assessment_seconds": "4.3",
-      "data_extraction_seconds": "9.5",
-      "issue_detection_seconds": "12.7",
-      "citation_generation_seconds": "20.9"
+      "markdown_extraction_seconds": "6.7",
+      "file_classification_seconds": "3.4",
+      "data_extraction_seconds": "4.4",
+      "image_quality_assessment_seconds": "4.7",
+      "issue_detection_seconds": "8.0",
+      "citation_generation_seconds": "13.2"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:13:28.411Z",
-        "end_time": "2025-07-31T18:13:34.068Z",
-        "duration_seconds": "5.7",
+        "start_time": "2025-08-05T16:21:57.313Z",
+        "end_time": "2025-08-05T16:22:04.017Z",
+        "duration_seconds": "6.7",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T18:13:34.072Z",
-        "end_time": "2025-07-31T18:13:36.940Z",
-        "duration_seconds": "2.9",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "image_quality_assessment": {
-        "start_time": "2025-07-31T18:13:34.070Z",
-        "end_time": "2025-07-31T18:13:38.398Z",
-        "duration_seconds": "4.3",
+        "start_time": "2025-08-05T16:22:04.019Z",
+        "end_time": "2025-08-05T16:22:07.412Z",
+        "duration_seconds": "3.4",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:13:34.073Z",
-        "end_time": "2025-07-31T18:13:43.593Z",
-        "duration_seconds": "9.5",
+        "start_time": "2025-08-05T16:22:04.021Z",
+        "end_time": "2025-08-05T16:22:08.394Z",
+        "duration_seconds": "4.4",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-05T16:22:04.018Z",
+        "end_time": "2025-08-05T16:22:08.736Z",
+        "duration_seconds": "4.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T18:13:43.594Z",
-        "end_time": "2025-07-31T18:13:56.267Z",
-        "duration_seconds": "12.7",
+        "start_time": "2025-08-05T16:22:08.737Z",
+        "end_time": "2025-08-05T16:22:16.720Z",
+        "duration_seconds": "8.0",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:13:43.595Z",
-        "end_time": "2025-07-31T18:14:04.471Z",
-        "duration_seconds": "20.9",
-        "model_used": "eu.amazon.nova-pro-v1:0",
+        "start_time": "2025-08-05T16:22:08.739Z",
+        "end_time": "2025-08-05T16:22:21.907Z",
+        "duration_seconds": "13.2",
+        "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "36.1",
+    "total_processing_time_seconds": "24.6",
     "performance_metrics": {
-      "parallel_group_1_seconds": "9.5",
-      "parallel_group_2_seconds": "20.9",
-      "total_parallel_time_seconds": "30.4",
-      "estimated_sequential_time_seconds": "56.0",
-      "estimated_speedup_factor": "1.84"
+      "parallel_group_1_seconds": "4.7",
+      "parallel_group_2_seconds": "13.2",
+      "total_parallel_time_seconds": "17.9",
+      "estimated_sequential_time_seconds": "40.4",
+      "estimated_speedup_factor": "2.26"
     },
     "validation": {
-      "total_time_seconds": "36.1",
-      "expected_parallel_time_seconds": "36.1",
-      "sequential_sum_seconds": "56.0",
+      "total_time_seconds": "24.6",
+      "expected_parallel_time_seconds": "24.6",
+      "sequential_sum_seconds": "40.4",
       "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "19.9"
+      "time_saved_seconds": "15.8"
     }
   },
   "metadata": {
     "filename": "Copy of austrian_file_12.pdf",
-    "processing_time": 36060,
+    "processing_time": 24595,
     "country": "Austria",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:14:04.472Z",
+    "processed_at": "2025-08-05T16:22:21.908Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "9.5",
-      "parallel_group_2_duration_seconds": "20.9",
-      "estimated_sequential_time_seconds": "56.0",
-      "actual_parallel_time_seconds": "36.1"
+      "parallel_group_1_duration_seconds": "4.7",
+      "parallel_group_2_duration_seconds": "13.2",
+      "estimated_sequential_time_seconds": "40.4",
+      "actual_parallel_time_seconds": "24.6"
     }
   }
 }

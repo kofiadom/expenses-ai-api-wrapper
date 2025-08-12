@@ -2,7 +2,7 @@
 # Markdown Extraction Results
 - **Original File**: Copy of swiss_file_3.pdf
 - **Document Reader**: textract
-- **Extracted At**: 2025-07-31T20:21:19.626Z
+- **Extracted At**: 2025-08-05T16:41:27.168Z
 - **Content Length**: 1747 characters
 ---
 

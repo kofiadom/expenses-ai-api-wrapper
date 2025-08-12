@@ -1,0 +1,10 @@
+name: Jira
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, ready_for_review]
+
+jobs:
+  Jira-Validation:
+    uses: papayaglobal/workflows/.github/workflows/jira-validation.yaml@main
+    secrets: inherit

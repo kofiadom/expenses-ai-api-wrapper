@@ -76,7 +76,7 @@ export class JobSummaryDto {
 
   @ApiProperty({
     description: 'Original filename',
-    example: 'medical-report.pdf',
+    example: '-report.pdf',
   })
   fileName: string;
 

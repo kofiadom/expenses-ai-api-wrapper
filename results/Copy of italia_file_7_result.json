@@ -1,77 +1,77 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_017_Copy of italia_file_7.pdf",
+    "image_path": "uploads\\AUG_5_V5_11_Copy of italia_file_7.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:41:58.816Z",
-    "quality_score": 100,
-    "quality_level": "excellent",
+    "timestamp": "2025-08-05T16:39:30.667Z",
+    "quality_score": 70,
+    "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "The text is sharp and edges are well-defined, indicating no blur.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text and edges show moderate blur, likely due to camera movement or focus issues.",
+      "recommendation": "Retake the image with a steady camera and ensure the document is well-focused."
     },
     "contrast_assessment": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is adequate but could be slightly improved for better readability.",
+      "recommendation": "Ensure even lighting and avoid shadows when capturing the image."
     },
     "glare_identification": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "No glare or bright spots detected that obscure text.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.6,
+      "quantitative_measure": 0.1,
+      "description": "Minor glare is present in the top-right corner, slightly affecting readability.",
+      "recommendation": "Adjust the angle of the camera to minimize reflections and glare."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discoloration observed.",
-      "recommendation": "No action required."
+      "description": "No water stains are detected on the document.",
+      "recommendation": "None required."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No tears, creases, or folds detected.",
-      "recommendation": "No action required."
+      "description": "No visible tears or folds are present on the document.",
+      "recommendation": "None required."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "No document edges are cut off, and the image frame includes all necessary portions.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the bottom edge is slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when capturing the image."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No missing sections or incomplete content observed.",
-      "recommendation": "No action required."
+      "description": "No missing sections are detected; the document appears complete.",
+      "recommendation": "None required."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No obstructions such as objects, fingers, or shadows blocking document content.",
-      "recommendation": "No action required."
+      "description": "No obstructions are present on the document.",
+      "recommendation": "None required."
     },
-    "overall_quality_score": 10
+    "overall_quality_score": 7
   },
   "classification": {
     "is_expense": true,
@@ -82,9 +82,9 @@
     "expected_location": "Italy",
     "location_match": false,
     "error_type": "File location is not same as project's location",
-    "error_message": "The document location (United Kingdom) does not match the expected location (Italy).",
+    "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, itemDescriptionLineItems, and taxInformation. It represents a completed transaction with payment details and itemized purchases, confirming it as an expense document.",
+    "reasoning": "The document contains multiple schema fields indicating it is an expense document. The fields found include supplier, consumerRecipient, transactionAmount, transactionDate, itemDescriptionLineItems, taxInformation, and paymentMethod. The document is a receipt from Pret A Manger, detailing purchases of snacks and drinks with associated costs and VAT. However, the location of the document (United Kingdom) does not match the expected location (Italy).",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -96,71 +96,68 @@
         "paymentMethod"
       ],
       "fields_missing": [
-        "invoiceReceiptNumber",
-        "icpRequirements"
+        "icpRequirements",
+        "invoiceReceiptNumber"
       ],
       "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including supplier (Pret A Manger), consumerRecipient (implied by the transaction details), transactionAmount (£11.89), transactionDate (11 Dec'24), itemDescriptionLineItems (detailed list of purchased items), taxInformation (VAT), and paymentMethod (AmEx). This confirms it as an expense document."
+      "expense_identification_reasoning": "The document contains 7 out of 8 schema fields, clearly indicating it is an expense document. The fields present include supplier (Pret A Manger), consumerRecipient (implied by the transaction details), transactionAmount (£11.89), transactionDate (11 Dec'24), itemDescriptionLineItems (snacks, cold drinks, hot drinks), taxInformation (VAT 20%), and paymentMethod (AmEx). The only missing fields are icpRequirements and invoiceReceiptNumber."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_vat_number_on_invoice": null,
-    "customer_tax_code_on_invoice": null,
+    "supplier_name": "Pret A Manger (Europe) Ltd",
+    "supplier_address": "35 Praed Street, W2 1NJ",
+    "supplier_vat_number": "927137420",
+    "supplier_phone": null,
+    "supplier_email": null,
+    "supplier_website": "www.pret.com",
+    "customer_name": "Almaz K",
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "CHK 117181",
+    "transaction_reference": "WS#: 3",
     "currency": "GBP",
-    "amount": 11.89,
-    "receipt_type": "Receipt",
-    "receipt_quality": null,
+    "total_amount": 11.89,
+    "subtotal": 9.04,
+    "tax_amount": 1.51,
+    "tax_rate": 20,
+    "discount_amount": null,
+    "tip_amount": null,
+    "date_of_issue": "2024-12-11",
+    "transaction_time": "06:47:00",
     "payment_method": "AmEx",
-    "vehicle_make_model": null,
-    "vehicle_fuel_type": null,
-    "distance_traveled": null,
-    "route_documentation": null,
-    "car_registration": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "per_diem_method": null,
+    "card_last_four": "4006",
     "line_items": [
       {
         "description": "TA Brownie Bar",
         "quantity": 1,
         "unit_price": 2.85,
-        "total_price": 2.85
+        "total_price": 2.85,
+        "category": "Snacks"
       },
       {
         "description": "TA Easy Greens",
         "quantity": 1,
         "unit_price": 4.99,
-        "total_price": 4.99
+        "total_price": 4.99,
+        "category": "Cold Drinks"
       },
       {
         "description": "TA Mocha",
         "quantity": 1,
         "unit_price": 4.05,
-        "total_price": 4.05
+        "total_price": 4.05,
+        "category": "Hot Drinks"
       }
     ],
-    "transaction_identifier": "CHK 117181",
-    "date_of_transaction": "2024-12-11",
-    "time_of_transaction": "06:47",
-    "contact_information": {
-      "website": "www.pret.com",
-      "feedback_email": "TALK TO PRET"
-    },
-    "tax_information": {
-      "vat_rate": 20,
-      "vat_amount": 1.51,
-      "net_total": 7.53
-    },
-    "payment_information": {
-      "total_payment": 11.89,
-      "change_due": 0
-    },
-    "location_identifier": "Praed Street Shop Number 288",
-    "special_notes": "Check Closed",
-    "supplier_name": "Pret A Manger (Europe) Ltd",
-    "supplier_vat_number": "927137420"
+    "receipt_type": "Retail Receipt",
+    "document_type": "Receipt",
+    "table_number": null,
+    "server_name": null,
+    "location_city": null,
+    "location_country": null,
+    "special_notes": "We love to hear your feedback (the good, the bad and the ugly).",
+    "terms_conditions": null,
+    "business_registration_number": null
   },
   "compliance": {
     "validation_result": {
@@ -169,56 +166,56 @@
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is missing. It must show 'Global People s.r.l.' as the customer.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer name is displayed on the invoice.",
-          "knowledge_base_reference": "Must show Global People s.r.l. as customer"
+          "field": "invoice_number",
+          "description": "Invoice number is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Documents must be actual tax receipts or invoices preferably scanned not photos; booking confirmations will not suffice"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is missing. It must show 'Via Venti Settembre 3, Torino (TO) CAP 10121, Italy' as the customer address.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer address is displayed on the invoice.",
-          "knowledge_base_reference": "Must show Via Venti Settembre 3, Torino (TO) CAP 10121, Italy"
+          "field": "customer_address",
+          "description": "Customer address is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The Local Employers name and details should appear on invoices, not the workers"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "The customer VAT number on the invoice is missing. It must show 'IT12455930011' as the customer VAT number.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer VAT number is displayed on the invoice.",
-          "knowledge_base_reference": "Must show IT12455930011"
+          "field": "supplier_vat_number",
+          "description": "Supplier VAT number is incomplete",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipts must be clear and readable"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "currency",
-          "description": "The receipt currency is in GBP, which does not match the required local currency. The currency must be the same as the local currency with a clear exchange rate.",
-          "recommendation": "It is recommended to ensure that the receipt is in the local currency and includes a clear exchange rate if submitted in a different currency.",
-          "knowledge_base_reference": "Same currency with clear exchange rate"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "receipt_quality",
-          "description": "The receipt quality is not specified. It must be scanned (not photos), clear, and readable.",
-          "recommendation": "Please ensure that the receipt is scanned and is clear and readable.",
-          "knowledge_base_reference": "Must be scanned (not photos), clear and readable"
+          "field": "location_country",
+          "description": "Location country is missing on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipts must be clear and readable"
         },
         {
           "issue_type": "Standards & Compliance | Gross-up Identified",
-          "field": "tax_information",
-          "description": "The VAT rate and amount are present, but the expense will be grossed up as per country regulations for meals.",
-          "recommendation": "Meal expenses are not tax exempt and will be grossed up as per country regulations.",
-          "knowledge_base_reference": "Meal expenses are not tax exempt and will be grossed up"
+          "field": "tax_amount",
+          "description": "Meal expenses are not tax exempt and will be grossed up",
+          "recommendation": "Meal expenses are tax-free up to 75% of the whole amount, anything additional will be grossed up",
+          "knowledge_base_reference": "Entertainment expenses (meals with clients) are tax free up to 75% of the whole amount"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "payment_method",
-          "description": "The payment method is AmEx, which is acceptable. However, ensure that all payment methods are traceable as per country regulations.",
-          "recommendation": "Ensure that all payment methods are traceable (bank transfers, postal transfers, credit/debit/prepaid cards, bank/cashier's checks) as per country regulations.",
-          "knowledge_base_reference": "Must be traceable: bank transfers, postal transfers, credit/debit cards, prepaid cards, bank/cashier's checks"
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for tax exemption",
+          "recommendation": "Please provide sufficient proof for tax exemption, e.g. tax receipts, invoices etc",
+          "knowledge_base_reference": "Tax exemptions will only be applied providing sufficient proof is shared e.g. tax receipts, invoices etc"
+        },
+        {
+          "issue_type": "Standards & Compliance | Follow-up Action Identified",
+          "field": "currency_exchange_rate",
+          "description": "Receipts should be submitted with the same currency and clear exchange rate",
+          "recommendation": "Please provide the receipt with the same currency and clear exchange rate",
+          "knowledge_base_reference": "Receipts should be submitted with the same currency and clear exchange rate"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt has several compliance issues, including missing mandatory fields such as customer name, address, and VAT number. The currency does not match the required local currency, and the receipt quality is not specified. Additionally, meal expenses will be grossed up as per country regulations. It is recommended to address these issues with the supplier or provider and ensure that all payment methods are traceable."
+      "compliance_summary": "The receipt has several compliance issues including missing invoice number, customer address, incomplete VAT number, and missing location country. Additionally, the meal expenses will be grossed up as they exceed the tax-free limit of 75%. Further documentation is required to support the tax exemption and the receipt should be submitted with the same currency and clear exchange rate."
     },
     "technical_details": {
       "content_type": "expense_receipt",
@@ -230,337 +227,353 @@
   },
   "citations": {
     "citations": {
-      "currency": {
-        "field_citation": {
-          "source_text": "Receipt currency",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Currency\",\"Description\":\"Receipt currency\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "£",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "£11.89",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Expense amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Amount\",\"Description\":\"Expense amount\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "£11.89",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "£11.89",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Receipt Type\",\"Description\":\"Type of supporting document\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Receipt",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\nWS#: 3\nCHK 117181\n11 Dec'24 6:47 AM",
-          "match_type": "exact"
-        }
-      },
-      "payment_method": {
-        "field_citation": {
-          "source_text": "Method of payment used",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Payment Method\",\"Description\":\"Method of payment used\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "AmEx",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "AmEx",
-          "match_type": "exact"
-        }
-      },
-      "line_items": {
-        "field_citation": {
-          "source_text": "Expense amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Amount\",\"Description\":\"Expense amount\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "1 TA Brownie Bar\n2.85\n1 TA Easy Greens\n4.99\n1 TA Mocha\n4.05",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "1 TA Brownie Bar\n2.85\n1 TA Easy Greens\n4.99\n1 TA Mocha\n4.05",
-          "match_type": "exact"
-        }
-      },
-      "transaction_identifier": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Receipt Type\",\"Description\":\"Type of supporting document\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "CHK 117181",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\nWS#: 3\nCHK 117181\n11 Dec'24 6:47 AM",
-          "match_type": "exact"
-        }
-      },
-      "date_of_transaction": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Receipt Type\",\"Description\":\"Type of supporting document\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "11 Dec'24",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\nWS#: 3\nCHK 117181\n11 Dec'24 6:47 AM",
-          "match_type": "exact"
-        }
-      },
-      "time_of_transaction": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Receipt Type\",\"Description\":\"Type of supporting document\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "6:47 AM",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\nWS#: 3\nCHK 117181\n11 Dec'24 6:47 AM",
-          "match_type": "exact"
-        }
-      },
-      "contact_information": {
-        "field_citation": {
-          "source_text": "Privacy requirement for receipts",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Personal Information\",\"Description\":\"Privacy requirement for receipts\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "www.pret.com\nTALK TO PRET",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "www.pret.com\nTALK TO PRET",
-          "match_type": "exact"
-        }
-      },
-      "tax_information": {
-        "field_citation": {
-          "source_text": "Receipt currency",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Currency\",\"Description\":\"Receipt currency\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "1.51 VAT 20%\n£7.53",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "1.51 VAT 20%\n9.04\nNet Total:\nE\n£7.53",
-          "match_type": "exact"
-        }
-      },
-      "payment_information": {
-        "field_citation": {
-          "source_text": "Method of payment used",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Payment Method\",\"Description\":\"Method of payment used\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "£11.89\n£0.00",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Payment\n£11.89\nChange Due\n£0.00",
-          "match_type": "exact"
-        }
-      },
-      "location_identifier": {
-        "field_citation": {
-          "source_text": "Privacy requirement for receipts",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Personal Information\",\"Description\":\"Privacy requirement for receipts\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ",
-          "match_type": "exact"
-        }
-      },
-      "special_notes": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Receipt Type\",\"Description\":\"Type of supporting document\"",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Check Closed",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Check Closed",
-          "match_type": "exact"
-        }
-      },
       "supplier_name": {
         "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Receipt Type\",\"Description\":\"Type of supporting document\"",
-          "match_type": "exact"
+          "source_text": "Pret A Manger (Europe) Ltd",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "VAT No. 927137420",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "Pret A Manger (Europe) Ltd",
-          "confidence": 1,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Pret A Manger (Europe) Ltd",
+          "context": "VAT No. 927137420",
+          "match_type": "exact"
+        }
+      },
+      "supplier_address": {
+        "field_citation": {
+          "source_text": "35 Praed Street",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "W2 1NJ",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "35 Praed Street",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "W2 1NJ",
           "match_type": "exact"
         }
       },
       "supplier_vat_number": {
         "field_citation": {
-          "source_text": "Local Employer VAT number as customer on supplier invoice",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type:\"Customer VAT Number on Invoice\",\"Description\":\"Local Employer VAT number as customer on supplier invoice\"",
-          "match_type": "exact"
+          "source_text": "VAT No. 927137420",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pret A Manger (Europe) Ltd",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "VAT No. 927137420",
-          "confidence": 1,
+          "source_text": "927137420",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "VAT No. 927137420",
+          "context": "VAT No.",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "13089 Almaz K",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "WS#: 3",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Almaz K",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "13089",
+          "match_type": "exact"
+        }
+      },
+      "receipt_number": {
+        "field_citation": {
+          "source_text": "CHK",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\n",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "CHK 117181",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "WS#: 3\nCHK 117181\n11 Dec'24 6:47 AM\n",
+          "match_type": "exact"
+        }
+      },
+      "transaction_reference": {
+        "field_citation": {
+          "source_text": "WS#:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\n",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "WS#: 3",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "CHK 117181\n11 Dec'24 6:47 AM\n",
+          "match_type": "exact"
+        }
+      },
+      "currency": {
+        "field_citation": {
+          "source_text": "£",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\n",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "GBP",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "AmEx\n£11.89\n",
+          "match_type": "contextual"
+        }
+      },
+      "total_amount": {
+        "field_citation": {
+          "source_text": "Net Total:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Payment\n£11.89\nChange Due\n£0.00\nCheck Closed\n",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "£11.89",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "AmEx\n£11.89\n",
+          "match_type": "exact"
+        }
+      },
+      "subtotal": {
+        "field_citation": {
+          "source_text": "Net Total:",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Payment\n£11.89\nChange Due\n£0.00\nCheck Closed\n",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "£9.04",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "Snacks\n£2.85\nCold Drinks\n£4.99\nHot Drinks\n£4.05\n",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "VAT",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\n",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "1.51 VAT",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "AmEx\n£11.89\n",
+          "match_type": "exact"
+        }
+      },
+      "tax_rate": {
+        "field_citation": {
+          "source_text": "VAT",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Praed Street\nShop Number 288\n35 Praed Street\nW2 1NJ\nToilet Code:2132\n13089 Almaz K\n",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "20%",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "AmEx\n£11.89\n",
+          "match_type": "contextual"
+        }
+      },
+      "date_of_issue": {
+        "field_citation": {
+          "source_text": "11 Dec'24",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "13089 Almaz K\nWS#: 3\nCHK 117181\n11 Dec'24 6:47 AM",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "2024-12-11",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "11 Dec'24 6:47 AM",
+          "match_type": "contextual"
+        }
+      },
+      "transaction_time": {
+        "field_citation": {
+          "source_text": "6:47 AM",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "13089 Almaz K\nWS#: 3\nCHK 117181\n11 Dec'24 6:47 AM",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "06:47:00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "11 Dec'24 6:47 AM",
+          "match_type": "contextual"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Payment",
+          "confidence": 0.85,
+          "source_location": "markdown",
+          "context": "AmEx\n£11.89\n375240xxxxx4006",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "AmEx",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "AmEx\n£11.89\n375240xxxxx4006",
+          "match_type": "exact"
+        }
+      },
+      "card_last_four": {
+        "field_citation": {
+          "source_text": "375240xxxxx4006",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "AmEx\n£11.89\n375240xxxxx4006",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "4006",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "AmEx\n£11.89\n375240xxxxx4006",
+          "match_type": "exact"
+        }
+      },
+      "special_notes": {
+        "field_citation": {
+          "source_text": "We love to hear your feedback (the good, the bad and the ugly).",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "End of the receipt",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "We love to hear your feedback (the good, the bad and the ugly).",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "End of the receipt",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 21,
-      "fields_with_field_citations": 14,
-      "fields_with_value_citations": 14,
-      "average_confidence": 1
+      "total_fields_analyzed": 32,
+      "fields_with_field_citations": 16,
+      "fields_with_value_citations": 16,
+      "average_confidence": 0.935
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "11.3",
+      "markdown_extraction_seconds": "10.4",
+      "image_quality_assessment_seconds": "4.2",
       "file_classification_seconds": "4.2",
-      "image_quality_assessment_seconds": "5.0",
-      "data_extraction_seconds": "12.9",
-      "issue_detection_seconds": "14.6",
-      "citation_generation_seconds": "45.4"
+      "data_extraction_seconds": "4.5",
+      "citation_generation_seconds": "11.7",
+      "issue_detection_seconds": "14.8"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:41:42.474Z",
-        "end_time": "2025-07-31T18:41:53.819Z",
-        "duration_seconds": "11.3",
+        "start_time": "2025-08-05T16:39:16.053Z",
+        "end_time": "2025-08-05T16:39:26.450Z",
+        "duration_seconds": "10.4",
         "document_reader_used": "textract"
       },
-      "file_classification": {
-        "start_time": "2025-07-31T18:41:53.821Z",
-        "end_time": "2025-07-31T18:41:58.019Z",
+      "image_quality_assessment": {
+        "start_time": "2025-08-05T16:39:26.451Z",
+        "end_time": "2025-08-05T16:39:30.668Z",
         "duration_seconds": "4.2",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
-      "image_quality_assessment": {
-        "start_time": "2025-07-31T18:41:53.820Z",
-        "end_time": "2025-07-31T18:41:58.816Z",
-        "duration_seconds": "5.0",
+      "file_classification": {
+        "start_time": "2025-08-05T16:39:26.453Z",
+        "end_time": "2025-08-05T16:39:30.688Z",
+        "duration_seconds": "4.2",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:41:53.821Z",
-        "end_time": "2025-07-31T18:42:06.713Z",
-        "duration_seconds": "12.9",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "issue_detection": {
-        "start_time": "2025-07-31T18:42:06.715Z",
-        "end_time": "2025-07-31T18:42:21.330Z",
-        "duration_seconds": "14.6",
+        "start_time": "2025-08-05T16:39:26.454Z",
+        "end_time": "2025-08-05T16:39:30.977Z",
+        "duration_seconds": "4.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:42:06.716Z",
-        "end_time": "2025-07-31T18:42:52.154Z",
-        "duration_seconds": "45.4",
+        "start_time": "2025-08-05T16:39:30.980Z",
+        "end_time": "2025-08-05T16:39:42.638Z",
+        "duration_seconds": "11.7",
+        "model_used": "eu.amazon.nova-micro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-05T16:39:30.978Z",
+        "end_time": "2025-08-05T16:39:45.787Z",
+        "duration_seconds": "14.8",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "69.7",
+    "total_processing_time_seconds": "29.7",
     "performance_metrics": {
-      "parallel_group_1_seconds": "12.9",
-      "parallel_group_2_seconds": "45.4",
-      "total_parallel_time_seconds": "58.3",
-      "estimated_sequential_time_seconds": "93.4",
-      "estimated_speedup_factor": "1.60"
+      "parallel_group_1_seconds": "4.5",
+      "parallel_group_2_seconds": "14.8",
+      "total_parallel_time_seconds": "19.3",
+      "estimated_sequential_time_seconds": "49.8",
+      "estimated_speedup_factor": "2.58"
     },
     "validation": {
-      "total_time_seconds": "69.7",
-      "expected_parallel_time_seconds": "69.6",
-      "sequential_sum_seconds": "93.4",
-      "difference_seconds": "0.1",
+      "total_time_seconds": "29.7",
+      "expected_parallel_time_seconds": "29.7",
+      "sequential_sum_seconds": "49.8",
+      "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "23.7"
+      "time_saved_seconds": "20.1"
     }
   },
   "metadata": {
     "filename": "Copy of italia_file_7.pdf",
-    "processing_time": 69680,
+    "processing_time": 29735,
     "country": "Italy",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:42:52.155Z",
+    "processed_at": "2025-08-05T16:39:45.789Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "12.9",
-      "parallel_group_2_duration_seconds": "45.4",
-      "estimated_sequential_time_seconds": "93.4",
-      "actual_parallel_time_seconds": "69.7"
+      "parallel_group_1_duration_seconds": "4.5",
+      "parallel_group_2_duration_seconds": "14.8",
+      "estimated_sequential_time_seconds": "49.8",
+      "actual_parallel_time_seconds": "29.7"
     }
   }
 }

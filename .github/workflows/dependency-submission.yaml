@@ -1,0 +1,21 @@
+name: Dependency Submission
+
+on:
+  pull_request_target:
+    types: [closed]
+    branches:
+      - main
+    paths-ignore:
+      - '**.md'
+      - '**/*.md'
+      - '**/.gitignore'
+      - '.gitignore'
+      - '**/CODEOWNERS'
+      - 'CODEOWNERS'
+      - '**/.dockerignore'
+      - '.dockerignore'
+
+jobs:
+  dependency-submission:
+    uses: papayaglobal/workflows/.github/workflows/dependency-submission.yaml@main
+    secrets: inherit

@@ -1,9 +1,9 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_try_007_Copy of swiss_file_8.pdf",
+    "image_path": "uploads\\AUG_5_V5_21_Copy of swiss_file_8.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T20:26:24.298Z",
+    "timestamp": "2025-08-05T19:00:58.588Z",
     "quality_score": 100,
     "quality_level": "excellent",
     "suitable_for_extraction": true,
@@ -18,7 +18,7 @@
     "contrast_assessment": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.98,
       "quantitative_measure": 1,
       "description": "Excellent contrast between text and background, ensuring clear text recognition.",
       "recommendation": "No action needed."
@@ -28,7 +28,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No glare or bright spots detected that obscure text.",
+      "description": "No glare or bright spots detected that obscure the text.",
       "recommendation": "No action needed."
     },
     "water_stains": {
@@ -36,7 +36,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No water stains or discolorations affecting document readability.",
+      "description": "No water stains or discolorations are present on the document.",
       "recommendation": "No action needed."
     },
     "tears_or_folds": {
@@ -44,7 +44,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No visible tears, folds, or creases that distort text.",
+      "description": "No tears, creases, or folds are visible on the document.",
       "recommendation": "No action needed."
     },
     "cut_off_detection": {
@@ -52,7 +52,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No document edges are cut off, and the image frame includes all relevant portions.",
+      "description": "No edges of the document are cut off or excluded from the image.",
       "recommendation": "No action needed."
     },
     "missing_sections": {
@@ -60,7 +60,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No missing sections or incomplete content in the image.",
+      "description": "All sections of the receipt/invoice are present and complete.",
       "recommendation": "No action needed."
     },
     "obstructions": {
@@ -68,14 +68,14 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No obstructions such as objects, fingers, or shadows blocking document content.",
+      "description": "No obstructions such as objects, fingers, or shadows are present.",
       "recommendation": "No action needed."
     },
     "overall_quality_score": 10
   },
   "classification": {
     "is_expense": true,
-    "expense_type": "fuel",
+    "expense_type": "other",
     "language": "German",
     "language_confidence": 95,
     "document_location": "Austria",
@@ -84,7 +84,7 @@
     "error_type": "File location is not same as project's location",
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, tax information, payment method, and item description. The presence of these fields confirms it as an expense document. The expense type is classified as 'fuel' based on the item description. The document location is Austria, which does not match the expected location of Switzerland.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, tax information, payment method, and item description. Therefore, it is classified as an expense. The expense type is classified as 'other' since it does not fit into the predefined categories. The document location is Austria, which does not match the expected location of Switzerland.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -96,637 +96,222 @@
         "paymentMethod",
         "itemDescriptionLineItems"
       ],
-      "fields_missing": [],
+      "fields_missing": [
+        "icpRequirements"
+      ],
       "total_fields_found": 8,
-      "expense_identification_reasoning": "All required fields for expense identification are present, confirming this as an expense document."
+      "expense_identification_reasoning": "The document contains 8 out of 8 required fields, clearly indicating it is an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_registration_on_invoice": null,
-    "customer_name_exception": null,
-    "currency": "EUR",
-    "amount": 12.4,
-    "receipt_type": "Rechnung",
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "car_details": null,
-    "logbook": null,
-    "combined_mileage": null,
     "supplier_name": "Eni Service-Station",
     "supplier_address": "Hohenemserstraße 1, 6890 Lustenau",
     "supplier_phone": "05577/83209",
     "supplier_fax": "05577/8320932",
-    "supplier_uid": "ATU71833625",
-    "date_of_issue": "2024-12-10",
+    "supplier_vat_number": "ATU71833625",
+    "customer_name": "Jacqueline Beer",
+    "customer_address": null,
+    "customer_phone": null,
+    "customer_email": null,
+    "invoice_number": null,
     "receipt_number": "3020/2/241210/173",
     "fiscal_number": "03020002/20241210/173",
-    "cash_register": "2",
-    "served_by": "Marion Hämmerle",
-    "cash_register_identification_number": "03020002",
+    "transaction_date": "2024-12-10",
+    "transaction_time": "08:51:38",
+    "currency": "EUR",
+    "total_amount": 12.4,
+    "subtotal": 10.33,
+    "tax_amount": 2.07,
+    "tax_rate": 20,
+    "discount_amount": null,
+    "tip_amount": null,
+    "payment_method": "VISA",
+    "card_last_four": "5883",
+    "card_expiry_date": "1229",
+    "authorization_number": "040732",
     "line_items": [
       {
         "article_number": "127511",
         "description": "VIG PKW 10T 2025",
-        "vat_rate": 20,
         "quantity": 1,
         "unit_price": 12.4,
-        "total_price": 12.4
+        "total_price": 12.4,
+        "category": null
       }
     ],
-    "total_amount": 12.4,
-    "payment_method": "VISA",
-    "authorization_number": "040732",
-    "card_number": "XXXXXXXXXXXX5883",
-    "card_valid_until": "1229",
-    "transaction_reference": "21405249/0/97",
-    "transaction_sequence": "714264/16268647681",
-    "transaction_time": "08:51",
-    "tax_details": {
-      "net_amount": 10.33,
-      "vat_amount": 2.07,
-      "vat_rate": 20
-    },
-    "sold_on_behalf_of": {
-      "name": "ASFINAG AG",
-      "address": "Schnirchgasse 17, 1030 Wien",
-      "uid": "ATU43143200"
-    },
-    "odometer_reading": 0,
-    "special_notes": "Der Verkauf von mit [C] gekennzeichneten Waren erfolgt im Namen und auf Rechnung: ASFINAG AG [C]. Daten aus geeichten Anlagen sind durch Sterne gekennzeichnet. Wir haben wieder 24 Stunden am Tag für Sie geöffnet!"
+    "receipt_type": "Service Station Receipt",
+    "document_type": "Rechnung",
+    "server_name": "Marion Hämmerle",
+    "cash_register_id": "03020002",
+    "location_city": "Lustenau",
+    "location_country": "Austria",
+    "special_notes": "Der Verkauf von mit [C] gekennzeichneten Waren erfolgt im Namen und auf Rechnung: ASFINAG AG [C]",
+    "terms_conditions": "Daten aus geeichten Anlagen sind durch Sterne gekennzeichnet. Wir haben wieder 24 Stunden am Tag für Sie geöffnet!",
+    "business_registration_number": "ATU43143200",
+    "additional_information": {
+      "trx_seq_ref": "714264/16268647681",
+      "trm_id_per_pom": "21405249/0/97",
+      "km_stand": 0
+    }
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 6,
+      "issues_count": 7,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is missing. It must show 'Global PPL CH GmbH' as the customer.",
-          "recommendation": "It is recommended to address this issue with the supplier to include 'Global PPL CH GmbH' as the customer on the invoice.",
-          "knowledge_base_reference": "FileRelatedRequirements: Customer Name on Invoice - Must show Global PPL CH GmbH as customer"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is missing. It must show 'Freigutstrasse 2 8002 Zürich, Switzerland' as the customer address.",
-          "recommendation": "It is recommended to address this issue with the supplier to include 'Freigutstrasse 2 8002 Zürich, Switzerland' as the customer address on the invoice.",
-          "knowledge_base_reference": "FileRelatedRequirements: Customer Address on Invoice - Must show Freigutstrasse 2 8002 Zürich, Switzerland"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_registration_on_invoice",
-          "description": "The customer registration on the invoice is missing. It must show 'CHE-295.369.918' as the customer registration.",
-          "recommendation": "It is recommended to address this issue with the supplier to include 'CHE-295.369.918' as the customer registration on the invoice.",
-          "knowledge_base_reference": "FileRelatedRequirements: Customer Registration on Invoice - Must show CHE-295.369.918"
+          "field": "document_type",
+          "description": "Receipt/Invoice document type is mandatory and must be an actual tax receipt or invoice.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Documents must be actual tax receipts or invoices; booking confirmations will not be sufficient."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
           "field": "currency",
-          "description": "The currency on the receipt is 'EUR', but it must be in local currency with FX rate calculation.",
-          "recommendation": "It is recommended to ensure the receipt is in local currency (CHF) with FX rate calculation provided.",
-          "knowledge_base_reference": "FileRelatedRequirements: Currency - Local currency with FX rate calculation"
+          "description": "Receipts/invoices should be reported in the local currency, which is CHF for Switzerland.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "The receipts/invoices should be reported in the local currency."
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "company_name_on_invoice",
+          "description": "The Local Employer's name and details should appear on invoices: Global PPL CH GmbH.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "The Local Employer's name and details should appear on invoices: Global PPL CH GmbH."
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "company_address_on_invoice",
+          "description": "Invoice must include address: Freigutstrasse 2 8002 Zürich, Switzerland.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Invoice must include address: Freigutstrasse 2 8002 Zürich, Switzerland."
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "company_registration_number_on_invoice",
+          "description": "Invoice must include CHE-295.369.918.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Invoice must include CHE-295.369.918."
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "receipt_type",
-          "description": "The receipt type is 'Rechnung', but additional documentation is required for mileage claims.",
-          "recommendation": "Please provide a logbook with complete route details and odometer readings, and a map with the route (Google Maps sufficient).",
-          "knowledge_base_reference": "Compliance_Policies: Mileage - Receipt is not applicable - you must provide map with route (Google Maps sufficient), car details, destination, and logbook for each car used"
+          "field": "additional_documentation",
+          "description": "Training expenses require the approval of the direct manager.",
+          "recommendation": "Please provide the approval of the direct manager for this training expense.",
+          "knowledge_base_reference": "Training expenses require the approval of the direct manager."
         },
         {
           "issue_type": "Standards & Compliance | Gross-up Identified",
-          "field": "amount",
-          "description": "The amount of CHF 12.40 is subject to tax implications as per country regulations for fuel expenses.",
-          "recommendation": "Fuel expenses will be taxed as per country regulations. Please ensure all required documentation is provided.",
-          "knowledge_base_reference": "Compliance_Policies: Business Expenses (Non-Travel) - Usually tax exempt, grossed up if not tax free"
+          "field": "gross_up_requirement",
+          "description": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.",
+          "recommendation": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.",
+          "knowledge_base_reference": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free."
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is non-compliant due to missing mandatory fields (customer name, address, and registration), incorrect currency, and lack of required documentation for mileage claims. Additionally, the amount is subject to tax implications."
+      "compliance_summary": "The receipt has several compliance issues including incorrect document type, currency, missing company name, address, and registration number on the invoice. Additionally, training expenses require manager approval and all approved expenses will be grossed up if they are not tax-free."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Switzerland",
       "icp": "Global People",
-      "receipt_type": "fuel",
-      "issues_count": 6
+      "receipt_type": "other",
+      "issues_count": 7
     }
   },
   "citations": {
-    "citations": {
-      "currency": {
-        "field_citation": {
-          "source_text": "Currency",
-          "confidence": 0.9,
-          "source_location": "requirements",
-          "context": "Receipt currency and exchange rate",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "EUR",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Gesamtbetrag: 12,40 EUR",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Summe",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "20,0 (1,000 St X 12,40 EUR)[C]",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "12,40",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Gesamtbetrag: 12,40 EUR",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Rechnung",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "### RECHNUNG",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Rechnung",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "### RECHNUNG",
-          "match_type": "exact"
-        }
-      },
-      "supplier_name": {
-        "field_citation": {
-          "source_text": "supplier name",
-          "confidence": 0.95,
-          "source_location": "requirements|markdown",
-          "context": "The supplier name appears in the invoice header.",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Eni Service-Station",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Eni Service-Station appears as the supplier name on the invoice.",
-          "match_type": "exact"
-        }
-      },
-      "supplier_address": {
-        "field_citation": {
-          "source_text": "Jacqueline Beer\nHohenemserstraße 1\n6890 Lustenau",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Eni Service-Station\nJacqueline Beer\nHohenemserstraße 1\n6890 Lustenau\nTel:05577/83209, Fax: :05577/8320932\nUID:ATU71833625",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Hohenemserstraße 1, 6890 Lustenau",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Eni Service-Station\nJacqueline Beer\nHohenemserstraße 1\n6890 Lustenau\nTel:05577/83209, Fax: :05577/8320932\nUID:ATU71833625",
-          "match_type": "exact"
-        }
-      },
-      "supplier_phone": {
-        "field_citation": {
-          "source_text": "Tel:05577/83209",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Eni Service-Station\nJacqueline Beer\nHohenemserstraße 1\n6890 Lustenau\nTel:05577/83209, Fax: :05577/8320932\nUID:ATU71833625",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "05577/83209",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Eni Service-Station\nJacqueline Beer\nHohenemserstraße 1\n6890 Lustenau\nTel:05577/83209, Fax: :05577/8320932\nUID:ATU71833625",
-          "match_type": "exact"
-        }
-      },
-      "supplier_fax": {
-        "field_citation": {
-          "source_text": "Fax: 05577/8320932",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Eni Service-Station\nJacqueline Beer\nHohenemserstraße 1\n6890 Lustenau\nTel:05577/83209, Fax: :05577/8320932\nUID:ATU71833625",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "05577/8320932",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Eni Service-Station\nJacqueline Beer\nHohenemserstraße 1\n6890 Lustenau\nTel:05577/83209, Fax: :05577/8320932\nUID:ATU71833625",
-          "match_type": "exact"
-        }
-      },
-      "supplier_uid": {
-        "field_citation": {
-          "source_text": "UID:ATU71833625",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Eni Service-Station\nJacqueline Beer\nHohenemserstraße 1\n6890 Lustenau\nTel:05577/83209, Fax: :05577/8320932\nUID:ATU71833625",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "ATU71833625",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Eni Service-Station\nJacqueline Beer\nHohenemserstraße 1\n6890 Lustenau\nTel:05577/83209, Fax: :05577/8320932\nUID:ATU71833625",
-          "match_type": "exact"
-        }
-      },
-      "date_of_issue": {
-        "field_citation": {
-          "source_text": "Datum:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Datum:\n10.12.2024 08:51:38",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "10.12.2024",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Datum:\n10.12.2024 08:51:38",
-          "match_type": "exact"
-        }
-      },
-      "receipt_number": {
-        "field_citation": {
-          "source_text": "Beleg Nr.:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Beleg Nr.:\n3020/2/241210/173",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "3020/2/241210/173",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Beleg Nr.:\n3020/2/241210/173",
-          "match_type": "exact"
-        }
-      },
-      "fiscal_number": {
-        "field_citation": {
-          "source_text": "Fiskal Nr.:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Fiskal Nr.:\n03020002/20241210/173",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "03020002/20241210/173",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Fiskal Nr.:\n03020002/20241210/173",
-          "match_type": "exact"
-        }
-      },
-      "cash_register": {
-        "field_citation": {
-          "source_text": "Kasse",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Kasse\n2",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "2",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Kasse\n2",
-          "match_type": "exact"
-        }
-      },
-      "served_by": {
-        "field_citation": {
-          "source_text": "Es bediente Sie:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Marion Hämmerle",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "Marion Hämmerle",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Kassenidentifikationsnummer: 03020002",
-          "match_type": "exact"
-        }
-      },
-      "cash_register_identification_number": {
-        "field_citation": {
-          "source_text": "Kassenidentifikationsnummer:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Es bediente Sie: Marion Hämmerle",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "03020002",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Es bediente Sie: Marion Hämmerle",
-          "match_type": "exact"
-        }
-      },
-      "line_items": {
-        "field_citation": {
-          "source_text": "ZP Art.nr Bezeichnung",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Summe, MwSt.% Menge Preis/ME",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "127511 VIG PKW 10T 2025",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Summe: 12,40 MwSt.%: 20,0 Menge: 1",
-          "match_type": "exact"
-        }
-      },
-      "total_amount": {
-        "field_citation": {
-          "source_text": "Gesamtbetrag:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "12,40 EUR",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "12,40 EUR",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Gesamtbetrag: 12,40 EUR",
-          "match_type": "exact"
-        }
-      },
-      "payment_method": {
-        "field_citation": {
-          "source_text": "VISA:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "12,40 EUR",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "VISA",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "12,40 EUR",
-          "match_type": "exact"
-        }
-      },
-      "authorization_number": {
-        "field_citation": {
-          "source_text": "Autorisierungsnummer:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "040732",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "040732",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Autorisierungsnummer: 040732",
-          "match_type": "exact"
-        }
-      },
-      "card_number": {
-        "field_citation": {
-          "source_text": "Karte:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "XXXXXXXXXXXX5883",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "XXXXXXXXXXXX5883",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Karte: XXXXXXXXXXXX5883",
-          "match_type": "exact"
-        }
-      },
-      "card_valid_until": {
-        "field_citation": {
-          "source_text": "Gültig bis:",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "1229",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "1229",
-          "confidence": 0.98,
-          "source_location": "markdown",
-          "context": "Gültig bis: 1229",
-          "match_type": "exact"
-        }
-      },
-      "transaction_reference": {
-        "field_citation": {
-          "source_text": "TRX-SEQ/REF",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Transaction sequence reference",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "714264/16268647681",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "TRX-SEQ/REF: 714264/16268647681",
-          "match_type": "exact"
-        }
-      },
-      "transaction_sequence": {
-        "field_citation": {
-          "source_text": "TRX-SEQ/REF",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Transaction sequence reference",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "714264/16268647681",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "TRX-SEQ/REF: 714264/16268647681",
-          "match_type": "exact"
-        }
-      },
-      "transaction_time": {
-        "field_citation": {
-          "source_text": "10.12.2024 08:51",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Transaction time",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "08:51",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "10.12.2024 08:51",
-          "match_type": "exact"
-        }
-      },
-      "net_amount": {
-        "field_citation": {
-          "source_text": "Summe",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "Net amount",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "10.33",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "Summe: 10.33",
-          "match_type": "exact"
-        }
-      },
-      "vat_amount": {
-        "field_citation": {
-          "source_text": "MwSt",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "VAT amount",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "2.07",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "MwSt: 2.07",
-          "match_type": "exact"
-        }
-      },
-      "vat_rate": {
-        "field_citation": {
-          "source_text": "MwSt%",
-          "confidence": 0.95,
-          "source_location": "requirements",
-          "context": "VAT rate",
-          "match_type": "contextual"
-        },
-        "value_citation": {
-          "source_text": "20",
-          "confidence": 0.95,
-          "source_location": "markdown",
-          "context": "MwSt%: 20",
-          "match_type": "exact"
-        }
-      }
-    },
+    "citations": {},
     "metadata": {
-      "total_fields_analyzed": 32,
-      "fields_with_field_citations": 27,
-      "fields_with_value_citations": 27,
-      "average_confidence": 0.95371875
+      "total_fields_analyzed": 0,
+      "fields_with_field_citations": 0,
+      "fields_with_value_citations": 0,
+      "average_confidence": 0
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "13.8",
-      "file_classification_seconds": "4.1",
-      "image_quality_assessment_seconds": "4.6",
-      "data_extraction_seconds": "8.5",
-      "issue_detection_seconds": "13.1",
-      "citation_generation_seconds": "19.4"
+      "markdown_extraction_seconds": "9.7",
+      "file_classification_seconds": "3.4",
+      "image_quality_assessment_seconds": "5.0",
+      "data_extraction_seconds": "6.1",
+      "issue_detection_seconds": "15.6",
+      "citation_generation_seconds": "18.9"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T20:26:05.970Z",
-        "end_time": "2025-07-31T20:26:19.737Z",
-        "duration_seconds": "13.8",
+        "start_time": "2025-08-05T19:00:43.875Z",
+        "end_time": "2025-08-05T19:00:53.580Z",
+        "duration_seconds": "9.7",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T20:26:19.739Z",
-        "end_time": "2025-07-31T20:26:23.866Z",
-        "duration_seconds": "4.1",
+        "start_time": "2025-08-05T19:00:53.587Z",
+        "end_time": "2025-08-05T19:00:57.007Z",
+        "duration_seconds": "3.4",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-07-31T20:26:19.738Z",
-        "end_time": "2025-07-31T20:26:24.298Z",
-        "duration_seconds": "4.6",
+        "start_time": "2025-08-05T19:00:53.582Z",
+        "end_time": "2025-08-05T19:00:58.588Z",
+        "duration_seconds": "5.0",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T20:26:19.740Z",
-        "end_time": "2025-07-31T20:26:28.275Z",
-        "duration_seconds": "8.5",
+        "start_time": "2025-08-05T19:00:53.589Z",
+        "end_time": "2025-08-05T19:00:59.660Z",
+        "duration_seconds": "6.1",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T20:26:28.275Z",
-        "end_time": "2025-07-31T20:26:41.389Z",
-        "duration_seconds": "13.1",
+        "start_time": "2025-08-05T19:00:59.661Z",
+        "end_time": "2025-08-05T19:01:15.226Z",
+        "duration_seconds": "15.6",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T20:26:28.276Z",
-        "end_time": "2025-07-31T20:26:47.720Z",
-        "duration_seconds": "19.4",
+        "start_time": "2025-08-05T19:00:59.664Z",
+        "end_time": "2025-08-05T19:01:18.581Z",
+        "duration_seconds": "18.9",
         "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "41.8",
+    "total_processing_time_seconds": "34.7",
     "performance_metrics": {
-      "parallel_group_1_seconds": "8.5",
-      "parallel_group_2_seconds": "19.4",
-      "total_parallel_time_seconds": "28.0",
-      "estimated_sequential_time_seconds": "63.5",
-      "estimated_speedup_factor": "2.27"
+      "parallel_group_1_seconds": "6.1",
+      "parallel_group_2_seconds": "18.9",
+      "total_parallel_time_seconds": "25.0",
+      "estimated_sequential_time_seconds": "58.7",
+      "estimated_speedup_factor": "2.35"
     },
     "validation": {
-      "total_time_seconds": "41.8",
-      "expected_parallel_time_seconds": "41.7",
-      "sequential_sum_seconds": "63.5",
-      "difference_seconds": "0.1",
+      "total_time_seconds": "34.7",
+      "expected_parallel_time_seconds": "34.7",
+      "sequential_sum_seconds": "58.7",
+      "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "21.7"
+      "time_saved_seconds": "24.0"
     }
   },
   "metadata": {
     "filename": "Copy of swiss_file_8.pdf",
-    "processing_time": 41751,
+    "processing_time": 34707,
     "country": "Switzerland",
     "icp": "Global People",
-    "processed_at": "2025-07-31T20:26:47.721Z",
+    "processed_at": "2025-08-05T19:01:18.584Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "8.5",
-      "parallel_group_2_duration_seconds": "19.4",
-      "estimated_sequential_time_seconds": "63.5",
-      "actual_parallel_time_seconds": "41.8"
+      "parallel_group_1_duration_seconds": "6.1",
+      "parallel_group_2_duration_seconds": "18.9",
+      "estimated_sequential_time_seconds": "58.7",
+      "actual_parallel_time_seconds": "34.7"
     }
   }
 }

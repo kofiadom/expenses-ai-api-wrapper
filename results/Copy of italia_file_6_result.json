@@ -1,77 +1,77 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_016_Copy of italia_file_6.pdf",
+    "image_path": "uploads\\AUG_5_V5_10_Copy of italia_file_6.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:40:07.277Z",
-    "quality_score": 60,
-    "quality_level": "good",
-    "suitable_for_extraction": true,
+    "timestamp": "2025-08-05T16:38:36.560Z",
+    "quality_score": 40,
+    "quality_level": "fair",
+    "suitable_for_extraction": false,
     "blur_detection": {
+      "detected": true,
+      "severity_level": "high",
+      "confidence_score": 0.9,
+      "quantitative_measure": 0.8,
+      "description": "The text and edges are significantly blurred, making it difficult to read.",
+      "recommendation": "Re-scan the document with a higher resolution and ensure the camera is stable."
+    },
+    "contrast_assessment": {
       "detected": true,
       "severity_level": "medium",
       "confidence_score": 0.8,
       "quantitative_measure": 0.5,
-      "description": "The text and edges show moderate blur, likely due to low resolution or scanning quality.",
-      "recommendation": "Enhance image resolution or re-scan the document for better clarity."
+      "description": "The contrast between text and background is moderate, which may affect text recognition.",
+      "recommendation": "Improve lighting conditions and ensure uniform background."
     },
-    "contrast_assessment": {
+    "glare_identification": {
       "detected": true,
       "severity_level": "low",
       "confidence_score": 0.7,
-      "quantitative_measure": 0.7,
-      "description": "The contrast between text and background is adequate but could be improved for better readability.",
-      "recommendation": "Adjust contrast settings or use a higher-quality scan."
-    },
-    "glare_identification": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.9,
-      "quantitative_measure": 0,
-      "description": "No glare or overexposed regions are detected in the image.",
-      "recommendation": "No action needed."
+      "quantitative_measure": 0.1,
+      "description": "Minor glare is present but does not significantly obscure the text.",
+      "recommendation": "Adjust the angle of the document to minimize glare."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 1,
       "quantitative_measure": 0,
-      "description": "There are no visible water stains or discolorations on the document.",
-      "recommendation": "No action needed."
+      "description": "No water stains are detected on the document.",
+      "recommendation": "None required."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 1,
       "quantitative_measure": 0,
-      "description": "No tears, folds, or creases are visible in the document.",
-      "recommendation": "No action needed."
+      "description": "No tears or folds are detected on the document.",
+      "recommendation": "None required."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.9,
-      "quantitative_measure": 0,
-      "description": "No edges of the document appear to be cut off.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.3,
+      "description": "Approximately 30% of the document edges are cut off.",
+      "recommendation": "Re-scan the document ensuring all edges are included."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 1,
       "quantitative_measure": 0,
-      "description": "All sections of the document appear to be fully captured.",
-      "recommendation": "No action needed."
+      "description": "No missing sections are detected on the document.",
+      "recommendation": "None required."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.9,
+      "confidence_score": 1,
       "quantitative_measure": 0,
-      "description": "There are no obstructions or shadows blocking the document content.",
-      "recommendation": "No action needed."
+      "description": "No obstructions are detected on the document.",
+      "recommendation": "None required."
     },
-    "overall_quality_score": 6
+    "overall_quality_score": 4
   },
   "classification": {
     "is_expense": true,
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice number, tax information, payment method, and item description. The presence of these fields, along with the detailed breakdown of the fare and taxes, confirms it as an expense document related to a flight.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, taxInformation, paymentMethod, and itemDescriptionLineItems. The presence of these fields, along with the detailed breakdown of the fare and taxes, confirms it as an expense document related to a flight.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -98,181 +98,354 @@
       ],
       "fields_missing": [],
       "total_fields_found": 8,
-      "expense_identification_reasoning": "All required fields for expense identification are present, including detailed transaction information, taxes, and payment method."
+      "expense_identification_reasoning": "All required fields for expense identification are present, and the document details a completed flight transaction with payment confirmation."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_vat_number_on_invoice": null,
-    "customer_tax_code_on_invoice": null,
-    "currency": "EUR",
-    "amount": 460.86,
-    "receipt_type": "Receipt",
-    "receipt_quality": null,
-    "payment_method": "CC VI XXXXXXXXXXXX2982 ExpXXXX S385619",
-    "vehicle_make_model": null,
-    "vehicle_fuel_type": null,
-    "distance_traveled": null,
-    "route_documentation": null,
-    "car_registration": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "per_diem_method": null,
-    "name": "Papadia Fabio Mr (ADT)",
+    "supplier_name": "Finnair",
+    "customer_name": "Papadia Fabio Mr",
     "ticket_number": "105 2485452619",
+    "form_of_payment": "CC VI XXXXXXXXXXXX2982 ExpXXXX S385619",
     "fare": 388,
+    "currency": "EUR",
     "taxes": [
-      2.09,
-      7.5,
-      17.52,
-      1.53,
-      3.35,
-      5.99,
-      11.71,
-      5.83,
-      2.7,
-      5.83,
-      8.81
+      {
+        "code": "EX",
+        "amount": 2.09
+      },
+      {
+        "code": "HB",
+        "amount": 7.5
+      },
+      {
+        "code": "IT",
+        "amount": 17.52
+      },
+      {
+        "code": "MJ",
+        "amount": 1.53
+      },
+      {
+        "code": "VT",
+        "amount": 3.35
+      },
+      {
+        "code": "DQ",
+        "amount": 5.99
+      },
+      {
+        "code": "QU",
+        "amount": 11.71
+      },
+      {
+        "code": "WL",
+        "amount": 5.83
+      },
+      {
+        "code": "XU",
+        "amount": 2.7
+      },
+      {
+        "code": "ZX",
+        "amount": 5.83
+      },
+      {
+        "code": "DV",
+        "amount": 8.81
+      }
     ],
-    "issuing_airline_and_date": "FINNAIR 07Jan25",
+    "issuing_airline": "FINNAIR",
+    "issuing_date": "2025-01-07",
     "iata": "38497745",
     "restrictions_endorsements": "Chng Foc/Non Ref",
     "fare_calculation": "ROM AY X/HEL AY OUL214.90AY X/HEL AY ROM193.53NUC408.43END ROE0.948998",
     "grand_total": 460.86,
-    "baggage_allowance": [
-      {
-        "type": "1st Checked Bag",
-        "weight": "23KGS",
-        "charge": "Free of Charge"
-      },
-      {
-        "type": "CARRY-ON BAG",
-        "weight": "8KG 18LB",
-        "charge": "Free of Charge"
-      }
-    ],
-    "baggage_prohibited": "NOT APPLICABLE",
-    "units": {
-      "LB": "Weight In Pounds",
-      "KG": "Weight In Kilos",
-      "LI": "Linear Inches",
-      "LCM": "Linear Centimeters",
-      "MAX": "Maximum Allowed",
-      "PC": "Number of Pieces"
+    "baggage_information": {
+      "checked_bag": "Free of Charge",
+      "checked_baggage_limit": "UP TO 23KGS",
+      "carry_on_bag": "Free of Charge",
+      "carry_on_baggage_limit": "SMALL BAG UPTO 85LCM AND/OR CARRY8KG 18LB UPTO46LI 118LCM",
+      "prohibited_baggage": "NOT APPLICABLE"
     },
-    "special_notes": [
-      "Baggage allowance and charges are provided for information only.",
-      "Additional discounts may apply depending on advance purchase or Flyer-specific factors.",
-      "Most carriers' e-tickets have expiration dates and conditions of use. Check the carrier's fare rules for more information.",
-      "If the passengers journey involves an ultimate destination or stop in a country other than the country of departure, the Montreal or the Warsaw Convention may be applicable.",
-      "Information about prohibited or restricted materials as baggage, baggage allowance and conditions of carriage and notices is available at any Finnair service point or at www.finnair.com.",
-      "The carriage of certain hazardous materials, like aerosols, fireworks, and flammable liquids, aboard the aircraft is forbidden.",
-      "Data Protection Notice: Your personal data will be processed in accordance with the applicable carrier's privacy policy.",
-      "Flight must always be used in sequence as shown on the ticket. If you leave any part of your flights unused, the remaining flights will be automatically cancelled.",
-      "You can check in online 36 hours before departure when your journey begins with a Finnair flight at www.finnair.com/checkin.",
-      "If you use the self-service kiosk at the airport, please use the barcode from your boarding pass or e-ticket."
-    ]
+    "document_type": "Receipt",
+    "special_notes": "Baggage allowance and charges are provided for information only. Additional discounts may apply depending on advance purchase or Flyer-specific factors.",
+    "terms_conditions": "If the passengers journey involves an ultimate destination or stop in a country other than the country of departure, the Montreal or the Warsaw Convention may be applicable.",
+    "customer_feedback": "www.finnair.com/feedback",
+    "website": "WWW.FINNAIR.COM",
+    "data_protection_notice": "Your personal data will be processed in accordance with the applicable carrier's privacy policy.",
+    "flight_sequence_notice": "Flight must always be used in sequence as shown on the ticket.",
+    "online_checkin_url": "www.finnair.com/checkin"
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 6,
+      "issues_count": 3,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The customer name on the invoice is missing. It must show either 'Global People s.r.l.' or 'GoGlobal Consulting S.r.l.' as customer.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer name is displayed.",
-          "knowledge_base_reference": "Must show Global People s.r.l. as customer or GoGlobal Consulting S.r.l as customer"
+          "field": "customer_name",
+          "description": "The receipt should use the local employer name instead of the individual employee's name as per the compliance requirements.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Worker name on travel documents - 'Where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, the workers name and details should be used' and End client name prohibition - 'The end client shouldn't be mentioned'."
         },
         {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The customer address on the invoice is missing. It must show either 'Via Venti Settembre 3, Torino (TO) CAP 10121, Italy' or 'Via Uberto Visconti Di Modrone 38, 20122 Milano, Italia' as customer address.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer address is displayed.",
-          "knowledge_base_reference": "Must show Via Venti Settembre 3, Torino (TO) CAP 10121, Italy or Via Uberto Visconti Di Modrone 38, 20122 Milano, Italia"
-        },
-        {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "The customer VAT number on the invoice is missing. It must show either 'IT12455930011' or 'P.IVA 12205930964' as customer VAT number.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer VAT number is displayed.",
-          "knowledge_base_reference": "Must show IT12455930011 or P.IVA 12205930964"
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "taxes",
+          "description": "The receipt indicates various taxes, which will be subject to gross-up as per the compliance policy.",
+          "recommendation": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax-free.",
+          "knowledge_base_reference": "Gross-up rule for all approved expenses - 'All approved expenses will be paid as NET to the employee and grossed up if they are not tax free'."
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "customer_tax_code_on_invoice",
-          "description": "The customer tax code on the invoice is missing. It must show '12455930011' as customer tax code for Global People s.r.l.",
-          "recommendation": "It is recommended to address this issue with the supplier or provider to ensure the correct customer tax code is displayed.",
-          "knowledge_base_reference": "Must show 12455930011"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "receipt_quality",
-          "description": "The receipt quality is not specified. It must be scanned, clear, and readable.",
-          "recommendation": "Ensure the receipt is scanned and meets the required quality standards.",
-          "knowledge_base_reference": "Must be scanned (not photos), clear and readable"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "business_trip_reporting",
-          "description": "Business trip reporting is missing. A separate report must be submitted for each business trip.",
-          "recommendation": "Submit a separate report for this business trip.",
-          "knowledge_base_reference": "Submit separate report for each business trip"
+          "field": "additional_documentation",
+          "description": "Additional documentation is required for the business trip as per the compliance policy.",
+          "recommendation": "Submit a separate report for each business trip.",
+          "knowledge_base_reference": "Additional information requirement for business trips - 'Business Trip - submit a separate report for each trip'."
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is not fully compliant with the required standards. Several mandatory fields are missing, and additional documentation is required. The issues need to be addressed with the supplier or provider to ensure compliance."
+      "compliance_summary": "The receipt has issues with the customer name, tax implications requiring gross-up, and missing additional documentation for the business trip. These issues need to be addressed to ensure compliance with the specified ICP and country requirements."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Italy",
       "icp": "Global People",
       "receipt_type": "flights",
-      "issues_count": 6
+      "issues_count": 3
     }
   },
   "citations": {
     "citations": {
+      "supplier_name": {
+        "field_citation": {
+          "source_text": "Issuing Airline and date",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Issuing Airline and date: FINNAIR 07Jan25",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "FINNAIR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Issuing Airline and date: FINNAIR 07Jan25",
+          "match_type": "exact"
+        }
+      },
+      "customer_name": {
+        "field_citation": {
+          "source_text": "Name",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Name: Papadia Fabio Mr (ADT)",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Papadia Fabio Mr (ADT)",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Name: Papadia Fabio Mr (ADT)",
+          "match_type": "exact"
+        }
+      },
+      "ticket_number": {
+        "field_citation": {
+          "source_text": "Ticket number",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ticket number: 105 2485452619",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "105 2485452619",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Ticket number: 105 2485452619",
+          "match_type": "exact"
+        }
+      },
+      "form_of_payment": {
+        "field_citation": {
+          "source_text": "Form of payment",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Form of payment: CC VI XXXXXXXXXXXX2982 ExpXXXX S385619",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "CC VI XXXXXXXXXXXX2982 ExpXXXX S385619",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Form of payment: CC VI XXXXXXXXXXXX2982 ExpXXXX S385619",
+          "match_type": "exact"
+        }
+      },
+      "fare": {
+        "field_citation": {
+          "source_text": "Fare",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Fare: EUR 388.00",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "388.00",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Fare: EUR 388.00",
+          "match_type": "exact"
+        }
+      },
       "currency": {
         "field_citation": {
-          "source_text": "Receipt currency",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt_Type:\"All\", ICP_Specific?:\"No\", ICP_Name:\"All ICPs\", Mandatory/Optional:\"Mandatory\", Rule:\"Same currency with clear exchange rate\"",
-          "match_type": "exact"
+          "source_text": "Fare",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Fare: EUR 388.00",
+          "match_type": "contextual"
         },
         "value_citation": {
           "source_text": "EUR",
-          "confidence": 1,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Fare : EUR 388.00",
+          "context": "Fare: EUR 388.00",
           "match_type": "exact"
         }
       },
-      "amount": {
+      "taxes": {
         "field_citation": {
-          "source_text": "Expense amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt_Type:\"All\", ICP_Specific?:\"No\", ICP_Name:\"All ICPs\", Mandatory/Optional:\"Mandatory\", Rule:\"Must be clearly stated on receipt\"",
+          "source_text": "Taxes",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Taxes: EUR 2.09 EX EUR 7.50 HB EUR 17.52 IT EUR 1.53 MJ EUR 3.35 VT EUR 5.99 DQ EUR 11.71 QU EUR 5.83 WL EUR 2.70 XU EUR 5.83 ZX EUR 8.81 DV",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "460.86",
-          "confidence": 1,
+          "source_text": "2.09",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Grand Total : EUR 460.86",
+          "context": "Taxes: EUR 2.09 EX EUR 7.50 HB EUR 17.52 IT EUR 1.53 MJ EUR 3.35 VT EUR 5.99 DQ EUR 11.71 QU EUR 5.83 WL EUR 2.70 XU EUR 5.83 ZX EUR 8.81 DV",
           "match_type": "exact"
         }
       },
-      "receipt_type": {
+      "issuing_airline": {
         "field_citation": {
-          "source_text": "Type of supporting document",
+          "source_text": "Issuing Airline and date",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Issuing Airline and date: FINNAIR 07Jan25",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "FINNAIR",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Issuing Airline and date: FINNAIR 07Jan25",
+          "match_type": "exact"
+        }
+      },
+      "issuing_date": {
+        "field_citation": {
+          "source_text": "Issuing Airline and date",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Issuing Airline and date: FINNAIR 07Jan25",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "07Jan25",
           "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt_Type:\"All\", ICP_Specific?:\"No\", ICP_Name:\"All ICPs\", Mandatory/Optional:\"Mandatory\", Rule:\"Must be actual tax receipts or invoices, not booking confirmations\"",
+          "source_location": "markdown",
+          "context": "Issuing Airline and date: FINNAIR 07Jan25",
+          "match_type": "exact"
+        }
+      },
+      "iata": {
+        "field_citation": {
+          "source_text": "IATA",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "IATA: 38497745",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "38497745",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "IATA: 38497745",
+          "match_type": "exact"
+        }
+      },
+      "restrictions_endorsements": {
+        "field_citation": {
+          "source_text": "Restriction(s)/Endorsements",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Restriction(s)/Endorsements: Chng Foc/Non Ref",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "Chng Foc/Non Ref",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Restriction(s)/Endorsements: Chng Foc/Non Ref",
+          "match_type": "exact"
+        }
+      },
+      "fare_calculation": {
+        "field_citation": {
+          "source_text": "Fare Calculation",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Fare Calculation: ROM AY X/HEL AY OUL214.90AY X/HEL AY ROM193.53NUC408.43END ROE0.948998",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "ROM AY X/HEL AY OUL214.90AY X/HEL AY ROM193.53NUC408.43END ROE0.948998",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Fare Calculation: ROM AY X/HEL AY OUL214.90AY X/HEL AY ROM193.53NUC408.43END ROE0.948998",
+          "match_type": "exact"
+        }
+      },
+      "grand_total": {
+        "field_citation": {
+          "source_text": "Grand Total",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Grand Total: EUR 460.86",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "EUR 460.86",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Grand Total: EUR 460.86",
+          "match_type": "exact"
+        }
+      },
+      "baggage_information": {
+        "field_citation": {
+          "source_text": "Baggage allowance and charges are provided for information only.",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Baggage allowance and charges are provided for information only. Additional discounts may apply depending on advance purchase or Flyer-specific factors.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Free of Charge",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "1st Checked Bag: Free of Charge\nCHECKED BAGGAGE UP TO 23KGS OR MUSICAL INSTRUMENT MEDIUM 23KG OR\nAMMUNITION OR HOCKEY EQUIPMENT UP TO 23KG\nCARRY-ON BAG:\nFCOHEL: MAX\n1PC\nFree of Charge\nSMALL BAG UPTO 85LCM AND/OR CARRY8KG 18LB UPTO46LI 118LCM",
+          "match_type": "exact"
+        }
+      },
+      "document_type": {
+        "field_citation": {
+          "source_text": "Receipt",
+          "confidence": 1,
+          "source_location": "markdown",
+          "context": "Receipt",
           "match_type": "exact"
         },
         "value_citation": {
@@ -283,225 +456,209 @@
           "match_type": "exact"
         }
       },
-      "payment_method": {
+      "special_notes": {
         "field_citation": {
-          "source_text": "Method of payment used",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt_Type:\"All\", ICP_Specific?:\"No\", ICP_Name:\"All ICPs\", Mandatory/Optional:\"Mandatory\", Rule:\"Must be traceable: bank transfers, postal transfers, credit/debit cards, prepaid cards, bank/cashier's checks\"",
-          "match_type": "exact"
+          "source_text": "Baggage allowance and charges are provided for information only.",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Baggage allowance and charges are provided for information only. Additional discounts may apply depending on advance purchase or Flyer-specific factors.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "CC VI XXXXXXXXXXXX2982 ExpXXXX S385619",
+          "source_text": "Baggage allowance and charges are provided for information only. Additional discounts may apply depending on advance purchase or Flyer-specific factors.",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Form of payment : CC VI XXXXXXXXXXXX2982 ExpXXXX S385619",
+          "context": "Baggage allowance and charges are provided for information only. Additional discounts may apply depending on advance purchase or Flyer-specific factors.",
           "match_type": "exact"
         }
       },
-      "fare": {
+      "terms_conditions": {
         "field_citation": {
-          "source_text": "Expense amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt_Type:\"All\", ICP_Specific?:\"No\", ICP_Name:\"All ICPs\", Mandatory/Optional:\"Mandatory\", Rule:\"Must be clearly stated on receipt\"",
+          "source_text": "If the passengers journey involves an ultimate destination or stop in a country other than the country of departure, the Montreal or the Warsaw Convention may be applicable.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The Convention governs and in most cases limits the liability of carriers for death or personal injury and in respect of loss or damage to baggage.",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "applicable.",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "If the passengers journey involves an ultimate destination or stop in a country other than the country of departure, the Montreal or the Warsaw Convention may be",
+          "match_type": "contextual"
+        }
+      },
+      "customer_feedback": {
+        "field_citation": {
+          "source_text": "Finnair customer feedback: www.finnair.com/feedback",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Information about prohibited or restricted materials as baggage, baggage allowance and conditions of carriage and notices is available at any Finnair service point or at www.finnair.com.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "388",
-          "confidence": 1,
+          "source_text": "www.finnair.com/feedback",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Fare : EUR 388.00",
+          "context": "Finnair customer feedback: www.finnair.com/feedback",
           "match_type": "exact"
         }
       },
-      "taxes": {
+      "website": {
         "field_citation": {
-          "source_text": "Taxes",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "No specific field type for taxes, but generally required in receipts",
-          "match_type": "exact"
+          "source_text": "WWW.FINNAIR.COM I WWW.FINNAIR.FI",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "The carriage of certain hazardous materials, like aerosols, fireworks, and flammable liquids, aboard the aircraft is forbidden.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "2.09, 7.5, 17.52, 1.53, 3.35, 5.99, 11.71, 5.83, 2.7, 5.83, 8.81",
-          "confidence": 1,
+          "source_text": "WWW.FINNAIR.COM",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Taxes : EUR 2.09 EX EUR 7.50 HB EUR 17.52 IT EUR 1.53 MJ EUR 3.35 VT EUR 5.99 DQ EUR 11.71 QU EUR 5.83 WL EUR 2.70 XU EUR 5.83 ZX EUR 8.81 DV",
+          "context": "WWW.FINNAIR.COM I WWW.FINNAIR.FI",
           "match_type": "exact"
         }
       },
-      "issuing_airline_and_date": {
+      "data_protection_notice": {
         "field_citation": {
-          "source_text": "Issuing Airline and date",
-          "confidence": 1,
+          "source_text": "Data Protection Notice: Your personal data will be processed in accordance with the applicable carrier's privacy policy.",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Issuing Airline and date : FINNAIR 07Jan25",
+          "context": "These are available at http://www.iatatravelcenter.com/privacy or from the carrier or GDS directly.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "FINNAIR 07Jan25",
-          "confidence": 1,
+          "source_text": "Your personal data will be processed in accordance with the applicable carrier's privacy policy.",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Issuing Airline and date : FINNAIR 07Jan25",
+          "context": "Data Protection Notice: Your personal data will be processed in accordance with the applicable carrier's privacy policy.",
           "match_type": "exact"
         }
       },
-      "iata": {
+      "flight_sequence_notice": {
         "field_citation": {
-          "source_text": "IATA",
-          "confidence": 1,
+          "source_text": "Flight must always be used in sequence as shown on the ticket.",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "IATA : 38497745",
+          "context": "If you leave any part of your flights unused, the remaining flights will be automatically cancelled.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "38497745",
-          "confidence": 1,
+          "source_text": "Flight must always be used in sequence as shown on the ticket.",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "IATA : 38497745",
+          "context": "Flight must always be used in sequence as shown on the ticket.",
           "match_type": "exact"
         }
       },
-      "restrictions_endorsements": {
+      "online_checkin_url": {
         "field_citation": {
-          "source_text": "Restriction(s)/Endorsements",
-          "confidence": 1,
+          "source_text": "You can check in online 36 hours before departure when your journey begins with a Finnair flight at www.finnair.com/checkin.",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Restriction(s)/Endorsements : Chng Foc/Non Ref",
-          "match_type": "exact"
+          "context": "If you use the self-service kiosk at the airport, please use the barcode from your boarding pass or e-ticket.",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "Chng Foc/Non Ref",
-          "confidence": 1,
+          "source_text": "www.finnair.com/checkin",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Restriction(s)/Endorsements : Chng Foc/Non Ref",
-          "match_type": "exact"
-        }
-      },
-      "fare_calculation": {
-        "field_citation": {
-          "source_text": "Fare Calculation",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Fare Calculation : ROM AY X/HEL AY OUL214.90AY X/HEL AY ROM193.53NUC408.43END ROE0.948998",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "ROM AY X/HEL AY OUL214.90AY X/HEL AY ROM193.53NUC408.43END ROE0.948998",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Fare Calculation : ROM AY X/HEL AY OUL214.90AY X/HEL AY ROM193.53NUC408.43END ROE0.948998",
-          "match_type": "exact"
-        }
-      },
-      "grand_total": {
-        "field_citation": {
-          "source_text": "Grand Total",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Grand Total : EUR 460.86",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "460.86",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Grand Total : EUR 460.86",
+          "context": "You can check in online 36 hours before departure when your journey begins with a Finnair flight at www.finnair.com/checkin.",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 19,
-      "fields_with_field_citations": 11,
-      "fields_with_value_citations": 11,
-      "average_confidence": 1
+      "total_fields_analyzed": 22,
+      "fields_with_field_citations": 22,
+      "fields_with_value_citations": 22,
+      "average_confidence": 0.9572727272727272
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "7.4",
-      "image_quality_assessment_seconds": "4.0",
-      "file_classification_seconds": "4.1",
-      "data_extraction_seconds": "13.0",
-      "issue_detection_seconds": "17.6",
-      "citation_generation_seconds": "30.7"
+      "markdown_extraction_seconds": "8.4",
+      "file_classification_seconds": "4.3",
+      "image_quality_assessment_seconds": "6.1",
+      "data_extraction_seconds": "8.3",
+      "issue_detection_seconds": "8.6",
+      "citation_generation_seconds": "13.1"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:39:55.932Z",
-        "end_time": "2025-07-31T18:40:03.293Z",
-        "duration_seconds": "7.4",
+        "start_time": "2025-08-05T16:38:22.109Z",
+        "end_time": "2025-08-05T16:38:30.508Z",
+        "duration_seconds": "8.4",
         "document_reader_used": "textract"
       },
-      "image_quality_assessment": {
-        "start_time": "2025-07-31T18:40:03.294Z",
-        "end_time": "2025-07-31T18:40:07.277Z",
-        "duration_seconds": "4.0",
+      "file_classification": {
+        "start_time": "2025-08-05T16:38:30.511Z",
+        "end_time": "2025-08-05T16:38:34.810Z",
+        "duration_seconds": "4.3",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
-      "file_classification": {
-        "start_time": "2025-07-31T18:40:03.295Z",
-        "end_time": "2025-07-31T18:40:07.418Z",
-        "duration_seconds": "4.1",
+      "image_quality_assessment": {
+        "start_time": "2025-08-05T16:38:30.509Z",
+        "end_time": "2025-08-05T16:38:36.560Z",
+        "duration_seconds": "6.1",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:40:03.296Z",
-        "end_time": "2025-07-31T18:40:16.263Z",
-        "duration_seconds": "13.0",
+        "start_time": "2025-08-05T16:38:30.512Z",
+        "end_time": "2025-08-05T16:38:38.830Z",
+        "duration_seconds": "8.3",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T18:40:16.264Z",
-        "end_time": "2025-07-31T18:40:33.907Z",
-        "duration_seconds": "17.6",
+        "start_time": "2025-08-05T16:38:38.832Z",
+        "end_time": "2025-08-05T16:38:47.456Z",
+        "duration_seconds": "8.6",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:40:16.265Z",
-        "end_time": "2025-07-31T18:40:46.946Z",
-        "duration_seconds": "30.7",
-        "model_used": "eu.amazon.nova-pro-v1:0",
+        "start_time": "2025-08-05T16:38:38.833Z",
+        "end_time": "2025-08-05T16:38:51.959Z",
+        "duration_seconds": "13.1",
+        "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "51.0",
+    "total_processing_time_seconds": "29.9",
     "performance_metrics": {
-      "parallel_group_1_seconds": "13.0",
-      "parallel_group_2_seconds": "30.7",
-      "total_parallel_time_seconds": "43.7",
-      "estimated_sequential_time_seconds": "76.8",
-      "estimated_speedup_factor": "1.76"
+      "parallel_group_1_seconds": "8.3",
+      "parallel_group_2_seconds": "13.1",
+      "total_parallel_time_seconds": "21.4",
+      "estimated_sequential_time_seconds": "48.8",
+      "estimated_speedup_factor": "2.28"
     },
     "validation": {
-      "total_time_seconds": "51.0",
-      "expected_parallel_time_seconds": "51.1",
-      "sequential_sum_seconds": "76.8",
+      "total_time_seconds": "29.9",
+      "expected_parallel_time_seconds": "29.8",
+      "sequential_sum_seconds": "48.8",
       "difference_seconds": "0.1",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "25.8"
+      "time_saved_seconds": "18.9"
     }
   },
   "metadata": {
     "filename": "Copy of italia_file_6.pdf",
-    "processing_time": 51015,
+    "processing_time": 29851,
     "country": "Italy",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:40:46.947Z",
+    "processed_at": "2025-08-05T16:38:51.960Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "13.0",
-      "parallel_group_2_duration_seconds": "30.7",
-      "estimated_sequential_time_seconds": "76.8",
-      "actual_parallel_time_seconds": "51.0"
+      "parallel_group_1_duration_seconds": "8.3",
+      "parallel_group_2_duration_seconds": "13.1",
+      "estimated_sequential_time_seconds": "48.8",
+      "actual_parallel_time_seconds": "29.9"
     }
   }
 }

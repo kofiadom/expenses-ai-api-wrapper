@@ -1,0 +1,68 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: "expenses-ai"
+  title: "Expenses-Ai Service"
+  annotations:
+    github.com/project-slug: papayaglobal/expenses-ai
+    backstage.io/techdocs-ref: dir:.
+    backstage.io/code-coverage: enabled
+    backstage.io/kubernetes-namespace: "papaya"
+    backstage.io/kubernetes-label-selector: 'app.kubernetes.io/name=expenses-ai'
+    argocd/app-name: "expenses-ai"
+    argocd/app-namespace: "papaya"
+  tags:
+    - backend
+    - node
+  labels:
+    papayaglobal.com/division: payroll
+  links:
+    # Contacts:
+    - url: "mailto:dl-rnd-core2@papayaglobal.com"
+      title: "dl-rnd-core2@papayaglobal.com"
+      icon: email
+    - url: "https://papayaglobal.slack.com/archives/C08AY92P1FT"
+      title: Slack Chat
+      icon: chat
+
+    - title: ArgoCD Code (integration)
+      icon: github
+      url: "https://github.com/papayaglobal/papaya-helm-charts/tree/main/apps/integration/papaya"
+    - title: ArgoCD (integration)
+      icon: dashboard
+      url: https://argocd.integration.papayaglobal.work/applications?search=expenses-ai
+    - title: ArgoCD Code (staging)
+      icon: github
+      url: "https://github.com/papayaglobal/papaya-helm-charts/tree/main/apps/staging/papaya"
+    - title: ArgoCD (staging)
+      icon: dashboard
+      url: https://argocd.staging.papayaglobal.work/applications?search=expenses-ai
+    - title: ArgoCD Code (customer-sandbox-1)
+      icon: github
+      url: "https://github.com/papayaglobal/papaya-helm-charts/tree/main/apps/customer-sandbox-1/papaya"
+    - title: ArgoCD (customer-sandbox-1)
+      icon: dashboard
+      url: https://argocd.cust1.papaya-sandbox.work/applications?search=expenses-ai
+    - title: ArgoCD Code (production)
+      icon: github
+      url: "https://github.com/papayaglobal/papaya-helm-charts/tree/main/apps/production/papaya"
+    - title: ArgoCD (production)
+      icon: dashboard
+      url: https://argocd.production.papayaglobal.work/applications?search=expenses-ai
+
+    - title: Service Catalog
+      icon: docs
+      url: https://papayaglobal.roadie.so/catalog/default/component/expenses-ai
+
+
+    # Other Links
+    - title: Jira Project
+      icon: dashboard
+      url: "https://papayaglobal.atlassian.net/jira/software/c/projects/example"
+    - title: SquadCast
+      icon: dashboard
+      url: "https://app.eu.squadcast.com/service-catalog/example-url"
+spec:
+  type: "service"
+  owner: "group:papayaglobal/operations"
+  lifecycle: "production"

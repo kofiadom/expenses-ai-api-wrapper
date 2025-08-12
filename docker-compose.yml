@@ -1,24 +1,43 @@
 version: '3.8'
 
 services:
-  # Medical Processing Service
-  medical-processing-service:
+  # Redis Service
+  redis:
+    image: redis:7-alpine
+    container_name: expense-processing-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    restart: unless-stopped
+    networks:
+      - expense-network
+
+  # Expense Processing Service
+  expense-processing-service:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: medical-processing-app
+    container_name: expense-processing-app
     ports:
       - "3000:3000"
+    depends_on:
+      - redis
     environment:
       - NODE_ENV=production
       - PORT=3000
-      # Redis Configuration (provided externally)
-      - REDIS_HOST=${REDIS_HOST}
-      - REDIS_PORT=${REDIS_PORT:-6379}
-      - REDIS_PASSWORD=${REDIS_PASSWORD:-}
-      - REDIS_DB=${REDIS_DB:-0}
+      # Redis Configuration (internal service)
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - REDIS_PASSWORD=
+      - REDIS_DB=0
       # AI Service API Keys
       - ANTHROPIC_KEY=${ANTHROPIC_KEY}
+      # AWS Configuration
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_REGION=${AWS_REGION}
       - LLAMAINDEX_API_KEY=${LLAMAINDEX_API_KEY}
       # AWS Bedrock Configuration
       - BEDROCK_AWS_ACCESS_KEY_ID=${BEDROCK_AWS_ACCESS_KEY_ID}
@@ -44,13 +63,13 @@ services:
       - ENABLE_THROTTLING=${ENABLE_THROTTLING:-true}
       - THROTTLE_TTL=${THROTTLE_TTL:-60}
       - THROTTLE_LIMIT=${THROTTLE_LIMIT:-100}
-      # Webhook URLs (optional)
-      - WEBHOOK_URLS=${WEBHOOK_URLS:-}
     volumes:
       # Persistent storage for uploads and results
       - uploads_data:/app/uploads
       - results_data:/app/results
       - logs_data:/app/logs
+      - data_data:/app/data
+      - markdown_extractions_data:/app/markdown_extractions
     healthcheck:
       test: ["CMD", "node", "/app/healthcheck.js"]
       interval: 30s
@@ -59,16 +78,22 @@ services:
       start_period: 40s
     restart: unless-stopped
     networks:
-      - medical-network
+      - expense-network
 
 volumes:
+  redis_data:
+    driver: local
   uploads_data:
     driver: local
   results_data:
     driver: local
   logs_data:
     driver: local
+  data_data:
+    driver: local
+  markdown_extractions_data:
+    driver: local
 
 networks:
-  medical-network:
+  expense-network:
     driver: bridge

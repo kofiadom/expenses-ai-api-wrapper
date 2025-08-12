@@ -14,7 +14,7 @@ import * as path from 'path';
   imports: [
 
 
-    // Register the single medical processing queue
+    // Register the single  processing queue
     BullModule.registerQueue({
       name: QUEUE_NAMES.EXPENSE_PROCESSING,
     }),

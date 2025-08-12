@@ -6,6 +6,7 @@ import { ExpenseProcessingService } from "../../services/expense-processing.serv
 import { ExpenseProcessingOptimizedService } from "../../services/expense-processing-optimized.service";
 import { QUEUE_NAMES } from "../../types";
 import { DocumentModule } from "../document/document.module";
+import { LangfuseModule } from "../langfuse/langfuse.module";
 
 @Module({
   imports: [
@@ -25,10 +26,11 @@ import { DocumentModule } from "../document/document.module";
       },
     }),
 
- 
-
     // Import Document services
     DocumentModule,
+    
+    // Import Langfuse for tracing
+    LangfuseModule,
   ],
   providers: [ProcessingService, ExpenseProcessor, ExpenseProcessingService],
   exports: [ProcessingService, ExpenseProcessingService],

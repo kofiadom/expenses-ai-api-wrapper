@@ -218,6 +218,96 @@ export class DocumentService {
     }
   }
 
+  async getComplianceResults(jobId: string): Promise<any | null> {
+    try {
+      const status = await this.getProcessingStatus(jobId);
+
+      if (!status || status.status !== "completed") {
+        return null;
+      }
+
+      const results = status.results;
+      if (!results) {
+        return null;
+      }
+
+      // Extract only the required fields
+      const filteredResults = {
+        classification: results.classification || null,
+        extraction: results.extraction || null,
+        compliance: {
+          validation_result: {
+            is_valid: results.compliance?.validation_result?.is_valid || false,
+            issues_count: 0,
+            issues: []
+          }
+        }
+      };
+
+      // Copy existing compliance issues, excluding the field column
+      if (results.compliance?.validation_result?.issues) {
+        filteredResults.compliance.validation_result.issues = 
+          results.compliance.validation_result.issues.map((issue: any) => {
+            const { field, ...issueWithoutField } = issue;
+            return issueWithoutField;
+          });
+      }
+
+      // Process image quality assessment data and add new issues
+      if ((results as any).image_quality_assessment) {
+        const imageQualityData = (results as any).image_quality_assessment;
+        let currentIndex = filteredResults.compliance.validation_result.issues.length + 1;
+
+        // Define the image quality categories to check
+        const imageCategories = [
+          'blur_detection',
+          'contrast_assessment',
+          'glare_identification',
+          'water_stains',
+          'tears_or_folds',
+          'cut_off_detection',
+          'missing_sections',
+          'obstructions'
+        ];
+
+        for (const category of imageCategories) {
+          if (imageQualityData[category]) {
+            const categoryData = imageQualityData[category];
+            const detected = categoryData.detected || false;
+            const severity = (categoryData.severity_level || '').toLowerCase();
+
+            // Only include if detected is true and severity is high or medium
+            if (detected && (severity === 'high' || severity === 'medium')) {
+              // Format category name for display
+              const categoryDisplay = category.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase());
+
+              filteredResults.compliance.validation_result.issues.push({
+                issue_type: `Image related | ${categoryDisplay}`,
+                description: categoryData.description || '',
+                recommendation: categoryData.recommendation || '',
+                knowledge_base_reference: '',
+            
+              });
+              currentIndex++;
+            }
+          }
+        }
+      }
+
+      // Update issues count
+      filteredResults.compliance.validation_result.issues_count = 
+        filteredResults.compliance.validation_result.issues.length;
+
+      return filteredResults;
+    } catch (error) {
+      this.logger.error(
+        `Failed to get compliance results for job ${jobId}:`,
+        error
+      );
+      throw error;
+    }
+  }
+
   async listJobs(filters: {
     status?: string;
     userId?: string;

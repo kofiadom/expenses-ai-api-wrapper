@@ -1,77 +1,77 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_002_Copy of austrian_file_6.pdf",
+    "image_path": "uploads\\AUG_5_V5_2_Copy of austrian_file_6.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:02:07.656Z",
-    "quality_score": 100,
-    "quality_level": "excellent",
+    "timestamp": "2025-08-05T16:18:40.605Z",
+    "quality_score": 70,
+    "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "The text is sharp and clearly defined with no visible blur.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.4,
+      "description": "The text has moderate blur, making some characters less distinct.",
+      "recommendation": "Enhance image sharpness before OCR processing."
     },
     "contrast_assessment": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.9,
-      "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.8,
+      "description": "The contrast between text and background is slightly low but still adequate for recognition.",
+      "recommendation": "Improve contrast slightly for better OCR results."
     },
     "glare_identification": {
       "detected": false,
       "severity_level": "none",
       "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No glare or bright spots detected that obscure text or important document areas.",
-      "recommendation": "No action needed."
+      "description": "No glare detected on the document.",
+      "recommendation": "No action needed regarding glare."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discolorations affecting document readability.",
-      "recommendation": "No action needed."
+      "description": "No water stains detected on the document.",
+      "recommendation": "No action needed regarding water stains."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No visible tears, creases, folds, or wrinkles that distort text or cause information loss.",
-      "recommendation": "No action needed."
+      "description": "No tears or folds detected on the document.",
+      "recommendation": "No action needed regarding tears or folds."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "No document edges are cut off, and the image frame includes all important document portions.",
-      "recommendation": "No action needed."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "Minor cut-off detected at the bottom edge of the document.",
+      "recommendation": "Ensure the entire document is captured in future scans."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No parts of the receipt/invoice are missing or incomplete.",
-      "recommendation": "No action needed."
+      "description": "No missing sections detected on the document.",
+      "recommendation": "No action needed regarding missing sections."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
-      "recommendation": "No action needed."
+      "description": "No obstructions detected on the document.",
+      "recommendation": "No action needed regarding obstructions."
     },
-    "overall_quality_score": 10
+    "overall_quality_score": 7
   },
   "classification": {
     "is_expense": true,
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice receipt number, item description, and payment confirmation. The presence of these fields and the clear indication of a paid amount confirm that this is an expense document.",
+    "reasoning": "The document contains multiple fields that align with the expense schema, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, item description, and payment confirmation. The presence of these fields, along with the clear indication of payment completion, confirms that this is an expense document.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -100,564 +100,200 @@
         "taxInformation"
       ],
       "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, including clear evidence of payment, transaction amount, and detailed item description, confirming it as an expense document."
+      "expense_identification_reasoning": "The document contains 7 out of 8 schema fields, including clear evidence of payment completion, actual amounts charged, and a receipt of transaction. This meets the criteria for an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_vat_number_on_invoice": null,
-    "customer_name_exception": null,
-    "currency": "EUR",
-    "amount": 55,
-    "receipt_type": "RECHNUNG",
-    "receipt_quality": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "kilometer_record": 31.7,
-    "car_details": null,
-    "parking_documentation": null,
     "supplier_name": "AD Mietwagen Service GmbH",
     "supplier_address": "Zetschegasse 15, 1230 Wien",
-    "contact_phone": "Konz: 247 SW 940 TX",
+    "supplier_website": "officesairportdriver.at",
+    "supplier_vat_number": "Konz: 247 SW 940 TX",
     "kassa_id": "2282-247-0",
-    "transaction_identifier": "582264",
-    "departure_location": "21. GERNENGASSE 18",
-    "destination": "FLUGHAFEN AD",
-    "date_of_service": "2025-01-22",
-    "time_of_service": "06:01",
-    "contact_website": "www.airportdriver.at",
-    "gross_amount": 52,
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": "582264",
+    "receipt_number": null,
+    "transaction_reference": null,
+    "currency": "EUR",
+    "total_amount": 55,
+    "subtotal": 47.27,
     "tax_amount": 4.73,
-    "net_amount": 47.27,
+    "tax_rate": 10,
+    "discount_amount": null,
     "tip_amount": 3,
+    "date_of_issue": "2025-01-22",
+    "transaction_time": "06:01",
+    "payment_method": null,
+    "card_last_four": null,
     "line_items": [
       {
         "description": "Personenfahrt",
         "quantity": 1,
         "unit_price": 52,
-        "total_price": 52
-      },
-      {
-        "description": "Trinkgeld",
-        "quantity": 1,
-        "unit_price": 3,
-        "total_price": 3
+        "total_price": 52,
+        "category": "Transport"
       }
     ],
+    "receipt_type": "Transport Receipt",
+    "document_type": "Rechnung",
+    "pickup_location": "21. GERNENGASSE 18",
+    "destination_location": "FLUGHAFEN AD",
+    "distance_km": 31.7,
     "special_notes": "Wir hoffen Sie hatten eine angenehme Fahrt",
-    "replacement_receipt_link": "https://service.taxi4me.net/2282/beleg/PGpMaWFYWERkTURNPT4="
+    "terms_conditions": null,
+    "business_registration_number": null
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 11,
+      "issues_count": 6,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "Local Employer name as customer on supplier invoice is missing",
+          "field": "supplier_name",
+          "description": "The supplier name does not show the local employer company name as required.",
           "recommendation": "It is recommended to address this issue with the supplier or provider",
-          "knowledge_base_reference": "Must show Global People IT-Services GmbH as customer"
+          "knowledge_base_reference": "Local Employer company name must appear on invoices"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "Local Employer address as customer on supplier invoice is missing",
+          "field": "supplier_address",
+          "description": "The supplier address does not show the local employer address as required.",
           "recommendation": "It is recommended to address this issue with the supplier or provider",
-          "knowledge_base_reference": "Must show Kärntner Ring 12, A-1010 Vienna, Austria"
+          "knowledge_base_reference": "Local Employer address must appear on invoices"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "Local Employer VAT number as customer on supplier invoice is missing",
+          "field": "supplier_vat_number",
+          "description": "The VAT number provided does not match the required format or value.",
           "recommendation": "It is recommended to address this issue with the supplier or provider",
-          "knowledge_base_reference": "Must show ATU77112189"
+          "knowledge_base_reference": "Local Employer VAT ID must appear on invoices"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "receipt_quality",
-          "description": "Receipt quality is not specified and must meet clear and readable standards",
-          "recommendation": "Ensure the receipt meets clear and readable standards",
-          "knowledge_base_reference": "Online copies sufficient, hard copy not required"
+          "field": "customer_name",
+          "description": "The customer name is missing on the receipt, which is mandatory for travel-related expenses.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Worker name must appear on hotel/flight invoices"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "business_trip_reporting",
-          "description": "Separate report for each trip is missing",
-          "recommendation": "Submit separate report for each trip",
-          "knowledge_base_reference": "Submit separate report for each trip"
+          "field": "mileage_documentation",
+          "description": "Mileage reimbursement requires a record of kilometers traveled with an exact continuous logbook (Fahrtenbuch) and a map with the relevant route.",
+          "recommendation": "Please submit a record of kilometers traveled with an exact continuous logbook (Fahrtenbuch) and a map with the relevant route (Google Maps is sufficient)",
+          "knowledge_base_reference": "To claim mileage, a record of kilometers traveled must be submitted with exact continuous logbook (Fahrtenbuch). Worker will need to share a map with the relevant route (google maps is sufficient)"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "travel_template",
-          "description": "Specific Travel Expense Report Template is missing",
-          "recommendation": "Use Travel Expense Report Template Austria EUR.xlsx",
-          "knowledge_base_reference": "Must use Travel Expense Report Template Austria EUR.xlsx"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "route_map",
-          "description": "Map with relevant route is missing",
-          "recommendation": "Provide map with relevant route (Google Maps sufficient)",
-          "knowledge_base_reference": "Map with relevant route (Google Maps sufficient)"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "car_details",
-          "description": "Car details and destination are missing",
-          "recommendation": "Provide car details and destination",
-          "knowledge_base_reference": "Car details and destination required"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "parking_documentation",
-          "description": "Parking tickets should be included within the mileage payment",
-          "recommendation": "Include parking tickets within the mileage payment",
-          "knowledge_base_reference": "Parking tickets should be included within mileage payment"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "manager_approval",
-          "description": "Direct manager approval is missing",
-          "recommendation": "Obtain direct manager approval",
-          "knowledge_base_reference": "Required for training expenses"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "personal_information",
-          "description": "Any personal information not required for reimbursement must be removed",
-          "recommendation": "Remove any unnecessary personal information from the receipt",
-          "knowledge_base_reference": "Any personal information not required for reimbursement must be removed"
+          "field": "travel_expense_report",
+          "description": "Travel expenses must be submitted using the Travel Expense Report Template Austria EUR.xlsx.",
+          "recommendation": "Please submit the travel expenses using the Travel Expense Report Template Austria EUR.xlsx",
+          "knowledge_base_reference": "Travel expenses must be submitted using the Travel Expense Report Template Austria EUR.xlsx"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt is missing several mandatory fields such as the customer name, address, and VAT number. Additionally, it lacks the required separate report, specific travel template, route map, car details, parking documentation, and manager approval. Personal information should also be removed. These issues need to be addressed to ensure compliance with Austria's expense reimbursement requirements."
+      "compliance_summary": "The receipt has multiple compliance issues including missing local employer information, incorrect VAT number, missing customer name, and insufficient documentation for mileage reimbursement. Additionally, the travel expense report template was not used as required."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Austria",
       "icp": "Global People",
       "receipt_type": "travel",
-      "issues_count": 11
+      "issues_count": 6
     }
   },
   "citations": {
-    "citations": {
-      "currency": {
-        "field_citation": {
-          "source_text": "Currency",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Receipt currency and exchange rate",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "EUR",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "MWSt\nEUR\nNetto Brutto",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Expense amount",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "55.00",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "BEZAHLT (EUR):\n55.00",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Receipt Type",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Type of supporting document",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "*** RECHNUNG ***",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "*** RECHNUNG ***\nBeleg",
-          "match_type": "exact"
-        }
-      },
-      "kilometer_record": {
-        "field_citation": {
-          "source_text": "Kilometer Record",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Distance traveled documentation",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "31.7",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Km: 31.7",
-          "match_type": "exact"
-        }
-      },
-      "supplier_name": {
-        "field_citation": {
-          "source_text": "Supplier Name",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Name of the supplier providing the service",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "AD Mietwagen Service GmbH",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "AD Mietwagen Service GmbH",
-          "match_type": "exact"
-        }
-      },
-      "supplier_address": {
-        "field_citation": {
-          "source_text": "Supplier Address",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Address of the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Zetschegasse 15, 1230 Wien",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Zetschegasse 15\n1230 Wien",
-          "match_type": "exact"
-        }
-      },
-      "contact_phone": {
-        "field_citation": {
-          "source_text": "Contact Phone",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Phone number for contacting the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Konz: 247 SW 940 TX",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Konz: 247 SW 940 TX",
-          "match_type": "exact"
-        }
-      },
-      "kassa_id": {
-        "field_citation": {
-          "source_text": "Kassa ID",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Identifier for the cash register",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "2282-247-0",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Kassa-ID: 2282-247-0",
-          "match_type": "exact"
-        }
-      },
-      "transaction_identifier": {
-        "field_citation": {
-          "source_text": "Transaction Identifier",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Unique identifier for the transaction",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "582264",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "582264",
-          "match_type": "exact"
-        }
-      },
-      "departure_location": {
-        "field_citation": {
-          "source_text": "Departure Location",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Location from where the service started",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "21. GERNENGASSE 18",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Abfahrt:\n21. GERNENGASSE 18",
-          "match_type": "exact"
-        }
-      },
-      "destination": {
-        "field_citation": {
-          "source_text": "Destination",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Location where the service ended",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "FLUGHAFEN AD",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Ziel:\nFLUGHAFEN AD",
-          "match_type": "exact"
-        }
-      },
-      "date_of_service": {
-        "field_citation": {
-          "source_text": "Date of Service",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Date when the service was provided",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "22/01/25",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "06:01 22/01/25",
-          "match_type": "exact"
-        }
-      },
-      "time_of_service": {
-        "field_citation": {
-          "source_text": "Time of Service",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Time when the service was provided",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "06:01",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "06:01 22/01/25",
-          "match_type": "exact"
-        }
-      },
-      "contact_website": {
-        "field_citation": {
-          "source_text": "Contact Website",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Website for contacting the supplier",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "www.airportdriver.at",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "www.airportdriver.at",
-          "match_type": "exact"
-        }
-      },
-      "gross_amount": {
-        "field_citation": {
-          "source_text": "Gross Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Total amount before tax",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "52,00",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Personenfahrt\n52,00A",
-          "match_type": "exact"
-        }
-      },
-      "tax_amount": {
-        "field_citation": {
-          "source_text": "Tax Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Amount of tax applied",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "4.73",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "A 10%:\n4.73 47.27 52,00",
-          "match_type": "exact"
-        }
-      },
-      "net_amount": {
-        "field_citation": {
-          "source_text": "Net Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Amount after tax",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "47.27",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "A 10%:\n4.73 47.27 52,00",
-          "match_type": "exact"
-        }
-      },
-      "tip_amount": {
-        "field_citation": {
-          "source_text": "Tip Amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Amount of tip given",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "3,00",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Trinkgeld\n3,00",
-          "match_type": "exact"
-        }
-      },
-      "special_notes": {
-        "field_citation": {
-          "source_text": "Special Notes",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Any additional notes or comments",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Wir hoffen Sie hatten eine angenehme Fahrt",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Wir hoffen Sie hatten eine\nangenehme Fahrt",
-          "match_type": "exact"
-        }
-      },
-      "replacement_receipt_link": {
-        "field_citation": {
-          "source_text": "Replacement Receipt Link",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Link to a replacement receipt",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "https://service.taxi4me.net/2282/beleg/PGpMaWFYWERkTURNPT4=",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "--- ERSATZBELEG ---\nhttps://service.taxi4me.net/2282\n/beleg/PGpMaWFYWERkTURNPT4=",
-          "match_type": "exact"
-        }
-      }
-    },
+    "citations": {},
     "metadata": {
-      "total_fields_analyzed": 23,
-      "fields_with_field_citations": 23,
-      "fields_with_value_citations": 23,
-      "average_confidence": 1
+      "total_fields_analyzed": 0,
+      "fields_with_field_citations": 0,
+      "fields_with_value_citations": 0,
+      "average_confidence": 0
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "5.7",
-      "file_classification_seconds": "3.4",
-      "image_quality_assessment_seconds": "4.1",
-      "data_extraction_seconds": "12.0",
-      "issue_detection_seconds": "15.8",
-      "citation_generation_seconds": "19.3"
+      "markdown_extraction_seconds": "4.5",
+      "data_extraction_seconds": "3.8",
+      "file_classification_seconds": "3.9",
+      "image_quality_assessment_seconds": "5.1",
+      "citation_generation_seconds": "12.4",
+      "issue_detection_seconds": "12.7"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:01:57.811Z",
-        "end_time": "2025-07-31T18:02:03.554Z",
-        "duration_seconds": "5.7",
+        "start_time": "2025-08-05T16:18:31.077Z",
+        "end_time": "2025-08-05T16:18:35.532Z",
+        "duration_seconds": "4.5",
         "document_reader_used": "textract"
       },
+      "data_extraction": {
+        "start_time": "2025-08-05T16:18:35.538Z",
+        "end_time": "2025-08-05T16:18:39.305Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
       "file_classification": {
-        "start_time": "2025-07-31T18:02:03.556Z",
-        "end_time": "2025-07-31T18:02:06.999Z",
-        "duration_seconds": "3.4",
+        "start_time": "2025-08-05T16:18:35.536Z",
+        "end_time": "2025-08-05T16:18:39.394Z",
+        "duration_seconds": "3.9",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-07-31T18:02:03.554Z",
-        "end_time": "2025-07-31T18:02:07.656Z",
-        "duration_seconds": "4.1",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "data_extraction": {
-        "start_time": "2025-07-31T18:02:03.556Z",
-        "end_time": "2025-07-31T18:02:15.603Z",
-        "duration_seconds": "12.0",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "issue_detection": {
-        "start_time": "2025-07-31T18:02:15.604Z",
-        "end_time": "2025-07-31T18:02:31.449Z",
-        "duration_seconds": "15.8",
+        "start_time": "2025-08-05T16:18:35.533Z",
+        "end_time": "2025-08-05T16:18:40.605Z",
+        "duration_seconds": "5.1",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:02:15.605Z",
-        "end_time": "2025-07-31T18:02:34.953Z",
-        "duration_seconds": "19.3",
+        "start_time": "2025-08-05T16:18:40.609Z",
+        "end_time": "2025-08-05T16:18:53.046Z",
+        "duration_seconds": "12.4",
+        "model_used": "eu.amazon.nova-micro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-05T16:18:40.606Z",
+        "end_time": "2025-08-05T16:18:53.291Z",
+        "duration_seconds": "12.7",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "37.1",
+    "total_processing_time_seconds": "22.2",
     "performance_metrics": {
-      "parallel_group_1_seconds": "12.0",
-      "parallel_group_2_seconds": "19.3",
-      "total_parallel_time_seconds": "31.4",
-      "estimated_sequential_time_seconds": "60.3",
-      "estimated_speedup_factor": "1.92"
+      "parallel_group_1_seconds": "5.1",
+      "parallel_group_2_seconds": "12.7",
+      "total_parallel_time_seconds": "17.8",
+      "estimated_sequential_time_seconds": "42.4",
+      "estimated_speedup_factor": "2.39"
     },
     "validation": {
-      "total_time_seconds": "37.1",
-      "expected_parallel_time_seconds": "37.0",
-      "sequential_sum_seconds": "60.3",
+      "total_time_seconds": "22.2",
+      "expected_parallel_time_seconds": "22.3",
+      "sequential_sum_seconds": "42.4",
       "difference_seconds": "0.1",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "23.2"
+      "time_saved_seconds": "20.2"
     }
   },
   "metadata": {
     "filename": "Copy of austrian_file_6.pdf",
-    "processing_time": 37143,
+    "processing_time": 22215,
     "country": "Austria",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:02:34.954Z",
+    "processed_at": "2025-08-05T16:18:53.293Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "12.0",
-      "parallel_group_2_duration_seconds": "19.3",
-      "estimated_sequential_time_seconds": "60.3",
-      "actual_parallel_time_seconds": "37.1"
+      "parallel_group_1_duration_seconds": "5.1",
+      "parallel_group_2_duration_seconds": "12.7",
+      "estimated_sequential_time_seconds": "42.4",
+      "actual_parallel_time_seconds": "22.2"
     }
   }
 }

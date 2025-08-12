@@ -1,591 +1,330 @@
 {
-  "Italy_Expense_Reimbursement_Database_Tables": {
-    "File_Related_Requirements": [
-      {
-        "Field_Type": "Customer Name on Invoice",
-        "Description": "Local Employer name as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "Global People s.r.l.",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show Global People s.r.l. as customer"
-      },
-      {
-        "Field_Type": "Customer Name on Invoice",
-        "Description": "Local Employer name as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "GoGlobal Consulting S.r.l",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show GoGlobal Consulting S.r.l as customer"
-      },
-      {
-        "Field_Type": "Customer Name Exception",
-        "Description": "Exception for flights/hotels where Local Employer name not possible",
-        "Receipt_Type": "Travel",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Optional",
-        "Rule": "Worker's name acceptable when Local Employer name not possible, end client should not be mentioned"
-      },
-      {
-        "Field_Type": "Customer Address on Invoice",
-        "Description": "Local Employer address as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "Global People s.r.l.",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show Via Venti Settembre 3, Torino (TO) CAP 10121, Italy"
-      },
-      {
-        "Field_Type": "Customer Address on Invoice",
-        "Description": "Local Employer address as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "GoGlobal Consulting S.r.l",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show Via Uberto Visconti Di Modrone 38, 20122 Milano, Italia"
-      },
-      {
-        "Field_Type": "Customer VAT Number on Invoice",
-        "Description": "Local Employer VAT number as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "Global People s.r.l.",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show IT12455930011"
-      },
-      {
-        "Field_Type": "Customer VAT Number on Invoice",
-        "Description": "Local Employer VAT number as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "GoGlobal Consulting S.r.l",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show P.IVA 12205930964"
-      },
-      {
-        "Field_Type": "Customer Tax Code on Invoice",
-        "Description": "Local Employer tax code as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "Global People s.r.l.",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must show 12455930011"
-      },
-      {
-        "Field_Type": "Customer Tax Code on Invoice",
-        "Description": "Local Employer tax code as customer on supplier invoice",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "GoGlobal Consulting S.r.l",
-        "Mandatory/Optional": "Optional",
-        "Rule": "Not specified in document"
-      },
-      {
-        "Field_Type": "Currency",
-        "Description": "Receipt currency",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Same currency with clear exchange rate"
-      },
-      {
-        "Field_Type": "Amount",
-        "Description": "Expense amount",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must be clearly stated on receipt"
-      },
-      {
-        "Field_Type": "Receipt Type",
-        "Description": "Type of supporting document",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must be actual tax receipts or invoices, not booking confirmations"
-      },
-      {
-        "Field_Type": "Receipt Quality",
-        "Description": "Document quality standard",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must be scanned (not photos), clear and readable"
-      },
-      {
-        "Field_Type": "Payment Method",
-        "Description": "Method of payment used",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Must be traceable: bank transfers, postal transfers, credit/debit cards, prepaid cards, bank/cashier's checks"
-      },
-      {
-        "Field_Type": "Vehicle Make/Model",
-        "Description": "Car details for mileage claims",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Type of car, petrol/electric/hybrid, model"
-      },
-      {
-        "Field_Type": "Vehicle Fuel Type",
-        "Description": "Fuel type for mileage claims",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Petrol, diesel, electric, hybrid"
-      },
-      {
-        "Field_Type": "Distance Traveled",
-        "Description": "Kilometers for mileage claims",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Starting point, arrival point, and total kilometers"
-      },
-      {
-        "Field_Type": "Route Documentation",
-        "Description": "Proof of distance traveled",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Screenshot from tracking app (Google Maps) or similar"
-      },
-      {
-        "Field_Type": "Car Registration",
-        "Description": "Vehicle ownership proof",
-        "Receipt_Type": "Mileage",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Scan of car passport (libretto di circolazione)"
-      },
-      {
-        "Field_Type": "Personal Information",
-        "Description": "Privacy requirement for receipts",
-        "Receipt_Type": "All",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Any personal information not required for reimbursement must be removed"
-      },
-      {
-        "Field_Type": "Business Trip Reporting",
-        "Description": "Separate reports requirement",
-        "Receipt_Type": "Travel",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Submit separate report for each business trip"
-      },
-      {
-        "Field_Type": "Per Diem Method",
-        "Description": "Method consistency rule",
-        "Receipt_Type": "Travel",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Mandatory/Optional": "Mandatory",
-        "Rule": "Cannot mix per diem method with actual expenses - must agree on one method per business trip"
-      }
-    ],
-    "Compliance_Policies": [
-      {
-        "Type": "Business Expenses (Non-Travel)",
-        "Description": "General business expenses for job completion",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit specified",
-        "Gross-up_Rule": "All approved expenses paid as NET to employee and grossed up",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide a proper tax invoice with VAT details"
-      },
-      {
-        "Type": "Entertainment Expenses",
-        "Description": "Meals offered to client/supplier",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "75% tax-free",
-        "Gross-up_Rule": "Tax-free up to 75% of total amount, labeled as \"spese di rappresentanza\" if not tax-free",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must also write down the name and company details of the client/supplier you entertained"
-      },
-      {
-        "Type": "Employee Engagement",
-        "Description": "Employee engagement activities",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit specified",
-        "Gross-up_Rule": "Grossed up if not tax-free",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Training and Development",
-        "Description": "Training and development expenses",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit specified",
-        "Gross-up_Rule": "Grossed up if not tax-free",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Car Rental",
-        "Description": "Vehicle rental for business",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "15 days limit",
-        "Gross-up_Rule": "Tax-free up to 15 days, subject to tax beyond 15 days",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Mileage",
-        "Description": "Private vehicle use for work",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "15,000 km",
-        "Gross-up_Rule": "Non-taxable up to 15,000 km, excess subject to tax annually",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt is not applicable - you must provide: 1) Scan of car registration document 2) Car details (make/model/fuel type) 3) Google Maps screenshot showing route and distance"
-      },
-      {
-        "Type": "Vehicle Expenses",
-        "Description": "Fuel, parking, tolls",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "20% tax-exempt",
-        "Gross-up_Rule": "Tax-exempt up to 20% of costs (rental cars only)",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Transportation",
-        "Description": "Public transportation",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit",
-        "Gross-up_Rule": "100% tax-exempt with proper documentation",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide the actual ticket or transportation document (not just payment receipt)"
-      },
-      {
-        "Type": "Parking Fees",
-        "Description": "Parking during business travel",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit",
-        "Gross-up_Rule": "Excluded from per diem, reimbursed against receipts",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Fuel Expenses",
-        "Description": "Fuel costs",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Taxable",
-        "Gross-up_Rule": "Fuel expenses are taxed",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Domestic Business Travel 60km+",
-        "Description": "Travel outside municipal area",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Per diem rates apply",
-        "Gross-up_Rule": "€46.48/day (no provisions), €30.99/day (meals OR hotel provided), €15.49/day (both provided)",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Hotel receipt alone is not enough - you must ALWAYS provide receipts for ALL trip expenses when per diem is used"
-      },
-      {
-        "Type": "Municipal Area Travel",
-        "Description": "Travel within municipal area",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "75% tax exemption",
-        "Gross-up_Rule": "75% tax exemption on per diem rate",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide receipts for all expenses within your city area"
-      },
-      {
-        "Type": "Domestic Business Travel (NCBA Commercio)",
-        "Description": "Business trips with no overnight stay",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "NCBA Commercio",
-        "Gross-up_Limit?": "Per diem reduced by 1/3",
-        "Gross-up_Rule": "Per diem reduced by 1/3 for day trips",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide receipts for ALL trip expenses (meals, transportation)"
-      },
-      {
-        "Type": "Domestic Business Travel (Others)",
-        "Description": "Business trips with no overnight stay",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "All other NCBAs",
-        "Gross-up_Limit?": "Standard per diem",
-        "Gross-up_Rule": "Standard per diem rates apply",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide receipts for ALL trip expenses (meals, transportation)"
-      },
-      {
-        "Type": "International Business Travel",
-        "Description": "International business trips",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Per diem rates apply",
-        "Gross-up_Rule": "€77.46/day (no provisions), €51.65/day (meals OR hotel provided), €25.82/day (both provided)",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Hotel receipt alone is not enough - you must ALWAYS provide receipts for ALL trip expenses when per diem is used"
-      },
-      {
-        "Type": "International Long-term Travel",
-        "Description": "International trips over 1 month",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "10% reduction",
-        "Gross-up_Rule": "Allowance reduced by 10% for missions over 1 month",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Hotel receipt alone is not enough - you must ALWAYS provide receipts for ALL trip expenses when per diem is used"
-      },
-      {
-        "Type": "International Business Travel (NCBA Commercio)",
-        "Description": "International trips with no overnight stay",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "NCBA Commercio",
-        "Gross-up_Limit?": "Per diem reduced by 1/3",
-        "Gross-up_Rule": "Per diem reduced by 1/3 for day trips",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide receipts for ALL trip expenses (meals, transportation)"
-      },
-      {
-        "Type": "International Business Travel (Others)",
-        "Description": "International trips with no overnight stay",
-        "ICP_Specific?": "Yes",
-        "ICP_Name": "All other NCBAs",
-        "Gross-up_Limit?": "Standard per diem",
-        "Gross-up_Rule": "Standard per diem rates apply",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide receipts for ALL trip expenses (meals, transportation)"
-      },
-      {
-        "Type": "Car Rental (Domestic Travel)",
-        "Description": "Car rental during domestic business travel",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "15 days limit",
-        "Gross-up_Rule": "Tax-free up to 15 days, subject to tax beyond 15 days",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Car Rental (International Travel)",
-        "Description": "Car rental during international business travel",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "15 days limit",
-        "Gross-up_Rule": "Tax-free up to 15 days, subject to tax beyond 15 days",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Items Outside Per Diem",
-        "Description": "International travel expenses not covered by per diem",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "No limit specified",
-        "Gross-up_Rule": "Not subject to any set maximum to be considered tax free",
-        "Additional_Info_Required?": "Yes",
-        "Additional_Info_Description": "Receipt alone is not enough - you must provide supporting documents such as receipts"
-      },
-      {
-        "Type": "Toll Charges",
-        "Description": "Highway tolls and road charges",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "20% tax-exempt",
-        "Gross-up_Rule": "Tax-exempt up to 20% of costs (rental cars only, not assigned to specific employee)",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      },
-      {
-        "Type": "Company Car Expenses",
-        "Description": "Expenses for company-assigned vehicles",
-        "ICP_Specific?": "No",
-        "ICP_Name": "All ICPs",
-        "Gross-up_Limit?": "Not applicable",
-        "Gross-up_Rule": "Transportation expenses rules do not apply to company cars",
-        "Additional_Info_Required?": "No",
-        "Additional_Info_Description": "Receipt is enough - no additional information needed"
-      }
-    ],
-    "Italy_Expense_Reimbursement_Rule_Exceptions": [
-      {
-        "Exception_Category": "Invoice Customer Name",
-        "Standard_Rule": "Local Employer name must appear on invoices",
-        "Exception_Condition": "Flight tickets and hotel bookings where company name not possible",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Transportation - Flight, Train, Car Rental, Bus, Accommodation - Hotel, Accommodation - Other",
-        "Override_Rule": "OVERRIDE: Accept worker's name on invoice WHEN company name cannot be used for personal travel bookings (flight tickets, hotels, and similar personal bookings per e.g. principle)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Invoice Customer Address",
-        "Standard_Rule": "Local Employer address must appear on invoices",
-        "Exception_Condition": "Flight tickets and hotel bookings where company address not applicable",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Transportation - Flight, Train, Car Rental, Bus, Accommodation - Hotel, Accommodation - Other",
-        "Override_Rule": "OVERRIDE: Accept worker's personal address on invoice WHEN worker books personal travel (logical extension of name exception)",
-        "Source_Validation": "Logical extension verified"
-      },
-      {
-        "Exception_Category": "Invoice Customer VAT",
-        "Standard_Rule": "Local Employer VAT number must appear on invoices",
-        "Exception_Condition": "Flight tickets and hotel bookings where company VAT not applicable",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Transportation - Flight, Accommodation - Hotel",
-        "Override_Rule": "OVERRIDE: Accept absence of company VAT number WHEN worker makes personal flight/hotel bookings (logical extension of name exception)",
-        "Source_Validation": "Logical extension verified"
-      },
-      {
-        "Exception_Category": "Per Diem Method Exclusivity",
-        "Standard_Rule": "Choose either per diem OR actual expenses",
-        "Exception_Condition": "Within same business trip",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Per Diem - Meals vs Meal Receipt - Actual",
-        "Override_Rule": "OVERRIDE: Reject mixed methods - IF per diem chosen THEN no actual meal receipts accepted for that specific trip (must agree on one method)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Mileage Documentation",
-        "Standard_Rule": "Receipts required for expenses",
-        "Exception_Condition": "Private vehicle use for work",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Mileage - Calculated",
-        "Override_Rule": "OVERRIDE: Do not require receipts BUT require scan of car registration document, car details (make/model/fuel type), and Google Maps screenshot showing route/distance",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Mileage Annual Limit",
-        "Standard_Rule": "Unlimited mileage reimbursement",
-        "Exception_Condition": "Annual mileage exceeds 15,000 km",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Mileage - Calculated",
-        "Override_Rule": "OVERRIDE: Tax any mileage claims ABOVE 15,000 kilometers annually (non-taxable up to 15,000 km only)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Entertainment Tax Exemption",
-        "Standard_Rule": "Business expenses are 100% tax exempt",
-        "Exception_Condition": "Entertainment expenses for clients/suppliers",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Entertainment - Business",
-        "Override_Rule": "OVERRIDE: Limit tax exemption to 75% of total amount AND require third party details (labeled as \"spese di rappresentanza\")",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Car Rental Time Limit",
-        "Standard_Rule": "Car rental fully tax exempt",
-        "Exception_Condition": "Car rental duration exceeds 15 days",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Transportation - Car Rental",
-        "Override_Rule": "OVERRIDE: Tax car rental costs AFTER 15 days (tax-free up to 15 days only)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Domestic Travel Distance Threshold",
-        "Standard_Rule": "Per diem available for all domestic travel",
-        "Exception_Condition": "Domestic business trips",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Per Diem - Meals (Domestic)",
-        "Override_Rule": "OVERRIDE: Only allow domestic per diem WHEN travel is 60+ kilometers outside worker's municipal area",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Domestic Travel Provision Reduction",
-        "Standard_Rule": "Full per diem rates apply",
-        "Exception_Condition": "Meals or hotel provided during domestic travel",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Per Diem - Meals (Domestic)",
-        "Override_Rule": "OVERRIDE: Apply tiered per diem rates - €46.48 (no provisions), €30.99 (meals OR hotel provided), €15.49 (both provided)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Municipal Area Travel Tax Limitation",
-        "Standard_Rule": "Standard tax exemption applies",
-        "Exception_Condition": "Travel within worker's municipal area",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Per Diem - Meals (Municipal)",
-        "Override_Rule": "OVERRIDE: Limit tax exemption to 75% of per diem rate WHEN travel is within municipal area",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "International Travel Provision Reduction",
-        "Standard_Rule": "Full per diem rates apply",
-        "Exception_Condition": "Meals or hotel provided during international travel",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Per Diem - Meals (International)",
-        "Override_Rule": "OVERRIDE: Apply tiered per diem rates - €77.46 (no provisions), €51.65 (meals OR hotel provided), €25.82 (both provided)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "International Long-term Travel Reduction",
-        "Standard_Rule": "Unlimited per diem duration",
-        "Exception_Condition": "International missions lasting over 1 month",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Per Diem - Meals (International)",
-        "Override_Rule": "OVERRIDE: Reduce allowance by 10% AFTER missions exceed 1 month duration",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "NCBA Commercio Per Diem Reduction",
-        "Standard_Rule": "Standard per diem rates apply",
-        "Exception_Condition": "Business trips with no overnight stay under NCBA Commercio",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Per Diem - Meals (NCBA Commercio)",
-        "Override_Rule": "OVERRIDE: Reduce per diem by 1/3 WHEN no overnight stay under NCBA Commercio agreements",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Traceable Payment Requirement",
-        "Standard_Rule": "Any payment method accepted",
-        "Exception_Condition": "All business travel expenses",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "All Travel Expense Types",
-        "Override_Rule": "OVERRIDE: Require traceable payment methods only (bank transfers, postal transfers, credit/debit/prepaid cards, bank/cashier's checks) - non-traceable payments not deductible",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Vehicle Expense Tax Limitation",
-        "Standard_Rule": "Vehicle expenses fully reimbursable",
-        "Exception_Condition": "Fuel, parking, toll charges for rental cars",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "Vehicle Expenses - Rental Car",
-        "Override_Rule": "OVERRIDE: Limit tax exemption to 20% of costs WHEN car is not assigned to specific employee (rental cars only)",
-        "Source_Validation": "Verified in documents"
-      },
-      {
-        "Exception_Category": "Currency Consistency",
-        "Standard_Rule": "Accept receipts in any currency",
-        "Exception_Condition": "Multi-currency submissions",
-        "Applicable_ICPs": "Global People s.r.l., GoGlobal Consulting S.r.l",
-        "Expense_Type": "All Expense Types",
-        "Override_Rule": "OVERRIDE: Require receipts submitted in same currency WITH clear exchange rate calculation",
-        "Source_Validation": "Verified in documents"
-      }
-    ]
-  }
+  "receiptStandards": [
+    {
+      "description": "Receipt document type",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Documents must be actual tax receipts or invoices preferably scanned not photos; booking confirmations will not suffice"
+    },
+    {
+      "description": "Receipt format quality",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Online copies are sufficient scanned not photo, a hard copy is not required"
+    },
+    {
+      "description": "Receipt readability",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Clear and readable receipts and invoices must be submitted with expenses"
+    },
+    {
+      "description": "Personal information removal",
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Any personal information not required for reimbursement purposes should be removed before it is submitted"
+    },
+    {
+      "description": "Global People company name on invoice",
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Goods/Services",
+      "icpName": "Global People s.r.l.",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Invoice should show Global People s.r.l."
+    },
+    {
+      "description": "Global People address on invoice",
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Goods/Services",
+      "icpName": "Global People s.r.l.",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Via Venti Settembre 3, Torino (TO) CAP 10121, Italy"
+    },
+    {
+      "description": "Global People VAT on invoice",
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Goods/Services",
+      "icpName": "Global People s.r.l.",
+      "mandatoryOptional": "Mandatory",
+      "rule": "VAT: IT12455930011"
+    },
+    {
+      "description": "Global People C.F. on invoice",
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Goods/Services",
+      "icpName": "Global People s.r.l.",
+      "mandatoryOptional": "Mandatory",
+      "rule": "C.F: 12455930011"
+    },
+    {
+      "description": "GoGlobal company name on invoice",
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Goods/Services",
+      "icpName": "GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Invoice should show GoGlobal Consulting S.r.l"
+    },
+    {
+      "description": "GoGlobal address on invoice",
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Goods/Services",
+      "icpName": "GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Via Uberto Visconti Di Modrone 38, 20122 Milano, Italia"
+    },
+    {
+      "description": "GoGlobal P.IVA on invoice",
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Goods/Services",
+      "icpName": "GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "P.IVA 12205930964"
+    },
+    {
+      "description": "Local Employer name requirement",
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Goods/Services",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "The Local Employers name and details should appear on invoices, not the workers"
+    },
+    {
+      "description": "Worker name on travel documents",
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Flight tickets, Hotels",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "Where it is not possible to use the Local Experts name e.g. on flight tickets/hotels, the workers name and details should be used"
+    },
+    {
+      "description": "End client name prohibition",
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Flight tickets, Hotels",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "mandatoryOptional": "Mandatory",
+      "rule": "The end client shouldn't be mentioned"
+    }
+  ],
+  "compliancePoliciesGrossUpRelated": [
+    {
+      "travelNonTravelBoth": "Both",
+      "expenseType": "All approved expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "Yes",
+      "grossUpRule": "All approved expenses will be paid as NET to the employee and grossed up if they are not tax free"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Business expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "No",
+      "grossUpRule": "Business expenses related to workers completing their job will usually be tax exempt"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Mixed business and personal expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "Yes",
+      "grossUpRule": "Only purely business related elements of this expense will be tax free, anything additional will be subject to tax"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Entertainment expenses (meals with clients)",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "Yes",
+      "grossUpRule": "Tax free up to 75% of the whole amount"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Employee engagement activity",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "No",
+      "grossUpRule": "Tax exempt"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Training and development",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "No",
+      "grossUpRule": "Tax exempt"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Car rental up to 15 days",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "No",
+      "grossUpRule": "Tax exempt"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Car rental longer than 15 days",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "Yes",
+      "grossUpRule": "Will be subjected to taxes"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage over 15,000 km annually",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "Yes",
+      "grossUpRule": "Any excess kilometers will be subject to tax"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Vehicle expenses (non-assigned car)",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "Yes",
+      "grossUpRule": "Tax exempt up to 20% of their costs as long as the car is not assigned to a specific employee"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Transportation expenses with documents",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "No",
+      "grossUpRule": "100% tax exempt if the worker provides evidence of the transportation documents (not applicable for company cars)"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Fuel expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "Yes",
+      "grossUpRule": "Fuel expenses are taxed"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Trips within municipal area",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "Yes",
+      "grossUpRule": "Subject to a tax exemption of 75% on the per diem rate"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Domestic per diem with supporting documents",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "No",
+      "grossUpRule": "Exempt from tax as long as supporting documents such as receipts are provided"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "International per diem",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "grossUp": "No",
+      "grossUpRule": "Tax free"
+    }
+  ],
+  "compliancePoliciesAdditionalInfoRelated": [
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Business trips",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Business Trip - submit a separate report for each trip"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage claims",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Car details (the type of car, whether petrol/electric/hybrid, model) must be listed in the expense report"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage claims",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Information regarding the route and the kilometers traveled, which must be reported with indication of the starting point and arrival point"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage claims",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Scan of the card passport (libretto di circolazione), as it will contain all information regarding the car owner"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage claims",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Any screenshot from any app that can track start point, arrival point and KM will work (like google maps) to keep track of the travelled KM"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Mileage claims",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Full details of the vehicle and proof of distance travelled should be provided as well (e.g. google maps)"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Parking fees",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Parking fees are excluded from the per diem rate and should be reimbursed against receipts"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Per diem claims",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Workers must always provide receipts when per diems are in place"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Per diem method selection",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "You cannot mix per diem method with actual expenses. You will need to agree with the worker on one method per business trip"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Traceable payment methods",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Under Budget Law 2025, obligation to use traceable payment methods: Bank transfers, Postal transfers, Credit cards, Debit cards, Prepaid cards, Bank or cashier's checks"
+    },
+    {
+      "travelNonTravelBoth": "Travel",
+      "expenseType": "Non-traceable payment consequences",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "If reimbursements are not made via traceable methods they will not be considered deductible"
+    },
+    {
+      "travelNonTravelBoth": "Non-Travel",
+      "expenseType": "Entertainment expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "The worker will always need to mention the 3rd party detail"
+    },
+    {
+      "travelNonTravelBoth": "Both",
+      "expenseType": "Foreign currency expenses",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Receipts should be submitted with the same currency and clear exchange rate"
+    },
+    {
+      "travelNonTravelBoth": "Both",
+      "expenseType": "Tax exemption supporting documents",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Without supporting documents any applicable tax exemption cannot be applied"
+    },
+    {
+      "travelNonTravelBoth": "Both",
+      "expenseType": "Sufficient proof requirement",
+      "icpName": "Global People s.r.l. / GoGlobal Consulting S.r.l",
+      "additionalInfoRequired": "Yes",
+      "additionalInfoRule": "Tax exemptions will only be applied providing sufficient proof is shared e.g. tax receipts, invoices etc"
+    }
+  ]
 }

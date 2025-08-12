@@ -1,81 +1,81 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_014_Copy of italia_file_4.pdf",
+    "image_path": "uploads\\AUG_5_V5_7_Copy of italia_file_4.jpg",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T18:36:39.259Z",
-    "quality_score": 100,
-    "quality_level": "excellent",
+    "timestamp": "2025-08-05T16:25:20.232Z",
+    "quality_score": 60,
+    "quality_level": "good",
     "suitable_for_extraction": true,
     "blur_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "The text is sharp and clearly defined with no visible blur.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "medium",
+      "confidence_score": 0.8,
+      "quantitative_measure": 0.5,
+      "description": "The text and edges show moderate blur, likely due to camera movement or focus issues.",
+      "recommendation": "Retake the image with a steady camera and ensure the document is in focus."
     },
     "contrast_assessment": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.7,
+      "description": "The contrast between text and background is slightly low, making some text harder to read.",
+      "recommendation": "Improve lighting conditions and ensure uniform background for better contrast."
     },
     "glare_identification": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "No glare or bright spots detected that obscure text or important document areas.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.6,
+      "quantitative_measure": 0.1,
+      "description": "Minor glare is present in the upper-right corner, slightly affecting readability.",
+      "recommendation": "Adjust the angle of the camera to minimize glare from light sources."
     },
     "water_stains": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No water stains or discoloration detected that affect document readability.",
-      "recommendation": "No action required."
+      "description": "No water stains are detected on the document.",
+      "recommendation": "None required."
     },
     "tears_or_folds": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No visible tears, creases, folds, or wrinkles that cause text distortion or information loss.",
-      "recommendation": "No action required."
+      "description": "No tears or folds are detected on the document.",
+      "recommendation": "None required."
     },
     "cut_off_detection": {
-      "detected": false,
-      "severity_level": "none",
-      "confidence_score": 0.95,
-      "quantitative_measure": 0,
-      "description": "No document edges are cut off, and the image frame includes all important document portions.",
-      "recommendation": "No action required."
+      "detected": true,
+      "severity_level": "low",
+      "confidence_score": 0.7,
+      "quantitative_measure": 0.1,
+      "description": "A small portion of the bottom edge is slightly cut off.",
+      "recommendation": "Ensure the entire document is within the frame when capturing the image."
     },
     "missing_sections": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No parts of the receipt/invoice are missing, incomplete, or not captured in the image.",
-      "recommendation": "No action required."
+      "description": "No missing sections are detected on the document.",
+      "recommendation": "None required."
     },
     "obstructions": {
       "detected": false,
       "severity_level": "none",
-      "confidence_score": 0.95,
+      "confidence_score": 0.9,
       "quantitative_measure": 0,
-      "description": "No objects, fingers, shadows, or other elements block or obscure document content.",
-      "recommendation": "No action required."
+      "description": "No obstructions are detected on the document.",
+      "recommendation": "None required."
     },
-    "overall_quality_score": 10
+    "overall_quality_score": 6
   },
   "classification": {
     "is_expense": true,
-    "expense_type": "travel",
+    "expense_type": "meals",
     "language": "Italian",
     "language_confidence": 95,
     "document_location": "Italy",
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple fields indicating it is an expense document. The fields found include supplier, consumerRecipient, transactionAmount, transactionDate, invoiceReceiptNumber, itemDescriptionLineItems, and paymentMethod. The document is a bus ticket receipt with clear payment and transaction details.",
+    "reasoning": "The document contains all necessary fields to be classified as an expense document. It includes supplier details, consumer details, transaction amount, transaction date, invoice/receipt number, item description, and payment method. The document is a commercial sales document from a restaurant, indicating a meal expense.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -96,588 +96,622 @@
         "paymentMethod"
       ],
       "fields_missing": [
-        "taxInformation",
-        "icpRequirements"
+        "icpRequirements",
+        "taxInformation"
       ],
       "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, clearly indicating it is an expense document. The fields present include supplier (Prontobus srl), consumerRecipient (Fabio Papadia), transactionAmount (€ 30,40), transactionDate (07/01/2025), invoiceReceiptNumber (2962036-7), itemDescriptionLineItems (bus ticket details), and paymentMethod (Carta di credito)."
+      "expense_identification_reasoning": "The document contains 7 out of 8 schema fields, including supplier, consumer, transaction amount, transaction date, invoice/receipt number, item description, and payment method. This meets the criteria for being classified as an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_vat_number_on_invoice": null,
-    "customer_tax_code_on_invoice": null,
+    "country": "Italy",
+    "supplier_name": "BAR ACCADEMIA",
+    "supplier_address": "VIA DEL TRITONE, 54",
+    "supplier_postal_code": "00187",
+    "supplier_city": "ROMA",
+    "supplier_vat_number": "01845911005",
+    "supplier_phone": "06/6793585",
+    "customer_name": null,
+    "customer_address": null,
+    "invoice_number": null,
+    "receipt_number": "0117-0304",
+    "transaction_reference": null,
     "currency": "EUR",
-    "amount": 30.4,
-    "receipt_type": "ticket",
-    "receipt_quality": null,
-    "payment_method": "Carta di credito",
-    "vehicle_make_model": null,
-    "vehicle_fuel_type": null,
-    "distance_traveled": null,
-    "route_documentation": null,
-    "car_registration": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "per_diem_method": null,
-    "supplier_name": "Prontobus srl",
-    "supplier_address": "Strada Prati 4, Pescara",
-    "supplier_website": "www.prontobusitalia.it",
-    "supplier_email": "info@prontobusitalia.it",
-    "supplier_phone": "+39 329 8631455",
-    "supplier_vat_number": "P.IVA 02114590686",
-    "departure_location": "Chieti scalo",
-    "arrival_location": "Fiumicino aeroporto",
-    "departure_date": "2025-02-09",
-    "departure_time": "01:30",
-    "arrival_date": "2025-02-09",
-    "arrival_time": "04:15",
-    "ticket_number": "2962036-7",
-    "tariff": "Express",
-    "discount": "Promo",
-    "customer_name": "Fabio Papadia",
-    "total": 30.4,
+    "total_amount": 39.78,
+    "subtotal": 34,
+    "tax_amount": 3.62,
+    "tax_rate": 10,
+    "discount_amount": null,
+    "tip_amount": 5.78,
+    "date_of_issue": "2019-09-12",
+    "transaction_time": "22:25",
+    "payment_method": "Cash",
+    "card_last_four": null,
     "line_items": [
       {
-        "description": "Express",
+        "description": "BOLOGNESE",
         "quantity": 1,
-        "unit_price": 30.4,
-        "total_price": 30.4
+        "unit_price": 14,
+        "total_price": 14,
+        "category": "Food"
+      },
+      {
+        "description": "LASAGNA",
+        "quantity": 1,
+        "unit_price": 14,
+        "total_price": 14,
+        "category": "Food"
+      },
+      {
+        "description": "MINERALE CL 75",
+        "quantity": 1,
+        "unit_price": 6,
+        "total_price": 6,
+        "category": "Beverage"
       }
     ],
-    "additional_terms": "Il pagamento del biglietto con la relativa emissione comporta l'accettazione delle condizioni generali di viaggio riportate sul sito prontobusitalia.it. Bagagli: il Viaggiatore ha diritto al trasporto a proprio rischio e pericolo e a titolo gratuito di 1 bagaglio di dimensioni cm 50x35x25 peso non eccedente 20kg che verrà sistemato nel bagagliaio del veicolo. La società non risponde di eventuali smarrimenti, sostituzioni, deterioramenti o furti. II bagaglio non è assicurato. Bagagli eccedenti saranno conteggiati con la tariffa di €5,00 cad. Trasporto animali: è consentito il trasporto di piccolo animali (cani e gatti) purchè siano tenuti in apposite custodie/trasportini durante l'intero viaggio e siano stati presi accorgimenti atti a renderli non offensivi e pericolosi, contro il pagamento del 50 % della tariffa. Oggetti smarriti: gli oggetti rinvenuti in vettura vengono depositati c/o la rimessa della società e sono tenuti per un periodo di massimo 30 giorni, a disposizione dei legittimi proprietari il quali dovranno dare tutte le indicazioni atte a confermarne la loro proprietà. La società non risponde del bagaglio o oggetti che vengano dimenticati sull'autobus. Danni: tutti il danni e/o guasti arrecati dal viaggiatore ai veicoli, agli oggetti e /o locali della società debbono essere risarciti. E' vietato trasportare merci infiammabili, esplosive e in ogni caso pericolose. Sarà compito dei viaggiatori presentarsi nel luogo di partenza almeno 10 minuti prima dell'orario previsto. Connessione Wi-Fi gratuita di 50 MB/s per utente (la connessione internet offerta non è prevista nelle condizioni contrattuali d'acquisto del biglietto, pertanto l'azienda non si ritiene responsabile qualora si riscontrassero problemi di collegamento).",
-    "issue_date": "2025-01-07",
-    "issue_time": "11:35",
-    "special_notes": "NON STAMPARE. Scarica su App Store o Google play. AIUTIAMO AMBIENTE."
+    "receipt_type": "Restaurant Receipt",
+    "document_type": "DOCUMENTO COMMERCIALE",
+    "table_number": null,
+    "server_name": null,
+    "location_city": "ROMA",
+    "location_country": "Italy",
+    "special_notes": null,
+    "terms_conditions": null,
+    "business_registration_number": null
   },
   "compliance": {
     "validation_result": {
       "is_valid": false,
-      "issues_count": 7,
+      "issues_count": 6,
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "Customer name on invoice is missing. For travel receipts, the worker's name is acceptable when the local employer name is not possible.",
-          "recommendation": "It is recommended to address this issue with the supplier to include the worker's name on the invoice.",
-          "knowledge_base_reference": "Exception for flights/hotels where Local Employer name not possible, Worker's name acceptable when Local Employer name not possible, end client should not be mentioned."
+          "field": "customer_name",
+          "description": "Missing mandatory customer name on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The Local Employers name and details should appear on invoices, not the workers"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "Customer address on invoice is missing. For travel receipts, the worker's personal address is acceptable when the local employer address is not applicable.",
-          "recommendation": "It is recommended to address this issue with the supplier to include the worker's personal address on the invoice.",
-          "knowledge_base_reference": "Exception for flights/hotels where Local Employer address not applicable, Accept worker's personal address on invoice WHEN worker books personal travel (logical extension of name exception)."
+          "field": "customer_address",
+          "description": "Missing mandatory customer address on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "The Local Employers name and details should appear on invoices, not the workers"
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "Customer VAT number on invoice is missing. For travel receipts, the absence of the company VAT number is acceptable when the worker makes personal flight/hotel bookings.",
-          "recommendation": "No action required as per exception rule.",
-          "knowledge_base_reference": "Exception for flights/hotels where company VAT not applicable, Accept absence of company VAT number WHEN worker makes personal flight/hotel bookings (logical extension of name exception)."
+          "field": "invoice_number",
+          "description": "Missing mandatory invoice number on the receipt",
+          "recommendation": "It is recommended to address this issue with the supplier or provider",
+          "knowledge_base_reference": "Receipt document type rule: Documents must be actual tax receipts or invoices preferably scanned not photos; booking confirmations will not suffice"
         },
         {
-          "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "receipt_quality",
-          "description": "Receipt quality is not specified. The receipt must be scanned (not photos), clear and readable.",
-          "recommendation": "Ensure the receipt is scanned and meets the quality standards.",
-          "knowledge_base_reference": "Must be scanned (not photos), clear and readable."
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "business_trip_reporting",
-          "description": "Business trip reporting is missing. A separate report for each business trip is required.",
-          "recommendation": "Submit a separate report for this business trip.",
-          "knowledge_base_reference": "Submit separate report for each business trip."
+          "issue_type": "Standards & Compliance | Gross-up Identified",
+          "field": "tax_amount",
+          "description": "Meal expenses are not tax exempt and will be grossed up",
+          "recommendation": "Entertainment expenses (meals with clients) are tax free up to 75% of the whole amount",
+          "knowledge_base_reference": "Gross-up rule: Tax free up to 75% of the whole amount"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "per_diem_method",
-          "description": "Per diem method is not specified. The method must be consistent for the entire business trip.",
-          "recommendation": "Specify the per diem method for this business trip.",
-          "knowledge_base_reference": "Cannot mix per diem method with actual expenses - must agree on one method per business trip."
+          "field": "additional_info",
+          "description": "The worker will always need to mention the 3rd party detail",
+          "recommendation": "Please provide the 3rd party detail for the entertainment expense",
+          "knowledge_base_reference": "Additional info rule: The worker will always need to mention the 3rd party detail"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "additional_documentation",
-          "description": "Additional documentation is required for mileage claims. This includes a scan of the car registration document, car details (make/model/fuel type), and a Google Maps screenshot showing the route and distance.",
-          "recommendation": "Provide the required additional documentation for mileage claims.",
-          "knowledge_base_reference": "Receipt is not applicable - you must provide: 1) Scan of car registration document 2) Car details (make/model/fuel type) 3) Google Maps screenshot showing route and distance."
+          "field": "payment_method",
+          "description": "Under Budget Law 2025, obligation to use traceable payment methods",
+          "recommendation": "Please provide a receipt with a traceable payment method (Bank transfers, Postal transfers, Credit cards, Debit cards, Prepaid cards, Bank or cashier's checks)",
+          "knowledge_base_reference": "Additional info rule: Under Budget Law 2025, obligation to use traceable payment methods: Bank transfers, Postal transfers, Credit cards, Debit cards, Prepaid cards, Bank or cashier's checks"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt has several compliance issues, including missing customer name, address, and VAT number on the invoice, unspecified receipt quality, missing business trip reporting, unspecified per diem method, and lack of additional documentation for mileage claims. These issues need to be addressed to ensure compliance with the specified rules and regulations."
+      "compliance_summary": "The receipt is not fully compliant with the specified standards and policies. Several mandatory fields are missing, and there are issues related to tax implications and additional documentation requirements. The customer name, customer address, and invoice number are missing, and the meal expenses will be grossed up as they are not tax exempt. Additionally, the 3rd party detail for the entertainment expense is missing, and the payment method does not comply with the traceable payment methods requirement."
     },
     "technical_details": {
       "content_type": "expense_receipt",
       "country": "Italy",
       "icp": "Global People",
-      "receipt_type": "travel",
-      "issues_count": 7
+      "receipt_type": "meals",
+      "issues_count": 6
     }
   },
   "citations": {
     "citations": {
-      "currency": {
+      "country": {
         "field_citation": {
-          "source_text": "Receipt currency",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Currency, Description: Receipt currency",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "€ 30,40",
-          "confidence": 1,
+          "source_text": null,
+          "confidence": 0,
           "source_location": "markdown",
-          "context": "Fabio Papadia\n€ 30,40",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Expense amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Amount, Description: Expense amount",
-          "match_type": "exact"
+          "context": "Country information not explicitly mentioned in the source document.",
+          "match_type": "not_found"
         },
         "value_citation": {
-          "source_text": "30,40",
-          "confidence": 1,
+          "source_text": "Italy",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Fabio Papadia\n€ 30,40",
-          "match_type": "fuzzy"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Receipt Type, Description: Type of supporting document",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "ticket",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in markdown, using requirements as source)",
-          "match_type": "exact"
-        }
-      },
-      "payment_method": {
-        "field_citation": {
-          "source_text": "Method of payment used",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Payment Method, Description: Method of payment used",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Carta di credito",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "PAGAMENTO\nREGOLAMENTO\nII pagamento del biglietto con la relativa emissione comporta l'accettazione delle condizioni generali di\nCarta di credito\nviaggio riportate sul sito prontobusitalia.it.",
-          "match_type": "exact"
+          "context": "The country is mentioned in the structured output.",
+          "match_type": "contextual"
         }
       },
       "supplier_name": {
         "field_citation": {
-          "source_text": "Prontobus srl",
+          "source_text": "BAR ACCADEMIA",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Prontobus srl\nPRONTOBUS",
+          "context": "Supplier name appears directly in the source.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Prontobus srl",
+          "source_text": "BAR ACCADEMIA",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Prontobus srl\nPRONTOBUS",
+          "context": "Supplier name appears directly in the source.",
           "match_type": "exact"
         }
       },
       "supplier_address": {
         "field_citation": {
-          "source_text": "Supplier address",
+          "source_text": "VIA DEL TRITONE,54",
           "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
+          "source_location": "markdown",
+          "context": "Supplier address appears directly in the source.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Strada Prati 4, Pescara",
+          "source_text": "VIA DEL TRITONE,54",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Prontobus srl\nPRONTOBUS\nStrada Prati 4, Pescara",
+          "context": "Supplier address appears directly in the source.",
           "match_type": "exact"
         }
       },
-      "supplier_website": {
+      "supplier_postal_code": {
         "field_citation": {
-          "source_text": "Supplier website",
+          "source_text": "00187",
           "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
+          "source_location": "markdown",
+          "context": "Postal code appears directly in the source.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "www.prontobusitalia.it",
+          "source_text": "00187",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Prontobus srl\nPRONTOBUS\nStrada Prati 4, Pescara\nwww.prontobusitalia.it P.IVA 02114590686",
+          "context": "Postal code appears directly in the source.",
           "match_type": "exact"
         }
       },
-      "supplier_email": {
+      "supplier_city": {
         "field_citation": {
-          "source_text": "Supplier email",
+          "source_text": "ROMA",
           "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
+          "source_location": "markdown",
+          "context": "City appears directly in the source.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "info@prontobusitalia.it",
+          "source_text": "ROMA",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Prontobus srl\nPRONTOBUS\nStrada Prati 4, Pescara\nwww.prontobusitalia.it P.IVA 02114590686\ninfo@prontobusitalia.it tel. +39 329 8631455",
-          "match_type": "exact"
-        }
-      },
-      "supplier_phone": {
-        "field_citation": {
-          "source_text": "Supplier phone",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "+39 329 8631455",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Prontobus srl\nPRONTOBUS\nStrada Prati 4, Pescara\nwww.prontobusitalia.it P.IVA 02114590686\ninfo@prontobusitalia.it tel. +39 329 8631455",
+          "context": "City appears directly in the source.",
           "match_type": "exact"
         }
       },
       "supplier_vat_number": {
         "field_citation": {
-          "source_text": "Supplier VAT number",
+          "source_text": "P.IVA 01845911005",
           "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
+          "source_location": "markdown",
+          "context": "VAT number appears directly in the source.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "P.IVA 02114590686",
+          "source_text": "01845911005",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Prontobus srl\nPRONTOBUS\nStrada Prati 4, Pescara\nwww.prontobusitalia.it P.IVA 02114590686",
+          "context": "VAT number appears directly in the source.",
           "match_type": "exact"
         }
       },
-      "departure_location": {
+      "supplier_phone": {
         "field_citation": {
-          "source_text": "Departure location",
+          "source_text": "TEL. 06/6793585",
           "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
+          "source_location": "markdown",
+          "context": "Phone number appears directly in the source.",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Chieti scalo",
+          "source_text": "06/6793585",
           "confidence": 1,
           "source_location": "markdown",
-          "context": "Chieti scalo Fiumicino aeroporto",
-          "match_type": "exact"
-        }
-      },
-      "arrival_location": {
-        "field_citation": {
-          "source_text": "Arrival location",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Fiumicino aeroporto",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Chieti scalo Fiumicino aeroporto",
-          "match_type": "exact"
-        }
-      },
-      "departure_date": {
-        "field_citation": {
-          "source_text": "Departure date",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "9 febbraio 2025",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Partenza 9 febbraio 2025 ore 01:30",
-          "match_type": "exact"
-        }
-      },
-      "departure_time": {
-        "field_citation": {
-          "source_text": "Departure time",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "01:30",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Partenza 9 febbraio 2025 ore 01:30",
-          "match_type": "exact"
-        }
-      },
-      "arrival_date": {
-        "field_citation": {
-          "source_text": "Arrival date",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "9 febbraio 2025",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Arrivo 9 febbraio 2025 ore 04:15",
-          "match_type": "exact"
-        }
-      },
-      "arrival_time": {
-        "field_citation": {
-          "source_text": "Arrival time",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "04:15",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Arrivo 9 febbraio 2025 ore 04:15",
-          "match_type": "exact"
-        }
-      },
-      "ticket_number": {
-        "field_citation": {
-          "source_text": "Ticket number",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "2962036-7",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "BIGLIETTO 2962036-7",
-          "match_type": "exact"
-        }
-      },
-      "tariff": {
-        "field_citation": {
-          "source_text": "Tariff",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Tariffa",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Express",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Tariffa\nSconto\nTotale\nExpress\nPromo",
-          "match_type": "exact"
-        }
-      },
-      "discount": {
-        "field_citation": {
-          "source_text": "Discount",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Sconto",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Promo",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Tariffa\nSconto\nTotale\nExpress\nPromo",
+          "context": "Phone number appears directly in the source.",
           "match_type": "exact"
         }
       },
       "customer_name": {
         "field_citation": {
-          "source_text": "Customer name",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
-          "match_type": "exact"
+          "source_text": null,
+          "confidence": 0,
+          "source_location": "markdown",
+          "context": "Customer name information not explicitly mentioned in the source document.",
+          "match_type": "not_found"
         },
         "value_citation": {
-          "source_text": "Fabio Papadia",
-          "confidence": 1,
+          "source_text": null,
+          "confidence": 0,
           "source_location": "markdown",
-          "context": "Fabio Papadia\n€ 30,40",
+          "context": "Customer name information not explicitly mentioned in the source document.",
+          "match_type": "not_found"
+        }
+      },
+      "receipt_number": {
+        "field_citation": {
+          "source_text": "DOCUMENTO N.",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "DOCUMENTO N. 0117-0304",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "0117-0304",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "DOCUMENTO N. 0117-0304",
           "match_type": "exact"
         }
       },
-      "total": {
+      "currency": {
         "field_citation": {
-          "source_text": "Total",
-          "confidence": 1,
+          "source_text": "Prezzo(€)",
+          "confidence": 0.9,
           "source_location": "markdown",
-          "context": "Totale",
-          "match_type": "exact"
+          "context": "Prezzo(€) BOLOGNESE 10,00% 14.00",
+          "match_type": "contextual"
         },
         "value_citation": {
-          "source_text": "30,40",
-          "confidence": 1,
+          "source_text": "EUR",
+          "confidence": 0.85,
           "source_location": "markdown",
-          "context": "Fabio Papadia\n€ 30,40",
-          "match_type": "fuzzy"
+          "context": "Prezzo(€) BOLOGNESE 10,00% 14.00",
+          "match_type": "contextual"
         }
       },
-      "issue_date": {
+      "total_amount": {
         "field_citation": {
-          "source_text": "Issue date",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
+          "source_text": "TOTALE COMPLESSIVO",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "TOTALE COMPLESSIVO 39,78",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "07/01/2025",
-          "confidence": 1,
+          "source_text": "39.78",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Biglietto numero 2962036-7 emesso il 07/01/2025 11:35.",
+          "context": "TOTALE COMPLESSIVO 39,78",
           "match_type": "exact"
         }
       },
-      "issue_time": {
+      "subtotal": {
         "field_citation": {
-          "source_text": "Issue time",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "N/A (no exact match in requirements, using markdown as source)",
+          "source_text": "SUBTOTALE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "SUBTOTALE 34.00",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "11:35",
-          "confidence": 1,
+          "source_text": "34",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Biglietto numero 2962036-7 emesso il 07/01/2025 11:35.",
+          "context": "SUBTOTALE 34.00",
+          "match_type": "exact"
+        }
+      },
+      "tax_amount": {
+        "field_citation": {
+          "source_text": "di cui IVA",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "di cui IVA 3,62",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "3.62",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "di cui IVA 3,62",
+          "match_type": "exact"
+        }
+      },
+      "tax_rate": {
+        "field_citation": {
+          "source_text": "IVA",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "DESCRIZIONE\nIVA\nPrezzo(€)",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "10,00%",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BOLOGNESE\n10,00%\n14.00",
+          "match_type": "exact"
+        }
+      },
+      "discount_amount": {
+        "field_citation": {
+          "source_text": "Servizio",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Servizio\n5,78\nTOTALE COMPLESSIVO",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "5,78",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Servizio\n5,78\nTOTALE COMPLESSIVO",
+          "match_type": "exact"
+        }
+      },
+      "tip_amount": {
+        "field_citation": {
+          "source_text": "Servizio",
+          "confidence": 0.9,
+          "source_location": "markdown",
+          "context": "Servizio\n5,78\nTOTALE COMPLESSIVO",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "5,78",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Servizio\n5,78\nTOTALE COMPLESSIVO",
+          "match_type": "exact"
+        }
+      },
+      "date_of_issue": {
+        "field_citation": {
+          "source_text": "12-09-2019",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "12-09-2019 22:25",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "12-09-2019",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "12-09-2019 22:25",
+          "match_type": "exact"
+        }
+      },
+      "transaction_time": {
+        "field_citation": {
+          "source_text": "22:25",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "12-09-2019 22:25",
+          "match_type": "exact"
+        },
+        "value_citation": {
+          "source_text": "22:25",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "12-09-2019 22:25",
+          "match_type": "exact"
+        }
+      },
+      "payment_method": {
+        "field_citation": {
+          "source_text": "Pagamento contante",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pagamento contante\n39,78\nPagamento elettronico\n0.00",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "contante",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pagamento contante\n39,78\nPagamento elettronico\n0.00",
+          "match_type": "contextual"
+        }
+      },
+      "card_last_four": {
+        "field_citation": {
+          "source_text": "Pagamento elettronico",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pagamento elettronico\n0.00\nNon riscosso\n0,00",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "N/A",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Pagamento elettronico\n0.00\nNon riscosso\n0,00",
+          "match_type": "contextual"
+        }
+      },
+      "receipt_type": {
+        "field_citation": {
+          "source_text": "DOCUMENTO COMMERCIALE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BAR ACCADEMIA\nGIAMAICA CAFFE' SRL\nVIA DEL TRITONE,54\n00187 ROMA\nP.IVA 01845911005\nTEL. 06/6793585\nDOCUMENTO COMMERCIALE",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "DOCUMENTO COMMERCIALE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "di vendita 0 prestazione",
+          "match_type": "exact"
+        }
+      },
+      "document_type": {
+        "field_citation": {
+          "source_text": "DOCUMENTO COMMERCIALE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BAR ACCADEMIA\nGIAMAICA CAFFE' SRL\nVIA DEL TRITONE,54\n00187 ROMA\nP.IVA 01845911005\nTEL. 06/6793585\nDOCUMENTO COMMERCIALE",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "DOCUMENTO COMMERCIALE",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "di vendita 0 prestazione",
+          "match_type": "exact"
+        }
+      },
+      "location_city": {
+        "field_citation": {
+          "source_text": "00187 ROMA",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BAR ACCADEMIA\nGIAMAICA CAFFE' SRL\nVIA DEL TRITONE,54\n00187 ROMA\nP.IVA 01845911005\nTEL. 06/6793585\nDOCUMENTO COMMERCIALE",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "ROMA",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "00187 ROMA",
+          "match_type": "exact"
+        }
+      },
+      "location_country": {
+        "field_citation": {
+          "source_text": "Italy",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BAR ACCADEMIA\nGIAMAICA CAFFE' SRL\nVIA DEL TRITONE,54\n00187 ROMA\nP.IVA 01845911005\nTEL. 06/6793585\nDOCUMENTO COMMERCIALE",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "Italy",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "location_country",
+          "match_type": "exact"
+        }
+      },
+      "business_registration_number": {
+        "field_citation": {
+          "source_text": "P.IVA",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "BAR ACCADEMIA GIAMAICA CAFFE' SRL VIA DEL TRITONE,54 00187 ROMA",
+          "match_type": "contextual"
+        },
+        "value_citation": {
+          "source_text": "01845911005",
+          "confidence": 0.98,
+          "source_location": "markdown",
+          "context": "P.IVA 01845911005",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 29,
-      "fields_with_field_citations": 17,
-      "fields_with_value_citations": 17,
-      "average_confidence": 1
+      "total_fields_analyzed": 33,
+      "fields_with_field_citations": 24,
+      "fields_with_value_citations": 24,
+      "average_confidence": 0.9334848484848486
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "12.3",
-      "file_classification_seconds": "4.1",
-      "image_quality_assessment_seconds": "4.9",
-      "data_extraction_seconds": "15.9",
-      "issue_detection_seconds": "16.8",
-      "citation_generation_seconds": "60.9"
+      "markdown_extraction_seconds": "3.7",
+      "file_classification_seconds": "3.5",
+      "data_extraction_seconds": "3.8",
+      "image_quality_assessment_seconds": "5.0",
+      "issue_detection_seconds": "11.1",
+      "citation_generation_seconds": "14.3"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T18:36:22.131Z",
-        "end_time": "2025-07-31T18:36:34.387Z",
-        "duration_seconds": "12.3",
+        "start_time": "2025-08-05T16:25:11.568Z",
+        "end_time": "2025-08-05T16:25:15.235Z",
+        "duration_seconds": "3.7",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T18:36:34.388Z",
-        "end_time": "2025-07-31T18:36:38.510Z",
-        "duration_seconds": "4.1",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "image_quality_assessment": {
-        "start_time": "2025-07-31T18:36:34.388Z",
-        "end_time": "2025-07-31T18:36:39.259Z",
-        "duration_seconds": "4.9",
+        "start_time": "2025-08-05T16:25:15.238Z",
+        "end_time": "2025-08-05T16:25:18.732Z",
+        "duration_seconds": "3.5",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T18:36:34.389Z",
-        "end_time": "2025-07-31T18:36:50.301Z",
-        "duration_seconds": "15.9",
+        "start_time": "2025-08-05T16:25:15.240Z",
+        "end_time": "2025-08-05T16:25:19.007Z",
+        "duration_seconds": "3.8",
+        "model_used": "eu.amazon.nova-pro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "image_quality_assessment": {
+        "start_time": "2025-08-05T16:25:15.236Z",
+        "end_time": "2025-08-05T16:25:20.232Z",
+        "duration_seconds": "5.0",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "issue_detection": {
-        "start_time": "2025-07-31T18:36:50.302Z",
-        "end_time": "2025-07-31T18:37:07.101Z",
-        "duration_seconds": "16.8",
+        "start_time": "2025-08-05T16:25:20.234Z",
+        "end_time": "2025-08-05T16:25:31.341Z",
+        "duration_seconds": "11.1",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T18:36:50.303Z",
-        "end_time": "2025-07-31T18:37:51.181Z",
-        "duration_seconds": "60.9",
-        "model_used": "eu.amazon.nova-pro-v1:0",
+        "start_time": "2025-08-05T16:25:20.235Z",
+        "end_time": "2025-08-05T16:25:34.562Z",
+        "duration_seconds": "14.3",
+        "model_used": "eu.amazon.nova-micro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "89.1",
+    "total_processing_time_seconds": "23.0",
     "performance_metrics": {
-      "parallel_group_1_seconds": "15.9",
-      "parallel_group_2_seconds": "60.9",
-      "total_parallel_time_seconds": "76.8",
-      "estimated_sequential_time_seconds": "114.9",
-      "estimated_speedup_factor": "1.50"
+      "parallel_group_1_seconds": "5.0",
+      "parallel_group_2_seconds": "14.3",
+      "total_parallel_time_seconds": "19.3",
+      "estimated_sequential_time_seconds": "41.4",
+      "estimated_speedup_factor": "2.14"
     },
     "validation": {
-      "total_time_seconds": "89.1",
-      "expected_parallel_time_seconds": "89.1",
-      "sequential_sum_seconds": "114.9",
+      "total_time_seconds": "23.0",
+      "expected_parallel_time_seconds": "23.0",
+      "sequential_sum_seconds": "41.4",
       "difference_seconds": "0.0",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "25.8"
+      "time_saved_seconds": "18.4"
     }
   },
   "metadata": {
-    "filename": "Copy of italia_file_4.pdf",
-    "processing_time": 89051,
+    "filename": "Copy of italia_file_4.jpg",
+    "processing_time": 22995,
     "country": "Italy",
     "icp": "Global People",
-    "processed_at": "2025-07-31T18:37:51.182Z",
+    "processed_at": "2025-08-05T16:25:34.563Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "15.9",
-      "parallel_group_2_duration_seconds": "60.9",
-      "estimated_sequential_time_seconds": "114.9",
-      "actual_parallel_time_seconds": "89.1"
+      "parallel_group_1_duration_seconds": "5.0",
+      "parallel_group_2_duration_seconds": "14.3",
+      "estimated_sequential_time_seconds": "41.4",
+      "actual_parallel_time_seconds": "23.0"
     }
   }
 }

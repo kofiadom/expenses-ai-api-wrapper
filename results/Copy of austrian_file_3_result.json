@@ -1,9 +1,9 @@
 {
   "image_quality_assessment": {
-    "image_path": "uploads\\v4_run_001_Copy of austrian_file_3.pdf",
+    "image_path": "uploads\\AUG_5_V5_22_Copy of austrian_file_3.pdf",
     "assessment_method": "LLM",
     "model_used": "eu.amazon.nova-pro-v1:0",
-    "timestamp": "2025-07-31T17:54:59.758Z",
+    "timestamp": "2025-08-05T19:02:50.246Z",
     "quality_score": 100,
     "quality_level": "excellent",
     "suitable_for_extraction": true,
@@ -12,7 +12,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "The text is sharp and the edges are well-defined.",
+      "description": "The text and edges are sharp with no signs of blur.",
       "recommendation": "No action needed."
     },
     "contrast_assessment": {
@@ -20,7 +20,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 1,
-      "description": "Excellent contrast between text and background, enabling clear text recognition.",
+      "description": "Excellent contrast between text and background, ensuring clear text recognition.",
       "recommendation": "No action needed."
     },
     "glare_identification": {
@@ -28,7 +28,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No bright spots, reflections, or glare detected.",
+      "description": "No glare or bright spots detected that obscure text.",
       "recommendation": "No action needed."
     },
     "water_stains": {
@@ -36,7 +36,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No water damage, discoloration, or staining detected.",
+      "description": "No water stains or discolorations affecting document readability.",
       "recommendation": "No action needed."
     },
     "tears_or_folds": {
@@ -44,7 +44,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No tears, creases, folds, or wrinkles detected.",
+      "description": "No visible tears, creases, folds, or wrinkles on the document.",
       "recommendation": "No action needed."
     },
     "cut_off_detection": {
@@ -52,7 +52,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No document edges are cut off or excluded.",
+      "description": "No document edges are cut off, and the image frame includes all necessary portions.",
       "recommendation": "No action needed."
     },
     "missing_sections": {
@@ -60,7 +60,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No missing sections or incomplete content detected.",
+      "description": "No missing sections or incomplete parts of the receipt/invoice.",
       "recommendation": "No action needed."
     },
     "obstructions": {
@@ -68,7 +68,7 @@
       "severity_level": "none",
       "confidence_score": 0.95,
       "quantitative_measure": 0,
-      "description": "No objects, fingers, shadows, or other elements obstructing the document.",
+      "description": "No objects, fingers, shadows, or other elements obstructing document content.",
       "recommendation": "No action needed."
     },
     "overall_quality_score": 10
@@ -84,7 +84,7 @@
     "error_type": null,
     "error_message": null,
     "classification_confidence": 90,
-    "reasoning": "The document contains multiple expense-related fields such as supplier, consumer, transaction amount, transaction date, item description line items, and payment method. These fields indicate that the document is an expense document.",
+    "reasoning": "The document contains multiple expense-related fields such as supplier, consumer, transaction amount, transaction date, item description, and payment method. It meets the criteria for being classified as an expense document.",
     "schema_field_analysis": {
       "fields_found": [
         "supplier",
@@ -96,149 +96,122 @@
         "paymentMethod"
       ],
       "fields_missing": [
-        "taxInformation",
-        "icpRequirements"
+        "icpRequirements",
+        "taxInformation"
       ],
       "total_fields_found": 7,
-      "expense_identification_reasoning": "The document contains 7 out of 8 schema fields, including supplier, consumer, transaction amount, transaction date, invoice receipt number, item description line items, and payment method. This meets the criteria for identifying the document as an expense."
+      "expense_identification_reasoning": "The document contains 7 out of 8 required fields, clearly indicating it is an expense document."
     }
   },
   "extraction": {
-    "customer_name_on_invoice": null,
-    "customer_address_on_invoice": null,
-    "customer_vat_number_on_invoice": null,
-    "customer_name_exception": null,
-    "currency": [
-      "USD",
-      "EUR"
-    ],
-    "amount": [
-      34.95,
-      38.7
-    ],
-    "receipt_type": [
-      "Uber Receipt",
-      "Bolt Receipt"
-    ],
-    "receipt_quality": null,
-    "personal_information": null,
-    "business_trip_reporting": null,
-    "travel_template": null,
-    "manager_approval": null,
-    "route_map": null,
-    "kilometer_record": null,
-    "car_details": null,
-    "parking_documentation": null,
-    "line_items": [
-      {
-        "description": "Trip fare",
-        "unit_price": 18.87,
-        "total_price": 18.87
-      },
-      {
-        "description": "Time at Stop",
-        "unit_price": 1.64,
-        "total_price": 1.64
-      },
-      {
-        "description": "Booking Fee",
-        "unit_price": 3.96,
-        "total_price": 3.96
-      },
-      {
-        "description": "Airport Pickup Surcharge",
-        "unit_price": 5.15,
-        "total_price": 5.15
-      },
-      {
-        "description": "Tip",
-        "unit_price": 5.33,
-        "total_price": 5.33
-      },
-      {
-        "description": "Fare",
-        "unit_price": 33.3,
-        "total_price": 33.3
-      },
-      {
-        "description": "Flughafengebühr",
-        "unit_price": 2.9,
-        "total_price": 2.9
-      },
-      {
-        "description": "Subtotal",
-        "unit_price": 32.91,
-        "total_price": 32.91
-      },
-      {
-        "description": "VAT (10%)",
-        "unit_price": 3.29,
-        "total_price": 3.29
-      },
-      {
-        "description": "Tip",
-        "unit_price": 2.5,
-        "total_price": 2.5
-      }
-    ],
-    "date_of_issue": [
-      "2025-01-16",
-      "2025-01-17"
-    ],
-    "contact_information": [
-      {
-        "email": "noreply@uber.com",
-        "address": "1725 3rd Street, San Francisco, California 94158"
-      },
-      {
-        "email": "receipts-austria@bolt.eu",
-        "address": "Grillgasse 51/201 1110 Wien"
-      }
-    ],
-    "tax_related_information": [
-      {
-        "vat_rate": 10,
-        "vat_amount": 3.29
-      }
-    ],
-    "payment_related_information": [
-      {
-        "payment_method": "Apple Pay",
-        "total_charged": 38.7
-      }
-    ],
-    "location_information": [
-      {
-        "pickup": "Terminal 3 (First floor), Vienna Airport (VIE)",
-        "dropoff": "Messenhausergasse 2, Vienna 1030"
-      }
-    ],
-    "special_notes": [
-      "Thanks for tipping, Sergey",
-      "We hope you enjoyed your ride"
-    ],
-    "subtotals": [
-      18.87,
-      32.91
-    ],
-    "tips": [
-      5.33,
-      2.5
-    ],
-    "total_amount": [
-      34.95,
-      38.7
-    ],
-    "transaction_identifiers": [
-      {
-        "service": "Uber",
-        "reference_number": null
-      },
-      {
-        "service": "Bolt",
-        "reference_number": "RU118P"
-      }
-    ]
+    "uber_receipt": {
+      "supplier_name": "Uber",
+      "supplier_address": null,
+      "supplier_vat_number": null,
+      "customer_name": "Sergey Seperovich",
+      "customer_email": "sseper@gmail.com",
+      "transaction_date": "2025-01-16",
+      "transaction_time": null,
+      "currency": "USD",
+      "total_amount": 34.95,
+      "subtotal": 18.87,
+      "trip_fare": 18.87,
+      "time_at_stop": 1.64,
+      "booking_fee": 3.96,
+      "airport_pickup_surcharge": 5.15,
+      "tip_amount": 5.33,
+      "payment_method": null,
+      "card_last_four": null,
+      "line_items": [
+        {
+          "description": "Trip fare",
+          "quantity": 1,
+          "unit_price": 18.87,
+          "total_price": 18.87
+        },
+        {
+          "description": "Time at Stop",
+          "quantity": 1,
+          "unit_price": 1.64,
+          "total_price": 1.64
+        },
+        {
+          "description": "Booking Fee",
+          "quantity": 1,
+          "unit_price": 3.96,
+          "total_price": 3.96
+        },
+        {
+          "description": "Airport Pickup Surcharge",
+          "quantity": 1,
+          "unit_price": 5.15,
+          "total_price": 5.15
+        },
+        {
+          "description": "Tip",
+          "quantity": 1,
+          "unit_price": 5.33,
+          "total_price": 5.33
+        }
+      ],
+      "receipt_type": "Transport Receipt",
+      "document_type": "Receipt",
+      "special_notes": null,
+      "terms_conditions": null
+    },
+    "bolt_receipt": {
+      "supplier_name": "Bolt Austria",
+      "supplier_address": "1725 3rd Street, San Francisco, California, 94158",
+      "supplier_vat_number": null,
+      "customer_name": "Sergey Seperovich",
+      "customer_email": "sseper@gmail.com",
+      "transaction_date": "2025-01-17",
+      "transaction_time": "19:23",
+      "currency": "EUR",
+      "total_amount": 38.7,
+      "subtotal": 32.91,
+      "fare": 33.3,
+      "airport_fee": 2.9,
+      "vat_amount": 3.29,
+      "vat_rate": 10,
+      "tip_amount": 2.5,
+      "payment_method": "Apple Pay",
+      "card_last_four": null,
+      "line_items": [
+        {
+          "description": "Fare",
+          "quantity": 1,
+          "unit_price": 33.3,
+          "total_price": 33.3
+        },
+        {
+          "description": "Flughafengebühr",
+          "quantity": 1,
+          "unit_price": 2.9,
+          "total_price": 2.9
+        },
+        {
+          "description": "VAT",
+          "quantity": 1,
+          "unit_price": 3.29,
+          "total_price": 3.29
+        },
+        {
+          "description": "Tip",
+          "quantity": 1,
+          "unit_price": 2.5,
+          "total_price": 2.5
+        }
+      ],
+      "receipt_type": "Transport Receipt",
+      "document_type": "Receipt",
+      "pickup_location": "Terminal 3 (First floor), Vienna Airport (VIE)",
+      "dropoff_location": "Messenhausergasse 2, Vienna 1030",
+      "driver_name": "Yakup",
+      "driver_code": "RU118P",
+      "special_notes": "Zu Beginn deiner Fahrt wurde auf Apple Pay ein vorläufiger Betrag von 5€ reserviert. Diese wird nur zur Überprüfung deiner Zahlungsart verwendet und wird freigegeben, sobald die Verifizierung abgeschlossen ist.",
+      "terms_conditions": null
+    }
   },
   "compliance": {
     "validation_result": {
@@ -247,63 +220,63 @@
       "issues": [
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_name_on_invoice",
-          "description": "The receipt is missing the mandatory customer name as per the compliance requirements. It must show Global People IT-Services GmbH as the customer.",
+          "field": "supplier_name",
+          "description": "The receipt must show \"Global People IT-Services GmbH\" as the local employer company name.",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Local Employer name as customer on supplier invoice, Must show Global People IT-Services GmbH as customer"
+          "knowledge_base_reference": "Invoices must show \"Global People IT-Services GmbH\", not the worker's name."
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_address_on_invoice",
-          "description": "The receipt is missing the mandatory customer address as per the compliance requirements. It must show Kärntner Ring 12, A-1010 Vienna, Austria.",
+          "field": "supplier_address",
+          "description": "The receipt must show the local employer address \"Kärntner Ring 12, A-1010 Vienna, Austria\".",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Local Employer address as customer on supplier invoice, Must show Kärntner Ring 12, A-1010 Vienna, Austria"
+          "knowledge_base_reference": "Invoices must show \"Kärntner Ring 12, A-1010 Vienna, Austria\""
         },
         {
           "issue_type": "Standards & Compliance | Fix Identified",
-          "field": "customer_vat_number_on_invoice",
-          "description": "The receipt is missing the mandatory customer VAT number as per the compliance requirements. It must show ATU77112189.",
+          "field": "supplier_vat_number",
+          "description": "The receipt must show the local employer VAT ID \"ATU77112189\".",
           "recommendation": "It is recommended to address this issue with the supplier or provider.",
-          "knowledge_base_reference": "Local Employer VAT number as customer on supplier invoice, Must show ATU77112189"
+          "knowledge_base_reference": "Invoices must show \"VAT ID: ATU77112189\""
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "currency",
+          "description": "The receipt must show the currency of the transaction. The currency \"USD\" is not acceptable for this receipt.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Receipts should show the currency of the transaction"
+        },
+        {
+          "issue_type": "Standards & Compliance | Fix Identified",
+          "field": "customer_name",
+          "description": "The receipt must show the name of the worker, not the end client.",
+          "recommendation": "It is recommended to address this issue with the supplier or provider.",
+          "knowledge_base_reference": "Hotel and flight invoices should indicate the name of the worker, not the end client"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "travel_template",
-          "description": "The receipt is missing the mandatory travel template as per the compliance requirements. It must use Travel Expense Report Template Austria EUR.xlsx.",
-          "recommendation": "Please use the specific travel expense report template for this country.",
-          "knowledge_base_reference": "Specific reporting template, Must use Travel Expense Report Template Austria EUR.xlsx"
+          "field": "receipt_type",
+          "description": "Travel expenses must be submitted using the Travel Expense Report Template Austria EUR.xlsx.",
+          "recommendation": "Please submit the travel expense using the Travel Expense Report Template Austria EUR.xlsx.",
+          "knowledge_base_reference": "Travel expenses must be submitted using the Travel Expense Report Template Austria EUR.xlsx"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "route_map",
-          "description": "The receipt is missing the mandatory route map as per the compliance requirements. A map with relevant route (Google Maps sufficient) is required.",
-          "recommendation": "Please provide a map with the relevant route (Google Maps sufficient).",
-          "knowledge_base_reference": "Travel route documentation, Map with relevant route (Google Maps sufficient)"
+          "field": "receipt_type",
+          "description": "To claim mileage, a record of kilometers traveled must be submitted with an exact continuous logbook (Fahrtenbuch).",
+          "recommendation": "Please submit a record of kilometers traveled with an exact continuous logbook (Fahrtenbuch).",
+          "knowledge_base_reference": "To claim mileage, a record of kilometers traveled must be submitted with exact continuous logbook (Fahrtenbuch)"
         },
         {
           "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "kilometer_record",
-          "description": "The receipt is missing the mandatory kilometer record as per the compliance requirements. A record of kilometers traveled must be submitted.",
-          "recommendation": "Please submit a record of kilometers traveled.",
-          "knowledge_base_reference": "Distance traveled documentation, Record of kilometers traveled must be submitted"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "car_details",
-          "description": "The receipt is missing the mandatory car details as per the compliance requirements. Car details and destination are required.",
-          "recommendation": "Please provide car details and destination.",
-          "knowledge_base_reference": "Vehicle information, Car details and destination required"
-        },
-        {
-          "issue_type": "Standards & Compliance | Follow-up Action Identified",
-          "field": "parking_documentation",
-          "description": "The receipt is missing the mandatory parking documentation as per the compliance requirements. Parking tickets should be included within the mileage payment.",
-          "recommendation": "Please include parking tickets within the mileage payment.",
-          "knowledge_base_reference": "Parking expense documentation, Parking tickets should be included within the mileage payment"
+          "field": "receipt_type",
+          "description": "Worker will need to share a map with the relevant route (google maps is sufficient).",
+          "recommendation": "Please share a map with the relevant route (google maps is sufficient).",
+          "knowledge_base_reference": "Worker will need to share a map with the relevant route (google maps is sufficient)"
         }
       ],
       "corrected_receipt": null,
-      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory customer details, missing travel template, and missing required documentation for mileage claims. These issues need to be addressed to ensure compliance with Austria's expense reimbursement requirements."
+      "compliance_summary": "The receipt has multiple compliance issues including missing mandatory fields such as the local employer company name, address, and VAT ID. Additionally, the currency is incorrect and the customer name should be the worker's name. Follow-up actions are required to submit the travel expense using the correct template and to provide a logbook and map for mileage claims."
     },
     "technical_details": {
       "content_type": "expense_receipt",
@@ -315,353 +288,129 @@
   },
   "citations": {
     "citations": {
-      "customer_name_on_invoice": {
+      "supplier_name": {
         "field_citation": {
-          "source_text": "Local Employer name as customer on supplier invoice",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Customer Name on Invoice",
+          "source_text": "Uber",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "From: Uber Receipts <noreply@uber.com>",
           "match_type": "exact"
         },
         "value_citation": {
           "source_text": "Uber",
-          "confidence": 0.8,
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Uber\nTotal $34.95",
-          "match_type": "contextual"
-        }
-      },
-      "customer_address_on_invoice": {
-        "field_citation": {
-          "source_text": "Local Employer address as customer on supplier invoice",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Customer Address on Invoice",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Uber ML B.V.\n1725 3rd Street,\nSan Francisco,\nCalifornia\n94158",
-          "confidence": 0.8,
-          "source_location": "markdown",
-          "context": "Uber\nForgot password\nPrivacy\nTerms\nUber ML B.V.\n1725 3rd Street,\nSan Francisco,\nCalifornia\n94158",
-          "match_type": "contextual"
-        }
-      },
-      "customer_vat_number_on_invoice": {
-        "field_citation": {
-          "source_text": "Local Employer VAT number as customer on supplier invoice",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Customer VAT Number on Invoice",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "VAT no ATU80979434",
-          "confidence": 0.8,
-          "source_location": "markdown",
-          "context": "Invoice issuer HUSTAN TAXI KG\nGrillgasse 51/201 1110 Wien\nReg no FN 626924 y\nNot sure why you received this email?\nVAT no ATU80979434",
-          "match_type": "contextual"
-        }
-      },
-      "currency": {
-        "field_citation": {
-          "source_text": "Receipt currency and exchange rate",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Currency",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Total $34.95",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Uber\nTotal $34.95",
-          "match_type": "exact"
-        }
-      },
-      "amount": {
-        "field_citation": {
-          "source_text": "Expense amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Amount",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Total $34.95",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Uber\nTotal $34.95",
-          "match_type": "exact"
-        }
-      },
-      "receipt_type": {
-        "field_citation": {
-          "source_text": "Type of supporting document",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Receipt Type",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Uber Receipt",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Uber\nTotal $34.95",
-          "match_type": "contextual"
-        }
-      },
-      "date_of_issue": {
-        "field_citation": {
-          "source_text": "Date of issue",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Date of Issue",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "January 16, 2025",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "January 16, 2025",
-          "match_type": "exact"
-        }
-      },
-      "contact_information": {
-        "field_citation": {
-          "source_text": "Contact information",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Contact Information",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Uber ML B.V.\n1725 3rd Street,\nSan Francisco,\nCalifornia\n94158",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Uber\nForgot password\nPrivacy\nTerms\nUber ML B.V.\n1725 3rd Street,\nSan Francisco,\nCalifornia\n94158",
-          "match_type": "contextual"
-        }
-      },
-      "tax_related_information": {
-        "field_citation": {
-          "source_text": "Tax related information",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Tax Related Information",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "VAT (10%)",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "VAT (10%)",
-          "match_type": "exact"
-        }
-      },
-      "payment_related_information": {
-        "field_citation": {
-          "source_text": "Payment related information",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Payment Related Information",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Apple Pay",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Apple Pay",
-          "match_type": "exact"
-        }
-      },
-      "location_information": {
-        "field_citation": {
-          "source_text": "Location information",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Location Information",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Terminal 3 (First floor), Vienna Airport (VIE)",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Pickup:\n19:23\nTerminal 3 (First floor), Vienna Airport (VIE)",
-          "match_type": "contextual"
-        }
-      },
-      "special_notes": {
-        "field_citation": {
-          "source_text": "Special notes",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Special Notes",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Thanks for tipping, Sergey",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Thanks for tipping, Sergey",
-          "match_type": "exact"
-        }
-      },
-      "subtotals": {
-        "field_citation": {
-          "source_text": "Subtotals",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Subtotals",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Subtotal $18.87",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Subtotal\n$18.87",
-          "match_type": "exact"
-        }
-      },
-      "tips": {
-        "field_citation": {
-          "source_text": "Tips",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Tips",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "Tip $5.33",
-          "confidence": 1,
-          "source_location": "markdown",
-          "context": "Tip\n$5.33",
+          "context": "Best regards, Sergey Seperovich\nBegin forwarded message:\nFrom: Uber Receipts <noreply@uber.com>",
           "match_type": "exact"
         }
       },
       "total_amount": {
         "field_citation": {
-          "source_text": "Total amount",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Total Amount",
+          "source_text": "Total",
+          "confidence": 0.95,
+          "source_location": "markdown",
+          "context": "Total $34.95\nJanuary 16, 2025\nThanks for tipping, Sergey",
           "match_type": "exact"
         },
         "value_citation": {
-          "source_text": "Total $34.95",
-          "confidence": 1,
+          "source_text": "$34.95",
+          "confidence": 0.95,
           "source_location": "markdown",
-          "context": "Total\n$34.95",
-          "match_type": "exact"
-        }
-      },
-      "transaction_identifiers": {
-        "field_citation": {
-          "source_text": "Transaction identifiers",
-          "confidence": 1,
-          "source_location": "requirements",
-          "context": "Field_Type: Transaction Identifiers",
-          "match_type": "exact"
-        },
-        "value_citation": {
-          "source_text": "RU118P",
-          "confidence": 0.9,
-          "source_location": "markdown",
-          "context": "Your code\nRU118P",
+          "context": "Total $34.95\nJanuary 16, 2025\nThanks for tipping, Sergey",
           "match_type": "exact"
         }
       }
     },
     "metadata": {
-      "total_fields_analyzed": 20,
-      "fields_with_field_citations": 15,
-      "fields_with_value_citations": 15,
-      "average_confidence": 0.9
+      "total_fields_analyzed": 2,
+      "fields_with_field_citations": 2,
+      "fields_with_value_citations": 2,
+      "average_confidence": 0.95
     }
   },
   "timing": {
     "phase_timings": {
-      "markdown_extraction_seconds": "22.5",
-      "file_classification_seconds": "3.7",
-      "image_quality_assessment_seconds": "5.1",
-      "data_extraction_seconds": "13.8",
-      "issue_detection_seconds": "15.3",
-      "citation_generation_seconds": "17.8"
+      "markdown_extraction_seconds": "21.2",
+      "file_classification_seconds": "2.8",
+      "image_quality_assessment_seconds": "4.6",
+      "data_extraction_seconds": "5.6",
+      "citation_generation_seconds": "2.0",
+      "issue_detection_seconds": "17.6"
     },
     "agent_performance": {
       "markdown_extraction": {
-        "start_time": "2025-07-31T17:54:32.113Z",
-        "end_time": "2025-07-31T17:54:54.640Z",
-        "duration_seconds": "22.5",
+        "start_time": "2025-08-05T19:02:24.440Z",
+        "end_time": "2025-08-05T19:02:45.657Z",
+        "duration_seconds": "21.2",
         "document_reader_used": "textract"
       },
       "file_classification": {
-        "start_time": "2025-07-31T17:54:54.642Z",
-        "end_time": "2025-07-31T17:54:58.316Z",
-        "duration_seconds": "3.7",
+        "start_time": "2025-08-05T19:02:45.662Z",
+        "end_time": "2025-08-05T19:02:48.465Z",
+        "duration_seconds": "2.8",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "image_quality_assessment": {
-        "start_time": "2025-07-31T17:54:54.641Z",
-        "end_time": "2025-07-31T17:54:59.758Z",
-        "duration_seconds": "5.1",
+        "start_time": "2025-08-05T19:02:45.659Z",
+        "end_time": "2025-08-05T19:02:50.246Z",
+        "duration_seconds": "4.6",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "data_extraction": {
-        "start_time": "2025-07-31T17:54:54.642Z",
-        "end_time": "2025-07-31T17:55:08.415Z",
-        "duration_seconds": "13.8",
-        "model_used": "eu.amazon.nova-pro-v1:0",
-        "execution_mode": "parallel"
-      },
-      "issue_detection": {
-        "start_time": "2025-07-31T17:55:08.415Z",
-        "end_time": "2025-07-31T17:55:23.688Z",
-        "duration_seconds": "15.3",
+        "start_time": "2025-08-05T19:02:45.663Z",
+        "end_time": "2025-08-05T19:02:51.296Z",
+        "duration_seconds": "5.6",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       },
       "citation_generation": {
-        "start_time": "2025-07-31T17:55:08.416Z",
-        "end_time": "2025-07-31T17:55:26.215Z",
-        "duration_seconds": "17.8",
+        "start_time": "2025-08-05T19:02:51.299Z",
+        "end_time": "2025-08-05T19:02:53.317Z",
+        "duration_seconds": "2.0",
+        "model_used": "eu.amazon.nova-micro-v1:0",
+        "execution_mode": "parallel"
+      },
+      "issue_detection": {
+        "start_time": "2025-08-05T19:02:51.297Z",
+        "end_time": "2025-08-05T19:03:08.939Z",
+        "duration_seconds": "17.6",
         "model_used": "eu.amazon.nova-pro-v1:0",
         "execution_mode": "parallel"
       }
     },
-    "total_processing_time_seconds": "54.1",
+    "total_processing_time_seconds": "44.5",
     "performance_metrics": {
-      "parallel_group_1_seconds": "13.8",
-      "parallel_group_2_seconds": "17.8",
-      "total_parallel_time_seconds": "31.6",
-      "estimated_sequential_time_seconds": "78.2",
-      "estimated_speedup_factor": "2.48"
+      "parallel_group_1_seconds": "5.6",
+      "parallel_group_2_seconds": "17.6",
+      "total_parallel_time_seconds": "23.3",
+      "estimated_sequential_time_seconds": "53.8",
+      "estimated_speedup_factor": "2.31"
     },
     "validation": {
-      "total_time_seconds": "54.1",
-      "expected_parallel_time_seconds": "54.1",
-      "sequential_sum_seconds": "78.2",
-      "difference_seconds": "0.0",
+      "total_time_seconds": "44.5",
+      "expected_parallel_time_seconds": "44.4",
+      "sequential_sum_seconds": "53.8",
+      "difference_seconds": "0.1",
       "is_consistent": true,
       "tolerance_seconds": "3.0",
       "processing_mode": "parallel",
-      "time_saved_seconds": "24.1"
+      "time_saved_seconds": "9.3"
     }
   },
   "metadata": {
     "filename": "Copy of austrian_file_3.pdf",
-    "processing_time": 54103,
+    "processing_time": 44500,
     "country": "Austria",
     "icp": "Global People",
-    "processed_at": "2025-07-31T17:55:26.216Z",
+    "processed_at": "2025-08-05T19:03:08.941Z",
     "optimization": {
       "parallel_processing": true,
-      "parallel_group_1_duration_seconds": "13.8",
-      "parallel_group_2_duration_seconds": "17.8",
-      "estimated_sequential_time_seconds": "78.2",
-      "actual_parallel_time_seconds": "54.1"
+      "parallel_group_1_duration_seconds": "5.6",
+      "parallel_group_2_duration_seconds": "17.6",
+      "estimated_sequential_time_seconds": "53.8",
+      "actual_parallel_time_seconds": "44.5"
     }
   }
 }

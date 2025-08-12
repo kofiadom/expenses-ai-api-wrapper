@@ -1,0 +1,18 @@
+version: 2
+registries:
+  maven-artifactory:
+    type: maven-repository
+    url: https://maven.pkg.github.com/papayaglobal/*
+    username: devops-papaya
+    password: ${{ secrets.RND_GITHUB_ACTIONS_TOKEN }}
+  npm-artifactory:
+    type: npm-registry
+    url: https://npm.pkg.github.com
+    token: ${{ secrets.RND_GITHUB_ACTIONS_TOKEN }}
+updates:
+  - package-ecosystem: npm
+    directory: "/"
+    registries: "*"
+    open-pull-requests-limit: 10
+    schedule:
+      interval: "weekly"

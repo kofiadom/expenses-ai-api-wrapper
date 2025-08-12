@@ -5,6 +5,7 @@ import { IssueDetectionAgent } from '../agents/issue-detection.agent';
 import { CitationGeneratorAgent } from '../agents/citation-generator.agent';
 import { ImageQualityAssessmentAgent } from '../agents/image-quality-assessment.agent';
 import { ExpenseProcessingOptimizedService } from './expense-processing-optimized.service';
+import { LangfuseService } from './langfuse.service';
 import {
   type FileClassificationResult,
   type ExpenseData,
@@ -13,6 +14,7 @@ import {
   type CompleteProcessingResult,
   type ProcessingTiming,
 } from '../schemas/expense-schemas';
+import { randomUUID } from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
 
@@ -27,20 +29,21 @@ export class ExpenseProcessingService {
   private imageQualityAssessmentAgent: ImageQualityAssessmentAgent;
   private optimizedService: ExpenseProcessingOptimizedService;
 
-  constructor() {
-    // Use Bedrock as default with Anthropic fallback
+  constructor(private langfuseService: LangfuseService) {
+    // Use Bedrock as default provider with Anthropic fallback
     const provider: 'bedrock' | 'anthropic' = 'bedrock';
 
     this.logger.log(`Using provider: ${provider} (AWS Bedrock with Anthropic fallback)`);
 
-    this.fileClassificationAgent = new FileClassificationAgent(provider);
-    this.dataExtractionAgent = new DataExtractionAgent(provider);
-    this.issueDetectionAgent = new IssueDetectionAgent(provider);
-    this.citationGeneratorAgent = new CitationGeneratorAgent(provider);
-    this.imageQualityAssessmentAgent = new ImageQualityAssessmentAgent(provider);
+    // Initialize agents WITH Langfuse tracing
+    this.fileClassificationAgent = new FileClassificationAgent(provider, process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0', this.langfuseService);
+    this.dataExtractionAgent = new DataExtractionAgent(provider, this.langfuseService);
+    this.issueDetectionAgent = new IssueDetectionAgent(provider, this.langfuseService);
+    this.citationGeneratorAgent = new CitationGeneratorAgent(provider, this.langfuseService);
+    this.imageQualityAssessmentAgent = new ImageQualityAssessmentAgent(provider, this.langfuseService);
 
-    // Initialize optimized service
-    this.optimizedService = new ExpenseProcessingOptimizedService();
+    // Initialize optimized service with Langfuse
+    this.optimizedService = new ExpenseProcessingOptimizedService(this.langfuseService);
   }
 
   async processExpenseDocument(
@@ -53,7 +56,8 @@ export class ExpenseProcessingService {
     expenseSchema: any,
     progressCallback?: (stage: string, progress: number) => void,
     markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string },
-    useParallelProcessing: boolean = true
+    useParallelProcessing: boolean = true,
+    userId?: string
   ): Promise<CompleteProcessingResult> {
     // Choose between parallel and sequential processing
     if (useParallelProcessing) {
@@ -74,7 +78,8 @@ export class ExpenseProcessingService {
           imageQualityAssessmentAgent: this.imageQualityAssessmentAgent,
         },
         progressCallback,
-        markdownExtractionInfo
+        markdownExtractionInfo,
+        userId
       );
     } else {
       this.logger.log(`⏳ Using SEQUENTIAL processing for ${filename}`);
@@ -87,7 +92,8 @@ export class ExpenseProcessingService {
         complianceData,
         expenseSchema,
         progressCallback,
-        markdownExtractionInfo
+        markdownExtractionInfo,
+        userId
       );
     }
   }
@@ -101,12 +107,44 @@ export class ExpenseProcessingService {
     complianceData: any,
     expenseSchema: any,
     progressCallback?: (stage: string, progress: number) => void,
-    markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string }
+    markdownExtractionInfo?: { markdownExtractionTime: number; documentReader: string },
+    userId?: string
   ): Promise<CompleteProcessingResult> {
     // Calculate the true start time including markdown extraction
     const trueStartTime = markdownExtractionInfo
       ? Date.now() - markdownExtractionInfo.markdownExtractionTime
       : Date.now();
+
+    // Generate session ID for this processing run
+    const sessionId = this.generateSessionId(filename);
+    const effectiveUserId = userId || this.generateDefaultUserId();
+
+    this.logger.log(`👤 User: ${effectiveUserId}, Session: ${sessionId}`);
+
+    // Create main processing trace with user and session
+    const mainTrace = this.langfuseService?.createTrace({
+      name: 'expense-processing-sequential',
+      input: {
+        filename,
+        country,
+        icp,
+        imagePath: path.basename(imagePath),
+        markdownContentLength: markdownContent.length,
+        processingMode: 'sequential',
+      },
+      metadata: {
+        service: 'ExpenseProcessingService',
+        filename,
+        country,
+        icp,
+        processingMode: 'sequential',
+        markdownExtractionTime: markdownExtractionInfo?.markdownExtractionTime,
+        documentReader: markdownExtractionInfo?.documentReader,
+      },
+      tags: ['expense-processing', 'sequential', country, icp],
+      userId: effectiveUserId,
+      sessionId: sessionId,
+    });
 
     const currentTime = Date.now();
     const timing: any = {
@@ -125,6 +163,8 @@ export class ExpenseProcessingService {
       };
     }
 
+    // Main trace already created above with user and session tracking
+
     try {
       this.logger.log(`Starting complete expense processing for ${filename}`);
 
@@ -133,7 +173,7 @@ export class ExpenseProcessingService {
       this.logger.log('Phase 0: Image Quality Assessment');
 
       const qualityStart = Date.now();
-      const qualityAssessment = await this.imageQualityAssessmentAgent.assessImageQuality(imagePath);
+      const qualityAssessment = await this.imageQualityAssessmentAgent.assessImageQuality(imagePath, mainTrace);
       const qualityEnd = Date.now();
       const formattedQualityAssessment = this.imageQualityAssessmentAgent.formatAssessmentForWorkflow(qualityAssessment, imagePath);
 
@@ -153,7 +193,8 @@ export class ExpenseProcessingService {
       const classification = await this.fileClassificationAgent.classifyFile(
         markdownContent,
         country,
-        expenseSchema
+        expenseSchema,
+        mainTrace
       );
       const classificationEnd = Date.now();
 
@@ -162,7 +203,7 @@ export class ExpenseProcessingService {
         start_time: new Date(classificationStart).toISOString(),
         end_time: new Date(classificationEnd).toISOString(),
         duration_seconds: ((classificationEnd - classificationStart) / 1000).toFixed(1),
-        model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
+        model_used: this.fileClassificationAgent.getActualModelUsed(),
       };
 
       progressCallback?.('fileClassification', 25);
@@ -174,7 +215,8 @@ export class ExpenseProcessingService {
       const extractionStart = Date.now();
       const extraction = await this.dataExtractionAgent.extractData(
         markdownContent,
-        complianceData
+        complianceData,
+        mainTrace
       );
       const extractionEnd = Date.now();
 
@@ -183,7 +225,7 @@ export class ExpenseProcessingService {
         start_time: new Date(extractionStart).toISOString(),
         end_time: new Date(extractionEnd).toISOString(),
         duration_seconds: ((extractionEnd - extractionStart) / 1000).toFixed(1),
-        model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
+        model_used: this.dataExtractionAgent.getActualModelUsed(),
       };
 
       progressCallback?.('dataExtraction', 50);
@@ -198,7 +240,8 @@ export class ExpenseProcessingService {
         classification.expense_type || 'All',
         icp,
         complianceData,
-        extraction
+        extraction,
+        mainTrace
       );
       const issueDetectionEnd = Date.now();
 
@@ -207,7 +250,7 @@ export class ExpenseProcessingService {
         start_time: new Date(issueDetectionStart).toISOString(),
         end_time: new Date(issueDetectionEnd).toISOString(),
         duration_seconds: ((issueDetectionEnd - issueDetectionStart) / 1000).toFixed(1),
-        model_used: process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0',
+        model_used: this.issueDetectionAgent.getActualModelUsed(),
       };
 
       progressCallback?.('issueDetection', 75);
@@ -219,9 +262,9 @@ export class ExpenseProcessingService {
       const citationStart = Date.now();
       const citations = await this.citationGeneratorAgent.generateCitations(
         extraction,
-        JSON.stringify(complianceData),
         markdownContent,
-        filename
+        filename,
+        mainTrace
       );
       const citationEnd = Date.now();
 
@@ -230,7 +273,7 @@ export class ExpenseProcessingService {
         start_time: new Date(citationStart).toISOString(),
         end_time: new Date(citationEnd).toISOString(),
         duration_seconds: ((citationEnd - citationStart) / 1000).toFixed(1),
-        model_used: process.env.CITATION_MODEL || 'eu.amazon.nova-micro-v1:0',
+        model_used: this.citationGeneratorAgent.getActualModelUsed(),
       };
 
       progressCallback?.('citationGeneration', 95);
@@ -264,11 +307,60 @@ export class ExpenseProcessingService {
       // Save results to file (timing is already included in result)
       await this.saveResultsToFile(filename, result);
 
+      // Finalize main trace with success
+      if (mainTrace) {
+        mainTrace.update({
+          output: {
+            success: true,
+            classification_result: classification?.expense_type,
+            processing_time_seconds: (processingTime / 1000).toFixed(1),
+            total_phases: 5,
+            issues_detected: compliance?.validation_result?.issues?.length || 0,
+          },
+          metadata: {
+            final_processing_time_seconds: (processingTime / 1000).toFixed(1),
+            success: true,
+            phases_completed: ['image_quality', 'classification', 'extraction', 'compliance', 'citations'],
+            processing_mode: 'sequential',
+            // Individual agent processing times
+            agent_timings: {
+              image_quality_seconds: timing.phase_timings.image_quality_assessment_seconds,
+              classification_seconds: timing.phase_timings.file_classification_seconds,
+              extraction_seconds: timing.phase_timings.data_extraction_seconds,
+              compliance_seconds: timing.phase_timings.issue_detection_seconds,
+              citations_seconds: timing.phase_timings.citation_generation_seconds,
+            },
+          },
+        });
+        
+        // Flush the trace
+        await this.langfuseService.flush();
+      }
+
       return result;
       
     } catch (error) {
       const processingTime = Date.now() - trueStartTime;
       this.logger.error(`Expense processing failed for ${filename}:`, error);
+
+      // Finalize main trace with error
+      if (mainTrace) {
+        mainTrace.update({
+          output: {
+            success: false,
+            error: error.message,
+            processing_time_seconds: (processingTime / 1000).toFixed(1),
+          },
+          metadata: {
+            final_processing_time_ms: processingTime,
+            success: false,
+            error: error.message,
+          },
+        });
+        
+        // Flush the trace
+        await this.langfuseService.flush();
+      }
 
       // Return error result
       throw new Error(`Expense processing failed: ${error.message}`);
@@ -308,13 +400,11 @@ export class ExpenseProcessingService {
 
   async generateCitationsOnly(
     extractedData: any,
-    extractionRequirements: string,
     markdownContent: string,
     filename: string
   ): Promise<CitationResult> {
     return this.citationGeneratorAgent.generateCitations(
       extractedData,
-      extractionRequirements,
       markdownContent,
       filename
     );
@@ -363,7 +453,22 @@ export class ExpenseProcessingService {
     }
   }
 
+  /**
+   * Generate a session ID for the processing run
+   */
+  private generateSessionId(filename: string): string {
+    const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
+    const fileBaseName = path.basename(filename, path.extname(filename));
+    const randomSuffix = randomUUID().substring(0, 8);
+    return `expense-${fileBaseName}-${timestamp}-${randomSuffix}`;
+  }
 
+  /**
+   * Generate a default user ID (can be overridden by API key or client ID)
+   */
+  private generateDefaultUserId(): string {
+    return 'default-user';
+  }
 
   private getFastestPhase(phaseTimings: any): { phase: string; time_minutes: string } {
     const phases = Object.entries(phaseTimings).filter(([_, time]) => time !== undefined) as [string, string][];

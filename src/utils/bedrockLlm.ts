@@ -38,6 +38,7 @@ export class BedrockLlmService {
   private anthropicClient: Anthropic | null = null;
   private modelId: string;
   private fallbackEnabled: boolean = true;
+  private lastUsedProvider: 'bedrock' | 'anthropic' | null = null;
 
   constructor(config?: BedrockConfig) {
     // Initialize Bedrock client with service-specific credentials
@@ -98,9 +99,13 @@ export class BedrockLlmService {
     if (this.bedrockClient) {
       try {
         if (this.isNovaModel()) {
-          return await this.chatWithNova(options.messages);
+          const result = await this.chatWithNova(options.messages);
+          this.lastUsedProvider = 'bedrock';
+          return result;
         } else {
-          return await this.chatWithBedrock(options.messages);
+          const result = await this.chatWithBedrock(options.messages);
+          this.lastUsedProvider = 'bedrock';
+          return result;
         }
       } catch (error) {
         this.logger.error(`❌ Bedrock chat failed: ${error.message}`);
@@ -108,7 +113,9 @@ export class BedrockLlmService {
         // Fall back to Anthropic if enabled
         if (this.fallbackEnabled && this.anthropicClient) {
           this.logger.log('🔄 Falling back to Anthropic API');
-          return await this.chatWithAnthropic(options.messages);
+          const result = await this.chatWithAnthropic(options.messages);
+          this.lastUsedProvider = 'anthropic';
+          return result;
         }
 
         throw error;
@@ -118,7 +125,9 @@ export class BedrockLlmService {
     // Use Anthropic if Bedrock is not available
     if (this.anthropicClient) {
       this.logger.log('📡 Using Anthropic API (Bedrock not available)');
-      return await this.chatWithAnthropic(options.messages);
+      const result = await this.chatWithAnthropic(options.messages);
+      this.lastUsedProvider = 'anthropic';
+      return result;
     }
 
     throw new Error('No LLM provider available (neither Bedrock nor Anthropic)');
@@ -237,7 +246,8 @@ export class BedrockLlmService {
       usage: (response as any).usage ? {
         input_tokens: (response as any).usage.input_tokens || 0,
         output_tokens: (response as any).usage.output_tokens || 0
-      } : undefined
+      } : undefined,
+      modelUsed: 'claude-3-5-sonnet-20241022'
     };
   }
 
@@ -251,9 +261,36 @@ export class BedrockLlmService {
   }
 
   /**
+   * Get the model name that was actually used in the last chat call
+   */
+  getCurrentModelName(): string {
+    if (this.lastUsedProvider === 'bedrock') {
+      return this.modelId;
+    }
+    if (this.lastUsedProvider === 'anthropic') {
+      return 'claude-3-5-sonnet-20241022';
+    }
+    // Fallback to available provider if no chat has been made yet
+    if (this.bedrockClient) {
+      return this.modelId;
+    }
+    if (this.anthropicClient) {
+      return 'claude-3-5-sonnet-20241022';
+    }
+    return 'unknown';
+  }
+
+  /**
    * Check if fallback is available
    */
   isFallbackAvailable(): boolean {
     return this.fallbackEnabled && this.anthropicClient !== null;
+  }
+
+  /**
+   * Get the provider that was actually used in the last chat call
+   */
+  getLastUsedProvider(): 'bedrock' | 'anthropic' | null {
+    return this.lastUsedProvider;
   }
 }

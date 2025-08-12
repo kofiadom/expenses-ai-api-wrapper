@@ -1,0 +1,19 @@
+name: SAST
+
+on:
+  pull_request:
+    types: [opened, synchronize, ready_for_review]
+    paths-ignore:
+      - '**.md'
+      - '**/*.md'
+      - '**/.gitignore'
+      - '.gitignore'
+      - '**/CODEOWNERS'
+      - 'CODEOWNERS'
+      - '**/.dockerignore'
+      - '.dockerignore'
+
+jobs:
+  SAST:
+    uses: papayaglobal/workflows/.github/workflows/semgrep.yaml@main
+    secrets: inherit

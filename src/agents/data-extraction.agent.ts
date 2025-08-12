@@ -1,12 +1,17 @@
 import { Anthropic } from '@llamaindex/anthropic';
 import { ExpenseDataSchema, type ExpenseData } from '../schemas/expense-schemas';
-import { Logger } from '@nestjs/common';
+import { LangfuseService } from '../services/langfuse.service';
+import type { LangfuseTraceClient, LangfuseGenerationClient } from 'langfuse';
 import { BedrockLlmService } from '../utils/bedrockLlm';
+import { BaseAgent } from './base.agent';
 
-export class DataExtractionAgent {
-  private readonly logger = new Logger(DataExtractionAgent.name);
+export class DataExtractionAgent extends BaseAgent {
   private llm: any;
-  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock') {
+  private currentProvider: 'bedrock' | 'anthropic';
+
+  constructor(provider: 'bedrock' | 'anthropic' = 'bedrock', langfuseService?: LangfuseService) {
+    super(langfuseService);
+    this.currentProvider = provider;
     this.logger.log(`Initializing DataExtractionAgent with provider: ${provider}`);
 
     if (provider === 'bedrock') {
@@ -19,33 +24,101 @@ export class DataExtractionAgent {
     }
   }
 
+  /**
+   * Get the actual model name used, accounting for fallback scenarios
+   */
+  getActualModelUsed(): string {
+    if (this.currentProvider === 'bedrock' && this.llm.getCurrentModelName) {
+      // For BedrockLlmService, get the actual model name (handles fallback)
+      return this.llm.getCurrentModelName();
+    } else if (this.currentProvider === 'bedrock') {
+      // Fallback for older BedrockLlmService without getCurrentModelName
+      return process.env.BEDROCK_MODEL || 'eu.amazon.nova-pro-v1:0';
+    } else {
+      // Direct Anthropic usage
+      return 'claude-3-5-sonnet-20241022';
+    }
+  }
+
   async extractData(
     markdownContent: string,
-    complianceRequirements: any
+    complianceRequirements: any, // Note: No longer used for schema definition, kept for API compatibility
+    parentTrace?: LangfuseTraceClient
   ): Promise<ExpenseData> {
-    try {
-      this.logger.log('Starting data extraction');
+    const startTime = new Date();
+    let trace: LangfuseTraceClient | null = null;
+    let generation: LangfuseGenerationClient | null = null;
 
-      const prompt = this.buildExtractionPrompt(markdownContent, complianceRequirements);
+    try {
+      this.logger.log('Starting data extraction with standard receipt/invoice schema');
+
+      // Create Langfuse trace with exact prompt inputs
+      const traceInput = {
+        markdownContent,
+        contentLength: markdownContent.length,
+        extractionType: 'standard_receipt_schema',
+      };
+
+      // Get the prompt first to have it available for linking
+      const combinedPrompt = await this.getPromptTemplate('data-extraction-prompt', {
+        markdownContent
+      });
+      const promptObject = this.getLastPromptObject();
+      const promptInfo = { ...this.lastPromptInfo! };
+
+      if (parentTrace) {
+        // Create as a span within parent trace with prompt linking
+        generation = this.createGenerationWithPrompt(parentTrace, {
+          name: 'data-extraction',
+          input: traceInput,
+          model: this.getActualModelUsed(),
+          startTime,
+          metadata: {
+            agent: 'DataExtractionAgent',
+            provider: this.currentProvider,
+            contentLength: markdownContent.length,
+            extractionType: 'standard_receipt_schema',
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
+          },
+        }, promptObject) || null;
+      } else {
+        // Create standalone trace
+        trace = this.langfuseService?.createTrace({
+          name: 'data-extraction',
+          input: traceInput,
+          metadata: {
+            agent: 'DataExtractionAgent',
+            provider: this.currentProvider,
+            contentLength: markdownContent.length,
+            extractionType: 'standard_receipt_schema',
+          },
+          tags: ['data-extraction', 'expense-processing'],
+        }) || null;
+
+        // Create generation within trace with prompt linking
+        generation = this.createGenerationWithPrompt(trace, {
+          name: 'extraction-llm-call',
+          input: traceInput,
+          model: this.getActualModelUsed(),
+          startTime,
+          metadata: {
+            agent: 'DataExtractionAgent',
+            provider: this.currentProvider,
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
+          },
+        }, promptObject) || null;
+      }
+
+      // Generate prompt version tags (now just one prompt)
+      const promptVersionTags = this.getPromptVersionTags();
 
       const response = await this.llm.chat({
         messages: [
           {
-            role: 'system',
-            content: `Persona: You are a meticulous and highly accurate data extraction AI. You specialize in parsing unstructured text from expense documents and structuring it into a precise JSON format. Your primary function is to identify and extract data points from the receipt text, not to validate them against specific rules.
-
-Task: Your goal is to extract specific fields from the provided RECEIPT TEXT. You must use the EXTRACTION REQUIREMENTS as the definitive guide for what field types to look for. Additionally, identify and extract any other standard invoice or receipt fields not explicitly listed, including line items with their individual details.
-
-INPUTS:
-1. EXTRACTION REQUIREMENTS (JSON):
-This JSON object defines the field types you must attempt to extract. Look at the "FieldType" values to understand what kinds of information to extract. The "Description" provides context to help you locate the correct information. IGNORE the "Rule" field completely - it is for validation purposes only and should not affect your extraction.
-
-2. RECEIPT TEXT (MARKDOWN):
-This is the raw text from the document that needs to be analyzed.`,
-          },
-          {
             role: 'user',
-            content: prompt,
+            content: combinedPrompt,
           },
         ],
       });
@@ -76,12 +149,85 @@ This is the raw text from the document that needs to be analyzed.`,
       const parsedResult = this.parseJsonResponse(rawContent);
       const result = ExpenseDataSchema.parse(parsedResult);
 
-      this.logger.log(`Data extraction completed: ${Object.keys(result).length} fields extracted`);
+
+
+      const endTime = new Date();
+      const duration = endTime.getTime() - startTime.getTime();
+
+      // Update Langfuse generation with results
+      if (generation) {
+        this.langfuseService?.updateGeneration(generation, {
+          output: {
+            extraction_result: result
+          },
+          usage: {
+            // Rough estimate: 4 chars per token
+            promptTokens: Math.floor(combinedPrompt.length / 4),
+            completionTokens: Math.floor(rawContent.length / 4),
+            totalTokens: Math.floor((combinedPrompt.length + rawContent.length) / 4),
+          },
+          endTime,
+          metadata: {
+            duration_seconds: (duration / 1000).toFixed(1),
+            success: true,
+            fieldsExtracted: Object.keys(result).length,
+            modelUsed: this.getActualModelUsed(),
+            provider: this.currentProvider,
+            // Prompt is now linked directly to the generation
+            promptLinked: true,
+            promptName: promptInfo.name,
+            promptVersion: promptInfo.version || 'unknown',
+          },
+        });
+      }
+
+      // Finalize trace if it's a standalone trace
+      if (trace && !parentTrace) {
+        // Add prompt version tags to the trace
+        this.langfuseService?.addTagsToTrace(trace, promptVersionTags);
+        
+        this.langfuseService?.finalizeTrace(trace, {
+          extraction_result: result,
+          processing_time_ms: duration,
+          success: true,
+        }, {
+          duration_ms: duration,
+          success: true,
+          fieldsExtracted: Object.keys(result).length,
+          promptVersionTags: promptVersionTags,
+        });
+      }
+
+      this.logger.log(`Data extraction completed: ${Object.keys(result).length} fields extracted in ${duration}ms`);
 
       return result;
     } catch (error) {
+      const endTime = new Date();
+      const duration = endTime.getTime() - startTime.getTime();
+
       this.logger.error('Data extraction failed:', error);
-      
+
+      // Update Langfuse with error
+      if (generation) {
+        this.langfuseService?.updateGeneration(generation, {
+          output: null,
+          endTime,
+          metadata: {
+            duration_seconds: (duration / 1000).toFixed(1),
+            success: false,
+            error: error.message,
+          },
+        });
+      }
+
+      if (trace && !parentTrace) {
+        this.langfuseService?.finalizeTrace(trace, null, {
+          duration_seconds: (duration / 1000).toFixed(1),
+          success: false,
+          error: error.message,
+        });
+      }
+
       // Return minimal fallback result
       return {
         vendor_name: 'extraction_failed',
@@ -90,78 +236,6 @@ This is the raw text from the document that needs to be analyzed.`,
     }
   }
 
-  private buildExtractionPrompt(
-    markdownContent: string,
-    complianceRequirements: any
-  ): string {
-    return `EXTRACTION REQUIREMENTS (JSON):
-${JSON.stringify(complianceRequirements, null, 2)}
-
-RECEIPT TEXT (MARKDOWN):
-${markdownContent}
-
-INSTRUCTIONS:
-Analyze: Carefully read the RECEIPT TEXT to identify all available information.
-Extract Field Types: For each unique "FieldType" in the EXTRACTION REQUIREMENTS, extract the actual value found in the receipt text. IGNORE any "Rule" specifications - extract what is actually present in the receipt.
-Extract Additional Fields: Also extract any other relevant information found in the receipt that could be useful for expense management, such as:
-- Line items with their details (products/services, quantities, prices)
-- Transaction identifiers, reference numbers, or invoice numbers
-- Date and time information
-- Contact information (phone, email, website, etc.)
-- Tax-related information (rates, amounts, tax IDs)
-- Payment-related information
-- Location or table identifiers
-- Any special notes, terms, or conditions
-- Subtotals, discounts, tips, or other financial breakdowns
-- Any other structured data present in the receipt
-
-Format: Structure your findings into a single, valid JSON object.
-The keys of your output JSON MUST be the snake_case version of the "FieldType" values. For example, "Supplier Name" becomes "supplier_name", "VAT Number" becomes "vat_number".
-For additional fields not in the extraction requirements, use descriptive snake_case field names that clearly indicate what the data represents.
-If a field type cannot be found in the text, its value in the output JSON MUST be null. Do not guess or invent data.
-For dates, standardize the format to YYYY-MM-DD. If you cannot determine the year, assume the current year.
-For amounts and rates, extract only the numerical value (e.g., 120.50, 19.0).
-For currency, use the standard 3-letter ISO code (e.g., "EUR", "USD") if possible; otherwise, extract the symbol.
-For line items, create an array of objects with details like item name, quantity, unit price, and total price.
-Adapt field names to the type of receipt (restaurant, hotel, transport, retail, etc.) while maintaining consistency.
-
-CRITICAL REQUIREMENT:
-Your final output MUST BE ONLY a valid JSON object. Do not include any explanatory text, greetings, apologies, or markdown formatting like \`\`\`json before or after the JSON object.
-
-EXAMPLE OUTPUT STRUCTURE:
-Include all fields from the extraction requirements (using snake_case of FieldType values) plus any additional relevant fields found in the receipt. Use descriptive field names for additional fields.
-
-{
-  "country": "Germany",
-  "supplier_name": "THE SUSHI CLUB",
-  "supplier_address": "Mohrenstr.42, 10117 Berlin",
-  "vat_number": null,
-  "currency": "EUR",
-  "total_amount": 64.40,
-  "date_of_issue": "2019-02-05",
-  "line_items": [
-    {
-      "description": "Miso Soup",
-      "quantity": 1,
-      "unit_price": 3.90,
-      "total_price": 3.90
-    }
-  ],
-  "contact_phone": "+49 30 23 916 036",
-  "contact_email": "info@thesushiclub.de",
-  "contact_website": "WWW.TheSushiClub.de",
-  "transaction_time": "23:10:54",
-  "receipt_type": "Rechnung",
-  "table_number": "24",
-  "transaction_reference": "L0001 FRÜH",
-  "special_notes": "TIP IS NOT INCLUDED",
-  "tax_rate": null,
-  "vat": null,
-  "name": null,
-  "address": null,
-  "supplier": null
-}`;
-  }
 
   private parseJsonResponse(content: string): any {
     try {
@@ -177,4 +251,5 @@ Include all fields from the extraction requirements (using snake_case of FieldTy
       throw new Error(`Invalid JSON response: ${error.message}`);
     }
   }
+
 }

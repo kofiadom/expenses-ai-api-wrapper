@@ -2,7 +2,7 @@
 # Markdown Extraction Results
 - **Original File**: Copy of austrian_file_6.pdf
 - **Document Reader**: textract
-- **Extracted At**: 2025-07-31T18:02:03.517Z
+- **Extracted At**: 2025-08-05T16:18:35.490Z
 - **Content Length**: 614 characters
 ---
 
